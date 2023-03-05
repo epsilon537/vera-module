@@ -21,6 +21,13 @@ module main_ram(
     always @* bus_rddata = bus_addr14 ? blk32_rddata : blk10_rddata;
 
 `ifdef __ICARUS__
+    `define ICARUS_OR_VERILATOR
+`endif
+`ifdef VERILATOR
+    `define ICARUS_OR_VERILATOR
+`endif
+
+`ifdef ICARUS_OR_VERILATOR
     reg [31:0] blk10[0:16383];
     reg [31:0] blk32[0:16383];
 

@@ -8,7 +8,8 @@ module top(
     input  wire       extbus_rd_n,   /* Read strobe */
     input  wire       extbus_wr_n,   /* Write strobe */
     input  wire [4:0] extbus_a,      /* Address */
-    inout  wire [7:0] extbus_d,      /* Data (bi-directional) */
+    input  wire [7:0] extbus_d,      /* Data In */
+    output wire [7:0] extbus_dout,   /* Data Out */
     output wire       extbus_irq_n,  /* IRQ */
 
     // VGA interface
@@ -18,17 +19,21 @@ module top(
     output reg        vga_hsync   /* synthesis syn_useioff = 1 */,
     output reg        vga_vsync   /* synthesis syn_useioff = 1 */,
 
+`ifdef VERA_SPI
     // SPI interface
     output wire       spi_sck,
     output wire       spi_mosi,
     input  wire       spi_miso,
     output wire       spi_ssel_n_sd,
+`endif /*VERA_SPI*/
 
+`ifdef VERA_AUDIO
     // Audio output
     output wire       audio_lrck,
     output wire       audio_bck,
-    output wire       audio_data);
-
+    output wire       audio_data
+`endif /*VERA_AUDIO*/
+    );
     //////////////////////////////////////////////////////////////////////////
     // Synchronize external asynchronous reset signal to clk25 domain
     //////////////////////////////////////////////////////////////////////////
@@ -200,7 +205,7 @@ module top(
 
     wire bus_read  = !extbus_cs_n &&  extbus_wr_n && !extbus_rd_n;
     wire bus_write = !extbus_cs_n && !extbus_wr_n;
-    assign extbus_d = bus_read ? rddata : 8'bZ;
+    assign extbus_dout = rddata;
 
     wire [3:0] irq_enable = {irq_enable_audio_fifo_low_r, irq_enable_sprite_collision_r, irq_enable_line_r, irq_enable_vsync_r};
     wire [3:0] irq_status = {audio_fifo_low,              irq_status_sprite_collision_r, irq_status_line_r, irq_status_vsync_r};
@@ -1057,6 +1062,7 @@ module top(
         .rd_addr_i(composer_display_data),
         .rd_data_o(palette_rgb_data));
 
+`ifdef VERA_COMPOSITE_VIDEO
     //////////////////////////////////////////////////////////////////////////
     // Composite video
     //////////////////////////////////////////////////////////////////////////
@@ -1092,6 +1098,7 @@ module top(
         .rgb_g(video_rgb_g),
         .rgb_b(video_rgb_b),
         .rgb_sync_n(video_rgb_sync_n));
+`endif /*VERA_COMPOSITE_VIDEO*/
 
     //////////////////////////////////////////////////////////////////////////
     // VGA video
@@ -1126,10 +1133,17 @@ module top(
     //////////////////////////////////////////////////////////////////////////
     // Video output selection
     //////////////////////////////////////////////////////////////////////////
+`ifdef VERA_COMPOSITE_VIDEO    
     assign next_frame   = video_output_mode_r[1] ? video_composite_next_frame         : video_vga_next_frame;
     assign next_line    = video_output_mode_r[1] ? video_composite_next_line          : video_vga_next_line;
     assign next_pixel   = video_output_mode_r[1] ? video_composite_display_next_pixel : video_vga_display_next_pixel;
     assign vblank_pulse = video_output_mode_r[1] ? video_composite_vblank_pulse       : video_vga_vblank_pulse;
+`else
+    assign next_frame   = video_vga_next_frame;
+    assign next_line    = video_vga_next_line;
+    assign next_pixel   = video_vga_display_next_pixel;
+    assign vblank_pulse = video_vga_vblank_pulse;
+`endif
 
     always @(posedge clk) case (video_output_mode_r)
         2'b01: begin
@@ -1139,7 +1153,7 @@ module top(
             vga_hsync <= video_vga_hsync;
             vga_vsync <= video_vga_vsync;
         end
-
+`ifdef VERA_COMPOSITE_VIDEO    
         2'b10: begin
             vga_r     <= video_composite_luma[5:2];
             vga_g     <= {video_composite_luma[1:0], video_composite_chroma2[5:4]};
@@ -1155,7 +1169,7 @@ module top(
             vga_hsync <= video_rgb_sync_n;
             vga_vsync <= 0;
         end
-
+`endif /*VERA_COMPOSITE_VIDEO*/
         default: begin
             vga_r     <= 0;
             vga_g     <= 0;
@@ -1168,13 +1182,16 @@ module top(
     //////////////////////////////////////////////////////////////////////////
     // FPGA reconfiguration
     //////////////////////////////////////////////////////////////////////////
-`ifndef __ICARUS__
+
+/* `ifndef __ICARUS__
     WARMBOOT warmboot(
         .S1(1'b0),
         .S0(1'b0),
         .BOOT(fpga_reconfigure_r));
 `endif
+ */
 
+ `ifdef VERA_SPI
     //////////////////////////////////////////////////////////////////////////
     // SPI interface
     //////////////////////////////////////////////////////////////////////////
@@ -1201,7 +1218,9 @@ module top(
     // Audio
     //////////////////////////////////////////////////////////////////////////
     wire audio_write = (ib_addr_r[16:6] == 'b11111100111) && ib_do_access_r && ib_write_r;
+`endif /*VERA_SPI*/
 
+`ifdef VERA_AUDIO
     audio audio(
         .rst(reset),
         .clk(clk),
@@ -1229,5 +1248,6 @@ module top(
         .i2s_lrck(audio_lrck),
         .i2s_bck(audio_bck),
         .i2s_data(audio_data));
+`endif /*VERA_AUDIO*/
 
 endmodule

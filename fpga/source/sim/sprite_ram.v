@@ -1,6 +1,7 @@
 //`default_nettype none
 
 module sprite_ram(
+    input  wire        rst_i,
     input  wire        wr_clk_i,
     input  wire        rd_clk_i,
     input  wire        wr_clk_en_i,
@@ -30,21 +31,24 @@ module sprite_ram(
 
     initial begin: INIT
         integer i;
-        for (i=0; i<256; i=i+1) begin
-            mem[i] = 0;
-        end
 
-        mem[2][11:0]  = 'h100;   // addr
-        mem[2][15]    = 1;       // mode
-        mem[2][25:16] = 10'd60;  // x
-        mem[3][9:0]   = 10'd3;   // y
-        mem[3][16]    = 0;       // hflip
-        mem[3][17]    = 0;       // vflip
-        mem[3][19:18] = 3'd1;    // z
-        mem[3][23:20] = 0;       // collision mask
-        mem[3][27:24] = 0;       // palette offset
-        mem[3][29:28] = 2'd2;    // width
-        mem[3][31:30] = 2'd1;    // height
+        //for (i=0; i<(256-2*8); i=i+1) begin
+        //    mem[i] = 0;
+        //end
+
+        for (i=(256-2*128); i<256; i=i+2) begin
+            mem[i][11:0]  = 'h100;   // addr
+            mem[i][15]    = 1;       // mode: 8bpp
+            mem[i][25:16] = 10'(32*i);  // x
+            mem[i+1][9:0]   = 10'd3;   // y
+            mem[i+1][16]    = 0;       // hflip
+            mem[i+1][17]    = 0;       // vflip
+            mem[i+1][19:18] = 2'd3;    // z
+            mem[i+1][23:20] = 0;       // collision mask
+            mem[i+1][27:24] = 0;       // palette offset
+            mem[i+1][29:28] = 2'd0;    // width: 8
+            mem[i+1][31:30] = 2'd0;    // height: 8
+        end
 
         // mem[10][9:0]   = 10'd200; // x
         // mem[10][10]    = 0;      // hflip

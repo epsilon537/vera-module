@@ -1,6 +1,7 @@
 //`default_nettype none
 
 module palette_ram(
+    input  wire        rst_i,
     input  wire        wr_clk_i,
     input  wire        rd_clk_i,
     input  wire        wr_clk_en_i,

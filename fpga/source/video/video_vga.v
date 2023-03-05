@@ -46,6 +46,12 @@ module video_vga(
     always @(posedge clk or posedge rst) begin
         if (rst) begin
 `ifdef __ICARUS__
+    `define ICARUS_OR_VERILATOR
+`endif
+`ifdef VERILATOR
+    `define ICARUS_OR_VERILATOR
+`endif            
+`ifdef ICARUS_OR_VERILATOR
             x_counter <= 10'd750;
             y_counter <= 10'd523;
 `else
