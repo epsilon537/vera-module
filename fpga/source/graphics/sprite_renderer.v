@@ -5,6 +5,7 @@ module sprite_renderer(
     input  wire        clk,
 
     // Register interface
+    input  wire  [1:0] sprite_bank,
     output wire  [3:0] collisions,
     output reg         sprcol_irq,
 
@@ -37,23 +38,18 @@ module sprite_renderer(
     assign collisions = frame_collision_mask_r;
 
     //////////////////////////////////////////////////////////////////////////
-    // Render time limitation
+    // Sprite Pixel Count limitation
     //////////////////////////////////////////////////////////////////////////
-    reg  [9:0] render_time_r;
-    wire       render_time_done = (render_time_r == 'd798);
+    reg  [8:0] sprite_pixel_count_r;
 
-    // Limit render time so that VGA and composite mode get the same amount of render time
+    // Keep track of number of sprite pixels already rendered on current line.
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            render_time_r <= 0;
+            sprite_pixel_count_r <= 0;
         end else begin
             if (line_render_start) begin
-                render_time_r <= 0;
-            end else begin
-                if (!render_time_done) begin
-                    render_time_r <= render_time_r + 10'd1;
-                end
-            end
+                sprite_pixel_count_r <= 0;
+            end 
         end
     end
 
@@ -62,10 +58,15 @@ module sprite_renderer(
     //////////////////////////////////////////////////////////////////////////
     wire       render_busy;
 
-    reg  [7:0] sprite_idx_r, sprite_idx_next;
+    reg  [5:0] sprite_idx_r, sprite_idx_next;
     reg        sprite_attr_sel_next;
 
-    assign sprite_idx = {sprite_idx_next[6:0], sprite_attr_sel_next};
+    always @* case (sprite_bank)
+        2'd0: sprite_idx = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next};
+        2'd1: sprite_idx = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd64;
+        2'd2: sprite_idx = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd128;
+        2'd3: sprite_idx = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd192;
+    endcase
 
     // Decode fields from sprite attributes
 
@@ -124,7 +125,7 @@ module sprite_renderer(
     reg        start_render_r, start_render_next;
 
 
-    wire [7:0] sprite_idx_incr = sprite_idx_r + 8'd1;
+    wire [5:0] sprite_idx_incr = sprite_idx_r + 6'd1;
 
     // Render state machine
     always @* begin
@@ -138,7 +139,7 @@ module sprite_renderer(
         case (sf_state_next)
             // Find a sprite to be rendered
             SF_FIND_SPRITE: begin
-                if (sprite_idx_r[7]) begin
+                if ((sprite_idx_r[5]==1'b1) || (sprite_pixel_count_r >= 'd256)) begin
                     sf_state_next = SF_DONE;
 
                 end else begin
@@ -172,11 +173,7 @@ module sprite_renderer(
             sf_state_next     = SF_FIND_SPRITE;
             sprite_idx_next   = 0;
             start_render_next = 0;
-        end else begin
-            if (render_time_done) begin
-                sf_state_next = SF_DONE;
-            end
-        end
+        end 
     end
 
     always @(posedge clk or posedge rst) begin
@@ -213,6 +210,7 @@ module sprite_renderer(
                 sprite_collision_mask_r <= sprite_attr_collision_mask;
                 sprite_palette_offset_r <= sprite_attr_palette_offset;
                 sprite_width_r          <= sprite_attr_width;
+                sprite_pixel_count_r    <= sprite_pixel_count_r + (8<<sprite_attr_width);
                 // sprite_height_r         <= sprite_attr_height;
             end
         end
@@ -391,11 +389,7 @@ module sprite_renderer(
             state_next       = STATE_IDLE;
             xcnt_next        = 0;
             bus_strobe_next  = 0;
-        end else begin
-            if (render_time_done) begin
-                state_next = STATE_DONE;
-            end
-        end
+        end 
 
         if (frame_done) begin
             sprcol_irq                = (cur_collision_mask_r != 4'b0);

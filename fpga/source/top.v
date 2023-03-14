@@ -61,6 +61,7 @@ module top(
     reg  [7:0] vram_data0_r,                  vram_data0_next;
     reg  [7:0] vram_data1_r,                  vram_data1_next;
     reg        dc_select_r,                   dc_select_next;
+    reg  [1:0] sprite_bank_select_r,          sprite_bank_select_next;
     reg        fpga_reconfigure_r,            fpga_reconfigure_next;
     reg        irq_enable_vsync_r,            irq_enable_vsync_next;
     reg        irq_enable_line_r,             irq_enable_line_next;
@@ -144,7 +145,7 @@ module top(
         5'h02: rddata = vram_addr_select_r ? {vram_addr_incr_1_r, vram_addr_decr_1_r, 2'b0, vram_addr_1_r[16]} : {vram_addr_incr_0_r, vram_addr_decr_0_r, 2'b0, vram_addr_0_r[16]};
         5'h03: rddata = vram_data0_r;
         5'h04: rddata = vram_data1_r;
-        5'h05: rddata = {6'b0, dc_select_r, vram_addr_select_r};
+        5'h05: rddata = {4'b0, sprite_bank_select_r, dc_select_r, vram_addr_select_r};
 
         5'h06: rddata = {irq_line_r[8], scanline[8], 2'b0, irq_enable_audio_fifo_low_r, irq_enable_sprite_collision_r, irq_enable_line_r, irq_enable_vsync_r};
         5'h07: rddata = {sprite_collisions,   audio_fifo_low,              irq_status_sprite_collision_r, irq_status_line_r, irq_status_vsync_r};
@@ -290,6 +291,7 @@ module top(
         vram_data0_next                  = vram_data0_r;
         vram_data1_next                  = vram_data1_r;
         dc_select_next                   = dc_select_r;
+        sprite_bank_select_next          = sprite_bank_select_r;
         fpga_reconfigure_next            = fpga_reconfigure_r;
         irq_enable_audio_fifo_low_next   = irq_enable_audio_fifo_low_r;
         irq_enable_vsync_next            = irq_enable_vsync_r;
@@ -406,9 +408,10 @@ module top(
                 5'h04: begin
                 end
                 5'h05: begin
-                    fpga_reconfigure_next = write_data[7];
-                    dc_select_next        = write_data[1];
-                    vram_addr_select_next = write_data[0];
+                    fpga_reconfigure_next   = write_data[7];
+                    sprite_bank_select_next = write_data[3:2];
+                    dc_select_next          = write_data[1];
+                    vram_addr_select_next   = write_data[0];
                 end
 
                 5'h06: begin
@@ -577,6 +580,7 @@ module top(
             vram_addr_select_r            <= 0;
             vram_data0_r                  <= 0;
             vram_data1_r                  <= 0;
+            sprite_bank_select_r          <= 0;
             dc_select_r                   <= 0;
             fpga_reconfigure_r            <= 0;
             irq_enable_audio_fifo_low_r   <= 0;
@@ -654,6 +658,7 @@ module top(
             vram_data0_r                  <= vram_data0_next;
             vram_data1_r                  <= vram_data1_next;
             dc_select_r                   <= dc_select_next;
+            sprite_bank_select_r          <= sprite_bank_select_next;
             fpga_reconfigure_r            <= fpga_reconfigure_next;
             irq_enable_audio_fifo_low_r   <= irq_enable_audio_fifo_low_next;
             irq_enable_vsync_r            <= irq_enable_vsync_next;
@@ -918,6 +923,7 @@ module top(
         .clk(clk),
 
         // Register interface
+        .sprite_bank(sprite_bank_select_r),
         .collisions(sprite_collisions),
         .sprcol_irq(sprcol_irq),
 
