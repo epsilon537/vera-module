@@ -37,7 +37,8 @@ module vram_if(
     wire [31:0] ram_rddata;
     wire        ram_write;
 
-    main_ram main_ram(
+    //Use the generic version of the main_ram module
+    main_ram_generic main_ram(
         .clk(clk),
         .bus_addr(ram_addr),
         .bus_wrdata(ram_wrdata),
