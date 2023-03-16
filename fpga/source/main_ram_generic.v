@@ -6,7 +6,7 @@ module main_ram_generic(
     input  wire [14:0] bus_addr,
     input  wire [31:0] bus_wrdata,
     input  wire  [3:0] bus_wrbytesel,
-    output reg  [31:0] bus_rddata,
+    output wire  [31:0] bus_rddata,
     input  wire        bus_write);
 
     spram_byte_write_ram_wr_first #(

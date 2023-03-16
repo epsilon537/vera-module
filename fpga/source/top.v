@@ -17,17 +17,19 @@ module top(
     output reg  [3:0] vga_g       /* synthesis syn_useioff = 1 */,
     output reg  [3:0] vga_b       /* synthesis syn_useioff = 1 */,
     output reg        vga_hsync   /* synthesis syn_useioff = 1 */,
-    output reg        vga_vsync   /* synthesis syn_useioff = 1 */,
+    output reg        vga_vsync   /* synthesis syn_useioff = 1 */
 
 `ifdef VERA_SPI
+    ,
     // SPI interface
     output wire       spi_sck,
     output wire       spi_mosi,
     input  wire       spi_miso,
-    output wire       spi_ssel_n_sd,
+    output wire       spi_ssel_n_sd
 `endif /*VERA_SPI*/
 
 `ifdef VERA_AUDIO
+    ,
     // Audio output
     output wire       audio_lrck,
     output wire       audio_bck,

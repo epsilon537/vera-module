@@ -40,18 +40,7 @@ module sprite_renderer(
     //////////////////////////////////////////////////////////////////////////
     // Sprite Pixel Count limitation
     //////////////////////////////////////////////////////////////////////////
-    reg  [8:0] sprite_pixel_count_r;
-
-    // Keep track of number of sprite pixels already rendered on current line.
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
-            sprite_pixel_count_r <= 0;
-        end else begin
-            if (line_render_start) begin
-                sprite_pixel_count_r <= 0;
-            end 
-        end
-    end
+    reg  [8:0] sprite_pixel_count_r, sprite_pixel_count_next;
 
     //////////////////////////////////////////////////////////////////////////
     // Sprite searching
@@ -60,13 +49,16 @@ module sprite_renderer(
 
     reg  [5:0] sprite_idx_r, sprite_idx_next;
     reg        sprite_attr_sel_next;
+    reg  [7:0] sprite_idx_tmp;
 
     always @* case (sprite_bank)
-        2'd0: sprite_idx = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next};
-        2'd1: sprite_idx = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd64;
-        2'd2: sprite_idx = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd128;
-        2'd3: sprite_idx = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd192;
+        2'd0: sprite_idx_tmp = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next};
+        2'd1: sprite_idx_tmp = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd64;
+        2'd2: sprite_idx_tmp = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd128;
+        2'd3: sprite_idx_tmp = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd192;
     endcase
+
+    assign sprite_idx = sprite_idx_tmp;
 
     // Decode fields from sprite attributes
 
@@ -135,6 +127,7 @@ module sprite_renderer(
         save_hi              = 0;
         save_lo              = 0;
         start_render_next    = 0;
+        sprite_pixel_count_next = sprite_pixel_count_r;
 
         case (sf_state_next)
             // Find a sprite to be rendered
@@ -159,6 +152,8 @@ module sprite_renderer(
             // Start the render
             SF_START_RENDER: begin
                 save_lo           = 1;
+                // Keep track of number of sprite pixels already rendered on current line.
+                sprite_pixel_count_next = sprite_pixel_count_r + (8<<sprite_width_r);
                 sf_state_next     = SF_FIND_SPRITE;
                 start_render_next = 1;
                 sprite_idx_next   = sprite_idx_incr;
@@ -170,9 +165,10 @@ module sprite_renderer(
         endcase
 
         if (line_render_start) begin
-            sf_state_next     = SF_FIND_SPRITE;
-            sprite_idx_next   = 0;
-            start_render_next = 0;
+            sf_state_next            = SF_FIND_SPRITE;
+            sprite_idx_next          = 0;
+            start_render_next        = 0;
+            sprite_pixel_count_next  = 0;
         end 
     end
 
@@ -191,12 +187,14 @@ module sprite_renderer(
             sprite_collision_mask_r <= 0;
             sprite_palette_offset_r <= 0;
             sprite_width_r          <= 0;
+            sprite_pixel_count_r    <= 0;
             // sprite_height_r         <= 0;
 
         end else begin
-            sprite_idx_r   <= sprite_idx_next;
-            sf_state_r     <= sf_state_next;
-            start_render_r <= start_render_next;
+            sprite_idx_r          <= sprite_idx_next;
+            sf_state_r            <= sf_state_next;
+            start_render_r        <= start_render_next;
+            sprite_pixel_count_r  <= sprite_pixel_count_next;
 
             if (save_lo) begin
                 sprite_addr_r           <= sprite_attr_addr;
@@ -210,7 +208,6 @@ module sprite_renderer(
                 sprite_collision_mask_r <= sprite_attr_collision_mask;
                 sprite_palette_offset_r <= sprite_attr_palette_offset;
                 sprite_width_r          <= sprite_attr_width;
-                sprite_pixel_count_r    <= sprite_pixel_count_r + (8<<sprite_attr_width);
                 // sprite_height_r         <= sprite_attr_height;
             end
         end

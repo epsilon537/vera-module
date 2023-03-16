@@ -36,6 +36,5 @@ module sprite_ram(
             mem[i] = 0;
         end
     end
-`endif
 
 endmodule
