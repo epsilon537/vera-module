@@ -172,7 +172,7 @@ module sprite_renderer(
         end 
     end
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             sprite_idx_r            <= 0;
             sf_state_r              <= SF_FIND_SPRITE;
@@ -395,7 +395,7 @@ module sprite_renderer(
         end
     end
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             state_r                <= STATE_IDLE;
             bus_addr_r             <= 0;

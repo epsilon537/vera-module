@@ -26,7 +26,7 @@ module spictrl(
     assign rxdata = rx_shift_r;
 
     reg [4:0] div_cnt_r;
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             div_cnt_r <= 0;
         end else begin
@@ -39,7 +39,7 @@ module spictrl(
     reg clk_r;
     assign spi_sck = clk_r;
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             tx_shift_r <= 0;
             rx_shift_r <= 0;

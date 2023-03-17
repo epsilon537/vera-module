@@ -18,7 +18,7 @@ module dacif(
     reg  [7:0] div_r;
     wire [7:0] div_max = 8'd255;
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             div_r    <= 'd0;
             i2s_lrck <= 0;
@@ -37,7 +37,7 @@ module dacif(
 
     // Generate BCK
     reg bck_r;
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             bck_r <= 0;
         end else begin
@@ -56,7 +56,7 @@ module dacif(
     reg [23:0] right_sample_r;
     reg [24:0] shiftreg_r;
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             shiftreg_r     <= 0;
             right_sample_r <= 0;

@@ -54,7 +54,7 @@ module pcm(
 
     reg       next_sample_r;
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             sr_accum_r <= 0;
             next_sample_r <= 0;
@@ -168,7 +168,7 @@ module pcm(
 
     end
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             state_r        <= IDLE;
             left_sample_r  <= 0;

@@ -43,7 +43,7 @@ module video_vga(
     wire v_last = (y_counter == V_TOTAL - 1);
     wire v_last2 = (y_counter == V_TOTAL - 2);  // Start rendering one line earlier
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
 `ifdef __ICARUS__ /*not needed for Verilator*/
             x_counter <= 10'd0; //750;
@@ -76,7 +76,7 @@ module video_vga(
     always @(posedge clk) vsync_r  <= {vsync_r[0], vsync};
     always @(posedge clk) active_r <= {active_r[0], active};
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             vga_r <= 4'd0;
             vga_g <= 4'd0;

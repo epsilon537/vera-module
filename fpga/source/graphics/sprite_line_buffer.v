@@ -93,7 +93,7 @@ module sprite_line_buffer(
     reg       composer_wr_en;
     wire      composer_erase_busy = (composer_wr_idx != 'd159);
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             composer_wr_idx <= 'd159;
             composer_wr_en  <= 0;

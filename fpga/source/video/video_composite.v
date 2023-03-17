@@ -100,7 +100,7 @@ module video_composite(
 
     reg current_field_r;
     reg next_frame_r;
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             next_frame_r    <= 0;
             current_field_r <= 0;
@@ -120,7 +120,7 @@ module video_composite(
 
     assign vblank_pulse  = h_half_line_last && (vcnt == 524 || vcnt == 1049);
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             hcnt <= 0;
             vcnt <= 0;
@@ -133,7 +133,7 @@ module video_composite(
         end
     end
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             field <= 0;
 

@@ -221,7 +221,7 @@ module layer_renderer(
     wire       render_busy;
     wire       line_done;
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             state_r            <= WAIT_START;
 
@@ -540,7 +540,7 @@ module layer_renderer(
         end
     end
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             xcnt_r          <= 0;
             linebuf_wridx   <= 0;

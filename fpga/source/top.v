@@ -1,8 +1,8 @@
 //`default_nettype none
 
 module top(
-    input  wire       clk25,
-
+    input  wire       clk,
+    input  wire       reset,
     // External bus interface
     input  wire       extbus_cs_n,   /* Chip select */
     input  wire       extbus_rd_n,   /* Read strobe */
@@ -36,20 +36,7 @@ module top(
     output wire       audio_data
 `endif /*VERA_AUDIO*/
     );
-    //////////////////////////////////////////////////////////////////////////
-    // Synchronize external asynchronous reset signal to clk25 domain
-    //////////////////////////////////////////////////////////////////////////
-    reg [7:0] por_cnt_r = 0;
-    always @(posedge clk25) if (!por_cnt_r[7]) por_cnt_r <= por_cnt_r + 8'd1;
-
-    wire reset;
-    reset_sync reset_sync_clk25(
-        .async_rst_in(!por_cnt_r[7]),
-        .clk(clk25),
-        .reset_out(reset));
-
-    wire clk = clk25;
-
+    
     //////////////////////////////////////////////////////////////////////////
     // Bus accessible registers
     //////////////////////////////////////////////////////////////////////////
@@ -219,27 +206,22 @@ module top(
     reg [4:0] rdaddr_r;
     reg [4:0] wraddr_r;
     reg [7:0] wrdata_r;
+    reg do_read, do_write;
 
-    always @(negedge bus_write) begin
-        wrdata_r <= extbus_d;
-    end
-    always @(posedge bus_write) begin
-        wraddr_r <= extbus_a;
-    end
-    always @(posedge bus_read) begin
-        rdaddr_r <= extbus_a;
-    end
-
-    // Synchronize read and write signals
-    reg [2:0] bus_read_r;
-    reg [2:0] bus_write_r;
     always @(posedge clk) begin
-        bus_read_r  <= {bus_read_r[1:0], bus_read};
-        bus_write_r <= {bus_write_r[1:0], bus_write};
+        do_read <= 1'b0;
+        do_write <= 1'b0;
+        if (bus_write) begin
+            wrdata_r <= extbus_d;
+            wraddr_r <= extbus_a;
+            do_write <= 1'b1;
+        end
+        if (bus_read) begin
+            rdaddr_r <= extbus_a;
+            do_read <= 1'b1;
+        end
     end
 
-    wire do_read  = bus_read_r[2:1] == 2'b10;
-    wire do_write = bus_write_r[2:1] == 2'b10;
     wire [4:0] access_addr = do_write ? wraddr_r : rdaddr_r;
     wire [7:0] write_data  = wrdata_r;
 
@@ -571,7 +553,7 @@ module top(
         end
     end
 
-    always @(posedge clk or posedge reset) begin
+    always @(posedge clk) begin
         if (reset) begin
             vram_addr_0_r                 <= 0;
             vram_addr_1_r                 <= 0;
@@ -789,7 +771,7 @@ module top(
     wire        line_render_start;
 
     reg active_line_buf_r;
-    always @(posedge clk or posedge reset) begin
+    always @(posedge clk) begin
         if (reset) begin
             active_line_buf_r <= 0;
         end else begin
