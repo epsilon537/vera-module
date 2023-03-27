@@ -253,7 +253,7 @@ module top(
     reg [4:0] wraddr_r;
     reg [7:0] wrdata_r;
     reg do_read, do_write;
-    reg sprite_ram_wb_ack_r;
+    reg spr_pal_ram_wb_ack_r;
 
     always @(posedge clk) begin
         do_read <= 1'b0;
@@ -269,7 +269,7 @@ module top(
         end
     end
 
-    assign wb_ack = (do_read | do_write | ib_ack | sprite_ram_wb_ack_r) & wb_cyc;
+    assign wb_ack = (do_read | do_write | ib_ack | spr_pal_ram_wb_ack_r) & wb_cyc;
     assign wb_err = 1'b0;
     assign wb_stall = !wb_cyc ? 1'b0 : !wb_ack;
 
@@ -302,7 +302,6 @@ module top(
     reg [16:0] ib_addr_r,      ib_addr_next;
     reg  [7:0] ib_wrdata_r,    ib_wrdata_next;
     reg        ib_write_r,     ib_write_next;
-    reg        ib_do_access_r, ib_do_access_next;
 
     reg        fetch_ahead_r,  fetch_ahead_next;
     reg        fetch_ahead_port_r,  fetch_ahead_port_next;
@@ -388,7 +387,6 @@ module top(
         ib_addr_next                     = ib_addr_r;
         ib_wrdata_next                   = ib_wrdata_r;
         ib_write_next                    = ib_write_r;
-        ib_do_access_next                = 0;
 
         fetch_ahead_port_next            = fetch_ahead_port_r;
         fetch_ahead_next                 = 0;
@@ -585,7 +583,6 @@ module top(
         if (fetch_ahead_r) begin
             ib_addr_next      = fetch_ahead_port_r ? vram_addr_1_r : vram_addr_0_r;
             ib_write_next     = 0;
-            ib_do_access_next = 1;
         end
 
         if ((do_write || do_read) && (access_addr == 5'h03 || access_addr == 5'h04)) begin
@@ -594,7 +591,6 @@ module top(
 
             if (do_write) begin
                 ib_addr_next = access_addr == 5'h03 ? vram_addr_0_r : vram_addr_1_r;
-                ib_do_access_next = 1;
             end
 
             if (access_addr == 5'h03) begin
@@ -682,7 +678,6 @@ module top(
 `endif
             ib_addr_r                     <= 0;
             ib_wrdata_r                   <= 0;
-            ib_do_access_r                <= 0;
             ib_write_r                    <= 0;
 
             fetch_ahead_r                 <= 0;
@@ -761,7 +756,6 @@ module top(
 `endif
             ib_addr_r                     <= ib_addr_next;
             ib_wrdata_r                   <= ib_wrdata_next;
-            ib_do_access_r                <= ib_do_access_next;
             ib_write_r                    <= ib_write_next;
 
             fetch_ahead_r                 <= fetch_ahead_next;
@@ -1014,12 +1008,12 @@ module top(
         .composer_rd_data(spr_lb_rddata),
         .composer_erase_start(spr_lb_erase_start));
 
-    initial	sprite_ram_wb_ack_r = 0;
+    initial	spr_pal_ram_wb_ack_r = 0;
 	always @(posedge clk)
-        if ((wb_adr >= 32'h1000) && (wb_adr < 32'h1400))
-            sprite_ram_wb_ack_r  <= wb_stb;
+        if (((wb_adr >= 32'h1000) && (wb_adr < 32'h1400)) || ((wb_adr >= 32'h2000) && (wb_adr < 32'h2400)))
+            spr_pal_ram_wb_ack_r  <= wb_stb;
         else
-		    sprite_ram_wb_ack_r <= 0;
+		    spr_pal_ram_wb_ack_r <= 0;
 
     sprite_ram sprite_attr_ram(
         .rst_i(1'b0),
@@ -1088,11 +1082,6 @@ module top(
     //////////////////////////////////////////////////////////////////////////
     wire [15:0] palette_rgb_data;
 
-    wire        palette_write   = (ib_addr_r[16:9] == 'b11111101) && ib_do_access_r && ib_write_r;
-    wire  [1:0] palette_bytesel = ib_addr_r[0] ? 2'b10 : 2'b01;
-    wire  [7:0] palette_wridx   = ib_addr_r[8:1];
-    wire [15:0] palette_wrdata  = {2{ib_wrdata_r}};
-
     palette_ram palette_ram(
         .rst_i(1'b0),
         .wr_clk_i(clk),
@@ -1100,10 +1089,10 @@ module top(
         .wr_clk_en_i(1'b1),
         .rd_en_i(1'b1),
         .rd_clk_en_i(1'b1),
-        .wr_en_i(palette_write),
-        .wr_data_i(palette_wrdata),
-        .ben_i(palette_bytesel),
-        .wr_addr_i(palette_wridx),
+        .wr_en_i((wb_adr >= 32'h2000) && (wb_adr < 32'h2400) && wb_stb && wb_we),
+        .wr_data_i(wb_dat_w[15:0]),
+        .ben_i(wb_sel[1:0]),
+        .wr_addr_i(wb_adr[9:2]),
         .rd_addr_i(composer_display_data),
         .rd_data_o(palette_rgb_data));
 
