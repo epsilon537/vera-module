@@ -4,11 +4,13 @@ module vram_if(
     input  wire        clk,
 
     // Interface 0 - 8-bit (highest priority)
-    input  wire [16:0] if0_addr,
-    input  wire  [7:0] if0_wrdata,
-    output wire  [7:0] if0_rddata,
+    input  wire [14:0] if0_addr,
+    input  wire [31:0] if0_wrdata,
+    output wire [31:0] if0_rddata,
+    input  wire  [3:0] if0_wrbytesel,
     input  wire        if0_strobe,
     input  wire        if0_write,
+    output reg         if0_ack,
 
     // Interface 1 - 32-bit read only
     input  wire [14:0] if1_addr,
@@ -49,20 +51,15 @@ module vram_if(
     //////////////////////////////////////////////////////////////////////////
     // Priority memory access
     //////////////////////////////////////////////////////////////////////////
-    reg if0_ack, if0_ack_next;
+    reg if0_ack_next;
     reg if1_ack_next;
     reg if2_ack_next;
     reg if3_ack_next;
 
-    assign ram_wrdata = {4{if0_wrdata}};
+    assign ram_wrdata = if0_wrdata;
     assign ram_write  = if0_strobe && if0_write;
 
-    always @* case (if0_addr[1:0])
-        2'b00: ram_wrbytesel = 4'b0001;
-        2'b01: ram_wrbytesel = 4'b0010;
-        2'b10: ram_wrbytesel = 4'b0100;
-        2'b11: ram_wrbytesel = 4'b1000;
-    endcase
+    assign ram_wrbytesel = if0_wrbytesel;
 
     always @* begin
         ram_addr     = 15'b0;
@@ -72,7 +69,7 @@ module vram_if(
         if3_ack_next = 1'b0;
 
         if (if0_strobe) begin
-            ram_addr     = if0_addr[16:2];
+            ram_addr     = if0_addr;
             if0_ack_next = 1'b1;
 
         end else if (if1_strobe) begin
@@ -96,26 +93,7 @@ module vram_if(
         if3_ack <= if3_ack_next;
     end
 
-    reg [1:0] if0_addr_r;
-    always @(posedge clk) if0_addr_r <= if0_addr[1:0];
-
-    // Memory bus read data selection
-    reg [7:0] if0_rddata8;
-    reg [7:0] if0_rddata8_r;
-    always @* case (if0_addr_r)
-        2'b00: if0_rddata8 = ram_rddata[7:0];
-        2'b01: if0_rddata8 = ram_rddata[15:8];
-        2'b10: if0_rddata8 = ram_rddata[23:16];
-        2'b11: if0_rddata8 = ram_rddata[31:24];
-    endcase
-
-    always @(posedge clk) begin
-        if (if0_ack) begin
-            if0_rddata8_r <= if0_rddata8;
-        end
-    end
-
-    assign if0_rddata = if0_ack ? if0_rddata8 : if0_rddata8_r;
+    assign if0_rddata = ram_rddata;
     assign if1_rddata = ram_rddata;
     assign if2_rddata = ram_rddata;
     assign if3_rddata = ram_rddata;

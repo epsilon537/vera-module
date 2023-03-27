@@ -46,6 +46,7 @@ module top(
     //////////////////////////////////////////////////////////////////////////
     // Bus accessible registers
     //////////////////////////////////////////////////////////////////////////
+    reg [31:0] vram_dat_r;
     reg [16:0] vram_addr_0_r,                 vram_addr_0_next;
     reg [16:0] vram_addr_1_r,                 vram_addr_1_next;
     reg  [3:0] vram_addr_incr_0_r,            vram_addr_incr_0_next;
@@ -119,7 +120,6 @@ module top(
 `endif
     wire [3:0] sprite_collisions;
     wire       current_field;
-    wire [7:0] vram_rddata;
 
 `ifdef VERA_AUDIO
     wire       audio_fifo_low;
@@ -140,12 +140,13 @@ module top(
     wire [7:0] spi_rxdata;
 `endif
 
+    /*Register read interface*/
     reg [7:0] rddata;
     always @* begin
         rddata = 8'h00;
         
         if (wb_stb && !wb_we) begin
-            case (wb_adr[4:0])
+            case (wb_adr[6:2])
                 5'h00: rddata = vram_addr_select_r ? vram_addr_1_r[7:0] : vram_addr_0_r[7:0];
                 5'h01: rddata = vram_addr_select_r ? vram_addr_1_r[15:8] : vram_addr_0_r[15:8];
                 5'h02: rddata = vram_addr_select_r ? {vram_addr_incr_1_r, vram_addr_decr_1_r, 2'b0, vram_addr_1_r[16]} : {vram_addr_incr_0_r, vram_addr_decr_0_r, 2'b0, vram_addr_0_r[16]};
@@ -227,7 +228,7 @@ module top(
         end
     end
 
-    assign wb_dat_r = {24'b0,rddata};
+    assign wb_dat_r = (wb_adr < 32'h1000) ? {24'b0,rddata} : vram_dat_r;
 
     wire [3:0] irq_enable = {
 `ifdef VERA_AUDIO
@@ -246,29 +247,31 @@ module top(
 
     assign irq_n = (irq_status & irq_enable) == 0;
 
-    // Capture address / write-data at end of write cycle
+    /*Register writes and RAM reads and writes*/
+
     reg [4:0] rdaddr_r;
     reg [4:0] wraddr_r;
     reg [7:0] wrdata_r;
     reg do_read, do_write;
+    reg sprite_ram_wb_ack_r;
 
     always @(posedge clk) begin
         do_read <= 1'b0;
         do_write <= 1'b0;
-        if (wb_stb && wb_we) begin
+        if (wb_stb && wb_we && (wb_adr < 32'h1000)) begin
             wrdata_r <= wb_dat_w[7:0];
-            wraddr_r <= wb_adr[4:0];
+            wraddr_r <= wb_adr[6:2];
             do_write <= 1'b1;
         end
-        if (wb_stb && !wb_we) begin
-            rdaddr_r <= wb_adr[4:0];
+        if (wb_stb && !wb_we && (wb_adr < 32'h1000)) begin
+            rdaddr_r <= wb_adr[6:2];
             do_read <= 1'b1;
         end
     end
 
-    assign wb_ack = (do_read | do_write) & wb_cyc;
+    assign wb_ack = (do_read | do_write | ib_ack | sprite_ram_wb_ack_r) & wb_cyc;
     assign wb_err = 1'b0;
-    assign wb_stall = 1'b0;
+    assign wb_stall = !wb_cyc ? 1'b0 : !wb_ack;
 
     wire [4:0] access_addr = do_write ? wraddr_r : rdaddr_r;
     wire [7:0] write_data  = wrdata_r;
@@ -295,13 +298,11 @@ module top(
         4'hF: increment = 'd640;
     endcase
 
+    wire       ib_ack;
     reg [16:0] ib_addr_r,      ib_addr_next;
     reg  [7:0] ib_wrdata_r,    ib_wrdata_next;
     reg        ib_write_r,     ib_write_next;
     reg        ib_do_access_r, ib_do_access_next;
-
-    reg        save_result_r;
-    reg        save_result_port_r;
 
     reg        fetch_ahead_r,  fetch_ahead_next;
     reg        fetch_ahead_port_r,  fetch_ahead_port_next;
@@ -396,13 +397,6 @@ module top(
         spi_txdata                       = write_data;
         spi_txstart                      = 0;
 `endif
-        if (save_result_r) begin
-            if (!save_result_port_r) begin
-                vram_data0_next = vram_rddata;
-            end else begin
-                vram_data1_next = vram_rddata;
-            end
-        end
 
         if (do_write) begin
             case (access_addr)
@@ -694,9 +688,6 @@ module top(
             fetch_ahead_r                 <= 0;
             fetch_ahead_port_r            <= 0;
 
-            save_result_r                 <= 0;
-            save_result_port_r            <= 0;
-
         end else begin
             vram_addr_0_r                 <= vram_addr_0_next;
             vram_addr_1_r                 <= vram_addr_1_next;
@@ -775,9 +766,6 @@ module top(
 
             fetch_ahead_r                 <= fetch_ahead_next;
             fetch_ahead_port_r            <= fetch_ahead_port_next;
-
-            save_result_r                 <= ib_do_access_r && !ib_write_r;
-            save_result_port_r            <= fetch_ahead_port_r;
         end
     end
 
@@ -803,11 +791,13 @@ module top(
         .clk(clk),
 
         // Interface 0 - 8-bit (highest priority)
-        .if0_addr(ib_addr_r),
-        .if0_wrdata(ib_wrdata_r),
-        .if0_rddata(vram_rddata),
-        .if0_strobe(ib_do_access_r),
-        .if0_write(ib_write_r),
+        .if0_addr(wb_adr[16:2]),
+        .if0_wrdata(wb_dat_w),
+        .if0_rddata(vram_dat_r),
+        .if0_wrbytesel(wb_sel),
+        .if0_strobe(wb_stb && (wb_adr >= 32'h100000) && (wb_adr < 32'h120000)),
+        .if0_write(wb_we),
+        .if0_ack(ib_ack),
 
         // Interface 1 - 32-bit read only
         .if1_addr(l0_addr),
@@ -1024,18 +1014,12 @@ module top(
         .composer_rd_data(spr_lb_rddata),
         .composer_erase_start(spr_lb_erase_start));
 
-    // Sprite attribute RAM
-    wire        sprite_attr_write  = (ib_addr_r[16:10] == 'b1111111) && ib_do_access_r && ib_write_r;
-    wire  [7:0] sprite_attr_wraddr = ib_addr_r[9:2];
-    wire [31:0] sprite_attr_wrdata = {4{ib_wrdata_r}};
-
-    reg [3:0] sprite_attr_bytesel;
-    always @* case (ib_addr_r[1:0])
-        3'd0: sprite_attr_bytesel = 4'b0001;
-        3'd1: sprite_attr_bytesel = 4'b0010;
-        3'd2: sprite_attr_bytesel = 4'b0100;
-        3'd3: sprite_attr_bytesel = 4'b1000;
-    endcase
+    initial	sprite_ram_wb_ack_r = 0;
+	always @(posedge clk)
+        if ((wb_adr >= 32'h1000) && (wb_adr < 32'h1400))
+            sprite_ram_wb_ack_r  <= wb_stb;
+        else
+		    sprite_ram_wb_ack_r <= 0;
 
     sprite_ram sprite_attr_ram(
         .rst_i(1'b0),
@@ -1044,10 +1028,10 @@ module top(
         .wr_clk_en_i(1'b1),
         .rd_en_i(1'b1),
         .rd_clk_en_i(1'b1),
-        .wr_en_i(sprite_attr_write),
-        .wr_data_i(sprite_attr_wrdata),
-        .ben_i(sprite_attr_bytesel),
-        .wr_addr_i(sprite_attr_wraddr),
+        .wr_en_i((wb_adr >= 32'h1000) && (wb_adr < 32'h1400) && wb_stb && wb_we),
+        .wr_data_i(wb_dat_w),
+        .ben_i(wb_sel),
+        .wr_addr_i(wb_adr[9:2]),
         .rd_addr_i(sprite_idx),
         .rd_data_o(sprite_attr));
 
