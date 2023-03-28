@@ -4,7 +4,7 @@ module top(
     input  wire       clk,
     input  wire       reset,
 
-    input wire [31:0]  wb_adr,
+    input wire [16:0]  wb_adr,
 	input wire [31:0]  wb_dat_w,
 	output wire [31:0] wb_dat_r,
 	input wire [3:0]   wb_sel,
@@ -146,7 +146,7 @@ module top(
         rddata = 8'h00;
         
         if (wb_stb && !wb_we) begin
-            case (wb_adr[6:2])
+            case (wb_adr[4:0])
                 5'h00: rddata = vram_addr_select_r ? vram_addr_1_r[7:0] : vram_addr_0_r[7:0];
                 5'h01: rddata = vram_addr_select_r ? vram_addr_1_r[15:8] : vram_addr_0_r[15:8];
                 5'h02: rddata = vram_addr_select_r ? {vram_addr_incr_1_r, vram_addr_decr_1_r, 2'b0, vram_addr_1_r[16]} : {vram_addr_incr_0_r, vram_addr_decr_0_r, 2'b0, vram_addr_0_r[16]};
@@ -228,7 +228,7 @@ module top(
         end
     end
 
-    assign wb_dat_r = (wb_adr < 32'h1000) ? {24'b0,rddata} : vram_dat_r;
+    assign wb_dat_r = (wb_adr < 17'('h1000>>2)) ? {24'b0,rddata} : vram_dat_r;
 
     wire [3:0] irq_enable = {
 `ifdef VERA_AUDIO
@@ -258,13 +258,13 @@ module top(
     always @(posedge clk) begin
         do_read <= 1'b0;
         do_write <= 1'b0;
-        if (wb_stb && wb_we && (wb_adr < 32'h1000)) begin
+        if (wb_stb && wb_we && (wb_adr < 17'('h1000>>2))) begin
             wrdata_r <= wb_dat_w[7:0];
-            wraddr_r <= wb_adr[6:2];
+            wraddr_r <= wb_adr[4:0];
             do_write <= 1'b1;
         end
-        if (wb_stb && !wb_we && (wb_adr < 32'h1000)) begin
-            rdaddr_r <= wb_adr[6:2];
+        if (wb_stb && !wb_we && (wb_adr < 17'('h1000>>2))) begin
+            rdaddr_r <= wb_adr[4:0];
             do_read <= 1'b1;
         end
     end
@@ -785,11 +785,11 @@ module top(
         .clk(clk),
 
         // Interface 0 - 8-bit (highest priority)
-        .if0_addr(wb_adr[16:2]),
+        .if0_addr(wb_adr[14:0]),
         .if0_wrdata(wb_dat_w),
         .if0_rddata(vram_dat_r),
         .if0_wrbytesel(wb_sel),
-        .if0_strobe(wb_stb && (wb_adr >= 32'h100000) && (wb_adr < 32'h120000)),
+        .if0_strobe(wb_stb && (wb_adr >= 17'('h40000>>2))),
         .if0_write(wb_we),
         .if0_ack(ib_ack),
 
@@ -1010,7 +1010,7 @@ module top(
 
     initial	spr_pal_ram_wb_ack_r = 0;
 	always @(posedge clk)
-        if (((wb_adr >= 32'h1000) && (wb_adr < 32'h1400)) || ((wb_adr >= 32'h2000) && (wb_adr < 32'h2400)))
+        if (((wb_adr >= 17'('h1000>>2)) && (wb_adr < 17'('h1400>>2))) || ((wb_adr >= 17'('h2000)>>2) && (wb_adr <17'('h2400)>>2)))
             spr_pal_ram_wb_ack_r  <= wb_stb;
         else
 		    spr_pal_ram_wb_ack_r <= 0;
@@ -1022,10 +1022,10 @@ module top(
         .wr_clk_en_i(1'b1),
         .rd_en_i(1'b1),
         .rd_clk_en_i(1'b1),
-        .wr_en_i((wb_adr >= 32'h1000) && (wb_adr < 32'h1400) && wb_stb && wb_we),
+        .wr_en_i((wb_adr >= 17'('h1000>>2)) && (wb_adr < 17'('h1400>>2)) && wb_stb && wb_we),
         .wr_data_i(wb_dat_w),
         .ben_i(wb_sel),
-        .wr_addr_i(wb_adr[9:2]),
+        .wr_addr_i(wb_adr[7:0]),
         .rd_addr_i(sprite_idx),
         .rd_data_o(sprite_attr));
 
@@ -1089,10 +1089,10 @@ module top(
         .wr_clk_en_i(1'b1),
         .rd_en_i(1'b1),
         .rd_clk_en_i(1'b1),
-        .wr_en_i((wb_adr >= 32'h2000) && (wb_adr < 32'h2400) && wb_stb && wb_we),
+        .wr_en_i((wb_adr >= 17'('h2000>>2)) && (wb_adr < 17'('h2400>>2)) && wb_stb && wb_we),
         .wr_data_i(wb_dat_w[15:0]),
         .ben_i(wb_sel[1:0]),
-        .wr_addr_i(wb_adr[9:2]),
+        .wr_addr_i(wb_adr[7:0]),
         .rd_addr_i(composer_display_data),
         .rd_data_o(palette_rgb_data));
 
