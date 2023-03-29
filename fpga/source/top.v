@@ -48,7 +48,7 @@ module top(
     //////////////////////////////////////////////////////////////////////////
     reg [31:0] vram_dat_r;
     reg        dc_select_r,                   dc_select_next;
-    reg  [1:0] sprite_bank_select_r,          sprite_bank_select_next;
+    reg        sprite_bank_select_r,          sprite_bank_select_next;
     reg        fpga_reconfigure_r,            fpga_reconfigure_next;
     reg        irq_enable_vsync_r,            irq_enable_vsync_next;
     reg        irq_enable_line_r,             irq_enable_line_next;
@@ -138,7 +138,7 @@ module top(
         
         if (wb_stb && !wb_we) begin
             case (wb_adr[4:0])
-                5'h05: rddata = {4'b0, sprite_bank_select_r, dc_select_r, 1'b0};
+                5'h05: rddata = {5'b0, sprite_bank_select_r, dc_select_r, 1'b0};
 
                 5'h06: rddata = {irq_line_r[8], scanline[8], 2'b0,
 `ifdef VERA_AUDIO
@@ -347,7 +347,7 @@ module top(
                 end
                 5'h05: begin
                     fpga_reconfigure_next   = write_data[7];
-                    sprite_bank_select_next = write_data[3:2];
+                    sprite_bank_select_next = write_data[2];
                     dc_select_next          = write_data[1];
                 end
 

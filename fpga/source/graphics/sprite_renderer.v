@@ -5,7 +5,7 @@ module sprite_renderer(
     input  wire        clk,
 
     // Register interface
-    input  wire  [1:0] sprite_bank,
+    input  wire        sprite_bank,
     output wire  [3:0] collisions,
     output reg         sprcol_irq,
 
@@ -40,22 +40,20 @@ module sprite_renderer(
     //////////////////////////////////////////////////////////////////////////
     // Sprite Pixel Count limitation
     //////////////////////////////////////////////////////////////////////////
-    reg  [8:0] sprite_pixel_count_r, sprite_pixel_count_next;
+    reg  [9:0] sprite_pixel_count_r, sprite_pixel_count_next;
 
     //////////////////////////////////////////////////////////////////////////
     // Sprite searching
     //////////////////////////////////////////////////////////////////////////
     wire       render_busy;
 
-    reg  [5:0] sprite_idx_r, sprite_idx_next;
+    reg  [6:0] sprite_idx_r, sprite_idx_next;
     reg        sprite_attr_sel_next;
     reg  [7:0] sprite_idx_tmp;
 
     always @* case (sprite_bank)
-        2'd0: sprite_idx_tmp = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next};
-        2'd1: sprite_idx_tmp = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd64;
-        2'd2: sprite_idx_tmp = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd128;
-        2'd3: sprite_idx_tmp = {2'b00, sprite_idx_next[4:0], sprite_attr_sel_next} + 'd192;
+        1'd0: sprite_idx_tmp = {1'b0, sprite_idx_next[5:0], sprite_attr_sel_next};
+        1'd1: sprite_idx_tmp = {1'b0, sprite_idx_next[5:0], sprite_attr_sel_next} + 'd128;
     endcase
 
     assign sprite_idx = sprite_idx_tmp;
@@ -117,7 +115,7 @@ module sprite_renderer(
     reg        start_render_r, start_render_next;
 
 
-    wire [5:0] sprite_idx_incr = sprite_idx_r + 6'd1;
+    wire [6:0] sprite_idx_incr = sprite_idx_r + 7'd1;
 
     // Render state machine
     always @* begin
@@ -132,7 +130,7 @@ module sprite_renderer(
         case (sf_state_next)
             // Find a sprite to be rendered
             SF_FIND_SPRITE: begin
-                if ((sprite_idx_r[5]==1'b1) || (sprite_pixel_count_r >= 'd256)) begin
+                if ((sprite_idx_r[6]==1'b1) || (sprite_pixel_count_r >= 'd512)) begin
                     sf_state_next = SF_DONE;
 
                 end else begin
