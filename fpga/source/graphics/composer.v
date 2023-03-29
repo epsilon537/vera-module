@@ -45,6 +45,7 @@ module composer(
     //////////////////////////////////////////////////////////////////////////
     // Composer
     //////////////////////////////////////////////////////////////////////////
+    reg clk_en = 0;
     reg [16:0] scaled_x_counter_r;
     wire [9:0] scaled_x_counter = scaled_x_counter_r[16:7];
 
@@ -72,23 +73,27 @@ module composer(
 
     always @(posedge clk) begin
         if (rst) begin
+            clk_en        <= 0;
             y_counter_r   <= 0;
             y_counter_rr  <= 0;
             next_line_r   <= 0;
             current_field <= 0;
         end else begin
-            next_line_r <= display_next_line;
-            if (display_next_line) begin
-                // Interlaced mode skips every other line
-                y_counter_r  <= y_counter_r + (interlaced ? 9'd2 : 9'd1);
+            clk_en <= ~clk_en;
+            if (clk_en) begin
+                next_line_r <= display_next_line;
+                if (display_next_line) begin
+                    // Interlaced mode skips every other line
+                    y_counter_r  <= y_counter_r + (interlaced ? 9'd2 : 9'd1);
 
-                y_counter_rr <= y_counter_r;
-            end
-            if (display_next_frame) begin
-                current_field <= !display_current_field;
+                    y_counter_rr <= y_counter_r;
+                end
+                if (display_next_frame) begin
+                    current_field <= !display_current_field;
 
-                // Interlaced mode starts at either the even or odd line
-                y_counter_r <= (interlaced && !display_current_field) ? 9'd1 : 9'd0;
+                    // Interlaced mode starts at either the even or odd line
+                    y_counter_r <= (interlaced && !display_current_field) ? 9'd1 : 9'd0;
+                end
             end
         end
     end
@@ -99,9 +104,10 @@ module composer(
             line_irq <= 0;
 
         end else begin
-            line_irq <= display_next_line && (
-                (!interlaced && y_counter_r == irqline) ||
-                ( interlaced && y_counter_r[9:1] == {1'b0, irqline[8:1]}));
+            if (clk_en)
+                line_irq <= display_next_line && (
+                    (!interlaced && y_counter_r == irqline) ||
+                    ( interlaced && y_counter_r[9:1] == {1'b0, irqline[8:1]}));
         end
     end
 
@@ -111,11 +117,13 @@ module composer(
         if (rst) begin
             x_counter_r <= 0;
         end else begin
-            if (display_next_pixel) begin
-                x_counter_r <= x_counter_r + (interlaced ? 11'd1 : 11'd2);
-            end
-            if (display_next_line) begin
-                x_counter_r <= 0;
+            if (clk_en) begin
+                if (display_next_pixel) begin
+                    x_counter_r <= x_counter_r + (interlaced ? 11'd1 : 11'd2);
+                end
+                if (display_next_line) begin
+                    x_counter_r <= 0;
+                end
             end
         end
     end
@@ -133,7 +141,9 @@ module composer(
     wire hactive = (x_counter >= active_hstart) && (x_counter < active_hstop);
     wire vactive = (y_counter >= active_vstart) && (y_counter < active_vstop);
     reg display_active;
-    always @(posedge clk) display_active = hactive && vactive;
+    always @(posedge clk)
+        if (clk_en) 
+            display_active = hactive && vactive;
 
     // Scaled vertical counter
     reg vactive_started_r;
@@ -144,26 +154,28 @@ module composer(
             vactive_started_r  <= 0;
 
         end else begin
-            render_start_r <= 0;
+            if (clk_en) begin
+                render_start_r <= 0;
 
-            if (next_line_r) begin
-                if (!vactive_started_r && next_line_r && y_counter_r >= active_vstart) begin
-                    vactive_started_r  <= 1;
-                    render_start_r     <= 1;
+                if (next_line_r) begin
+                    if (!vactive_started_r && next_line_r && y_counter_r >= active_vstart) begin
+                        vactive_started_r  <= 1;
+                        render_start_r     <= 1;
 
-                    // Start line is dependent of current field in interlaced mode
-                    scaled_y_counter_r <= (interlaced && (current_field ^ active_vstart[0])) ? {8'b0, frac_y_incr} : 16'd0;
+                        // Start line is dependent of current field in interlaced mode
+                        scaled_y_counter_r <= (interlaced && (current_field ^ active_vstart[0])) ? {8'b0, frac_y_incr} : 16'd0;
 
-                end else if (scaled_y_counter < 'd480 && vactive) begin
-                    render_start_r     <= 1;
+                    end else if (scaled_y_counter < 'd480 && vactive) begin
+                        render_start_r     <= 1;
 
-                    // In interlaced modes we increment with twice the amount
-                    scaled_y_counter_r <= scaled_y_counter_r + (interlaced ? {7'b0, frac_y_incr, 1'b0} : {8'b0, frac_y_incr});
+                        // In interlaced modes we increment with twice the amount
+                        scaled_y_counter_r <= scaled_y_counter_r + (interlaced ? {7'b0, frac_y_incr, 1'b0} : {8'b0, frac_y_incr});
+                    end
                 end
-            end
 
-            if (display_next_frame) begin
-                vactive_started_r <= 0;
+                if (display_next_frame) begin
+                    vactive_started_r <= 0;
+                end
             end
         end
     end
@@ -174,14 +186,16 @@ module composer(
             scaled_x_counter_r <= 'd0;
 
         end else begin
-            if (display_next_pixel && hactive) begin
-                if (scaled_x_counter < 'd640) begin
-                    scaled_x_counter_r <= scaled_x_counter_r + frac_x_incr_int;
+            if (clk_en) begin
+                if (display_next_pixel && hactive) begin
+                    if (scaled_x_counter < 'd640) begin
+                        scaled_x_counter_r <= scaled_x_counter_r + frac_x_incr_int;
+                    end
                 end
-            end
 
-            if (display_next_line) begin
-                scaled_x_counter_r <= 0;
+                if (display_next_line) begin
+                    scaled_x_counter_r <= 0;
+                end
             end
         end
     end

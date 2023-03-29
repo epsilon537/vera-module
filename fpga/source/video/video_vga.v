@@ -19,8 +19,6 @@ module video_vga(
     output reg         vga_hsync,
     output reg         vga_vsync);
 
-    assign next_pixel = 1'b1;
-
     //
     // Video timing (640x480@60Hz)
     //
@@ -39,6 +37,8 @@ module video_vga(
     reg [9:0] x_counter = 0;
     reg [9:0] y_counter = 0;
 
+    reg clk_en = 0;
+
     wire h_last = (x_counter == H_TOTAL - 1);
     wire v_last = (y_counter == V_TOTAL - 1);
     wire v_last2 = (y_counter == V_TOTAL - 2);  // Start rendering one line earlier
@@ -52,10 +52,16 @@ module video_vga(
             x_counter <= 10'd0;
             y_counter <= 10'd0;
 `endif
+            clk_en <= 0;
+
         end else begin
-            x_counter <= h_last ? 10'd0 : (x_counter + 10'd1);
-            if (h_last)
-                y_counter <= v_last ? 10'd0 : (y_counter + 10'd1);
+            clk_en <= ~clk_en;
+
+            if (clk_en) begin
+                x_counter <= h_last ? 10'd0 : (x_counter + 10'd1);
+                if (h_last)
+                    y_counter <= v_last ? 10'd0 : (y_counter + 10'd1);
+            end
         end
     end
 
@@ -72,9 +78,12 @@ module video_vga(
 
     // Compensate pipeline delays
     reg [1:0] hsync_r, vsync_r, active_r;
-    always @(posedge clk) hsync_r  <= {hsync_r[0], hsync};
-    always @(posedge clk) vsync_r  <= {vsync_r[0], vsync};
-    always @(posedge clk) active_r <= {active_r[0], active};
+    always @(posedge clk)
+        if (clk_en) begin
+            hsync_r  <= {hsync_r[0], hsync};
+            vsync_r  <= {vsync_r[0], vsync};
+            active_r <= {active_r[0], active};
+        end
 
     always @(posedge clk) begin
         if (rst) begin
@@ -85,19 +94,23 @@ module video_vga(
             vga_vsync <= 0;
 
         end else begin
-            if (active_r[1]) begin
-                vga_r <= palette_rgb_data[11:8];
-                vga_g <= palette_rgb_data[7:4];
-                vga_b <= palette_rgb_data[3:0];
-            end else begin
-                vga_r <= 4'd0;
-                vga_g <= 4'd0;
-                vga_b <= 4'd0;
-            end
+            if (clk_en) begin
+                if (active_r[1]) begin
+                    vga_r <= palette_rgb_data[11:8];
+                    vga_g <= palette_rgb_data[7:4];
+                    vga_b <= palette_rgb_data[3:0];
+                end else begin
+                    vga_r <= 4'd0;
+                    vga_g <= 4'd0;
+                    vga_b <= 4'd0;
+                end
 
-            vga_hsync <= hsync_r[1];
-            vga_vsync <= vsync_r[1];
+                vga_hsync <= hsync_r[1];
+                vga_vsync <= vsync_r[1];
+            end
         end
     end
+
+    assign next_pixel = 1'b1; //clk_en;
 
 endmodule

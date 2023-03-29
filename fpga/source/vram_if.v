@@ -56,37 +56,49 @@ module vram_if(
     reg if2_ack_next;
     reg if3_ack_next;
 
+    reg [1:0] selector_reg, selector_next;
+
     assign ram_wrdata = if0_wrdata;
-    assign ram_write  = if0_strobe && if0_write;
+    assign ram_write  = if0_strobe && if0_write && (selector_reg==2'h0);
 
     assign ram_wrbytesel = if0_wrbytesel;
 
+    initial	selector_reg = 2'h0;
+
     always @* begin
+        selector_next = selector_reg + 1;
         ram_addr     = 15'b0;
         if0_ack_next = 1'b0;
         if1_ack_next = 1'b0;
         if2_ack_next = 1'b0;
         if3_ack_next = 1'b0;
 
-        if (if0_strobe) begin
-            ram_addr     = if0_addr;
-            if0_ack_next = 1'b1;
-
-        end else if (if1_strobe) begin
-            ram_addr     = if1_addr;
-            if1_ack_next = 1'b1;
-
-        end else if (if2_strobe) begin
-            ram_addr     = if2_addr;
-            if2_ack_next = 1'b1;
-
-        end else if (if3_strobe) begin
-            ram_addr     = if3_addr;
-            if3_ack_next = 1'b1;
-        end
+        case (selector_reg)
+            2'h0:
+                if (if0_strobe) begin
+                    ram_addr     = if0_addr;
+                    if0_ack_next = 1'b1;
+                end
+            2'h1: 
+                if (if1_strobe) begin
+                    ram_addr     = if1_addr;
+                    if1_ack_next = 1'b1;
+                end
+            2'h2: 
+                if (if2_strobe) begin
+                    ram_addr     = if2_addr;
+                    if2_ack_next = 1'b1;
+                end
+            2'h3:     
+                if (if3_strobe) begin
+                    ram_addr     = if3_addr;
+                    if3_ack_next = 1'b1;
+                end
+        endcase
     end
 
     always @(posedge clk) begin
+        selector_reg <= selector_next;
         if0_ack <= if0_ack_next;
         if1_ack <= if1_ack_next;
         if2_ack <= if2_ack_next;
