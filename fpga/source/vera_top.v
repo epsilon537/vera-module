@@ -1,6 +1,6 @@
 //`default_nettype none
 
-module top(
+module vera_top(
     input  wire       clk,
     input  wire       reset,
 
