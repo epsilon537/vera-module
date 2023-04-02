@@ -25,15 +25,6 @@ module vera_top(
     output reg        vga_hsync   /* synthesis syn_useioff = 1 */,
     output reg        vga_vsync   /* synthesis syn_useioff = 1 */
 
-`ifdef VERA_SPI
-    ,
-    // SPI interface
-    output wire       spi_sck,
-    output wire       spi_mosi,
-    input  wire       spi_miso,
-    output wire       spi_ssel_n_sd
-`endif /*VERA_SPI*/
-
 `ifdef VERA_AUDIO
     ,
     // Audio output
@@ -47,7 +38,6 @@ module vera_top(
     // Bus accessible registers
     //////////////////////////////////////////////////////////////////////////
     reg [31:0] vram_dat_r;
-    reg        dc_select_r,                   dc_select_next;
     reg        sprite_bank_select_r,          sprite_bank_select_next;
     reg        fpga_reconfigure_r,            fpga_reconfigure_next;
     reg        irq_enable_vsync_r,            irq_enable_vsync_next;
@@ -110,7 +100,6 @@ module vera_top(
     reg        audio_fifo_write_r,            audio_fifo_write_next;
 `endif
     wire [3:0] sprite_collisions;
-    wire       current_field;
 
 `ifdef VERA_AUDIO
     wire       audio_fifo_low;
@@ -121,100 +110,64 @@ module vera_top(
     wire       line_irq;
     wire [8:0] scanline;
 
- `ifdef VERA_SPI
-    reg        spi_select_r,                  spi_select_next;
-    reg        spi_slow_r,                    spi_slow_next;
-    reg        spi_autotx_r,                  spi_autotx_next;
-    reg  [7:0] spi_txdata;
-    reg        spi_txstart;
-    wire       spi_busy;
-    wire [7:0] spi_rxdata;
-`endif
-
     /*Register read interface*/
-    reg [7:0] rddata;
+    reg [31:0] rddata;
     always @* begin
-        rddata = 8'h00;
+        rddata = 32'h00;
         
         if (wb_stb && !wb_we) begin
-            case (wb_adr[4:0])
-                5'h05: rddata = {5'b0, sprite_bank_select_r, dc_select_r, 1'b0};
+            case (wb_adr[5:0])
+                6'h00: rddata = {31'b0, sprite_bank_select_r};
 
-                5'h06: rddata = {irq_line_r[8], scanline[8], 2'b0,
+                6'h01: rddata = {24'b0, dc_border_color_r};
+
+                6'h02: rddata = {28'b0,
 `ifdef VERA_AUDIO
                                 irq_enable_audio_fifo_low_r,
 `else
                                 1'b0,
 `endif                                
                                 irq_enable_sprite_collision_r, irq_enable_line_r, irq_enable_vsync_r};
-                5'h07: rddata = {sprite_collisions,
+                6'h03: rddata = {24'b0, sprite_collisions,
 `ifdef VERA_AUDIO
                                 audio_fifo_low, 
 `else
                                 1'b0,
 `endif                                                                             
                                 irq_status_sprite_collision_r, irq_status_line_r, irq_status_vsync_r};
-                5'h08: rddata = scanline[7:0];
+                6'h04: rddata = {23'b0, irq_line_r};                                
+                6'h05: rddata = {23'b0,   scanline};
+                6'h06: rddata = {25'b0, sprites_enabled_r, l1_enabled_r, l0_enabled_r, 2'b0, video_output_mode_r};
 
-                5'h09: begin
-                    if (dc_select_r == 0) begin
-                        rddata = {current_field, sprites_enabled_r, l1_enabled_r, l0_enabled_r, 1'b0, chroma_disable_r, video_output_mode_r};
-                    end else begin
-                        rddata = dc_active_hstart_r[9:2];
-                    end
-                end
-                5'h0A: begin
-                    if (dc_select_r == 0) begin
-                        rddata = dc_hscale_r;
-                    end else begin
-                        rddata = dc_active_hstop_r[9:2];
-                    end
-                end
-                5'h0B: begin
-                    if (dc_select_r == 0) begin
-                        rddata = dc_vscale_r;
-                    end else begin
-                        rddata = dc_active_vstart_r[8:1];
-                    end
-                end
-                5'h0C: begin
-                    if (dc_select_r == 0) begin
-                        rddata = dc_border_color_r;
-                    end else begin
-                        rddata = dc_active_vstop_r[8:1];
-                    end
-                end
+                6'h08: rddata = {24'b0,dc_hscale_r};
+                6'h09: rddata = {24'b0, dc_vscale_r};
+                6'h0a: rddata = {22'b0, dc_active_hstart_r};
+                6'h0b: rddata = {22'b0, dc_active_hstop_r};
+                6'h0c: rddata = {23'b0, dc_active_vstart_r};
+                6'h0d: rddata = {23'b0, dc_active_vstop_r};
+                6'h10: rddata = {24'b0, l0_map_height_r, l0_map_width_r, l0_attr_mode_r, l0_bitmap_mode_r, l0_color_depth_r};
+                6'h11: rddata = {24'b0, l0_map_baseaddr_r};
+                6'h12: rddata = {24'b0, l0_tile_baseaddr_r[7:2], l0_tile_height_r, l0_tile_width_r};
+                6'h14: rddata = {20'b0, l0_hscroll_r};
+                6'h15: rddata = {20'b0, l0_vscroll_r};
+                6'h20: rddata = {24'b0, l1_map_height_r, l1_map_width_r, l1_attr_mode_r, l1_bitmap_mode_r, l1_color_depth_r};
+                6'h21: rddata = {24'b0, l1_map_baseaddr_r};
+                6'h22: rddata = {24'b0, l1_tile_baseaddr_r[7:2], l1_tile_height_r, l1_tile_width_r};
+                6'h24: rddata = {20'b0, l1_hscroll_r};
+                6'h25: rddata = {20'b0, l1_vscroll_r};
 
-                5'h0D: rddata = {l0_map_height_r, l0_map_width_r, l0_attr_mode_r, l0_bitmap_mode_r, l0_color_depth_r};
-                5'h0E: rddata = l0_map_baseaddr_r;
-                5'h0F: rddata = {l0_tile_baseaddr_r[7:2], l0_tile_height_r, l0_tile_width_r};
-                5'h10: rddata = l0_hscroll_r[7:0];
-                5'h11: rddata = {4'b0, l0_hscroll_r[11:8]};
-                5'h12: rddata = l0_vscroll_r[7:0];
-                5'h13: rddata = {4'b0, l0_vscroll_r[11:8]};
-
-                5'h14: rddata = {l1_map_height_r, l1_map_width_r, l1_attr_mode_r, l1_bitmap_mode_r, l1_color_depth_r};
-                5'h15: rddata = l1_map_baseaddr_r;
-                5'h16: rddata = {l1_tile_baseaddr_r[7:2], l1_tile_height_r, l1_tile_width_r};
-                5'h17: rddata = l1_hscroll_r[7:0];
-                5'h18: rddata = {4'b0, l1_hscroll_r[11:8]};
-                5'h19: rddata = l1_vscroll_r[7:0];
-                5'h1A: rddata = {4'b0, l1_vscroll_r[11:8]};
 `ifdef VERA_AUDIO
                 5'h1B: rddata = {audio_fifo_full, audio_fifo_empty, audio_mode_16bit_r, audio_mode_stereo_r, audio_pcm_volume_r};
                 5'h1C: rddata = audio_pcm_sample_rate_r;
                 5'h1D: rddata = 8'h00;
 `endif
- `ifdef VERA_SPI
-                5'h1E: rddata = spi_rxdata;
-                5'h1F: rddata = {spi_busy, 4'b0, spi_autotx_r, spi_slow_r, spi_select_r};
-`endif
-                default: rddata = 8'h00;
+                default: rddata = 32'h00;
             endcase
         end
     end
 
-    assign wb_dat_r = (wb_adr < 17'('h1000>>2)) ? {24'b0,rddata} : vram_dat_r;
+    //Only registers and VRAM are readable. Palette and Sprite RAM not.
+    assign wb_dat_r = (wb_adr < 17'('h1000>>2)) ? rddata : vram_dat_r;
 
     wire [3:0] irq_enable = {
 `ifdef VERA_AUDIO
@@ -234,23 +187,24 @@ module vera_top(
     assign irq_n = (irq_status & irq_enable) == 0;
 
     /*Register writes and RAM reads and writes*/
-
-    reg [4:0] rdaddr_r;
-    reg [4:0] wraddr_r;
-    reg [7:0] wrdata_r;
+    reg [5:0] wraddr_r;
+    reg [31:0] wrdata_r;
     reg do_reg_read, do_reg_write;
     reg spr_pal_ram_wb_ack_r;
+    wire vram_ack;
 
     always @(posedge clk) begin
         do_reg_read <= 1'b0;
         do_reg_write <= 1'b0;
+        //register write
         if (wb_stb && wb_we && (wb_adr < 17'('h1000>>2))) begin
-            wrdata_r <= wb_dat_w[7:0];
-            wraddr_r <= wb_adr[4:0];
+            wrdata_r <= wb_dat_w;
+            wraddr_r <= wb_adr[5:0];
             do_reg_write <= 1'b1;
         end
+
+        //register read
         if (wb_stb && !wb_we && (wb_adr < 17'('h1000>>2))) begin
-            rdaddr_r <= wb_adr[4:0];
             do_reg_read <= 1'b1;
         end
     end
@@ -259,13 +213,7 @@ module vera_top(
     assign wb_err = 1'b0;
     assign wb_stall = !wb_cyc ? 1'b0 : !wb_ack;
 
-    wire [4:0] access_addr = do_reg_write ? wraddr_r : rdaddr_r;
-    wire [7:0] write_data  = wrdata_r;
-
-    wire       vram_ack;
-
     always @* begin
-        dc_select_next                   = dc_select_r;
         sprite_bank_select_next          = sprite_bank_select_r;
         fpga_reconfigure_next            = fpga_reconfigure_r;
 `ifdef VERA_AUDIO
@@ -322,162 +270,91 @@ module vera_top(
         audio_fifo_wrdata_next           = audio_fifo_wrdata_r;
         audio_fifo_write_next            = 0;
 `endif
- `ifdef VERA_SPI
-        spi_select_next                  = spi_select_r;
-        spi_slow_next                    = spi_slow_r;
-        spi_autotx_next                  = spi_autotx_r;
-`endif
-
-`ifdef VERA_SPI
-        spi_txdata                       = write_data;
-        spi_txstart                      = 0;
-`endif
-
+ 
         if (do_reg_write) begin
-            case (access_addr)
-                5'h00: begin
-                end
-                5'h01: begin
-                end
-                5'h02: begin
-                end
-                5'h03: begin
-                end
-                5'h04: begin
-                end
-                5'h05: begin
-                    fpga_reconfigure_next   = write_data[7];
-                    sprite_bank_select_next = write_data[2];
-                    dc_select_next          = write_data[1];
-                end
-
-                5'h06: begin
-                    irq_line_next[8]                 = write_data[7];
+            case (wraddr_r[5:0])
+                6'h00: sprite_bank_select_next = wrdata_r[0];
+                6'h01: dc_border_color_next    = wrdata_r[7:0];
+                6'h02: begin
 `ifdef VERA_AUDIO
-                    irq_enable_audio_fifo_low_next   = write_data[3];
+                    irq_enable_audio_fifo_low_next   = wrdata_r[3];
 `endif                    
-                    irq_enable_sprite_collision_next = write_data[2];
-                    irq_enable_line_next             = write_data[1];
-                    irq_enable_vsync_next            = write_data[0];
+                    irq_enable_sprite_collision_next = wrdata_r[2];
+                    irq_enable_line_next             = wrdata_r[1];
+                    irq_enable_vsync_next            = wrdata_r[0];
                 end
-                5'h07: begin
+                6'h03: begin
                     // Clear status bits
-                    irq_status_sprite_collision_next = irq_status_sprite_collision_r & !write_data[2];
-                    irq_status_line_next             = irq_status_line_r             & !write_data[1];
-                    irq_status_vsync_next            = irq_status_vsync_r            & !write_data[0];
+                    irq_status_sprite_collision_next = irq_status_sprite_collision_r & !wrdata_r[2];
+                    irq_status_line_next             = irq_status_line_r             & !wrdata_r[1];
+                    irq_status_vsync_next            = irq_status_vsync_r            & !wrdata_r[0];
                 end
-                5'h08: irq_line_next[7:0] = write_data;
-
-                5'h09: begin
-                    if (dc_select_r == 0) begin
-                        sprites_enabled_next   = write_data[6];
-                        l1_enabled_next        = write_data[5];
-                        l0_enabled_next        = write_data[4];
-                        chroma_disable_next    = write_data[2];
-                        video_output_mode_next = write_data[1:0];
-                    end else begin
-                        dc_active_hstart_next[9:2] = write_data;
-                        dc_active_hstart_next[1:0] = 0;
-                    end
+                6'h04: irq_line_next                 = wrdata_r[8:0];
+                6'h06: begin
+                    sprites_enabled_next   = wrdata_r[6];
+                    l1_enabled_next        = wrdata_r[5];
+                    l0_enabled_next        = wrdata_r[4];
+                    video_output_mode_next = wrdata_r[1:0];
                 end
-                5'h0A: begin
-                    if (dc_select_r == 0) begin
-                        dc_hscale_next            = write_data;
-                    end else begin
-                        dc_active_hstop_next[9:2] = write_data;
-                        dc_active_hstop_next[1:0] = 0;
-                    end
+                6'h08: dc_hscale_next        = wrdata_r[7:0];
+                6'h09: dc_vscale_next        = wrdata_r[7:0];
+                6'h0a: dc_active_hstart_next = wrdata_r[9:0];
+                6'h0B: dc_active_hstop_next  = wrdata_r[9:0];
+                6'h0C: dc_active_vstart_next = wrdata_r[8:0];
+                6'h0D: dc_active_vstop_next  = wrdata_r[8:0];
+                6'h10: begin
+                    l0_map_height_next  = wrdata_r[7:6];
+                    l0_map_width_next   = wrdata_r[5:4];
+                    l0_attr_mode_next   = wrdata_r[3];
+                    l0_bitmap_mode_next = wrdata_r[2];
+                    l0_color_depth_next = wrdata_r[1:0];
                 end
-                5'h0B: begin
-                    if (dc_select_r == 0) begin
-                        dc_vscale_next             = write_data;
-                    end else begin
-                        dc_active_vstart_next[8:1] = write_data;
-                        dc_active_vstart_next[0]   = 0;
-                    end
-                end
-                5'h0C: begin
-                    if (dc_select_r == 0) begin
-                        dc_border_color_next      = write_data;
-                    end else begin
-                        dc_active_vstop_next[8:1] = write_data;
-                        dc_active_vstop_next[0]   = 0;
-                    end
-                end
-
-                5'h0D: begin
-                    l0_map_height_next  = write_data[7:6];
-                    l0_map_width_next   = write_data[5:4];
-                    l0_attr_mode_next   = write_data[3];
-                    l0_bitmap_mode_next = write_data[2];
-                    l0_color_depth_next = write_data[1:0];
-                end
-                5'h0E: l0_map_baseaddr_next = write_data;
-                5'h0F: begin
-                    l0_tile_baseaddr_next[7:2] = write_data[7:2];
+                6'h11: l0_map_baseaddr_next = wrdata_r[7:0];
+                6'h12: begin
+                    l0_tile_baseaddr_next[7:2] = wrdata_r[7:2];
                     l0_tile_baseaddr_next[1:0] = 0;
 
-                    l0_tile_height_next = write_data[1];
-                    l0_tile_width_next  = write_data[0];
+                    l0_tile_height_next = wrdata_r[1];
+                    l0_tile_width_next  = wrdata_r[0];
                 end
-                5'h10: l0_hscroll_next[7:0]  = write_data;
-                5'h11: l0_hscroll_next[11:8] = write_data[3:0];
-                5'h12: l0_vscroll_next[7:0]  = write_data;
-                5'h13: l0_vscroll_next[11:8] = write_data[3:0];
-
-                5'h14: begin
-                    l1_map_height_next  = write_data[7:6];
-                    l1_map_width_next   = write_data[5:4];
-                    l1_attr_mode_next   = write_data[3];
-                    l1_bitmap_mode_next = write_data[2];
-                    l1_color_depth_next = write_data[1:0];
+                6'h14: l0_hscroll_next = wrdata_r[11:0];
+                6'h15: l0_vscroll_next = wrdata_r[11:0];
+                6'h20: begin
+                    l1_map_height_next  = wrdata_r[7:6];
+                    l1_map_width_next   = wrdata_r[5:4];
+                    l1_attr_mode_next   = wrdata_r[3];
+                    l1_bitmap_mode_next = wrdata_r[2];
+                    l1_color_depth_next = wrdata_r[1:0];
                 end
-                5'h15: l1_map_baseaddr_next = write_data;
-                5'h16: begin
-                    l1_tile_baseaddr_next[7:2] = write_data[7:2];
+                6'h21: l1_map_baseaddr_next = wrdata_r[7:0];
+                6'h22: begin
+                    l1_tile_baseaddr_next[7:2] = wrdata_r[7:2];
                     l1_tile_baseaddr_next[1:0] = 0;
 
-                    l1_tile_height_next = write_data[1];
-                    l1_tile_width_next  = write_data[0];
+                    l1_tile_height_next = wrdata_r[1];
+                    l1_tile_width_next  = wrdata_r[0];
                 end
-                5'h17: l1_hscroll_next[7:0]  = write_data;
-                5'h18: l1_hscroll_next[11:8] = write_data[3:0];
-                5'h19: l1_vscroll_next[7:0]  = write_data;
-                5'h1A: l1_vscroll_next[11:8] = write_data[3:0];
+                6'h24: l1_hscroll_next = wrdata_r[11:0];
+                6'h25: l1_vscroll_next = wrdata_r[11:0];
 
 `ifdef VERA_AUDIO
                 5'h1B: begin
-                    audio_fifo_reset_next       = write_data[7];
-                    audio_mode_16bit_next       = write_data[5];
-                    audio_mode_stereo_next      = write_data[4];
-                    audio_pcm_volume_next       = write_data[3:0];
+                    audio_fifo_reset_next       = wrdata_r[7];
+                    audio_mode_16bit_next       = wrdata_r[5];
+                    audio_mode_stereo_next      = wrdata_r[4];
+                    audio_pcm_volume_next       = wrdata_r[3:0];
                 end
-                5'h1C: audio_pcm_sample_rate_next = write_data;
+                5'h1C: audio_pcm_sample_rate_next = wrdata_r;
                 5'h1D: begin
-                    audio_fifo_wrdata_next = write_data;
+                    audio_fifo_wrdata_next = wrdata_r;
                     audio_fifo_write_next  = 1;
                 end
 `endif
- `ifdef VERA_SPI
-                5'h1E: spi_txstart = 1;
-                5'h1F: begin
-                    spi_autotx_next = write_data[2];
-                    spi_slow_next   = write_data[1];
-                    spi_select_next = write_data[0];
-                end
-`endif                
                 default: begin
                 end
             endcase
         end
 
- `ifdef VERA_SPI
-        // SPI auto-tx function
-        if (spi_autotx_r && access_addr == 5'h1E && do_reg_read) begin
-            spi_txdata = 8'hFF;
-            spi_txstart = 1;
-        end
-`endif
         if (sprcol_irq) begin
             irq_status_sprite_collision_next = 1;
         end
@@ -493,7 +370,6 @@ module vera_top(
         if (reset) begin
 
             sprite_bank_select_r          <= 0;
-            dc_select_r                   <= 0;
             fpga_reconfigure_r            <= 0;
 `ifdef VERA_AUDIO
             irq_enable_audio_fifo_low_r   <= 0;
@@ -548,14 +424,7 @@ module vera_top(
             audio_fifo_wrdata_r           <= 0;
             audio_fifo_write_r            <= 0;
 `endif            
- `ifdef VERA_SPI            
-            spi_select_r                  <= 0;
-            spi_slow_r                    <= 0;
-            spi_autotx_r                  <= 0;
-`endif
-
         end else begin
-            dc_select_r                   <= dc_select_next;
             sprite_bank_select_r          <= sprite_bank_select_next;
             fpga_reconfigure_r            <= fpga_reconfigure_next;
 `ifdef VERA_AUDIO
@@ -611,12 +480,6 @@ module vera_top(
             audio_fifo_wrdata_r           <= audio_fifo_wrdata_next;
             audio_fifo_write_r            <= audio_fifo_write_next;
 `endif            
- `ifdef VERA_SPI            
-            spi_select_r                  <= spi_select_next;
-            spi_slow_r                    <= spi_slow_next;
-            spi_autotx_r                  <= spi_autotx_next;
-`endif
-
         end
     end
 
@@ -918,7 +781,7 @@ module vera_top(
         .layer1_enabled(l1_enabled_r),
         .sprites_enabled(sprites_enabled_r),
 
-        .current_field(current_field),
+        .current_field(),
         .line_irq(line_irq),
         .scanline(scanline),
 
@@ -1085,30 +948,6 @@ module vera_top(
         .BOOT(fpga_reconfigure_r));
 `endif
  */
-
- `ifdef VERA_SPI
-    //////////////////////////////////////////////////////////////////////////
-    // SPI interface
-    //////////////////////////////////////////////////////////////////////////
-    assign spi_ssel_n_sd = !spi_select_r;
-
-    spictrl spictrl(
-        .rst(reset),
-        .clk(clk),
-
-        // Register interface
-        .txdata(spi_txdata),
-        .txstart(spi_txstart),
-        .rxdata(spi_rxdata),
-        .busy(spi_busy),
-
-        .slow(spi_slow_r),
-
-        // SPI interface
-        .spi_sck(spi_sck),
-        .spi_mosi(spi_mosi),
-        .spi_miso(spi_miso));
-`endif /*VERA_SPI*/
 
 `ifdef VERA_AUDIO
     //////////////////////////////////////////////////////////////////////////
