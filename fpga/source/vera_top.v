@@ -856,6 +856,8 @@ module vera_top(
         .rgb_g(video_rgb_g),
         .rgb_b(video_rgb_b),
         .rgb_sync_n(video_rgb_sync_n));
+`else
+    assign composer_display_current_field = 1'b0;
 `endif /*VERA_COMPOSITE_VIDEO*/
 
     //////////////////////////////////////////////////////////////////////////

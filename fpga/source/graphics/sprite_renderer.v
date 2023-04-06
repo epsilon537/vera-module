@@ -49,14 +49,8 @@ module sprite_renderer(
 
     reg  [6:0] sprite_idx_r, sprite_idx_next;
     reg        sprite_attr_sel_next;
-    reg  [7:0] sprite_idx_tmp;
 
-    always @* case (sprite_bank)
-        1'd0: sprite_idx_tmp = {1'b0, sprite_idx_next[5:0], sprite_attr_sel_next};
-        1'd1: sprite_idx_tmp = {1'b0, sprite_idx_next[5:0], sprite_attr_sel_next} + 'd128;
-    endcase
-
-    assign sprite_idx = sprite_idx_tmp;
+    assign sprite_idx = {sprite_bank, sprite_idx_next[5:0], sprite_attr_sel_next};
 
     // Decode fields from sprite attributes
 
@@ -99,7 +93,7 @@ module sprite_renderer(
 
     // Determine if sprite is on current line
     wire [9:0] ydiff          = {1'b0, line_idx} - sprite_attr_y;
-    wire       sprite_on_line = ydiff <= {3'b0, sprite_height_pixels};
+    wire       sprite_on_line = ydiff <= {4'b0, sprite_height_pixels};
     wire       sprite_enabled = sprite_attr_z != 2'd0;
     wire [5:0] sprite_line    = sprite_attr_vflip ? (sprite_height_pixels - ydiff[5:0]) : ydiff[5:0];
 
@@ -159,6 +153,9 @@ module sprite_renderer(
 
             // Wait for the next line
             SF_DONE: begin
+            end
+
+            default: begin
             end
         endcase
 
@@ -284,16 +281,16 @@ module sprite_renderer(
     reg [7:0] cur_pixel_data_8bpp;
     always @* case (hflipped_xcnt[1:0])
         // Byte 0
-        3'd0: cur_pixel_data_8bpp = render_data_r[7:0];
+        2'd0: cur_pixel_data_8bpp = render_data_r[7:0];
 
         // Byte 1
-        3'd1: cur_pixel_data_8bpp = render_data_r[15:8];
+        2'd1: cur_pixel_data_8bpp = render_data_r[15:8];
 
         // Byte 2
-        3'd2: cur_pixel_data_8bpp = render_data_r[23:16];
+        2'd2: cur_pixel_data_8bpp = render_data_r[23:16];
 
         // Byte 3
-        3'd3: cur_pixel_data_8bpp = render_data_r[31:24];
+        2'd3: cur_pixel_data_8bpp = render_data_r[31:24];
     endcase
 
     // Select current pixel based on current color depth
