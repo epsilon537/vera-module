@@ -1,8 +1,8 @@
-# VERA Programmer's Reference
+# VERA_Wishbone Programmer's Reference
 
-Version 0.9
+Version 0.1
 
-_Author: Frank van den Hoef_
+_Author: Epsilon/Ruben Lysens. Original Author: Frank van den Hoef_
 
 **This is preliminary documentation and the specification can still change at any point.**
 
@@ -24,6 +24,11 @@ This document describes the **V**ersatile **E**mbedded **R**etro **A**dapter or 
 	<tr>
 		<th>Addr</th>
 		<th>Name</th>
+		<th>Bit&nbsp;31-12</th>
+		<th>Bit&nbsp;11</th>
+		<th>Bit&nbsp;10</th>
+		<th>Bit&nbsp;9</th>
+		<th>Bit&nbsp;8</th>
 		<th>Bit&nbsp;7</th>
 		<th>Bit&nbsp;6</th>
 		<th>Bit&nbsp;5 </th>
@@ -35,119 +40,154 @@ This document describes the **V**ersatile **E**mbedded **R**etro **A**dapter or 
 	</tr>
 	<tr>
 		<td>$00</td>
-		<td>ADDRx_L (x=ADDRSEL)</td>
-		<td colspan="8" align="center">VRAM Address (7:0)</td>
-	</tr>
-	<tr>
-		<td>$01</td>
-		<td>ADDRx_M (x=ADDRSEL)</td>
-		<td colspan="8" align="center">VRAM Address (15:8)</td>
-	</tr>
-	<tr>
-		<td>$02</td>
-		<td>ADDRx_H (x=ADDRSEL)</td>
-		<td colspan="4" align="center">Address Increment</td>
-		<td colspan="1" align="center">DECR</td>
-		<td colspan="2" align="center">-</td>
-		<td colspan="1" align="center">VRAM Address (16)</td>
-	</tr>
-	<tr>
-		<td>$03</td>
-		<td>DATA0</td>
-		<td colspan="8" align="center">VRAM Data port 0</td>
+		<td>CTRL</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">SBNK</td>
 	</tr>
 	<tr>
 		<td>$04</td>
-		<td>DATA1</td>
-		<td colspan="8" align="center">VRAM Data port 1</td>
+		<td>DC_BORDER</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="8" align="center">Border Color</td>
 	</tr>
 	<tr>
-		<td>$05</td>
-		<td>CTRL</td>
-		<td colspan="1" align="center">Reset</td>
-		<td colspan="5" align="center">-</td>
-		<td colspan="1" align="center">DCSEL</td>
-		<td colspan="1" align="center">ADDRSEL</td>
-	</tr>
-	<tr>
-		<td>$06</td>
+		<td>$08</td>
 		<td>IEN</td>
-		<td colspan="1" align="center">IRQ Line (8)</td>
-		<td colspan="1" align="center">Scan Line (8)</td>
-		<td colspan="2" align="center">-</td>
-		<td colspan="1" align="center">AFLOW</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="1" align="center">SPRCOL</td>
 		<td colspan="1" align="center">LINE</td>
 		<td colspan="1" align="center">VSYNC</td>
 	</tr>
 	<tr>
-		<td>$07</td>
+		<td>$0C</td>
 		<td>ISR</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="4" align="center">Sprite collissions</td>
-		<td colspan="1" align="center">AFLOW</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="1" align="center">SPRCOL</td>
 		<td colspan="1" align="center">LINE</td>
 		<td colspan="1" align="center">VSYNC</td>
 	</tr>
 	<tr>
-		<td>$08</td>
-		<td>IRQLINE_L (Write only)</td>
-		<td colspan="8" align="center">IRQ line (7:0)</td>
+		<td>$10</td>
+		<td>IRQLINE</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="10" align="center">IRQ line</td>
 	</tr>
 	<tr>
-		<td>$08</td>
-		<td>SCANLINE_L (Read only)</td>
-		<td colspan="8" align="center">Scan line (7:0)</td>
+		<td>$14</td>
+		<td>SCANLINE</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="10" align="center">Scan line</td>
 	</tr>
 	<tr>
-		<td>$09</td>
-		<td>DC_VIDEO (DCSEL=0)</td>
-		<td colspan="1" align="center">Current Field</td>
+		<td>$18</td>
+		<td>DC_VIDEO</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="1" align="center">Sprites Enable</td>
 		<td colspan="1" align="center">Layer1 Enable</td>
 		<td colspan="1" align="center">Layer0 Enable</td>
 		<td colspan="1" align="center">-</td>
-		<td colspan="1" align="center">Chroma Disable</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="2" align="center">Output Mode</td>
 	</tr>
 	<tr>
-		<td>$0A</td>
-		<td>DC_HSCALE (DCSEL=0)</td>
+		<td>$20</td>
+		<td>DC_HSCALE</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="8" align="center">Active Display H-Scale</td>
 	</tr>
 	<tr>
-		<td>$0B</td>
-		<td>DC_VSCALE (DCSEL=0)</td>
+		<td>$24</td>
+		<td>DC_VSCALE</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="8" align="center">Active Display V-Scale</td>
 	</tr>
 	<tr>
-		<td>$0C</td>
-		<td>DC_BORDER (DCSEL=0)</td>
-		<td colspan="8" align="center">Border Color</td>
+		<td>$28</td>
+		<td>DC_HSTART</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="10" align="center">Active Display H-Start</td>
 	</tr>
 	<tr>
-		<td>$09</td>
-		<td>DC_HSTART (DCSEL=1)</td>
-		<td colspan="8" align="center">Active Display H-Start (9:2)</td>
+		<td>$2C</td>
+		<td>DC_HSTOP</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="10" align="center">Active Display H-Stop</td>
 	</tr>
 	<tr>
-		<td>$0A</td>
-		<td>DC_HSTOP (DCSEL=1)</td>
-		<td colspan="8" align="center">Active Display H-Stop (9:2)</td>
+		<td>$30</td>
+		<td>DC_VSTART</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="10" align="center">Active Display V-Start</td>
 	</tr>
 	<tr>
-		<td>$0B</td>
-		<td>DC_VSTART (DCSEL=1)</td>
-		<td colspan="8" align="center">Active Display V-Start (8:1)</td>
+		<td>$34</td>
+		<td>DC_VSTOP</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="10" align="center">Active Display V-Stop</td>
 	</tr>
 	<tr>
-		<td>$0C</td>
-		<td>DC_VSTOP (DCSEL=1)</td>
-		<td colspan="8" align="center">Active Display V-Stop (8:1)</td>
-	</tr>
-	<tr>
-		<td>$0D</td>
+		<td>$40</td>
 		<td>L0_CONFIG</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="2" align="center">Map Height</td>
 		<td colspan="2" align="center">Map Width</td>
 		<td colspan="1" align="center">T256C</td>
@@ -155,42 +195,47 @@ This document describes the **V**ersatile **E**mbedded **R**etro **A**dapter or 
 		<td colspan="2" align="center">Color Depth</td>
 	</tr>
 	<tr>
-		<td>$0E</td>
+		<td>$44</td>
 		<td>L0_MAPBASE</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="8" align="center">Map Base Address (16:9)</td>
 	</tr>
 	<tr>
-		<td>$0F</td>
+		<td>$48</td>
 		<td>L0_TILEBASE</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="6" align="center">Tile Base Address (16:11)</td>
 		<td colspan="1" align="center">Tile Height</td>
 		<td colspan="1" align="center">Tile Width</td>
 	</tr>
 	<tr>
-		<td>$10</td>
-		<td>L0_HSCROLL_L</td>
-		<td colspan="8" align="center">H-Scroll (7:0)</td>
+		<td>$50</td>
+		<td>L0_HSCROLL</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="12" align="center">H-Scroll</td>
 	</tr>
 	<tr>
-		<td>$11</td>
-		<td>L0_HSCROLL_H</td>
-		<td colspan="4" align="center">-</td>
-		<td colspan="8" align="center">H-Scroll (11:8)</td>
+		<td>$54</td>
+		<td>L0_VSCROLL</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="12" align="center">V-Scroll</td>
 	</tr>
 	<tr>
-		<td>$12</td>
-		<td>L0_VSCROLL_L</td>
-		<td colspan="8" align="center">V-Scroll (7:0)</td>
-	</tr>
-	<tr>
-		<td>$13</td>
-		<td>L0_VSCROLL_H</td>
-		<td colspan="4" align="center">-</td>
-		<td colspan="8" align="center">V-Scroll (11:8)</td>
-	</tr>
-	<tr>
-		<td>$14</td>
+		<td>$80</td>
 		<td>L1_CONFIG</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="2" align="center">Map Height</td>
 		<td colspan="2" align="center">Map Width</td>
 		<td colspan="1" align="center">T256C</td>
@@ -198,129 +243,68 @@ This document describes the **V**ersatile **E**mbedded **R**etro **A**dapter or 
 		<td colspan="2" align="center">Color Depth</td>
 	</tr>
 	<tr>
-		<td>$15</td>
+		<td>$84</td>
 		<td>L1_MAPBASE</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="8" align="center">Map Base Address (16:9)</td>
 	</tr>
 	<tr>
-		<td>$16</td>
+		<td>$88</td>
 		<td>L1_TILEBASE</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="1" align="center">-</td>
 		<td colspan="6" align="center">Tile Base Address (16:11)</td>
 		<td colspan="1" align="center">Tile Height</td>
 		<td colspan="1" align="center">Tile Width</td>
 	</tr>
 	<tr>
-		<td>$17</td>
-		<td>L1_HSCROLL_L</td>
-		<td colspan="8" align="center">H-Scroll (7:0)</td>
+		<td>$90</td>
+		<td>L1_HSCROLL</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="12" align="center">H-Scroll</td>
 	</tr>
 	<tr>
-		<td>$18</td>
-		<td>L1_HSCROLL_H</td>
-		<td colspan="4" align="center">-</td>
-		<td colspan="8" align="center">H-Scroll (11:8)</td>
-	</tr>
-	<tr>
-		<td>$19</td>
-		<td>L1_VSCROLL_L</td>
-		<td colspan="8" align="center">V-Scroll (7:0)</td>
-	</tr>
-	<tr>
-		<td>$1A</td>
-		<td>L1_VSCROLL_H</td>
-		<td colspan="4" align="center">-</td>
-		<td colspan="8" align="center">V-Scroll (11:8)</td>
-	</tr>
-	<tr>
-		<td>$1B</td>
-		<td>AUDIO_CTRL</td>
-		<td colspan="1" align="center">FIFO Full / FIFO Reset</td>
-		<td colspan="1" align="center">FIFO Empty</td>
-		<td colspan="1" align="center">16-Bit</td>
-		<td colspan="1" align="center">Stereo</td>
-		<td colspan="4" align="center">PCM Volume</td>
-	</tr>
-	<tr>
-		<td>$1C</td>
-		<td>AUDIO_RATE</td>
-		<td colspan="8" align="center">PCM Sample Rate</td>
-	</tr>
-	<tr>
-		<td>$1D</td>
-		<td>AUDIO_DATA</td>
-		<td colspan="8" align="center">Audio FIFO data (write-only)</td>
-	</tr>
-	<tr>
-		<td>$1E</td>
-		<td>SPI_DATA</td>
-		<td colspan="8" align="center">Data</td>
-	</tr>
-	<tr>
-		<td>$1F</td>
-		<td>SPI_CTRL</td>
-		<td colspan="1" align="center">Busy</td>
-		<td colspan="4" align="center">-</td>
-		<td colspan="1" align="center">Auto-tx</td>
-		<td colspan="1" align="center">Slow clock</td>
-		<td colspan="1" align="center">Select</td>
+		<td>$94</td>
+		<td>L1_VSCROLL</td>
+		<td colspan="1" align="center">-</td>
+		<td colspan="12" align="center">V-Scroll</td>
 	</tr>
 </table>
 
-## VRAM address space layout
+## VERA address space layout
+
+Relative to VERA's Base Address:
 
 | Address range   | Description       |
 | --------------- | ----------------- |
-| $00000 - $1F9BF | Video RAM         |
-| $1F9C0 - $1F9FF | PSG registers     |
-| $1FA00 - $1FBFF | Palette           |
-| $1FC00 - $1FFFF | Sprite attributes |
+| $00000 - $00100 | VERA Registers    |
+| $01000 - $01400 | Sprite attributes |
+| $02000 - $02200 | Palette           |
+| $40000 - $60000 | Video RAM (128KB) |
 
-**_Important note:
-Video RAM locations 1F9C0-1FFFF contain registers for the PSG/Palette/Sprite attributes. Reading anywhere in VRAM will always read back the 128kB VRAM itself (not the contents of the (write-only) PSG/Palette/Sprite attribute registers). Writing to a location in the register area will write to the registers in addition to writing the value also to VRAM. Since the VRAM contains random values at startup the values read back in the register area will not correspond to the actual values in the write-only registers until they are written to once.
-Because of this it is highly recommended to initialize the area from 1F9C0-1FFFF at startup._**
+**_Important notes:_**
+- **_Palette and Sprite attributes locations are write-only._**
+- **_The Video RAM always starts at $40000. The address range depends on the amount of Video RAM set by the VRAM_SIZE_BYTES macro. The range $40000-$60000 corresponds to a VRAM_SIZE_BYTES setting of (128*1024), i.e. 128KB._**
 
 ## Video RAM access
 
-The video RAM (VRAM) isn't directly accessible on the CPU bus. VERA only exposes an address space of 32 bytes to the CPU as described in the section [Registers](#registers). To access the VRAM (which is 128kB in size) an indirection mechanism is used. First the address to be accessed needs to be set (ADDRx_L/ADDRx_M/ADDRx_H) and then the data on that VRAM address can be read from or written to via the DATA0/1 register. To make accessing the VRAM more efficient an auto-increment mechanism is present.
-
-There are 2 data ports to the VRAM. Which can be accessed using DATA0 and DATA1. The address and increment associated with the data port is specified in ADDRx_L/ADDRx_M/ADDRx_H. These 3 registers are multiplexed using the ADDR_SEL in the CTRL register. When ADDR_SEL = 0, ADDRx_L/ADDRx_M/ADDRx_H become ADDR0_L/ADDR0_M/ADDR0_H.  
-When ADDR_SEL = 1, ADDRx_L/ADDRx_M/ADDRx_H become ADDR1_L/ADDR1_M/ADDR1_H.
-
-By setting the 'Address Increment' field in ADDRx_H, the address will be increment after each access to the data register. The increment register values and corresponding increment amounts are shown in the following table:
-
-| Register value | Increment amount |
-| -------------: | ---------------: |
-|              0 |                0 |
-|              1 |                1 |
-|              2 |                2 |
-|              3 |                4 |
-|              4 |                8 |
-|              5 |               16 |
-|              6 |               32 |
-|              7 |               64 |
-|              8 |              128 |
-|              9 |              256 |
-|             10 |              512 |
-|             11 |               40 |
-|             12 |               80 |
-|             13 |              160 |
-|             14 |              320 |
-|             15 |              640 |
-
-Setting the **DECR** bit, will decrement instead of increment by the value set by the 'Address Increment' field.
-
-## Reset
-
-When **RESET** in **CTRL** is set to 1, the FPGA will reconfigure itself. All registers will be reset. The palette RAM will be set to its default values.
+Unlike the original VERA implementation, in the VERA_Wishbone repo, Video RAM is memory mapped. The indirect access method via the VERA register interface from the original VERA implementation has been removed.
 
 ## Interrupts
 
 Interrupts will be generated for the interrupt sources set in the lower 4 bits of **IEN**.
-**ISR** will indicate the interrupts that have occurred. Writing a 1 to one of the lower 3 bits in **ISR** will clear that interrupt status. **AFLOW** can only be cleared by filling the audio FIFO for at least 1/4.
+**ISR** will indicate the interrupts that have occurred. Writing a 1 to one of the lower 3 bits in **ISR** will clear that interrupt status.
 
-**IRQ_LINE** (write-only) specifies at which line the **LINE** interrupt will be generated. Note that bit 8 of this value is present in the **IEN** register. For interlaced modes the interrupt will be generated each field and the bit 0 of **IRQ_LINE** is ignored.
+**IRQ_LINE** specifies at which scan line the **LINE** interrupt will be generated.
 
-**SCANLINE** (read-only) indicates the current scanline being sent to the screen. Bit 8 of this value is present in the **IEN** register. The value is 0 during the first visible line and 479 during the last. This value continues to count beyond the last visible line, but returns $1FF for lines 512-524 that are beyond its 9-bit resolution. **SCANLINE** is not affected by interlaced modes and will return either all even or all odd values during an even or odd field, respectively. Note that VERA renders lines ahead of scanout such that line 1 is being rendered while line 0 is being scanned out. Visible changes may be delayed one scanline because of this.
+**SCANLINE** indicates the current scanline being sent to the screen. The value is 0 during the first visible line and 479 during the last. This value continues to count beyond the last visible line, up to 524. Note that VERA renders lines ahead of scanout such that line 1 is being rendered while line 0 is being scanned out. Visible changes may be delayed one scanline because of this.
 
 The upper 4 (read-only) bits of the **ISR** register contain the [sprite collisions](#sprite-collisions) as determined by the sprite renderer.
 
@@ -328,18 +312,12 @@ The upper 4 (read-only) bits of the **ISR** register contain the [sprite collisi
 
 The display composer is responsible of combining the output of the 2 layer renderers and the sprite renderer into the image that is sent to the video output.
 
-The video output mode can be selected using OUT_MODE in DC_VIDEO.
+The video output mode can be selected using OUT_MODE in DC_VIDEO. The VERA_Wishbone repo only supports VGA output mode.
 
 | OUT_MODE | Description                                        |
 | -------: | -------------------------------------------------- |
 |        0 | Video disabled                                     |
 |        1 | VGA output                                         |
-|        2 | NTSC composite                                     |
-|        3 | RGB interlaced, composite sync (via VGA connector) |
-
-Setting **'Chroma Disable'** disables output of chroma in NTSC composite mode and will give a better picture on a monochrome display. _(Setting this bit will also disable the chroma output on the S-video output.)_
-
-**'Current Field'** is a read-only bit which reflects the active interlaced field in composite and RGB modes. (0: even, 1: odd)
 
 Setting **'Layer0 Enable'** / **'Layer1 Enable'** / **'Sprites Enable'** will respectively enable output from layer0 / layer1 and the sprites renderer.
 
@@ -347,7 +325,7 @@ Setting **'Layer0 Enable'** / **'Layer1 Enable'** / **'Sprites Enable'** will re
 
 **DC_BORDER** determines the palette index which is used for the non-active area of the screen.
 
-**DC_HSTART**/**DC_HSTOP** and **DC_VSTART**/**DC_VSTOP** determines the active part of the screen. The values here are specified in the native 640x480 display space. HSTART=0, HSTOP=640, VSTART=0, VSTOP=480 will set the active area to the full resolution. Note that the lower 2 bits of **DC_HSTART**/**DC_HSTOP** and the lower 1 bit of **DC_VSTART**/**DC_VSTOP** isn't available. This means that horizontally the start and stop values can be set at a multiple of 4 pixels, vertically at a multiple of 2 pixels.
+**DC_HSTART**/**DC_HSTOP** and **DC_VSTART**/**DC_VSTOP** determines the active part of the screen. The values here are specified in the native 640x480 display space. HSTART=0, HSTOP=640, VSTART=0, VSTOP=480 will set the active area to the full resolution.
 
 ## Layer 0/1 registers
 
@@ -375,7 +353,7 @@ Setting **'Layer0 Enable'** / **'Layer1 Enable'** / **'Sprites Enable'** will re
 |     0 | 8 pixels            |
 |     1 | 16 pixels           |
 
-In bitmap modes, the **'H-Scroll (11:8)'** register is used to specify the palette offset for the bitmap.
+In bitmap modes, the **'H-Scroll (11:8)'** register bits are used to specify the palette offset for the bitmap.
 
 ### Layer display modes
 
@@ -503,16 +481,6 @@ Each pixel in the tile data gives a color index of either 0-3 (2bpp), 0-15 (4bpp
 
 The palette offset (in **'H-Scroll (11:8)'**) modifies the color indexes of the bitmap in the same way as in the tile modes.
 
-## SPI controller
-
-The SPI controller is connected to the SD card connector. The speed of the clock output of the SPI controller can be controlled by the **'Slow Clock'** bit. When this bit is 0 the clock is 12.5MHz, when 1 the clock is about 390kHz. The slow clock speed is to be used during the initialization phase of the SD card. Some SD cards require a clock less than 400kHz during part of the initialization.
-
-A transfer can be started by writing to **SPI_DATA**. While the transfer is in progress the BUSY bit will be set. After the transfer is done, the result can be read from the **SPI_DATA** register.
-
-The chip select can be controlled by writing the **SELECT** bit. Writing 1 will assert the chip-select (logic-0) and writing 0 will release the chip-select (logic-1).
-
-If the **Auto-tx** bit is set, the SPI controller will automatically start a new transfer (using 0xFF as data) as soon as the **SPI_DATA** register is read. This can be used to speed up SD card read transfers.
-
 ## Palette
 
 The palette translates 8-bit color indexes into 12-bit output colors. The palette has 256 entries, each with the following format:
@@ -566,11 +534,35 @@ At reset, the palette will contain a predefined palette:
 
 ## Sprite attributes
 
-128 entries of the following format:
+Two banks of 64 entries of the following format:
 
 <table>
 	<tr>
 		<th>Offset</th>
+		<th>Bit&nbsp;31</th>
+		<th>Bit&nbsp;30</th>
+		<th>Bit&nbsp;29</th>
+		<th>Bit&nbsp;28</th>
+		<th>Bit&nbsp;27</th>
+		<th>Bit&nbsp;26</th>
+		<th>Bit&nbsp;25</th>
+		<th>Bit&nbsp;24</th>
+		<th>Bit&nbsp;23</th>
+		<th>Bit&nbsp;22</th>
+		<th>Bit&nbsp;21</th>
+		<th>Bit&nbsp;20</th>
+		<th>Bit&nbsp;19</th>
+		<th>Bit&nbsp;18</th>
+		<th>Bit&nbsp;17</th>
+		<th>Bit&nbsp;16</th>
+		<th>Bit&nbsp;15</th>
+		<th>Bit&nbsp;14</th>
+		<th>Bit&nbsp;13</th>
+		<th>Bit&nbsp;12</th>
+		<th>Bit&nbsp;11</th>
+		<th>Bit&nbsp;10</th>
+		<th>Bit&nbsp;9</th>
+		<th>Bit&nbsp;8</th>
 		<th>Bit&nbsp;7</th>
 		<th>Bit&nbsp;6</th>
 		<th>Bit&nbsp;5</th>
@@ -582,44 +574,35 @@ At reset, the palette will contain a predefined palette:
 	</tr>
 	<tr>
 		<td>0</td>
-		<td align="center" colspan="8">Address (12:5)</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td>Mode</td>
-		<td align="center" colspan="3">-</td>
-		<td align="center" colspan="4">Address (16:13)</td>
-	</tr>
-	<tr>
-		<td>2</td>
-		<td align="center" colspan="8">X (7:0)</td>
-	</tr>
-	<tr>
-		<td>3</td>
-		<td align="center" colspan="6">-</td>
-		<td align="center" colspan="2">X (9:8)</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="10">X</td>
+		<td align="center" colspan="1">Mode</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="12">Address (16:5)</td>
 	</tr>
 	<tr>
 		<td>4</td>
-		<td align="center" colspan="8">Y (7:0)</td>
-	</tr>
-	<tr>
-		<td>5</td>
-		<td align="center" colspan="6">-</td>
-		<td align="center" colspan="2">Y (9:8)</td>
-	</tr>
-	<tr>
-		<td>6</td>
-		<td align="center" colspan="4">Collision mask</td>
-		<td align="center" colspan="2">Z-depth</td>
-		<td align="center">V-flip</td>
-		<td align="center">H-flip</td>
-	</tr>
-	<tr>
-		<td>7</td>
 		<td align="center" colspan="2">Sprite height</td>
 		<td align="center" colspan="2">Sprite width</td>
 		<td align="center" colspan="4">Palette offset</td>
+		<td align="center" colspan="4">Collision mask</td>
+		<td align="center" colspan="2">Z-depth</td>
+		<td align="center" colspan="1">V-flip</td>
+		<td align="center" colspan="1">H-flip</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="10">Y</td>
 	</tr>
 </table>
 
@@ -646,116 +629,8 @@ At reset, the palette will contain a predefined palette:
 
 **Palette offset** works in the same way as with the layers.
 
+The active sprite bank is selected by the SBNK bit in the CTRL register.
+
 ## Sprite collisions
 
 At the start of the vertical blank **Collisions** in **ISR** is updated. This field indicates which groups of sprites have collided. If the field is non-zero the **SPRCOL** interrupt will be set. The interrupt is generated once per field / frame and can be cleared by making sure the sprites no longer collide.
-
-_Note that collisions are only detected on lines that are actually rendered. This can result in subtle differences between non-interlaced and interlaced video modes._
-
-## Programmable Sound Generator (PSG)
-
-The audio functionality contains of 2 independent systems. The first is the PSG or Programmable Sound Generator. The second is the PCM (or Pulse-Code Modulation) playback system.
-
-16 entries (channels) of the following format:
-
-<table>
-	<tr>
-		<th>Offset</th>
-		<th>Bit&nbsp;7</th>
-		<th>Bit&nbsp;6</th>
-		<th>Bit&nbsp;5</th>
-		<th>Bit&nbsp;Bit&nbsp;4</th>
-		<th>Bit&nbsp;3</th>
-		<th>Bit&nbsp;2</th>
-		<th>Bit&nbsp;1</th>
-		<th>Bit&nbsp;0</th>
-	</tr>
-	<tr>
-		<td>0</td>
-		<td align="center" colspan="8">Frequency word (7:0)</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td align="center" colspan="8">Frequency word (15:8)</td>
-	</tr>
-	<tr>
-		<td>2</td>
-		<td align="center" colspan=1">Right</td>
-		<td align="center" colspan=1">Left</td>
-		<td align="center" colspan=6">Volume</td>
-	</tr>
-	<tr>
-		<td>3</td>
-		<td align="center" colspan="2">Waveform</td>
-		<td align="center" colspan="6">Pulse width</td>
-	</tr>
-</table>
-
-**Frequency word** sets the frequency of the sound.
-The formula for calculating the output frequency is:
-
-    sample_rate = 25MHz / 512 = 48828.125 Hz
-
-    output_frequency = sample_rate / (2^17) * frequency_word
-
-Thus the output frequency can be set in steps of about 0.373 Hz.
-
-_Example: to output a frequency of 440Hz (note A4) the **Frequency word** should be set to 440 / (48828.125 / (2^17)) = 1181_
-
-**Volume** controls the volume of the sound with a logarithmic curve; 0 is silent, 63 is the loudest.
-The **Left** and **Right** bits control to which output channels the sound should be output.
-
-**Waveform** controls the waveform of the sound:
-
-| Waveform | Description |
-| -------: | ----------- |
-|        0 | Pulse       |
-|        1 | Sawtooth    |
-|        2 | Triangle    |
-|        3 | Noise       |
-
-**Pulse width** controls the duty cycle of the pulse waveform. A value of 63 will give a 50% duty cycle or square wave, 0 will give a very narrow pulse.
-
-Just like the other waveform types, the frequency of the noise waveform can be controlled using frequency. In this case a higher frequency will give brighter noise and a lower value will give darker noise.
-
-## PCM audio
-
-For PCM playback, VERA contains a 4kB FIFO buffer. This buffer needs to be filled in a timely fashion by the CPU. To facilitate this an **AFLOW** (Audio FIFO low) interrupt can be generated when the FIFO is less than 1/4 filled.
-
-### Audio registers
-
-**PCM Volume** controls the volume of the PCM playback, this has a logarithmic curve. A value of 0 is silence, 15 is the loudest.
-
-**Stereo** sets the data format to stereo. If this bit is 0 (mono), the same audio data is send to both channels.
-
-**16-bit** sets the data format to 16-bit. If this bit is 0, 8-bit data is expected.
-
-**FIFO Full** is a read-only flag that indicated if the FIFO is full. Any writes to the FIFO while this flag is 1 will be ignored. Writing a 1 to this register (**FIFO Reset**) will perform a FIFO reset, which will clear the contents of the FIFO buffer.
-
-**FIFO Empty** is a read-only flag that indicates the FIFO has completely drained and is no longer producing PCM audio.
-
-**PCM sample rate** controls the speed at which samples are read from the FIFO. A few example values:
-
-| PCM sample rate | Description                               |
-| --------------: | ----------------------------------------- |
-|             128 | normal speed (25MHz / 512 = 48828.125 Hz) |
-|              64 | half speed (24414 Hz)                     |
-|              32 | quarter speed (12207 Hz)                  |
-|               0 | stop playback                             |
-|          _>128_ | _invalid_                                 |
-
-Using a value of 128 will give the best quality (lowest distortion); at this value for every output sample, an input sample from the FIFO is read. Lower values will output the same sample multiple times to the audio DAC. Input samples are always read as a complete set (being 1/2/4 bytes).
-
-_NOTE: When setting up for PCM playback it is adviced to first set the sample rate at 0 to stop playback. First fill the FIFO buffer with some initial data and then set the desired sample rate. This can prevent undesired FIFO underruns._
-
-### Audio data formats
-
-Audio data is two's complement signed.
-Depending on the selected mode the data needs to be written to the FIFO in the following order:
-
-| Mode          | Order in which to write data to FIFO                                                        |
-| ------------- | ------------------------------------------------------------------------------------------- |
-| 8-bit mono    | \<mono sample\>                                                                             |
-| 8-bit stereo  | \<left sample\> \<right sample\>                                                            |
-| 16-bit mono   | \<mono sample (7:0)\> \<mono sample (15:8)\>                                                |
-| 16-bit stereo | \<left sample (7:0)\> \<left sample (15:8)\> \<right sample (7:0)\> \<right sample (15:8)\> |
