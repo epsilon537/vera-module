@@ -4,39 +4,36 @@ Version 0.1
 
 _Author: Epsilon/Ruben Lysens. Original Author: Frank van den Hoef_
 
-**This is preliminary documentation and the specification can still change at any point.**
+This document describes the **Wishbone** fork of **V**ersatile **E**mbedded **R**etro **A**dapter or VERA. *VERA_Wishbone* is a retro-style 2D Video Core with a 32-bit Wishbone slave interface for easy integration into Wishbone-based SoCs. 
 
-This document describes the **V**ersatile **E**mbedded **R**etro **A**dapter or VERA. The VERA consists of:
-
-- Video generator featuring:
-  - Multiple output formats (VGA, NTSC Composite, NTSC S-Video, RGB video) at a fixed resolution of 640x480@60Hz
+Features:
+  - VGA output format at a fixed resolution of 640x480@60Hz
   - Support for 2 layers, both supporting either tile or bitmap mode.
-  - Support for up to 128 sprites.
-  - Embedded video RAM of 128kB.
+  - Support for 2 banks of 64 sprites, max. 512 sprite pixels per scanline.
+  - Configurable Embedded video RAM size of up to 128kB.
   - Palette with 256 colors selected from a total range of 4096 colors.
-- 16-channel Programmable Sound Generator with multiple waveforms (Pulse, Sawtooth, Triangle, Noise)
-- High quality PCM audio playback from an 4kB FIFO buffer featuring up to 48kHz 16-bit stereo sound.
-- SPI controller for SecureDigital storage.
 
 # Registers
+
+All registers are 32-bit wide, but higher order bits 31-12 are currently not in use.
 
 <table>
 	<tr>
 		<th>Addr</th>
 		<th>Name</th>
-		<th>Bit&nbsp;31-12</th>
-		<th>Bit&nbsp;11</th>
-		<th>Bit&nbsp;10</th>
-		<th>Bit&nbsp;9</th>
-		<th>Bit&nbsp;8</th>
-		<th>Bit&nbsp;7</th>
-		<th>Bit&nbsp;6</th>
-		<th>Bit&nbsp;5 </th>
-		<th>Bit&nbsp;4</th>
-		<th>Bit&nbsp;3 </th>
-		<th>Bit&nbsp;2</th>
-		<th>Bit&nbsp;1 </th>
-		<th>Bit&nbsp;0</th>
+		<th>31-12</th>
+		<th>11</th>
+		<th>10</th>
+		<th>9</th>
+		<th>8</th>
+		<th>7</th>
+		<th>6</th>
+		<th>5 </th>
+		<th>4</th>
+		<th>3 </th>
+		<th>2</th>
+		<th>1 </th>
+		<th>0</th>
 	</tr>
 	<tr>
 		<td>$00</td>
@@ -487,25 +484,16 @@ The palette translates 8-bit color indexes into 12-bit output colors. The palett
 
 <table>
 	<tr>
-		<th>Offset</th>
-		<th>Bit&nbsp;7</th>
-		<th>Bit&nbsp;6</th>
-		<th>Bit&nbsp;5</th>
-		<th>Bit&nbsp;4</th>
-		<th>Bit&nbsp;3</th>
-		<th>Bit&nbsp;2</th>
-		<th>Bit&nbsp;1</th>
-		<th>Bit&nbsp;0</th>
+		<th>Bit&nbsp;31-12</th>
+		<th>Bit&nbsp;11-8</th>
+		<th>Bit&nbsp;7-4</th>
+		<th>Bit&nbsp;3-0</th>
 	</tr>
 	<tr>
-		<td>0</td>
-		<td align="center" colspan="4">Green</td>
-		<td align="center" colspan="4">Blue</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td align="center" colspan="4">-</td>
-		<td align="center" colspan="4">Red</td>
+		<td align="center">-</td>
+		<td align="center">Red</td>
+		<td align="center">Green</td>
+		<td align="center">Blue</td>
 	</tr>
 </table>
 
@@ -538,39 +526,39 @@ Two banks of 64 entries of the following format:
 
 <table>
 	<tr>
-		<th>Offset</th>
-		<th>Bit&nbsp;31</th>
-		<th>Bit&nbsp;30</th>
-		<th>Bit&nbsp;29</th>
-		<th>Bit&nbsp;28</th>
-		<th>Bit&nbsp;27</th>
-		<th>Bit&nbsp;26</th>
-		<th>Bit&nbsp;25</th>
-		<th>Bit&nbsp;24</th>
-		<th>Bit&nbsp;23</th>
-		<th>Bit&nbsp;22</th>
-		<th>Bit&nbsp;21</th>
-		<th>Bit&nbsp;20</th>
-		<th>Bit&nbsp;19</th>
-		<th>Bit&nbsp;18</th>
-		<th>Bit&nbsp;17</th>
-		<th>Bit&nbsp;16</th>
-		<th>Bit&nbsp;15</th>
-		<th>Bit&nbsp;14</th>
-		<th>Bit&nbsp;13</th>
-		<th>Bit&nbsp;12</th>
-		<th>Bit&nbsp;11</th>
-		<th>Bit&nbsp;10</th>
-		<th>Bit&nbsp;9</th>
-		<th>Bit&nbsp;8</th>
-		<th>Bit&nbsp;7</th>
-		<th>Bit&nbsp;6</th>
-		<th>Bit&nbsp;5</th>
-		<th>Bit&nbsp;4</th>
-		<th>Bit&nbsp;3</th>
-		<th>Bit&nbsp;2</th>
-		<th>Bit&nbsp;1</th>
-		<th>Bit&nbsp;0</th>
+		<th>Word</th>
+		<th>31</th>
+		<th>30</th>
+		<th>29</th>
+		<th>28</th>
+		<th>27</th>
+		<th>26</th>
+		<th>25</th>
+		<th>24</th>
+		<th>23</th>
+		<th>22</th>
+		<th>21</th>
+		<th>20</th>
+		<th>19</th>
+		<th>18</th>
+		<th>17</th>
+		<th>16</th>
+		<th>15</th>
+		<th>14</th>
+		<th>13</th>
+		<th>12</th>
+		<th>11</th>
+		<th>10</th>
+		<th>9</th>
+		<th>8</th>
+		<th>7</th>
+		<th>6</th>
+		<th>5</th>
+		<th>4</th>
+		<th>3</th>
+		<th>2</th>
+		<th>1</th>
+		<th>0</th>
 	</tr>
 	<tr>
 		<td>0</td>
@@ -588,7 +576,7 @@ Two banks of 64 entries of the following format:
 		<td align="center" colspan="12">Address (16:5)</td>
 	</tr>
 	<tr>
-		<td>4</td>
+		<td>1</td>
 		<td align="center" colspan="2">Sprite height</td>
 		<td align="center" colspan="2">Sprite width</td>
 		<td align="center" colspan="4">Palette offset</td>
@@ -630,6 +618,8 @@ Two banks of 64 entries of the following format:
 **Palette offset** works in the same way as with the layers.
 
 The active sprite bank is selected by the SBNK bit in the CTRL register.
+
+The Sprite Renderer can render a maximum of 512 sprite pixels per scanline. That corresponds to 64 8-pixel-wide sprites or 8 64-pixel-wide sprites. The 512 sprite-pixel-per-scanline limit is guaranteed regardless of Layer 0/1 configuration or Wishbone bus access load on Video RAM.
 
 ## Sprite collisions
 
