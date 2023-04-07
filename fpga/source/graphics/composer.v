@@ -13,7 +13,7 @@ module composer(
     input  wire  [9:0] active_hstop,
     input  wire  [8:0] active_vstart,
     input  wire  [8:0] active_vstop,
-    input  wire  [8:0] irqline,
+    input  wire  [9:0] irqline,
     input  wire        layer0_enabled,
     input  wire        layer1_enabled,
     input  wire        sprites_enabled,
@@ -21,7 +21,7 @@ module composer(
     output reg         current_field,
     output reg         line_irq,
 
-    output wire [8:0]  scanline,
+    output wire [9:0]  scanline,
 
     // Render interface
     output wire  [8:0] line_idx,
@@ -106,8 +106,8 @@ module composer(
         end else begin
             if (clk_en)
                 line_irq <= display_next_line && (
-                    (!interlaced && y_counter_r == {1'b0, irqline}) ||
-                    ( interlaced && y_counter_r[9:1] == {1'b0, irqline[8:1]}));
+                    (!interlaced && y_counter_r == irqline) ||
+                    ( interlaced && y_counter_r[9:1] == irqline[9:1]));
         end
     end
 
@@ -132,14 +132,14 @@ module composer(
     wire [9:0] y_counter = y_counter_rr;
 
     // Peg scanline at 511 for lines 512-524
-    assign scanline = y_counter[9] == 1 ? 9'b1_1111_1111 : y_counter_r[8:0];
+    assign scanline = y_counter_r;
 
     // Generate start signal of sprite line buffer clearing
     assign sprite_lb_erase_start = (x_counter_r == {10'd639, interlaced});
 
     // Determine the active area of the screen where the border isn't shown
     wire hactive = (x_counter >= active_hstart) && (x_counter < active_hstop);
-wire vactive = (y_counter >= {1'b0, active_vstart}) && (y_counter < {1'b0, active_vstop});
+    wire vactive = (y_counter >= {1'b0, active_vstart}) && (y_counter < {1'b0, active_vstop});
     reg display_active;
     always @(posedge clk)
         if (clk_en) 

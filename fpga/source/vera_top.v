@@ -49,7 +49,7 @@ module vera_top(
     reg        irq_status_vsync_r,            irq_status_vsync_next;
     reg        irq_status_line_r,             irq_status_line_next;
     reg        irq_status_sprite_collision_r, irq_status_sprite_collision_next;
-    reg  [8:0] irq_line_r,                    irq_line_next;
+    reg  [9:0] irq_line_r,                    irq_line_next;
     reg        sprites_enabled_r,             sprites_enabled_next;
     reg        l0_enabled_r,                  l0_enabled_next;
     reg        l1_enabled_r,                  l1_enabled_next;
@@ -108,7 +108,7 @@ module vera_top(
     wire       sprcol_irq;
     wire       vblank_pulse;
     wire       line_irq;
-    wire [8:0] scanline;
+    wire [9:0] scanline;
 
     /*Register read interface*/
     reg [31:0] rddata;
@@ -135,8 +135,8 @@ module vera_top(
                                 1'b0,
 `endif                                                                             
                                 irq_status_sprite_collision_r, irq_status_line_r, irq_status_vsync_r};
-                6'h04: rddata = {23'b0, irq_line_r};                                
-                6'h05: rddata = {23'b0,   scanline};
+                6'h04: rddata = {22'b0, irq_line_r};                                
+                6'h05: rddata = {22'b0,   scanline};
                 6'h06: rddata = {25'b0, sprites_enabled_r, l1_enabled_r, l0_enabled_r, 2'b0, video_output_mode_r};
 
                 6'h08: rddata = {24'b0,dc_hscale_r};
@@ -289,7 +289,7 @@ module vera_top(
                     irq_status_line_next             = irq_status_line_r             & !wrdata_r[1];
                     irq_status_vsync_next            = irq_status_vsync_r            & !wrdata_r[0];
                 end
-                6'h04: irq_line_next                 = wrdata_r[8:0];
+                6'h04: irq_line_next                 = wrdata_r[9:0];
                 6'h06: begin
                     sprites_enabled_next   = wrdata_r[6];
                     l1_enabled_next        = wrdata_r[5];
