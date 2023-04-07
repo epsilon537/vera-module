@@ -527,48 +527,25 @@ Two banks of 64 entries of the following format:
 <table>
 	<tr>
 		<th>Word</th>
-		<th>31</th>
-		<th>30</th>
-		<th>29</th>
-		<th>28</th>
-		<th>27</th>
-		<th>26</th>
-		<th>25</th>
-		<th>24</th>
-		<th>23</th>
-		<th>22</th>
-		<th>21</th>
-		<th>20</th>
-		<th>19</th>
-		<th>18</th>
-		<th>17</th>
-		<th>16</th>
-		<th>15</th>
-		<th>14</th>
-		<th>13</th>
-		<th>12</th>
-		<th>11</th>
-		<th>10</th>
-		<th>9</th>
-		<th>8</th>
-		<th>7</th>
-		<th>6</th>
-		<th>5</th>
-		<th>4</th>
-		<th>3</th>
-		<th>2</th>
-		<th>1</th>
-		<th>0</th>
+		<th>31/15</th>
+		<th>30/14</th>
+		<th>29/13</th>
+		<th>28/12</th>
+		<th>27/11</th>
+		<th>26/10</th>
+		<th>25/9</th>
+		<th>24/8</th>
+		<th>23/7</th>
+		<th>22/6</th>
+		<th>21/5</th>
+		<th>20/4</th>
+		<th>19/3</th>
+		<th>18/2</th>
+		<th>17/1</th>
+		<th>16/0</th>
 	</tr>
-	<tr>
-		<td>0</td>
-		<td align="center" colspan="1">-</td>
-		<td align="center" colspan="1">-</td>
-		<td align="center" colspan="1">-</td>
-		<td align="center" colspan="1">-</td>
-		<td align="center" colspan="1">-</td>
-		<td align="center" colspan="1">-</td>
-		<td align="center" colspan="10">X</td>
+		<tr>
+		<td>Word 0 Bits 15-0</td>
 		<td align="center" colspan="1">Mode</td>
 		<td align="center" colspan="1">-</td>
 		<td align="center" colspan="1">-</td>
@@ -576,14 +553,17 @@ Two banks of 64 entries of the following format:
 		<td align="center" colspan="12">Address (16:5)</td>
 	</tr>
 	<tr>
-		<td>1</td>
-		<td align="center" colspan="2">Sprite height</td>
-		<td align="center" colspan="2">Sprite width</td>
-		<td align="center" colspan="4">Palette offset</td>
-		<td align="center" colspan="4">Collision mask</td>
-		<td align="center" colspan="2">Z-depth</td>
-		<td align="center" colspan="1">V-flip</td>
-		<td align="center" colspan="1">H-flip</td>
+		<td>Word 0 Bits 31-16</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="1">-</td>
+		<td align="center" colspan="10">X</td>
+	</tr>
+	<tr>
+		<td>Word 1 Bits 15-0</td>
 		<td align="center" colspan="1">-</td>
 		<td align="center" colspan="1">-</td>
 		<td align="center" colspan="1">-</td>
@@ -591,6 +571,16 @@ Two banks of 64 entries of the following format:
 		<td align="center" colspan="1">-</td>
 		<td align="center" colspan="1">-</td>
 		<td align="center" colspan="10">Y</td>
+	</tr>
+	<tr>
+		<td>Word 1 Bits 31-16</td>
+		<td align="center" colspan="2">Sprite height</td>
+		<td align="center" colspan="2">Sprite width</td>
+		<td align="center" colspan="4">Palette offset</td>
+		<td align="center" colspan="4">Collision mask</td>
+		<td align="center" colspan="2">Z-depth</td>
+		<td align="center" colspan="1">V-flip</td>
+		<td align="center" colspan="1">H-flip</td>
 	</tr>
 </table>
 
