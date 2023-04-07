@@ -75,6 +75,7 @@ module video_vga(
 
     assign next_frame = h_last && v_last2;
     assign next_line = h_last;
+    assign next_pixel = 1'b1;
 
     // Compensate pipeline delays
     reg [1:0] hsync_r, vsync_r, active_r;
@@ -90,8 +91,8 @@ module video_vga(
             vga_r <= 4'd0;
             vga_g <= 4'd0;
             vga_b <= 4'd0;
-            vga_hsync <= 0;
-            vga_vsync <= 0;
+            vga_hsync <= 1;
+            vga_vsync <= 1;
 
         end else begin
             if (clk_en) begin
@@ -105,12 +106,10 @@ module video_vga(
                     vga_b <= 4'd0;
                 end
 
-                vga_hsync <= hsync_r[1];
-                vga_vsync <= vsync_r[1];
+                vga_hsync <= ~hsync_r[1];
+                vga_vsync <= ~vsync_r[1];
             end
         end
     end
-
-    assign next_pixel = 1'b1; //clk_en;
 
 endmodule
