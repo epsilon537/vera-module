@@ -1,6 +1,9 @@
 //`default_nettype none
 
-module vram_if(
+module vram_if #(
+	parameter VRAM_SIZE_BYTES=(128*1024)
+	)
+    (
     input  wire        clk,
 
     // Interface 0 - 8-bit (highest priority)
@@ -40,7 +43,7 @@ module vram_if(
     wire        ram_write;
 
     //Use the generic version of the main_ram module
-    main_ram_generic main_ram(
+    main_ram_generic #(VRAM_SIZE_BYTES) main_ram(
         .clk(clk),
         .bus_addr(ram_addr),
         .bus_wrdata(ram_wrdata),

@@ -1,5 +1,8 @@
 //A generic version of main ram, not using the SP256K primitive.
-module main_ram_generic(
+module main_ram_generic #(
+	parameter VRAM_SIZE_BYTES=(128*1024)
+	)
+    (
     input  wire        clk,
 
     // Slave bus interface
@@ -12,7 +15,7 @@ module main_ram_generic(
     spram_byte_write_ram_wr_first #(
         .NB_COL(4),                           // Specify number of columns (number of bytes)
         .COL_WIDTH(8),                        // Specify column width (byte width, typically 8 or 9)
-        .RAM_DEPTH(`VRAM_SIZE_BYTES/4),       // Specify RAM depth (number of entries)
+        .RAM_DEPTH(VRAM_SIZE_BYTES/4),       // Specify RAM depth (number of entries)
         .RAM_PERFORMANCE("LOW_LATENCY"),      // Select "HIGH_PERFORMANCE" or "LOW_LATENCY" 
         .INIT_FILE("")                        // Specify name/location of RAM initialization file if using one (leave blank if not)
     ) spram_inst (

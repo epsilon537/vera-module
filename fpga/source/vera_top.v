@@ -1,6 +1,9 @@
 //`default_nettype none
 
-module vera_top(
+module vera_top #(
+	parameter VRAM_SIZE_BYTES=(128*1024)
+	)
+    (
     input  wire       clk,
     input  wire       reset,
 
@@ -501,7 +504,7 @@ module vera_top(
     wire        spr_strobe;
     wire        spr_ack;
 
-    vram_if vram_if(
+    vram_if #(VRAM_SIZE_BYTES) vram_if(
         .clk(clk),
 
         // Interface 0 - 8-bit (highest priority)
