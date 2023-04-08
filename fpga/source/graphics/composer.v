@@ -71,6 +71,10 @@ module composer(
     reg  [9:0] y_counter_r, y_counter_rr;
     reg  next_line_r;
 
+    //The sequential logic below uses a toggling clock enable. The Master clock runs at 50MHz. 
+    //The clk_en effectively runs composer's sequential logic at 25MHz, the pixel clock rate. 
+    //Using a clock enable is preferred over a clock divider.
+
     always @(posedge clk) begin
         if (rst) begin
             clk_en        <= 0;

@@ -43,6 +43,10 @@ module video_vga(
     wire v_last = (y_counter == V_TOTAL - 1);
     wire v_last2 = (y_counter == V_TOTAL - 2);  // Start rendering one line earlier
 
+    //The sequential logic below uses a toggling clock enable. The Master clock runs at 50MHz. 
+    //The clk_en effectively runs video vga's sequential logic at 25MHz, the pixel clock rate. 
+    //Using a clock enable is preferred over a clock divider.
+
     always @(posedge clk) begin
         if (rst) begin
 `ifdef __ICARUS__ /*not needed for Verilator*/

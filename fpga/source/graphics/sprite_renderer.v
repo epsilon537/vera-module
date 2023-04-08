@@ -39,7 +39,11 @@ module sprite_renderer(
 
     //////////////////////////////////////////////////////////////////////////
     // Sprite Pixel Count limitation
+    // Keep track of the number of sprite pixels rendered on the current
+    // scan line. When this number reaches SPRITE_PIXEL_COUNT_MAX, stop
+    // rendering for the current scan line.
     //////////////////////////////////////////////////////////////////////////
+    parameter SPRITE_PIXEL_COUNT_MAX = 'd512;
     reg  [9:0] sprite_pixel_count_r, sprite_pixel_count_next;
 
     //////////////////////////////////////////////////////////////////////////
@@ -50,6 +54,8 @@ module sprite_renderer(
     reg  [6:0] sprite_idx_r, sprite_idx_next;
     reg        sprite_attr_sel_next;
 
+    //The sprite attrbute memory is divided into two banks. The active bank
+    //is selected by the sprite_bank port.
     assign sprite_idx = {sprite_bank, sprite_idx_next[5:0], sprite_attr_sel_next};
 
     // Decode fields from sprite attributes
@@ -124,7 +130,7 @@ module sprite_renderer(
         case (sf_state_next)
             // Find a sprite to be rendered
             SF_FIND_SPRITE: begin
-                if ((sprite_idx_r[6]==1'b1) || (sprite_pixel_count_r >= 'd512)) begin
+                if ((sprite_idx_r[6]==1'b1) || (sprite_pixel_count_r >= SPRITE_PIXEL_COUNT_MAX)) begin
                     sf_state_next = SF_DONE;
 
                 end else begin

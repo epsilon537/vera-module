@@ -1,6 +1,6 @@
-//A generic version of main ram, not using the SP256K primitive.
+//A generic version of the main_ram module, not using the SP256K primitive.
 module main_ram_generic #(
-	parameter VRAM_SIZE_BYTES=(128*1024)
+	parameter VRAM_SIZE_BYTES=(128*1024) //Max. 128KB. Tested sizes are 64K and 128K.
 	)
     (
     input  wire        clk,

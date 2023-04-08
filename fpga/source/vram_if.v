@@ -1,12 +1,12 @@
 //`default_nettype none
 
 module vram_if #(
-	parameter VRAM_SIZE_BYTES=(128*1024)
+	parameter VRAM_SIZE_BYTES=(128*1024) //Max. 128KB. Tested sizes are 64K and 128K.
 	)
     (
     input  wire        clk,
 
-    // Interface 0 - 8-bit (highest priority)
+    // Interface 0 - 31-bit read-write
     input  wire [14:0] if0_addr,
     input  wire [31:0] if0_wrdata,
     output wire [31:0] if0_rddata,
@@ -42,7 +42,7 @@ module vram_if #(
     wire [31:0] ram_rddata;
     wire        ram_write;
 
-    //Use the generic version of the main_ram module
+    //Using the generic version of the main_ram module
     main_ram_generic #(VRAM_SIZE_BYTES) main_ram(
         .clk(clk),
         .bus_addr(ram_addr),
@@ -52,7 +52,10 @@ module vram_if #(
         .bus_write(ram_write));
 
     //////////////////////////////////////////////////////////////////////////
-    // Priority memory access
+    // Time slotted memory access: Four time slots, one clock period each,
+    // each slot assigned to one port.
+    // => Each port is guaranteed 25% of the main RAM bus bandwidth. No more,
+    // no less, indepedent of the other ports' activities. 
     //////////////////////////////////////////////////////////////////////////
     reg if0_ack_next;
     reg if1_ack_next;

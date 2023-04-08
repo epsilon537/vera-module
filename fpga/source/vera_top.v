@@ -1,12 +1,13 @@
 //`default_nettype none
 
 module vera_top #(
-	parameter VRAM_SIZE_BYTES=(128*1024)
+	parameter VRAM_SIZE_BYTES=(128*1024) //Max. 128KB. Tested sizes are 64K and 128K.
 	)
     (
     input  wire       clk,
     input  wire       reset,
 
+    //32-bit pipelined Wishbone interface.
     input wire [16:0]  wb_adr,
 	input wire [31:0]  wb_dat_w,
 	output wire [31:0] wb_dat_r,
@@ -18,15 +19,15 @@ module vera_top #(
 	input wire         wb_we,
 	output wire        wb_err,
 
-    // External bus interface
-    output wire       irq_n,  /* IRQ */
+    // IRQ
+    output wire        irq_n,
 
     // VGA interface
-    output reg  [3:0] vga_r       /* synthesis syn_useioff = 1 */,
-    output reg  [3:0] vga_g       /* synthesis syn_useioff = 1 */,
-    output reg  [3:0] vga_b       /* synthesis syn_useioff = 1 */,
-    output reg        vga_hsync   /* synthesis syn_useioff = 1 */,
-    output reg        vga_vsync   /* synthesis syn_useioff = 1 */
+    output reg  [3:0]  vga_r       /* synthesis syn_useioff = 1 */,
+    output reg  [3:0]  vga_g       /* synthesis syn_useioff = 1 */,
+    output reg  [3:0]  vga_b       /* synthesis syn_useioff = 1 */,
+    output reg         vga_hsync   /* synthesis syn_useioff = 1 */,
+    output reg         vga_vsync   /* synthesis syn_useioff = 1 */
 
 `ifdef VERA_AUDIO
     ,
@@ -57,7 +58,9 @@ module vera_top #(
     reg        l0_enabled_r,                  l0_enabled_next;
     reg        l1_enabled_r,                  l1_enabled_next;
 
+`ifdef VERA_COMPOSITE_VIDEO
     reg        chroma_disable_r,              chroma_disable_next;
+`endif
     reg  [7:0] dc_hscale_r,                   dc_hscale_next;
     reg  [7:0] dc_vscale_r,                   dc_vscale_next;
     reg  [7:0] dc_border_color_r,             dc_border_color_next;
@@ -114,63 +117,63 @@ module vera_top #(
     wire [9:0] scanline;
 
     /*Register read interface*/
-    reg [31:0] rddata;
+    reg [31:0] reg_rddata;
     always @* begin
-        rddata = 32'h00;
+        reg_rddata = 32'h0;
         
         if (wb_stb && !wb_we) begin
             case (wb_adr[5:0])
-                6'h00: rddata = {31'b0, sprite_bank_select_r};
+                6'h00: reg_rddata = {31'b0, sprite_bank_select_r};
 
-                6'h01: rddata = {24'b0, dc_border_color_r};
+                6'h01: reg_rddata = {24'b0, dc_border_color_r};
 
-                6'h02: rddata = {28'b0,
+                6'h02: reg_rddata = {28'b0,
 `ifdef VERA_AUDIO
                                 irq_enable_audio_fifo_low_r,
 `else
                                 1'b0,
 `endif                                
                                 irq_enable_sprite_collision_r, irq_enable_line_r, irq_enable_vsync_r};
-                6'h03: rddata = {24'b0, sprite_collisions,
+                6'h03: reg_rddata = {24'b0, sprite_collisions,
 `ifdef VERA_AUDIO
                                 audio_fifo_low, 
 `else
                                 1'b0,
 `endif                                                                             
                                 irq_status_sprite_collision_r, irq_status_line_r, irq_status_vsync_r};
-                6'h04: rddata = {22'b0, irq_line_r};                                
-                6'h05: rddata = {22'b0,   scanline};
-                6'h06: rddata = {25'b0, sprites_enabled_r, l1_enabled_r, l0_enabled_r, 2'b0, video_output_mode_r};
+                6'h04: reg_rddata = {22'b0, irq_line_r};                                
+                6'h05: reg_rddata = {22'b0,   scanline};
+                6'h06: reg_rddata = {25'b0, sprites_enabled_r, l1_enabled_r, l0_enabled_r, 2'b0, video_output_mode_r};
 
-                6'h08: rddata = {24'b0,dc_hscale_r};
-                6'h09: rddata = {24'b0, dc_vscale_r};
-                6'h0a: rddata = {22'b0, dc_active_hstart_r};
-                6'h0b: rddata = {22'b0, dc_active_hstop_r};
-                6'h0c: rddata = {23'b0, dc_active_vstart_r};
-                6'h0d: rddata = {23'b0, dc_active_vstop_r};
-                6'h10: rddata = {24'b0, l0_map_height_r, l0_map_width_r, l0_attr_mode_r, l0_bitmap_mode_r, l0_color_depth_r};
-                6'h11: rddata = {24'b0, l0_map_baseaddr_r};
-                6'h12: rddata = {24'b0, l0_tile_baseaddr_r[7:2], l0_tile_height_r, l0_tile_width_r};
-                6'h14: rddata = {20'b0, l0_hscroll_r};
-                6'h15: rddata = {20'b0, l0_vscroll_r};
-                6'h20: rddata = {24'b0, l1_map_height_r, l1_map_width_r, l1_attr_mode_r, l1_bitmap_mode_r, l1_color_depth_r};
-                6'h21: rddata = {24'b0, l1_map_baseaddr_r};
-                6'h22: rddata = {24'b0, l1_tile_baseaddr_r[7:2], l1_tile_height_r, l1_tile_width_r};
-                6'h24: rddata = {20'b0, l1_hscroll_r};
-                6'h25: rddata = {20'b0, l1_vscroll_r};
+                6'h08: reg_rddata = {24'b0,dc_hscale_r};
+                6'h09: reg_rddata = {24'b0, dc_vscale_r};
+                6'h0a: reg_rddata = {22'b0, dc_active_hstart_r};
+                6'h0b: reg_rddata = {22'b0, dc_active_hstop_r};
+                6'h0c: reg_rddata = {23'b0, dc_active_vstart_r};
+                6'h0d: reg_rddata = {23'b0, dc_active_vstop_r};
+                6'h10: reg_rddata = {24'b0, l0_map_height_r, l0_map_width_r, l0_attr_mode_r, l0_bitmap_mode_r, l0_color_depth_r};
+                6'h11: reg_rddata = {24'b0, l0_map_baseaddr_r};
+                6'h12: reg_rddata = {24'b0, l0_tile_baseaddr_r[7:2], l0_tile_height_r, l0_tile_width_r};
+                6'h14: reg_rddata = {20'b0, l0_hscroll_r};
+                6'h15: reg_rddata = {20'b0, l0_vscroll_r};
+                6'h20: reg_rddata = {24'b0, l1_map_height_r, l1_map_width_r, l1_attr_mode_r, l1_bitmap_mode_r, l1_color_depth_r};
+                6'h21: reg_rddata = {24'b0, l1_map_baseaddr_r};
+                6'h22: reg_rddata = {24'b0, l1_tile_baseaddr_r[7:2], l1_tile_height_r, l1_tile_width_r};
+                6'h24: reg_rddata = {20'b0, l1_hscroll_r};
+                6'h25: reg_rddata = {20'b0, l1_vscroll_r};
 
 `ifdef VERA_AUDIO
-                5'h1B: rddata = {audio_fifo_full, audio_fifo_empty, audio_mode_16bit_r, audio_mode_stereo_r, audio_pcm_volume_r};
-                5'h1C: rddata = audio_pcm_sample_rate_r;
-                5'h1D: rddata = 8'h00;
+                5'h1B: reg_rddata = {audio_fifo_full, audio_fifo_empty, audio_mode_16bit_r, audio_mode_stereo_r, audio_pcm_volume_r};
+                5'h1C: reg_rddata = audio_pcm_sample_rate_r;
+                5'h1D: reg_rddata = 8'h00;
 `endif
-                default: rddata = 32'h00;
+                default: reg_rddata = 32'h00;
             endcase
         end
     end
 
     //Only registers and VRAM are readable. Palette and Sprite RAM not.
-    assign wb_dat_r = (wb_adr < 17'('h1000>>2)) ? rddata : vram_dat_r;
+    assign wb_dat_r = (wb_adr < 17'('h1000>>2)) ? reg_rddata : vram_dat_r;
 
     wire [3:0] irq_enable = {
 `ifdef VERA_AUDIO
@@ -189,7 +192,7 @@ module vera_top #(
 
     assign irq_n = (irq_status & irq_enable) == 0;
 
-    /*Register writes and RAM reads and writes*/
+    /*Wishbone interfacing*/
     reg [5:0] wraddr_r;
     reg [31:0] wrdata_r;
     reg do_reg_read, do_reg_write;
@@ -232,7 +235,9 @@ module vera_top #(
         sprites_enabled_next             = sprites_enabled_r;
         l0_enabled_next                  = l0_enabled_r;
         l1_enabled_next                  = l1_enabled_r;
+`ifdef VERA_COMPOSITE_VIDEO
         chroma_disable_next              = chroma_disable_r;
+`endif
         dc_hscale_next                   = dc_hscale_r;
         dc_vscale_next                   = dc_vscale_r;
         dc_border_color_next             = dc_border_color_r;
@@ -387,7 +392,9 @@ module vera_top #(
             sprites_enabled_r             <= 0;
             l0_enabled_r                  <= 0;
             l1_enabled_r                  <= 0;
+`ifdef VERA_COMPOSITE_VIDEO
             chroma_disable_r              <= 0;
+`endif            
             dc_hscale_r                   <= 8'd128;
             dc_vscale_r                   <= 8'd128;
             dc_border_color_r             <= 0;
@@ -443,7 +450,9 @@ module vera_top #(
             sprites_enabled_r             <= sprites_enabled_next;
             l0_enabled_r                  <= l0_enabled_next;
             l1_enabled_r                  <= l1_enabled_next;
+`ifdef VERA_COMPOSITE_VIDEO
             chroma_disable_r              <= chroma_disable_next;
+`endif            
             dc_hscale_r                   <= dc_hscale_next;
             dc_vscale_r                   <= dc_vscale_next;
             dc_border_color_r             <= dc_border_color_next;
@@ -507,7 +516,7 @@ module vera_top #(
     vram_if #(VRAM_SIZE_BYTES) vram_if(
         .clk(clk),
 
-        // Interface 0 - 8-bit (highest priority)
+        // Interface 0 - 32-bit read-write
         .if0_addr(wb_adr[14:0]),
         .if0_wrdata(wb_dat_w),
         .if0_rddata(vram_dat_r),
@@ -551,6 +560,8 @@ module vera_top #(
     reg active_line_buf_r;
     reg clk_en=0;
 
+    //This piece of sequential logic needs to run at pixel clock rate, i.e. 1/2 the master clock rate.
+    //Hence the clk_en.
     always @(posedge clk) begin
         if (reset) begin
             active_line_buf_r <= 0;
@@ -735,9 +746,15 @@ module vera_top #(
         .composer_rd_data(spr_lb_rddata),
         .composer_erase_start(spr_lb_erase_start));
 
+    parameter SPRITE_RAM_START  = 'h1000;
+    parameter SPRITE_RAM_END    = 'h1400;
+    parameter PALETTE_RAM_START = 'h2000;
+    parameter PALETTE_RAM_END   = 'h2400;
+
+    //For sprite and palette RAM, ack the transaction 1 cycle after receiving the strobe.
     initial	spr_pal_ram_wb_ack_r = 0;
 	always @(posedge clk)
-        if (((wb_adr >= 17'('h1000>>2)) && (wb_adr < 17'('h1400>>2))) || ((wb_adr >= 17'('h2000)>>2) && (wb_adr <17'('h2400)>>2)))
+        if (((wb_adr >= 17'(SPRITE_RAM_START>>2)) && (wb_adr < 17'(SPRITE_RAM_END>>2))) || ((wb_adr >= 17'(PALETTE_RAM_START>>2)) && (wb_adr <17'(PALETTE_RAM_END>>2))))
             spr_pal_ram_wb_ack_r  <= wb_stb;
         else
 		    spr_pal_ram_wb_ack_r <= 0;
@@ -749,7 +766,7 @@ module vera_top #(
         .wr_clk_en_i(1'b1),
         .rd_en_i(1'b1),
         .rd_clk_en_i(1'b1),
-        .wr_en_i((wb_adr >= 17'('h1000>>2)) && (wb_adr < 17'('h1400>>2)) && wb_stb && wb_we),
+        .wr_en_i((wb_adr >= 17'(SPRITE_RAM_START>>2)) && (wb_adr < 17'(SPRITE_RAM_END>>2)) && wb_stb && wb_we),
         .wr_data_i(wb_dat_w),
         .ben_i(wb_sel),
         .wr_addr_i(wb_adr[7:0]),
@@ -816,7 +833,7 @@ module vera_top #(
         .wr_clk_en_i(1'b1),
         .rd_en_i(1'b1),
         .rd_clk_en_i(1'b1),
-        .wr_en_i((wb_adr >= 17'('h2000>>2)) && (wb_adr < 17'('h2400>>2)) && wb_stb && wb_we),
+        .wr_en_i((wb_adr >= 17'(PALETTE_RAM_START>>2)) && (wb_adr < 17'(PALETTE_RAM_END>>2)) && wb_stb && wb_we),
         .wr_data_i(wb_dat_w[15:0]),
         .ben_i(wb_sel[1:0]),
         .wr_addr_i(wb_adr[7:0]),
