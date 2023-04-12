@@ -12,11 +12,11 @@ module spram_byte_write_ram_wr_first #(
   parameter RAM_PERFORMANCE = "HIGH_PERFORMANCE", // Select "HIGH_PERFORMANCE" or "LOW_LATENCY" 
   parameter INIT_FILE = ""                        // Specify name/location of RAM initialization file if using one (leave blank if not)
 ) (
-  input [clogb2(RAM_DEPTH-1)-1:0] addra,  // Address bus, width determined from RAM_DEPTH
-  input [(NB_COL*COL_WIDTH)-1:0] dina,  // RAM input data
-  input clka,                           // Clock
-  input [NB_COL-1:0] wea,               // Byte-write enable
-  output [(NB_COL*COL_WIDTH)-1:0] douta          // RAM output data
+  input wire [clogb2(RAM_DEPTH-1)-1:0] addra,  // Address bus, width determined from RAM_DEPTH
+  input wire [(NB_COL*COL_WIDTH)-1:0] dina,  // RAM input data
+  input wire clka,                           // Clock
+  input wire [NB_COL-1:0] wea,               // Byte-write enable
+  output wire [(NB_COL*COL_WIDTH)-1:0] douta          // RAM output data
 );
 
   reg [(NB_COL*COL_WIDTH)-1:0] BRAM [RAM_DEPTH-1:0];

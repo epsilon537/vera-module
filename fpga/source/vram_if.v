@@ -38,7 +38,7 @@ module vram_if #(
     //////////////////////////////////////////////////////////////////////////
     reg  [14:0] ram_addr;
     wire [31:0] ram_wrdata;
-    reg   [3:0] ram_wrbytesel;
+    wire  [3:0] ram_wrbytesel;
     wire [31:0] ram_rddata;
     wire        ram_write;
 

@@ -41,9 +41,8 @@ module vera_top #(
     //////////////////////////////////////////////////////////////////////////
     // Bus accessible registers
     //////////////////////////////////////////////////////////////////////////
-    reg [31:0] vram_dat_r;
+    wire [31:0] vram_dat_r;
     reg        sprite_bank_select_r,          sprite_bank_select_next;
-    reg        fpga_reconfigure_r,            fpga_reconfigure_next;
     reg        irq_enable_vsync_r,            irq_enable_vsync_next;
     reg        irq_enable_line_r,             irq_enable_line_next;
     reg        irq_enable_sprite_collision_r, irq_enable_sprite_collision_next;
@@ -173,7 +172,7 @@ module vera_top #(
     end
 
     //Only registers and VRAM are readable. Palette and Sprite RAM not.
-    assign wb_dat_r = (wb_adr < 17'('h1000>>2)) ? reg_rddata : vram_dat_r;
+    assign wb_dat_r = (wb_adr < 17'h1000>>2) ? reg_rddata : vram_dat_r;
 
     wire [3:0] irq_enable = {
 `ifdef VERA_AUDIO
@@ -203,14 +202,14 @@ module vera_top #(
         do_reg_read <= 1'b0;
         do_reg_write <= 1'b0;
         //register write
-        if (wb_stb && wb_we && (wb_adr < 17'('h1000>>2))) begin
+        if (wb_stb && wb_we && (wb_adr < 17'h1000>>2)) begin
             wrdata_r <= wb_dat_w;
             wraddr_r <= wb_adr[5:0];
             do_reg_write <= 1'b1;
         end
 
         //register read
-        if (wb_stb && !wb_we && (wb_adr < 17'('h1000>>2))) begin
+        if (wb_stb && !wb_we && (wb_adr < 17'h1000>>2)) begin
             do_reg_read <= 1'b1;
         end
     end
@@ -221,7 +220,6 @@ module vera_top #(
 
     always @* begin
         sprite_bank_select_next          = sprite_bank_select_r;
-        fpga_reconfigure_next            = fpga_reconfigure_r;
 `ifdef VERA_AUDIO
         irq_enable_audio_fifo_low_next   = irq_enable_audio_fifo_low_r;
 `endif        
@@ -378,7 +376,6 @@ module vera_top #(
         if (reset) begin
 
             sprite_bank_select_r          <= 0;
-            fpga_reconfigure_r            <= 0;
 `ifdef VERA_AUDIO
             irq_enable_audio_fifo_low_r   <= 0;
 `endif            
@@ -436,7 +433,6 @@ module vera_top #(
 `endif            
         end else begin
             sprite_bank_select_r          <= sprite_bank_select_next;
-            fpga_reconfigure_r            <= fpga_reconfigure_next;
 `ifdef VERA_AUDIO
             irq_enable_audio_fifo_low_r   <= irq_enable_audio_fifo_low_next;
 `endif            
@@ -513,6 +509,8 @@ module vera_top #(
     wire        spr_strobe;
     wire        spr_ack;
 
+    localparam VRAM_START_WORD_ADDR = 17'h10000; //Byte address = 0x4000.
+
     vram_if #(VRAM_SIZE_BYTES) vram_if(
         .clk(clk),
 
@@ -521,7 +519,7 @@ module vera_top #(
         .if0_wrdata(wb_dat_w),
         .if0_rddata(vram_dat_r),
         .if0_wrbytesel(wb_sel),
-        .if0_strobe(wb_stb && (wb_adr >= 17'('h40000>>2))),
+        .if0_strobe(wb_stb && (wb_adr >= VRAM_START_WORD_ADDR)),
         .if0_write(wb_we),
         .if0_ack(vram_ack),
 
@@ -746,15 +744,15 @@ module vera_top #(
         .composer_rd_data(spr_lb_rddata),
         .composer_erase_start(spr_lb_erase_start));
 
-    parameter SPRITE_RAM_START  = 'h1000;
-    parameter SPRITE_RAM_END    = 'h1400;
-    parameter PALETTE_RAM_START = 'h2000;
-    parameter PALETTE_RAM_END   = 'h2400;
+    localparam SPRITE_RAM_START  = 17'h1000;
+    localparam SPRITE_RAM_END    = 17'h1400;
+    localparam PALETTE_RAM_START = 17'h2000;
+    localparam PALETTE_RAM_END   = 17'h2400;
 
     //For sprite and palette RAM, ack the transaction 1 cycle after receiving the strobe.
     initial	spr_pal_ram_wb_ack_r = 0;
 	always @(posedge clk)
-        if (((wb_adr >= 17'(SPRITE_RAM_START>>2)) && (wb_adr < 17'(SPRITE_RAM_END>>2))) || ((wb_adr >= 17'(PALETTE_RAM_START>>2)) && (wb_adr <17'(PALETTE_RAM_END>>2))))
+        if (((wb_adr >= SPRITE_RAM_START>>2) && (wb_adr < SPRITE_RAM_END>>2)) || ((wb_adr >= PALETTE_RAM_START>>2) && (wb_adr <PALETTE_RAM_END>>2)))
             spr_pal_ram_wb_ack_r  <= wb_stb;
         else
 		    spr_pal_ram_wb_ack_r <= 0;
@@ -766,7 +764,7 @@ module vera_top #(
         .wr_clk_en_i(1'b1),
         .rd_en_i(1'b1),
         .rd_clk_en_i(1'b1),
-        .wr_en_i((wb_adr >= 17'(SPRITE_RAM_START>>2)) && (wb_adr < 17'(SPRITE_RAM_END>>2)) && wb_stb && wb_we),
+        .wr_en_i((wb_adr >= SPRITE_RAM_START>>2) && (wb_adr < SPRITE_RAM_END>>2) && wb_stb && wb_we),
         .wr_data_i(wb_dat_w),
         .ben_i(wb_sel),
         .wr_addr_i(wb_adr[7:0]),
@@ -833,7 +831,7 @@ module vera_top #(
         .wr_clk_en_i(1'b1),
         .rd_en_i(1'b1),
         .rd_clk_en_i(1'b1),
-        .wr_en_i((wb_adr >= 17'(PALETTE_RAM_START>>2)) && (wb_adr < 17'(PALETTE_RAM_END>>2)) && wb_stb && wb_we),
+        .wr_en_i((wb_adr >= PALETTE_RAM_START>>2) && (wb_adr < PALETTE_RAM_END>>2) && wb_stb && wb_we),
         .wr_data_i(wb_dat_w[15:0]),
         .ben_i(wb_sel[1:0]),
         .wr_addr_i(wb_adr[7:0]),
@@ -958,18 +956,6 @@ module vera_top #(
             vga_vsync <= 0;
         end
     endcase
-
-    //////////////////////////////////////////////////////////////////////////
-    // FPGA reconfiguration
-    //////////////////////////////////////////////////////////////////////////
-
-/* `ifndef __ICARUS__
-    WARMBOOT warmboot(
-        .S1(1'b0),
-        .S0(1'b0),
-        .BOOT(fpga_reconfigure_r));
-`endif
- */
 
 `ifdef VERA_AUDIO
     //////////////////////////////////////////////////////////////////////////
