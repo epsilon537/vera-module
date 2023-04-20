@@ -1,6 +1,6 @@
 # VERA Wishbone
 
-VERA Wishbone is an adaption of Frank van den Hoef's VERA (Versatile Embedded Retro Adapter) core for 32-bit wishbone systems. The VERA Wishbone core has a pipelined Wishbone Slave port and includes several modifications to easily and efficiently interface it with a 32-bit CPU Wishbone bus master.
+VERA Wishbone is an adaptation of Frank van den Hoef's VERA (Versatile Embedded Retro Adapter) core for 32-bit wishbone systems. The VERA Wishbone core has a pipelined Wishbone Slave port and includes several modifications to easily and efficiently interface it with a 32-bit CPU Wishbone bus master.
 
 VERA Wishbone has been integrated into [BoxLambda](https://boxlambda.readthedocs.io/en/latest/), an FPGA-based retro-style microcomputer project.
 
