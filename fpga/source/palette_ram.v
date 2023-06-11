@@ -1,4 +1,4 @@
-//`default_nettype none
+`default_nettype none
 
 module palette_ram(
     input  wire        rst_i,
@@ -17,18 +17,22 @@ module palette_ram(
     reg [15:0] mem[0:255];
 
     always @(posedge wr_clk_i) begin
-        if (wr_en_i) begin
+        if (wr_en_i && wr_clk_en_i) begin
             if (ben_i[1]) mem[wr_addr_i][15:8] <= wr_data_i[15:8];
             if (ben_i[0]) mem[wr_addr_i][7:0]  <= wr_data_i[7:0];
         end
     end
 
     always @(posedge rd_clk_i) begin
-        rd_data_o <= mem[rd_addr_i];
+        if (rd_en_i && rd_clk_en_i) begin
+            rd_data_o <= mem[rd_addr_i];
+        end
     end
 
-    initial
-        $readmemh("palette_ram.mem", mem, 0, 255);
-
+    initial begin
+        $readmemh("palette_ram.mem", mem);
+    end
+    
 endmodule
 
+`resetall

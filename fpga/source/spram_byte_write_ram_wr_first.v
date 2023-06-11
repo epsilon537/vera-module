@@ -19,7 +19,7 @@ module spram_byte_write_ram_wr_first #(
   output wire [(NB_COL*COL_WIDTH)-1:0] douta          // RAM output data
 );
 
-  reg [(NB_COL*COL_WIDTH)-1:0] BRAM [RAM_DEPTH-1:0];
+  (* ram_decomp = "power" *) reg [(NB_COL*COL_WIDTH)-1:0] BRAM [RAM_DEPTH-1:0];
   reg [(NB_COL*COL_WIDTH)-1:0] ram_data = {(NB_COL*COL_WIDTH){1'b0}};
 
   // The following code either initializes the memory values to a specified file or to all zeros to match hardware
