@@ -1,23 +1,23 @@
 //`default_nettype none
 
 module vera_top #(
-	parameter VRAM_SIZE_BYTES=(128*1024) //Max. 128KB. Tested sizes are 64K and 128K.
-	)
+  parameter VRAM_SIZE_BYTES=(128*1024) //Max. 128KB. Tested sizes are 64K and 128K.
+  )
     (
     input  wire       clk,
     input  wire       reset,
 
     //32-bit pipelined Wishbone interface.
     input wire [16:0]  wb_adr,
-	input wire [31:0]  wb_dat_w,
-	output wire [31:0] wb_dat_r,
-	input wire [3:0]   wb_sel,
+  input wire [31:0]  wb_dat_w,
+  output wire [31:0] wb_dat_r,
+  input wire [3:0]   wb_sel,
     output wire        wb_stall,
-	input wire         wb_cyc,
-	input wire         wb_stb,
-	output wire        wb_ack,
-	input wire         wb_we,
-	output wire        wb_err,
+  input wire         wb_cyc,
+  input wire         wb_stb,
+  output wire        wb_ack,
+  input wire         wb_we,
+  output wire        wb_err,
 
     // IRQ
     output wire        irq_n,
@@ -37,7 +37,7 @@ module vera_top #(
     output wire       audio_data
 `endif /*VERA_AUDIO*/
     );
-    
+
     //////////////////////////////////////////////////////////////////////////
     // Bus accessible registers
     //////////////////////////////////////////////////////////////////////////
@@ -48,7 +48,7 @@ module vera_top #(
     reg        irq_enable_sprite_collision_r, irq_enable_sprite_collision_next;
 `ifdef VERA_AUDIO
     reg        irq_enable_audio_fifo_low_r,   irq_enable_audio_fifo_low_next;
-`endif    
+`endif
     reg        irq_status_vsync_r,            irq_status_vsync_next;
     reg        irq_status_line_r,             irq_status_line_next;
     reg        irq_status_sprite_collision_r, irq_status_sprite_collision_next;
@@ -119,7 +119,7 @@ module vera_top #(
     reg [31:0] reg_rddata;
     always @* begin
         reg_rddata = 32'h0;
-        
+
         if (wb_stb && !wb_we) begin
             case (wb_adr[5:0])
                 6'h00: reg_rddata = {31'b0, sprite_bank_select_r};
@@ -131,16 +131,16 @@ module vera_top #(
                                 irq_enable_audio_fifo_low_r,
 `else
                                 1'b0,
-`endif                                
+`endif
                                 irq_enable_sprite_collision_r, irq_enable_line_r, irq_enable_vsync_r};
                 6'h03: reg_rddata = {24'b0, sprite_collisions,
 `ifdef VERA_AUDIO
-                                audio_fifo_low, 
+                                audio_fifo_low,
 `else
                                 1'b0,
-`endif                                                                             
+`endif
                                 irq_status_sprite_collision_r, irq_status_line_r, irq_status_vsync_r};
-                6'h04: reg_rddata = {22'b0, irq_line_r};                                
+                6'h04: reg_rddata = {22'b0, irq_line_r};
                 6'h05: reg_rddata = {22'b0,   scanline};
                 6'h06: reg_rddata = {25'b0, sprites_enabled_r, l1_enabled_r, l0_enabled_r, 2'b0, video_output_mode_r};
 
@@ -186,7 +186,7 @@ module vera_top #(
         audio_fifo_low,
 `else
         1'b0,
-`endif                
+`endif
         irq_status_sprite_collision_r, irq_status_line_r, irq_status_vsync_r};
 
     assign irq_n = (irq_status & irq_enable) == 0;
@@ -222,7 +222,7 @@ module vera_top #(
         sprite_bank_select_next          = sprite_bank_select_r;
 `ifdef VERA_AUDIO
         irq_enable_audio_fifo_low_next   = irq_enable_audio_fifo_low_r;
-`endif        
+`endif
         irq_enable_vsync_next            = irq_enable_vsync_r;
         irq_enable_line_next             = irq_enable_line_r;
         irq_enable_sprite_collision_next = irq_enable_sprite_collision_r;
@@ -276,7 +276,7 @@ module vera_top #(
         audio_fifo_wrdata_next           = audio_fifo_wrdata_r;
         audio_fifo_write_next            = 0;
 `endif
- 
+
         if (do_reg_write) begin
             case (wraddr_r[5:0])
                 6'h00: sprite_bank_select_next = wrdata_r[0];
@@ -284,7 +284,7 @@ module vera_top #(
                 6'h02: begin
 `ifdef VERA_AUDIO
                     irq_enable_audio_fifo_low_next   = wrdata_r[3];
-`endif                    
+`endif
                     irq_enable_sprite_collision_next = wrdata_r[2];
                     irq_enable_line_next             = wrdata_r[1];
                     irq_enable_vsync_next            = wrdata_r[0];
@@ -378,7 +378,7 @@ module vera_top #(
             sprite_bank_select_r          <= 0;
 `ifdef VERA_AUDIO
             irq_enable_audio_fifo_low_r   <= 0;
-`endif            
+`endif
             irq_enable_vsync_r            <= 0;
             irq_enable_line_r             <= 0;
             irq_enable_sprite_collision_r <= 0;
@@ -391,7 +391,7 @@ module vera_top #(
             l1_enabled_r                  <= 0;
 `ifdef VERA_COMPOSITE_VIDEO
             chroma_disable_r              <= 0;
-`endif            
+`endif
             dc_hscale_r                   <= 8'd128;
             dc_vscale_r                   <= 8'd128;
             dc_border_color_r             <= 0;
@@ -430,12 +430,12 @@ module vera_top #(
             audio_pcm_volume_r            <= 0;
             audio_fifo_wrdata_r           <= 0;
             audio_fifo_write_r            <= 0;
-`endif            
+`endif
         end else begin
             sprite_bank_select_r          <= sprite_bank_select_next;
 `ifdef VERA_AUDIO
             irq_enable_audio_fifo_low_r   <= irq_enable_audio_fifo_low_next;
-`endif            
+`endif
             irq_enable_vsync_r            <= irq_enable_vsync_next;
             irq_enable_line_r             <= irq_enable_line_next;
             irq_enable_sprite_collision_r <= irq_enable_sprite_collision_next;
@@ -448,7 +448,7 @@ module vera_top #(
             l1_enabled_r                  <= l1_enabled_next;
 `ifdef VERA_COMPOSITE_VIDEO
             chroma_disable_r              <= chroma_disable_next;
-`endif            
+`endif
             dc_hscale_r                   <= dc_hscale_next;
             dc_vscale_r                   <= dc_vscale_next;
             dc_border_color_r             <= dc_border_color_next;
@@ -487,7 +487,7 @@ module vera_top #(
             audio_pcm_volume_r            <= audio_pcm_volume_next;
             audio_fifo_wrdata_r           <= audio_fifo_wrdata_next;
             audio_fifo_write_r            <= audio_fifo_write_next;
-`endif            
+`endif
         end
     end
 
@@ -750,12 +750,12 @@ module vera_top #(
     localparam PALETTE_RAM_END   = 17'h2400;
 
     //For sprite and palette RAM, ack the transaction 1 cycle after receiving the strobe.
-    initial	spr_pal_ram_wb_ack_r = 0;
-	always @(posedge clk)
+    initial  spr_pal_ram_wb_ack_r = 0;
+  always @(posedge clk)
         if (((wb_adr >= SPRITE_RAM_START>>2) && (wb_adr < SPRITE_RAM_END>>2)) || ((wb_adr >= PALETTE_RAM_START>>2) && (wb_adr <PALETTE_RAM_END>>2)))
             spr_pal_ram_wb_ack_r  <= wb_stb;
         else
-		    spr_pal_ram_wb_ack_r <= 0;
+        spr_pal_ram_wb_ack_r <= 0;
 
     sprite_ram sprite_attr_ram(
         .rst_i(1'b0),
@@ -911,7 +911,7 @@ module vera_top #(
     //////////////////////////////////////////////////////////////////////////
     // Video output selection
     //////////////////////////////////////////////////////////////////////////
-`ifdef VERA_COMPOSITE_VIDEO    
+`ifdef VERA_COMPOSITE_VIDEO
     assign next_frame   = video_output_mode_r[1] ? video_composite_next_frame         : video_vga_next_frame;
     assign next_line    = video_output_mode_r[1] ? video_composite_next_line          : video_vga_next_line;
     assign next_pixel   = video_output_mode_r[1] ? video_composite_display_next_pixel : video_vga_display_next_pixel;
@@ -931,7 +931,7 @@ module vera_top #(
             vga_hsync <= video_vga_hsync;
             vga_vsync <= video_vga_vsync;
         end
-`ifdef VERA_COMPOSITE_VIDEO    
+`ifdef VERA_COMPOSITE_VIDEO
         2'b10: begin
             vga_r     <= video_composite_luma[5:2];
             vga_g     <= {video_composite_luma[1:0], video_composite_chroma2[5:4]};

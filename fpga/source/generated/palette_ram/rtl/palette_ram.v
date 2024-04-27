@@ -7,31 +7,31 @@
 /*******************************************************************************
     Wrapper Module generated per user settings.
 *******************************************************************************/
-module palette_ram (wr_clk_i, 
-        rd_clk_i, 
-        rst_i, 
-        wr_clk_en_i, 
-        rd_en_i, 
-        rd_clk_en_i, 
-        wr_en_i, 
-        ben_i, 
-        wr_data_i, 
-        wr_addr_i, 
-        rd_addr_i, 
+module palette_ram (wr_clk_i,
+        rd_clk_i,
+        rst_i,
+        wr_clk_en_i,
+        rd_en_i,
+        rd_clk_en_i,
+        wr_en_i,
+        ben_i,
+        wr_data_i,
+        wr_addr_i,
+        rd_addr_i,
         rd_data_o) ;
-    input wr_clk_i ; 
-    input rd_clk_i ; 
-    input rst_i ; 
-    input wr_clk_en_i ; 
-    input rd_en_i ; 
-    input rd_clk_en_i ; 
-    input wr_en_i ; 
-    input [1:0] ben_i ; 
-    input [15:0] wr_data_i ; 
-    input [7:0] wr_addr_i ; 
-    input [7:0] rd_addr_i ; 
-    output [15:0] rd_data_o ; 
-    parameter MEM_ID = "palette_ram" ; 
+    input wr_clk_i ;
+    input rd_clk_i ;
+    input rst_i ;
+    input wr_clk_en_i ;
+    input rd_en_i ;
+    input rd_clk_en_i ;
+    input wr_en_i ;
+    input [1:0] ben_i ;
+    input [15:0] wr_data_i ;
+    input [7:0] wr_addr_i ;
+    input [7:0] rd_addr_i ;
+    output [15:0] rd_data_o ;
+    parameter MEM_ID = "palette_ram" ;
     palette_ram_ipgen_lscc_ram_dp #(.FAMILY("iCE40UP"),
             .MEM_ID(MEM_ID),
             .MEM_SIZE("16,256"),
@@ -113,21 +113,21 @@ module palette_ram (wr_clk_i,
             .INIT_VALUE_3C("0x0000000000000000000000000000000000000000000000000000000000000000"),
             .INIT_VALUE_3D("0x0000000000000000000000000000000000000000000000000000000000000000"),
             .INIT_VALUE_3E("0x0000000000000000000000000000000000000000000000000000000000000000"),
-            .INIT_VALUE_3F("0x0000000000000000000000000000000000000000000000000000000000000000")) lscc_ram_dp_inst (.wr_clk_i(wr_clk_i), 
-                .rd_clk_i(rd_clk_i), 
-                .rst_i(rst_i), 
-                .wr_clk_en_i(wr_clk_en_i), 
-                .rd_en_i(rd_en_i), 
-                .rd_clk_en_i(rd_clk_en_i), 
-                .rd_out_clk_en_i(1'b1), 
-                .wr_en_i(wr_en_i), 
-                .ben_i(ben_i[1:0]), 
-                .wr_data_i(wr_data_i[15:0]), 
-                .wr_addr_i(wr_addr_i[7:0]), 
-                .rd_addr_i(rd_addr_i[7:0]), 
-                .rd_data_o(rd_data_o[15:0]), 
-                .one_err_det_o(), 
-                .two_err_det_o()) ; 
+            .INIT_VALUE_3F("0x0000000000000000000000000000000000000000000000000000000000000000")) lscc_ram_dp_inst (.wr_clk_i(wr_clk_i),
+                .rd_clk_i(rd_clk_i),
+                .rst_i(rst_i),
+                .wr_clk_en_i(wr_clk_en_i),
+                .rd_en_i(rd_en_i),
+                .rd_clk_en_i(rd_clk_en_i),
+                .rd_out_clk_en_i(1'b1),
+                .wr_en_i(wr_en_i),
+                .ben_i(ben_i[1:0]),
+                .wr_data_i(wr_data_i[15:0]),
+                .wr_addr_i(wr_addr_i[7:0]),
+                .rd_addr_i(rd_addr_i[7:0]),
+                .rd_data_o(rd_data_o[15:0]),
+                .one_err_det_o(),
+                .two_err_det_o()) ;
 endmodule
 
 
@@ -184,143 +184,143 @@ endmodule
 // Mod. Date             :
 // Changes Made          : Initial release.
 // =============================================================================
-module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1, 
-        parameter _FCODE_ICE_ = 2, 
-        parameter _FCODE_COMMON_ = 0, 
-        parameter MEM_ID = "MEM0", 
-        parameter MEM_SIZE = "18,1024", 
-        parameter FAMILY = "common", 
-        parameter FAMILY_CODE = ((FAMILY == "LIFCL") ? _FCODE_LIFCL_ : ((FAMILY == "iCE40UP") ? _FCODE_ICE_ : _FCODE_COMMON_)), 
-        parameter WADDR_DEPTH = 1024, 
-        parameter WADDR_WIDTH = clog2(WADDR_DEPTH), 
-        parameter WDATA_WIDTH = 18, 
-        parameter RADDR_DEPTH = 1024, 
-        parameter RADDR_WIDTH = clog2(RADDR_DEPTH), 
-        parameter RDATA_WIDTH = 18, 
-        parameter REGMODE = "reg", 
-        parameter GSR = "enable", 
-        parameter RESETMODE = "sync", 
-        parameter RESET_RELEASE = "sync", 
-        parameter INIT_FILE = "none", 
-        parameter INIT_FILE_FORMAT = "binary", 
-        parameter MODULE_TYPE = "ram_dp", 
-        parameter INIT_MODE = "none", 
-        parameter BYTE_ENABLE = 1, 
+module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
+        parameter _FCODE_ICE_ = 2,
+        parameter _FCODE_COMMON_ = 0,
+        parameter MEM_ID = "MEM0",
+        parameter MEM_SIZE = "18,1024",
+        parameter FAMILY = "common",
+        parameter FAMILY_CODE = ((FAMILY == "LIFCL") ? _FCODE_LIFCL_ : ((FAMILY == "iCE40UP") ? _FCODE_ICE_ : _FCODE_COMMON_)),
+        parameter WADDR_DEPTH = 1024,
+        parameter WADDR_WIDTH = clog2(WADDR_DEPTH),
+        parameter WDATA_WIDTH = 18,
+        parameter RADDR_DEPTH = 1024,
+        parameter RADDR_WIDTH = clog2(RADDR_DEPTH),
+        parameter RDATA_WIDTH = 18,
+        parameter REGMODE = "reg",
+        parameter GSR = "enable",
+        parameter RESETMODE = "sync",
+        parameter RESET_RELEASE = "sync",
+        parameter INIT_FILE = "none",
+        parameter INIT_FILE_FORMAT = "binary",
+        parameter MODULE_TYPE = "ram_dp",
+        parameter INIT_MODE = "none",
+        parameter BYTE_ENABLE = 1,
         parameter BYTE_SIZE = ((BYTE_ENABLE == 1) ? getByteSize(WDATA_WIDTH,
-                FAMILY_CODE) : WDATA_WIDTH), 
-        parameter BYTE_WIDTH = (WDATA_WIDTH / BYTE_SIZE), 
-        parameter PIPELINES = 0, 
-        parameter ECC_ENABLE = 0, 
-        parameter OUTPUT_CLK_EN = 0, 
-        parameter BYTE_ENABLE_POL = "active-high", 
-        parameter INIT_VALUE_00 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_01 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_02 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_03 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_04 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_05 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_06 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_07 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_08 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_09 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0A = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0B = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0C = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0D = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0E = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0F = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_10 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_11 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_12 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_13 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_14 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_15 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_16 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_17 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_18 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_19 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1A = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1B = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1C = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1D = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1E = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1F = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_20 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_21 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_22 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_23 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_24 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_25 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_26 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_27 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_28 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_29 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2A = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2B = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2C = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2D = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2E = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2F = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_30 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_31 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_32 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_33 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_34 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_35 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_36 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_37 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_38 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_39 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3A = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3B = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3C = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3D = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3E = "0x0000000000000000000000000000000000000000000000000000000000000000", 
+                FAMILY_CODE) : WDATA_WIDTH),
+        parameter BYTE_WIDTH = (WDATA_WIDTH / BYTE_SIZE),
+        parameter PIPELINES = 0,
+        parameter ECC_ENABLE = 0,
+        parameter OUTPUT_CLK_EN = 0,
+        parameter BYTE_ENABLE_POL = "active-high",
+        parameter INIT_VALUE_00 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_01 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_02 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_03 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_04 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_05 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_06 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_07 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_08 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_09 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0A = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0B = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0C = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0D = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0E = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0F = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_10 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_11 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_12 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_13 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_14 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_15 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_16 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_17 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_18 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_19 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1A = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1B = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1C = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1D = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1E = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1F = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_20 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_21 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_22 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_23 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_24 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_25 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_26 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_27 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_28 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_29 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2A = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2B = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2C = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2D = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2E = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2F = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_30 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_31 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_32 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_33 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_34 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_35 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_36 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_37 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_38 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_39 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3A = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3B = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3C = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3D = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3E = "0x0000000000000000000000000000000000000000000000000000000000000000",
         parameter INIT_VALUE_3F = "0x0000000000000000000000000000000000000000000000000000000000000000") (
     // -----------------------------------------------------------------------------
     // Input/Output Ports
     // -----------------------------------------------------------------------------
-    input wr_clk_i, 
-    input rd_clk_i, 
-    input rst_i, 
-    input wr_clk_en_i, 
-    input rd_clk_en_i, 
-    input rd_out_clk_en_i, 
-    input wr_en_i, 
-    input [(WDATA_WIDTH - 1):0] wr_data_i, 
-    input [(WADDR_WIDTH - 1):0] wr_addr_i, 
-    input rd_en_i, 
-    input [(RADDR_WIDTH - 1):0] rd_addr_i, 
-    input [(BYTE_WIDTH - 1):0] ben_i, 
-    output [(RDATA_WIDTH - 1):0] rd_data_o, 
-    output one_err_det_o, 
+    input wr_clk_i,
+    input rd_clk_i,
+    input rst_i,
+    input wr_clk_en_i,
+    input rd_clk_en_i,
+    input rd_out_clk_en_i,
+    input wr_en_i,
+    input [(WDATA_WIDTH - 1):0] wr_data_i,
+    input [(WADDR_WIDTH - 1):0] wr_addr_i,
+    input rd_en_i,
+    input [(RADDR_WIDTH - 1):0] rd_addr_i,
+    input [(BYTE_WIDTH - 1):0] ben_i,
+    output [(RDATA_WIDTH - 1):0] rd_data_o,
+    output one_err_det_o,
     output two_err_det_o) ;
     // -----------------------------------------------------------------------------
     // Local Parameters
     // -----------------------------------------------------------------------------
-    localparam IS_BYTE_ENABLE = (((BYTE_ENABLE == 1) && ((WDATA_WIDTH % BYTE_SIZE) == 0)) && (BYTE_WIDTH > 1)) ; 
-    localparam IS_GSR_EN = ((GSR == "enable") ? "ENABLED" : "DISABLED") ; 
-    localparam IS_ECC = (((ECC_ENABLE == "enable") || (ECC_ENABLE == "ENABLE")) ? "ENABLE" : "DISABLE") ; 
-    localparam STRING_LENGTH = ((FAMILY == "iCE40UP") ? 66 : 82) ; 
+    localparam IS_BYTE_ENABLE = (((BYTE_ENABLE == 1) && ((WDATA_WIDTH % BYTE_SIZE) == 0)) && (BYTE_WIDTH > 1)) ;
+    localparam IS_GSR_EN = ((GSR == "enable") ? "ENABLED" : "DISABLED") ;
+    localparam IS_ECC = (((ECC_ENABLE == "enable") || (ECC_ENABLE == "ENABLE")) ? "ENABLE" : "DISABLE") ;
+    localparam STRING_LENGTH = ((FAMILY == "iCE40UP") ? 66 : 82) ;
     // -----------------------------------------------------------------------------
     // Generate Sequential Blocks
     // -----------------------------------------------------------------------------
-    genvar i0, 
-        i1, 
-        i_0, 
-        i_1 ; 
+    genvar i0,
+        i1,
+        i_0,
+        i_1 ;
     generate
-        if ((FAMILY == "common")) 
+        if ((FAMILY == "common"))
             begin : behavioral
-                reg [(RDATA_WIDTH - 1):0] dataout_reg ; 
-                reg [(RDATA_WIDTH - 1):0] dataout_reg_buffer ; 
-                reg [(RDATA_WIDTH - 1):0] mem /* sythesis syn_ramstyle="block_ram" */ [((2 ** RADDR_WIDTH) - 1):0] ; 
-                assign rd_data_o = ((REGMODE == "reg") ? dataout_reg : dataout_reg_buffer) ; 
+                reg [(RDATA_WIDTH - 1):0] dataout_reg ;
+                reg [(RDATA_WIDTH - 1):0] dataout_reg_buffer ;
+                reg [(RDATA_WIDTH - 1):0] mem /* sythesis syn_ramstyle="block_ram" */ [((2 ** RADDR_WIDTH) - 1):0] ;
+                assign rd_data_o = ((REGMODE == "reg") ? dataout_reg : dataout_reg_buffer) ;
                 initial
                     begin
-                        if (((INIT_MODE == "mem_file") && (INIT_FILE != "none"))) 
+                        if (((INIT_MODE == "mem_file") && (INIT_FILE != "none")))
                             begin
-                                if ((INIT_FILE_FORMAT == "hex")) 
+                                if ((INIT_FILE_FORMAT == "hex"))
                                     $readmemh (INIT_FILE,
                                             mem,
                                             0,
@@ -335,188 +335,188 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                 always
                     @(posedge wr_clk_i)
                     begin
-                        if (((wr_clk_en_i == 1'b1) && (wr_en_i == 1'b1))) 
+                        if (((wr_clk_en_i == 1'b1) && (wr_en_i == 1'b1)))
                             mem[wr_addr_i] <=  wr_data_i ;
                     end
                 always
                     @(posedge rd_clk_i)
                     begin
-                        if (((rd_clk_en_i == 1'b1) && (rd_en_i == 1'b1))) 
+                        if (((rd_clk_en_i == 1'b1) && (rd_en_i == 1'b1)))
                             dataout_reg_buffer <=  mem[rd_addr_i] ;
                     end
-                if ((REGMODE == "reg")) 
+                if ((REGMODE == "reg"))
                     begin : genblk1
-                        if ((RESETMODE == "sync")) 
+                        if ((RESETMODE == "sync"))
                             begin : genblk1
                                 always
                                     @(posedge rd_clk_i)
                                     begin
-                                        if ((rst_i == 1'b1)) 
+                                        if ((rst_i == 1'b1))
                                             dataout_reg <=  'h0 ;
                                         else
-                                            if (((rd_out_clk_en_i == 1'b1) && (rd_en_i == 1'b1))) 
+                                            if (((rd_out_clk_en_i == 1'b1) && (rd_en_i == 1'b1)))
                                                 dataout_reg <=  dataout_reg_buffer ;
                                     end
                             end
                         else
                             begin : genblk1
                                 always
-                                    @(posedge rd_clk_i or 
+                                    @(posedge rd_clk_i or
                                         posedge rst_i)
                                     begin
-                                        if ((rst_i == 1'b1)) 
+                                        if ((rst_i == 1'b1))
                                             dataout_reg <=  'h0 ;
                                         else
-                                            if (((rd_out_clk_en_i == 1'b1) && (rd_en_i == 1'b1))) 
+                                            if (((rd_out_clk_en_i == 1'b1) && (rd_en_i == 1'b1)))
                                                 dataout_reg <=  dataout_reg_buffer ;
                                     end
                             end
                     end
             end
         else
-            if (((RDATA_WIDTH == WDATA_WIDTH) && (RADDR_DEPTH == WADDR_DEPTH))) 
+            if (((RDATA_WIDTH == WDATA_WIDTH) && (RADDR_DEPTH == WADDR_DEPTH)))
                 begin : NON_MIX
                     localparam OPT_DATA_WIDTH = getMinimaData(RADDR_DEPTH,
                                 RDATA_WIDTH,
                                 IS_BYTE_ENABLE,
                                 BYTE_SIZE,
                                 ECC_ENABLE,
-                                FAMILY_CODE) ; 
+                                FAMILY_CODE) ;
                     localparam OPT_ADDR_DEPTH = data_to_addr(OPT_DATA_WIDTH,
-                                FAMILY_CODE) ; 
-                    localparam OPT_ADDR_WIDTH = clog2(OPT_ADDR_DEPTH) ; 
+                                FAMILY_CODE) ;
+                    localparam OPT_ADDR_WIDTH = clog2(OPT_ADDR_DEPTH) ;
                     localparam EBR_DATA = roundUP(RDATA_WIDTH,
-                                OPT_DATA_WIDTH) ; 
+                                OPT_DATA_WIDTH) ;
                     localparam EBR_ADDR = roundUP(RADDR_DEPTH,
-                                OPT_ADDR_DEPTH) ; 
-                    localparam BYTE_WIDTH_IMPL = ((BYTE_ENABLE == 0) ? 1 : (((OPT_DATA_WIDTH == 36) | (OPT_DATA_WIDTH == 32)) ? 4 : (((OPT_DATA_WIDTH == 18) | (OPT_DATA_WIDTH == 16)) ? 2 : 1))) ; 
-                    wire [(RDATA_WIDTH - 1):0] rd_data_raw_w [(EBR_ADDR - 1):0] ; 
-                    wire [(EBR_ADDR - 1):0] one_err_det_raw_w ; 
-                    wire [(EBR_ADDR - 1):0] two_err_det_raw_w ; 
+                                OPT_ADDR_DEPTH) ;
+                    localparam BYTE_WIDTH_IMPL = ((BYTE_ENABLE == 0) ? 1 : (((OPT_DATA_WIDTH == 36) | (OPT_DATA_WIDTH == 32)) ? 4 : (((OPT_DATA_WIDTH == 18) | (OPT_DATA_WIDTH == 16)) ? 2 : 1))) ;
+                    wire [(RDATA_WIDTH - 1):0] rd_data_raw_w [(EBR_ADDR - 1):0] ;
+                    wire [(EBR_ADDR - 1):0] one_err_det_raw_w ;
+                    wire [(EBR_ADDR - 1):0] two_err_det_raw_w ;
                     for (i0 = 0;(i0 < EBR_ADDR);i0 = (i0 + 1))
                     begin : ADDR_ROUTE
-                        wire [(RDATA_WIDTH - 1):0] raw_output_w ; 
-                        assign rd_data_raw_w[i0] = raw_output_w ; 
-                        wire chk_addr_r_w ; 
-                        if ((EBR_ADDR > 1)) 
+                        wire [(RDATA_WIDTH - 1):0] raw_output_w ;
+                        assign rd_data_raw_w[i0] = raw_output_w ;
+                        wire chk_addr_r_w ;
+                        if ((EBR_ADDR > 1))
                             begin : genblk1
-                                assign chk_addr_r_w = (rd_addr_i[(RADDR_WIDTH - 1):OPT_ADDR_WIDTH] == i0) ; 
+                                assign chk_addr_r_w = (rd_addr_i[(RADDR_WIDTH - 1):OPT_ADDR_WIDTH] == i0) ;
                             end
                         else
                             begin : genblk1
-                                assign chk_addr_r_w = 1'b1 ; 
+                                assign chk_addr_r_w = 1'b1 ;
                             end
-                        wire [(OPT_ADDR_WIDTH - 1):0] act_addr_r_w ; 
-                        if ((OPT_ADDR_WIDTH > RADDR_WIDTH)) 
+                        wire [(OPT_ADDR_WIDTH - 1):0] act_addr_r_w ;
+                        if ((OPT_ADDR_WIDTH > RADDR_WIDTH))
                             begin : genblk2
-                                assign act_addr_r_w[(RADDR_WIDTH - 1):0] = rd_addr_i ; 
-                                assign act_addr_r_w[(OPT_ADDR_WIDTH - 1):RADDR_WIDTH] = 'h000 ; 
+                                assign act_addr_r_w[(RADDR_WIDTH - 1):0] = rd_addr_i ;
+                                assign act_addr_r_w[(OPT_ADDR_WIDTH - 1):RADDR_WIDTH] = 'h000 ;
                             end
                         else
                             begin : genblk2
-                                assign act_addr_r_w = rd_addr_i[(OPT_ADDR_WIDTH - 1):0] ; 
+                                assign act_addr_r_w = rd_addr_i[(OPT_ADDR_WIDTH - 1):0] ;
                             end
-                        wire chk_addr_w_w ; 
-                        if ((EBR_ADDR > 1)) 
+                        wire chk_addr_w_w ;
+                        if ((EBR_ADDR > 1))
                             begin : genblk3
-                                assign chk_addr_w_w = (wr_addr_i[(WADDR_WIDTH - 1):OPT_ADDR_WIDTH] == i0) ; 
+                                assign chk_addr_w_w = (wr_addr_i[(WADDR_WIDTH - 1):OPT_ADDR_WIDTH] == i0) ;
                             end
                         else
                             begin : genblk3
-                                assign chk_addr_w_w = 1'b1 ; 
+                                assign chk_addr_w_w = 1'b1 ;
                             end
-                        wire [(OPT_ADDR_WIDTH - 1):0] act_addr_w_w ; 
-                        if ((OPT_ADDR_WIDTH > WADDR_WIDTH)) 
+                        wire [(OPT_ADDR_WIDTH - 1):0] act_addr_w_w ;
+                        if ((OPT_ADDR_WIDTH > WADDR_WIDTH))
                             begin : genblk4
-                                assign act_addr_w_w[(WADDR_WIDTH - 1):0] = wr_addr_i ; 
-                                assign act_addr_w_w[(OPT_ADDR_WIDTH - 1):WADDR_WIDTH] = 'h000 ; 
+                                assign act_addr_w_w[(WADDR_WIDTH - 1):0] = wr_addr_i ;
+                                assign act_addr_w_w[(OPT_ADDR_WIDTH - 1):WADDR_WIDTH] = 'h000 ;
                             end
                         else
                             begin : genblk4
-                                assign act_addr_w_w = wr_addr_i[(OPT_ADDR_WIDTH - 1):0] ; 
+                                assign act_addr_w_w = wr_addr_i[(OPT_ADDR_WIDTH - 1):0] ;
                             end
-                        wire [(EBR_DATA - 1):0] one_err_det_ind_w ; 
-                        wire [(EBR_DATA - 1):0] two_err_det_ind_w ; 
-                        if ((EBR_DATA == 1)) 
+                        wire [(EBR_DATA - 1):0] one_err_det_ind_w ;
+                        wire [(EBR_DATA - 1):0] two_err_det_ind_w ;
+                        if ((EBR_DATA == 1))
                             begin : genblk5
-                                assign one_err_det_raw_w[i0] = one_err_det_ind_w[0] ; 
-                                assign two_err_det_raw_w[i0] = two_err_det_ind_w[0] ; 
+                                assign one_err_det_raw_w[i0] = one_err_det_ind_w[0] ;
+                                assign two_err_det_raw_w[i0] = two_err_det_ind_w[0] ;
                             end
                         else
                             begin : genblk5
-                                assign one_err_det_raw_w[i0] = (|one_err_det_ind_w) ; 
-                                assign two_err_det_raw_w[i0] = (|two_err_det_ind_w) ; 
+                                assign one_err_det_raw_w[i0] = (|one_err_det_ind_w) ;
+                                assign two_err_det_raw_w[i0] = (|two_err_det_ind_w) ;
                             end
                         for (i1 = 0;(i1 < EBR_DATA);i1 = (i1 + 1))
                         begin : DATA_ROUTE
-                            localparam ECO_POSX = (i1 * OPT_DATA_WIDTH) ; 
-                            localparam ECO_POSY = (i0 * OPT_ADDR_DEPTH) ; 
-                            wire [(OPT_DATA_WIDTH - 1):0] act_in_w ; 
-                            wire [(OPT_DATA_WIDTH - 1):0] act_out_w ; 
-                            wire one_err_det_ebr_w ; 
-                            wire two_err_det_ebr_w ; 
-                            wire [(BYTE_WIDTH_IMPL - 1):0] act_ben_w ; 
-                            assign one_err_det_ind_w[i1] = one_err_det_ebr_w ; 
-                            assign two_err_det_ind_w[i1] = two_err_det_ebr_w ; 
-                            if (((OPT_DATA_WIDTH * (i1 + 1)) <= RDATA_WIDTH)) 
+                            localparam ECO_POSX = (i1 * OPT_DATA_WIDTH) ;
+                            localparam ECO_POSY = (i0 * OPT_ADDR_DEPTH) ;
+                            wire [(OPT_DATA_WIDTH - 1):0] act_in_w ;
+                            wire [(OPT_DATA_WIDTH - 1):0] act_out_w ;
+                            wire one_err_det_ebr_w ;
+                            wire two_err_det_ebr_w ;
+                            wire [(BYTE_WIDTH_IMPL - 1):0] act_ben_w ;
+                            assign one_err_det_ind_w[i1] = one_err_det_ebr_w ;
+                            assign two_err_det_ind_w[i1] = two_err_det_ebr_w ;
+                            if (((OPT_DATA_WIDTH * (i1 + 1)) <= RDATA_WIDTH))
                                 begin : genblk1
-                                    assign act_in_w = wr_data_i[(((i1 + 1) * OPT_DATA_WIDTH) - 1):(i1 * OPT_DATA_WIDTH)] ; 
-                                    assign raw_output_w[(((i1 + 1) * OPT_DATA_WIDTH) - 1):(i1 * OPT_DATA_WIDTH)] = act_out_w ; 
+                                    assign act_in_w = wr_data_i[(((i1 + 1) * OPT_DATA_WIDTH) - 1):(i1 * OPT_DATA_WIDTH)] ;
+                                    assign raw_output_w[(((i1 + 1) * OPT_DATA_WIDTH) - 1):(i1 * OPT_DATA_WIDTH)] = act_out_w ;
                                 end
                             else
                                 begin : genblk1
-                                    assign act_in_w[(WDATA_WIDTH - (1 + (i1 * OPT_DATA_WIDTH))):0] = wr_data_i[(WDATA_WIDTH - 1):(i1 * OPT_DATA_WIDTH)] ; 
-                                    if ((OPT_DATA_WIDTH > (WDATA_WIDTH - (i1 * OPT_DATA_WIDTH)))) 
+                                    assign act_in_w[(WDATA_WIDTH - (1 + (i1 * OPT_DATA_WIDTH))):0] = wr_data_i[(WDATA_WIDTH - 1):(i1 * OPT_DATA_WIDTH)] ;
+                                    if ((OPT_DATA_WIDTH > (WDATA_WIDTH - (i1 * OPT_DATA_WIDTH))))
                                         begin : genblk1
-                                            assign act_in_w[(OPT_DATA_WIDTH - 1):(WDATA_WIDTH - (i1 * OPT_DATA_WIDTH))] = {(OPT_DATA_WIDTH - (WDATA_WIDTH - (i1 * OPT_DATA_WIDTH))){1'b0}} ; 
+                                            assign act_in_w[(OPT_DATA_WIDTH - 1):(WDATA_WIDTH - (i1 * OPT_DATA_WIDTH))] = {(OPT_DATA_WIDTH - (WDATA_WIDTH - (i1 * OPT_DATA_WIDTH))){1'b0}} ;
                                         end
-                                    assign raw_output_w[(RDATA_WIDTH - 1):(i1 * OPT_DATA_WIDTH)] = act_out_w[(RDATA_WIDTH - (1 + (i1 * OPT_DATA_WIDTH))):0] ; 
+                                    assign raw_output_w[(RDATA_WIDTH - 1):(i1 * OPT_DATA_WIDTH)] = act_out_w[(RDATA_WIDTH - (1 + (i1 * OPT_DATA_WIDTH))):0] ;
                                 end
-                            if ((IS_BYTE_ENABLE == 0)) 
+                            if ((IS_BYTE_ENABLE == 0))
                                 begin : genblk2
-                                    assign act_ben_w = {BYTE_WIDTH_IMPL{1'b1}} ; 
+                                    assign act_ben_w = {BYTE_WIDTH_IMPL{1'b1}} ;
                                 end
                             else
-                                if ((OPT_DATA_WIDTH >= 8)) 
+                                if ((OPT_DATA_WIDTH >= 8))
                                     begin : genblk2
-                                        if ((BYTE_WIDTH_IMPL > 1)) 
+                                        if ((BYTE_WIDTH_IMPL > 1))
                                             begin : genblk1
-                                                if ((((i1 + 1) * BYTE_WIDTH_IMPL) <= BYTE_WIDTH)) 
+                                                if ((((i1 + 1) * BYTE_WIDTH_IMPL) <= BYTE_WIDTH))
                                                     begin : genblk1
-                                                        assign act_ben_w = ben_i[(((i1 + 1) * BYTE_WIDTH_IMPL) - 1):(i1 * BYTE_WIDTH_IMPL)] ; 
+                                                        assign act_ben_w = ben_i[(((i1 + 1) * BYTE_WIDTH_IMPL) - 1):(i1 * BYTE_WIDTH_IMPL)] ;
                                                     end
                                                 else
                                                     begin : genblk1
-                                                        assign act_ben_w[(BYTE_WIDTH_IMPL - 1):(BYTE_WIDTH - (i1 * BYTE_WIDTH_IMPL))] = {(BYTE_WIDTH_IMPL - (BYTE_WIDTH - (i1 * BYTE_WIDTH_IMPL))){1'b1}} ; 
-                                                        assign act_ben_w[(BYTE_WIDTH - (1 + (i1 * BYTE_WIDTH_IMPL))):0] = ben_i[(BYTE_WIDTH - 1):(i1 * BYTE_WIDTH_IMPL)] ; 
+                                                        assign act_ben_w[(BYTE_WIDTH_IMPL - 1):(BYTE_WIDTH - (i1 * BYTE_WIDTH_IMPL))] = {(BYTE_WIDTH_IMPL - (BYTE_WIDTH - (i1 * BYTE_WIDTH_IMPL))){1'b1}} ;
+                                                        assign act_ben_w[(BYTE_WIDTH - (1 + (i1 * BYTE_WIDTH_IMPL))):0] = ben_i[(BYTE_WIDTH - 1):(i1 * BYTE_WIDTH_IMPL)] ;
                                                     end
                                             end
                                         else
                                             begin : genblk1
-                                                assign act_ben_w = ben_i[i1] ; 
+                                                assign act_ben_w = ben_i[i1] ;
                                             end
                                     end
                                 else
                                     begin : genblk2
-                                        assign act_ben_w = ben_i[(((i1 * OPT_DATA_WIDTH) * BYTE_WIDTH) / WDATA_WIDTH)] ; 
+                                        assign act_ben_w = ben_i[(((i1 * OPT_DATA_WIDTH) * BYTE_WIDTH) / WDATA_WIDTH)] ;
                                     end
-                            wire f_wr_en_w = (chk_addr_w_w & wr_en_i) ; 
-                            wire f_rd_en_w = (chk_addr_r_w & rd_en_i) ; 
-                            wire ff_rd_en_w ; 
-                            if ((REGMODE == "noreg")) 
+                            wire f_wr_en_w = (chk_addr_w_w & wr_en_i) ;
+                            wire f_rd_en_w = (chk_addr_r_w & rd_en_i) ;
+                            wire ff_rd_en_w ;
+                            if ((REGMODE == "noreg"))
                                 begin : genblk3
-                                    assign ff_rd_en_w = f_rd_en_w ; 
+                                    assign ff_rd_en_w = f_rd_en_w ;
                                 end
                             else
                                 begin : genblk3
-                                    reg f_rd_en_r = 1'b0 ; 
-                                    assign ff_rd_en_w = (f_rd_en_w | f_rd_en_r) ; 
-                                    if ((RESETMODE == "sync")) 
+                                    reg f_rd_en_r = 1'b0 ;
+                                    assign ff_rd_en_w = (f_rd_en_w | f_rd_en_r) ;
+                                    if ((RESETMODE == "sync"))
                                         begin : genblk1
                                             always
                                                 @(posedge rd_clk_i)
                                                 begin
-                                                    if (rst_i) 
+                                                    if (rst_i)
                                                         begin
                                                             f_rd_en_r <=  1'b0 ;
                                                         end
@@ -529,10 +529,10 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     else
                                         begin : genblk1
                                             always
-                                                @(posedge rd_clk_i or 
+                                                @(posedge rd_clk_i or
                                                     posedge rst_i)
                                                 begin
-                                                    if (rst_i) 
+                                                    if (rst_i)
                                                         begin
                                                             f_rd_en_r <=  1'b0 ;
                                                         end
@@ -543,7 +543,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 end
                                         end
                                 end
-                            if ((INIT_MODE == "mem_file")) 
+                            if ((INIT_MODE == "mem_file"))
                                 begin : mem_init
                                     palette_ram_ipgen_lscc_ram_dp_core #(.MEM_ID(MEM_ID),
                                             .MEM_SIZE(MEM_SIZE),
@@ -625,21 +625,21 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                             .INIT_VALUE_3C(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3C[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00")),
                                             .INIT_VALUE_3D(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3D[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00")),
                                             .INIT_VALUE_3E(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3E[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00")),
-                                            .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                .rd_clk_i(rd_clk_i), 
-                                                .rst_i(rst_i), 
-                                                .wr_clk_en_i(wr_clk_en_i), 
-                                                .rd_clk_en_i(rd_clk_en_i), 
-                                                .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                .wr_en_i(f_wr_en_w), 
-                                                .wr_data_i(act_in_w), 
-                                                .wr_addr_i(act_addr_w_w), 
-                                                .rd_en_i(ff_rd_en_w), 
-                                                .rd_addr_i(act_addr_r_w), 
-                                                .ben_i(act_ben_w), 
-                                                .rd_data_o(act_out_w), 
-                                                .one_err_det_o(one_err_det_ebr_w), 
-                                                .two_err_det_o(two_err_det_ebr_w)) ; 
+                                            .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                .rd_clk_i(rd_clk_i),
+                                                .rst_i(rst_i),
+                                                .wr_clk_en_i(wr_clk_en_i),
+                                                .rd_clk_en_i(rd_clk_en_i),
+                                                .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                .wr_en_i(f_wr_en_w),
+                                                .wr_data_i(act_in_w),
+                                                .wr_addr_i(act_addr_w_w),
+                                                .rd_en_i(ff_rd_en_w),
+                                                .rd_addr_i(act_addr_r_w),
+                                                .ben_i(act_ben_w),
+                                                .rd_data_o(act_out_w),
+                                                .one_err_det_o(one_err_det_ebr_w),
+                                                .two_err_det_o(two_err_det_ebr_w)) ;
                                 end
                             else
                                 begin : no_init
@@ -659,47 +659,47 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                             .INIT_MODE(INIT_MODE),
                                             .BYTE_ENABLE(IS_BYTE_ENABLE),
                                             .OUTPUT_CLK_EN(OUTPUT_CLK_EN),
-                                            .BYTE_ENABLE_POL(BYTE_ENABLE_POL)) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                .rd_clk_i(rd_clk_i), 
-                                                .rst_i(rst_i), 
-                                                .wr_clk_en_i(wr_clk_en_i), 
-                                                .rd_clk_en_i(rd_clk_en_i), 
-                                                .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                .wr_en_i(f_wr_en_w), 
-                                                .wr_data_i(act_in_w), 
-                                                .wr_addr_i(act_addr_w_w), 
-                                                .rd_en_i(ff_rd_en_w), 
-                                                .rd_addr_i(act_addr_r_w), 
-                                                .ben_i(act_ben_w), 
-                                                .rd_data_o(act_out_w), 
-                                                .one_err_det_o(one_err_det_ebr_w), 
-                                                .two_err_det_o(two_err_det_ebr_w)) ; 
+                                            .BYTE_ENABLE_POL(BYTE_ENABLE_POL)) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                .rd_clk_i(rd_clk_i),
+                                                .rst_i(rst_i),
+                                                .wr_clk_en_i(wr_clk_en_i),
+                                                .rd_clk_en_i(rd_clk_en_i),
+                                                .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                .wr_en_i(f_wr_en_w),
+                                                .wr_data_i(act_in_w),
+                                                .wr_addr_i(act_addr_w_w),
+                                                .rd_en_i(ff_rd_en_w),
+                                                .rd_addr_i(act_addr_r_w),
+                                                .ben_i(act_ben_w),
+                                                .rd_data_o(act_out_w),
+                                                .one_err_det_o(one_err_det_ebr_w),
+                                                .two_err_det_o(two_err_det_ebr_w)) ;
                                 end
                         end
                     end
-                    if ((EBR_ADDR == 1)) 
+                    if ((EBR_ADDR == 1))
                         begin : genblk2
-                            assign rd_data_o = rd_data_raw_w[0] ; 
-                            assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_raw_w[0] : 1'b0) ; 
-                            assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_raw_w[0] : 1'b0) ; 
+                            assign rd_data_o = rd_data_raw_w[0] ;
+                            assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_raw_w[0] : 1'b0) ;
+                            assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_raw_w[0] : 1'b0) ;
                         end
                     else
                         begin : genblk2
-                            reg [(RDATA_WIDTH - 1):0] rd_out_buff_r ; 
-                            reg [(RADDR_WIDTH - 1):0] rd_addr_0_r = {RADDR_WIDTH{1'b0}} ; 
-                            reg one_err_det_r ; 
-                            reg two_err_det_r ; 
-                            assign rd_data_o = rd_out_buff_r ; 
-                            assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_r : 1'b0) ; 
-                            assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_r : 1'b0) ; 
-                            if ((REGMODE == "noreg")) 
+                            reg [(RDATA_WIDTH - 1):0] rd_out_buff_r ;
+                            reg [(RADDR_WIDTH - 1):0] rd_addr_0_r = {RADDR_WIDTH{1'b0}} ;
+                            reg one_err_det_r ;
+                            reg two_err_det_r ;
+                            assign rd_data_o = rd_out_buff_r ;
+                            assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_r : 1'b0) ;
+                            assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_r : 1'b0) ;
+                            if ((REGMODE == "noreg"))
                                 begin : _nreg
-                                    if ((RESETMODE == "sync")) 
+                                    if ((RESETMODE == "sync"))
                                         begin : genblk1
                                             always
                                                 @(posedge rd_clk_i)
                                                 begin
-                                                    if (rst_i) 
+                                                    if (rst_i)
                                                         begin
                                                             rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                         end
@@ -712,10 +712,10 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     else
                                         begin : genblk1
                                             always
-                                                @(posedge rd_clk_i or 
+                                                @(posedge rd_clk_i or
                                                     posedge rst_i)
                                                 begin
-                                                    if (rst_i) 
+                                                    if (rst_i)
                                                         begin
                                                             rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                         end
@@ -728,13 +728,13 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                 end
                             else
                                 begin : _reg
-                                    reg [(RADDR_WIDTH - 1):0] rd_addr_1_r = {RADDR_WIDTH{1'b0}} ; 
-                                    if ((RESETMODE == "sync")) 
+                                    reg [(RADDR_WIDTH - 1):0] rd_addr_1_r = {RADDR_WIDTH{1'b0}} ;
+                                    if ((RESETMODE == "sync"))
                                         begin : genblk1
                                             always
                                                 @(posedge rd_clk_i)
                                                 begin
-                                                    if (rst_i) 
+                                                    if (rst_i)
                                                         begin
                                                             rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                             rd_addr_1_r <=  {RADDR_WIDTH{1'b0}} ;
@@ -749,10 +749,10 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     else
                                         begin : genblk1
                                             always
-                                                @(posedge rd_clk_i or 
+                                                @(posedge rd_clk_i or
                                                     posedge rst_i)
                                                 begin
-                                                    if (rst_i) 
+                                                    if (rst_i)
                                                         begin
                                                             rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                             rd_addr_1_r <=  {RADDR_WIDTH{1'b0}} ;
@@ -775,24 +775,24 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                         end
                 end
             else
-                if ((IS_BYTE_ENABLE == 0)) 
+                if ((IS_BYTE_ENABLE == 0))
                     begin : MIX_NO_BYTE_EN
-                        localparam MAX_DATA = ((WDATA_WIDTH > RDATA_WIDTH) ? WDATA_WIDTH : RDATA_WIDTH) ; 
-                        localparam MAX_PORT = ((WDATA_WIDTH > RDATA_WIDTH) ? "W" : "R") ; 
-                        localparam MIN_DEPTH = ((MAX_PORT == "W") ? WADDR_DEPTH : RADDR_DEPTH) ; 
-                        localparam Q_FACTOR = ((MAX_PORT == "W") ? (WDATA_WIDTH / RDATA_WIDTH) : (RDATA_WIDTH / WDATA_WIDTH)) ; 
+                        localparam MAX_DATA = ((WDATA_WIDTH > RDATA_WIDTH) ? WDATA_WIDTH : RDATA_WIDTH) ;
+                        localparam MAX_PORT = ((WDATA_WIDTH > RDATA_WIDTH) ? "W" : "R") ;
+                        localparam MIN_DEPTH = ((MAX_PORT == "W") ? WADDR_DEPTH : RADDR_DEPTH) ;
+                        localparam Q_FACTOR = ((MAX_PORT == "W") ? (WDATA_WIDTH / RDATA_WIDTH) : (RDATA_WIDTH / WDATA_WIDTH)) ;
                         localparam PROC_MAX_DATA = procData(MAX_DATA,
                                     ECC_ENABLE,
-                                    FAMILY_CODE) ; 
-                        localparam PROC_MIN_DEPTH = (2 ** clog2(MIN_DEPTH)) ; 
-                        localparam PROC_MIN_DATA = (PROC_MAX_DATA / Q_FACTOR) ; 
-                        localparam PROC_MAX_DEPTH = (PROC_MIN_DEPTH * Q_FACTOR) ; 
-                        localparam W_PORT_USE = ((MAX_PORT == "W") ? PROC_MAX_DATA : PROC_MIN_DATA) ; 
-                        localparam W_DEPTH_USE = ((MAX_PORT == "W") ? PROC_MIN_DEPTH : PROC_MAX_DEPTH) ; 
-                        localparam W_DEPTH_WIDTH_USE = clog2(W_DEPTH_USE) ; 
-                        localparam R_PORT_USE = ((MAX_PORT == "R") ? PROC_MAX_DATA : PROC_MIN_DATA) ; 
-                        localparam R_DEPTH_USE = ((MAX_PORT == "R") ? PROC_MIN_DEPTH : PROC_MAX_DEPTH) ; 
-                        localparam R_DEPTH_WIDTH_USE = clog2(R_DEPTH_USE) ; 
+                                    FAMILY_CODE) ;
+                        localparam PROC_MIN_DEPTH = (2 ** clog2(MIN_DEPTH)) ;
+                        localparam PROC_MIN_DATA = (PROC_MAX_DATA / Q_FACTOR) ;
+                        localparam PROC_MAX_DEPTH = (PROC_MIN_DEPTH * Q_FACTOR) ;
+                        localparam W_PORT_USE = ((MAX_PORT == "W") ? PROC_MAX_DATA : PROC_MIN_DATA) ;
+                        localparam W_DEPTH_USE = ((MAX_PORT == "W") ? PROC_MIN_DEPTH : PROC_MAX_DEPTH) ;
+                        localparam W_DEPTH_WIDTH_USE = clog2(W_DEPTH_USE) ;
+                        localparam R_PORT_USE = ((MAX_PORT == "R") ? PROC_MAX_DATA : PROC_MIN_DATA) ;
+                        localparam R_DEPTH_USE = ((MAX_PORT == "R") ? PROC_MIN_DEPTH : PROC_MAX_DEPTH) ;
+                        localparam R_DEPTH_WIDTH_USE = clog2(R_DEPTH_USE) ;
                         localparam W_DATA_WIDTH_IMPL = getCASE1DataImpl(W_DEPTH_USE,
                                     W_PORT_USE,
                                     R_DEPTH_USE,
@@ -800,10 +800,10 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     1'b1,
                                     0,
                                     ECC_ENABLE,
-                                    FAMILY_CODE) ; 
+                                    FAMILY_CODE) ;
                         localparam W_ADDR_DEPTH_IMPL = data_to_addr(W_DATA_WIDTH_IMPL,
-                                    FAMILY_CODE) ; 
-                        localparam W_ADDR_WIDTH_IMPL = clog2(W_ADDR_DEPTH_IMPL) ; 
+                                    FAMILY_CODE) ;
+                        localparam W_ADDR_WIDTH_IMPL = clog2(W_ADDR_DEPTH_IMPL) ;
                         localparam R_DATA_WIDTH_IMPL = getCASE1DataImpl(W_DEPTH_USE,
                                     W_PORT_USE,
                                     R_DEPTH_USE,
@@ -811,163 +811,163 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     1'b0,
                                     0,
                                     ECC_ENABLE,
-                                    FAMILY_CODE) ; 
+                                    FAMILY_CODE) ;
                         localparam R_ADDR_DEPTH_IMPL = data_to_addr(R_DATA_WIDTH_IMPL,
-                                    FAMILY_CODE) ; 
-                        localparam R_ADDR_WIDTH_IMPL = clog2(R_ADDR_DEPTH_IMPL) ; 
+                                    FAMILY_CODE) ;
+                        localparam R_ADDR_WIDTH_IMPL = clog2(R_ADDR_DEPTH_IMPL) ;
                         localparam EBR_ADDR = roundUP(W_DEPTH_USE,
-                                    W_ADDR_DEPTH_IMPL) ; 
+                                    W_ADDR_DEPTH_IMPL) ;
                         localparam EBR_DATA = roundUP(W_PORT_USE,
-                                    W_DATA_WIDTH_IMPL) ; 
-                        wire [(W_DEPTH_WIDTH_USE - 1):0] wr_addr_buff_w ; 
-                        wire [(R_DEPTH_WIDTH_USE - 1):0] rd_addr_buff_w ; 
-                        if ((W_DEPTH_WIDTH_USE > WADDR_WIDTH)) 
+                                    W_DATA_WIDTH_IMPL) ;
+                        wire [(W_DEPTH_WIDTH_USE - 1):0] wr_addr_buff_w ;
+                        wire [(R_DEPTH_WIDTH_USE - 1):0] rd_addr_buff_w ;
+                        if ((W_DEPTH_WIDTH_USE > WADDR_WIDTH))
                             begin : genblk1
-                                assign wr_addr_buff_w[(W_DEPTH_WIDTH_USE - 1):WADDR_WIDTH] = 'h0000 ; 
+                                assign wr_addr_buff_w[(W_DEPTH_WIDTH_USE - 1):WADDR_WIDTH] = 'h0000 ;
                             end
-                        assign wr_addr_buff_w[(WADDR_WIDTH - 1):0] = wr_addr_i ; 
-                        if ((R_DEPTH_WIDTH_USE > RADDR_WIDTH)) 
+                        assign wr_addr_buff_w[(WADDR_WIDTH - 1):0] = wr_addr_i ;
+                        if ((R_DEPTH_WIDTH_USE > RADDR_WIDTH))
                             begin : genblk2
-                                assign rd_addr_buff_w[(R_DEPTH_WIDTH_USE - 1):RADDR_WIDTH] = 'h0000 ; 
+                                assign rd_addr_buff_w[(R_DEPTH_WIDTH_USE - 1):RADDR_WIDTH] = 'h0000 ;
                             end
-                        assign rd_addr_buff_w[(RADDR_WIDTH - 1):0] = rd_addr_i ; 
-                        wire [(W_PORT_USE - 1):0] input_buff_w ; 
-                        wire [(R_PORT_USE - 1):0] output_buff_w ; 
-                        wire [(R_PORT_USE - 1):0] rd_data_raw_w [(EBR_ADDR - 1):0] ; 
-                        wire [(W_PORT_USE - 1):0] master_data_in_w ; 
-                        wire [(R_PORT_USE - 1):0] master_data_out_w ; 
-                        if ((EBR_DATA > 1)) 
+                        assign rd_addr_buff_w[(RADDR_WIDTH - 1):0] = rd_addr_i ;
+                        wire [(W_PORT_USE - 1):0] input_buff_w ;
+                        wire [(R_PORT_USE - 1):0] output_buff_w ;
+                        wire [(R_PORT_USE - 1):0] rd_data_raw_w [(EBR_ADDR - 1):0] ;
+                        wire [(W_PORT_USE - 1):0] master_data_in_w ;
+                        wire [(R_PORT_USE - 1):0] master_data_out_w ;
+                        if ((EBR_DATA > 1))
                             begin : genblk3
-                                if ((W_PORT_USE > R_PORT_USE)) 
+                                if ((W_PORT_USE > R_PORT_USE))
                                     begin : genblk1
-                                        assign rd_data_o = output_buff_w[(RDATA_WIDTH - 1):0] ; 
-                                        assign output_buff_w = master_data_out_w ; 
-                                        wire [(R_PORT_USE - 1):0] inp_buff_seg_w [((W_PORT_USE / R_PORT_USE) - 1):0] ; 
+                                        assign rd_data_o = output_buff_w[(RDATA_WIDTH - 1):0] ;
+                                        assign output_buff_w = master_data_out_w ;
+                                        wire [(R_PORT_USE - 1):0] inp_buff_seg_w [((W_PORT_USE / R_PORT_USE) - 1):0] ;
                                         for (i_0 = 0;(i_0 < (W_PORT_USE / R_PORT_USE));i_0 = (i_0 + 1))
                                         begin : genblk1
-                                            assign inp_buff_seg_w[i_0] = wr_data_i[((RDATA_WIDTH * (i_0 + 1)) - 1):(RDATA_WIDTH * i_0)] ; 
+                                            assign inp_buff_seg_w[i_0] = wr_data_i[((RDATA_WIDTH * (i_0 + 1)) - 1):(RDATA_WIDTH * i_0)] ;
                                         end
                                         for (i_0 = 0;(i_0 < (W_PORT_USE / R_PORT_USE));i_0 = (i_0 + 1))
                                         begin : genblk2
-                                            assign input_buff_w[(((i_0 * R_PORT_USE) + R_PORT_USE) - 1):(i_0 * R_PORT_USE)] = inp_buff_seg_w[i_0] ; 
+                                            assign input_buff_w[(((i_0 * R_PORT_USE) + R_PORT_USE) - 1):(i_0 * R_PORT_USE)] = inp_buff_seg_w[i_0] ;
                                         end
-                                        wire [(R_DATA_WIDTH_IMPL - 1):0] master_data_ind_w [((W_PORT_USE / R_DATA_WIDTH_IMPL) - 1):0] ; 
+                                        wire [(R_DATA_WIDTH_IMPL - 1):0] master_data_ind_w [((W_PORT_USE / R_DATA_WIDTH_IMPL) - 1):0] ;
                                         for (i_0 = 0;(i_0 < EBR_DATA);i_0 = (i_0 + 1))
                                         begin : genblk3
                                             for (i_1 = 0;(i_1 < (W_PORT_USE / (EBR_DATA * R_DATA_WIDTH_IMPL)));i_1 = (i_1 + 1))
                                             begin : genblk1
-                                                assign master_data_ind_w[(((W_PORT_USE / (EBR_DATA * R_DATA_WIDTH_IMPL)) * i_0) + i_1)] = input_buff_w[((((i_0 * R_DATA_WIDTH_IMPL) + ((i_1 * EBR_DATA) * R_DATA_WIDTH_IMPL)) + R_DATA_WIDTH_IMPL) - 1):((i_0 * R_DATA_WIDTH_IMPL) + ((i_1 * EBR_DATA) * R_DATA_WIDTH_IMPL))] ; 
+                                                assign master_data_ind_w[(((W_PORT_USE / (EBR_DATA * R_DATA_WIDTH_IMPL)) * i_0) + i_1)] = input_buff_w[((((i_0 * R_DATA_WIDTH_IMPL) + ((i_1 * EBR_DATA) * R_DATA_WIDTH_IMPL)) + R_DATA_WIDTH_IMPL) - 1):((i_0 * R_DATA_WIDTH_IMPL) + ((i_1 * EBR_DATA) * R_DATA_WIDTH_IMPL))] ;
                                             end
                                         end
                                         for (i_0 = 0;(i_0 < (W_PORT_USE / R_DATA_WIDTH_IMPL));i_0 = (i_0 + 1))
                                         begin : genblk4
-                                            assign master_data_in_w[(((i_0 * R_DATA_WIDTH_IMPL) + R_DATA_WIDTH_IMPL) - 1):(i_0 * R_DATA_WIDTH_IMPL)] = master_data_ind_w[i_0] ; 
+                                            assign master_data_in_w[(((i_0 * R_DATA_WIDTH_IMPL) + R_DATA_WIDTH_IMPL) - 1):(i_0 * R_DATA_WIDTH_IMPL)] = master_data_ind_w[i_0] ;
                                         end
                                     end
                                 else
                                     begin : genblk1
-                                        if ((W_PORT_USE > WDATA_WIDTH)) 
+                                        if ((W_PORT_USE > WDATA_WIDTH))
                                             begin : genblk1
-                                                assign input_buff_w[(W_PORT_USE - 1):WDATA_WIDTH] = 'h0000 ; 
+                                                assign input_buff_w[(W_PORT_USE - 1):WDATA_WIDTH] = 'h0000 ;
                                             end
-                                        assign input_buff_w[(WDATA_WIDTH - 1):0] = wr_data_i ; 
-                                        assign master_data_in_w = input_buff_w ; 
-                                        wire [(W_PORT_USE - 1):0] out_buff_seg_w [((R_PORT_USE / W_PORT_USE) - 1):0] ; 
+                                        assign input_buff_w[(WDATA_WIDTH - 1):0] = wr_data_i ;
+                                        assign master_data_in_w = input_buff_w ;
+                                        wire [(W_PORT_USE - 1):0] out_buff_seg_w [((R_PORT_USE / W_PORT_USE) - 1):0] ;
                                         for (i_0 = 0;(i_0 < (R_PORT_USE / W_PORT_USE));i_0 = (i_0 + 1))
                                         begin : genblk2
-                                            assign rd_data_o[((WDATA_WIDTH * (i_0 + 1)) - 1):(WDATA_WIDTH * i_0)] = out_buff_seg_w[i_0] ; 
+                                            assign rd_data_o[((WDATA_WIDTH * (i_0 + 1)) - 1):(WDATA_WIDTH * i_0)] = out_buff_seg_w[i_0] ;
                                         end
                                         for (i_0 = 0;(i_0 < (R_PORT_USE / W_PORT_USE));i_0 = (i_0 + 1))
                                         begin : genblk3
-                                            assign out_buff_seg_w[i_0] = output_buff_w[(((i_0 + 1) * W_PORT_USE) - 1):(i_0 * W_PORT_USE)] ; 
+                                            assign out_buff_seg_w[i_0] = output_buff_w[(((i_0 + 1) * W_PORT_USE) - 1):(i_0 * W_PORT_USE)] ;
                                         end
-                                        wire [(W_DATA_WIDTH_IMPL - 1):0] master_data_ind_out_w [((R_PORT_USE / W_DATA_WIDTH_IMPL) - 1):0] ; 
+                                        wire [(W_DATA_WIDTH_IMPL - 1):0] master_data_ind_out_w [((R_PORT_USE / W_DATA_WIDTH_IMPL) - 1):0] ;
                                         for (i_0 = 0;(i_0 < (R_PORT_USE / W_PORT_USE));i_0 = (i_0 + 1))
                                         begin : genblk4
                                             for (i_1 = 0;(i_1 < EBR_DATA);i_1 = (i_1 + 1))
                                             begin : genblk1
-                                                assign master_data_ind_out_w[((i_0 * EBR_DATA) + i_1)] = master_data_out_w[((((i_1 * R_DATA_WIDTH_IMPL) + (i_0 * W_DATA_WIDTH_IMPL)) + W_DATA_WIDTH_IMPL) - 1):((i_1 * R_DATA_WIDTH_IMPL) + (i_0 * W_DATA_WIDTH_IMPL))] ; 
+                                                assign master_data_ind_out_w[((i_0 * EBR_DATA) + i_1)] = master_data_out_w[((((i_1 * R_DATA_WIDTH_IMPL) + (i_0 * W_DATA_WIDTH_IMPL)) + W_DATA_WIDTH_IMPL) - 1):((i_1 * R_DATA_WIDTH_IMPL) + (i_0 * W_DATA_WIDTH_IMPL))] ;
                                             end
                                         end
                                         for (i_0 = 0;(i_0 < (R_PORT_USE / W_DATA_WIDTH_IMPL));i_0 = (i_0 + 1))
                                         begin : genblk5
-                                            assign output_buff_w[(((i_0 * W_DATA_WIDTH_IMPL) + W_DATA_WIDTH_IMPL) - 1):(i_0 * W_DATA_WIDTH_IMPL)] = master_data_ind_out_w[i_0] ; 
+                                            assign output_buff_w[(((i_0 * W_DATA_WIDTH_IMPL) + W_DATA_WIDTH_IMPL) - 1):(i_0 * W_DATA_WIDTH_IMPL)] = master_data_ind_out_w[i_0] ;
                                         end
                                     end
                             end
                         else
-                            if ((EBR_ADDR > 1)) 
+                            if ((EBR_ADDR > 1))
                                 begin : genblk3
-                                    localparam Q_SRD_x = (R_PORT_USE / W_PORT_USE) ; 
-                                    localparam Q_SWR_x = (W_PORT_USE / R_PORT_USE) ; 
-                                    if ((R_PORT_USE < W_PORT_USE)) 
+                                    localparam Q_SRD_x = (R_PORT_USE / W_PORT_USE) ;
+                                    localparam Q_SWR_x = (W_PORT_USE / R_PORT_USE) ;
+                                    if ((R_PORT_USE < W_PORT_USE))
                                         begin : genblk1
                                             for (i_0 = 0;(i_0 < Q_SWR_x);i_0 = (i_0 + 1))
                                             begin : genblk1
-                                                assign master_data_in_w[(((i_0 * R_PORT_USE) + RDATA_WIDTH) - 1):(i_0 * R_PORT_USE)] = wr_data_i[(((i_0 * RDATA_WIDTH) + RDATA_WIDTH) - 1):(i_0 * RDATA_WIDTH)] ; 
-                                                if ((R_PORT_USE != RDATA_WIDTH)) 
+                                                assign master_data_in_w[(((i_0 * R_PORT_USE) + RDATA_WIDTH) - 1):(i_0 * R_PORT_USE)] = wr_data_i[(((i_0 * RDATA_WIDTH) + RDATA_WIDTH) - 1):(i_0 * RDATA_WIDTH)] ;
+                                                if ((R_PORT_USE != RDATA_WIDTH))
                                                     begin : genblk1
-                                                        assign master_data_in_w[(((i_0 * R_PORT_USE) + R_PORT_USE) - 1):((i_0 * R_PORT_USE) + RDATA_WIDTH)] = {(R_PORT_USE - RDATA_WIDTH){1'b0}} ; 
+                                                        assign master_data_in_w[(((i_0 * R_PORT_USE) + R_PORT_USE) - 1):((i_0 * R_PORT_USE) + RDATA_WIDTH)] = {(R_PORT_USE - RDATA_WIDTH){1'b0}} ;
                                                     end
                                             end
-                                            assign rd_data_o = master_data_out_w[(RDATA_WIDTH - 1):0] ; 
+                                            assign rd_data_o = master_data_out_w[(RDATA_WIDTH - 1):0] ;
                                         end
                                     else
                                         begin : genblk1
-                                            assign master_data_in_w[(WDATA_WIDTH - 1):0] = wr_data_i ; 
+                                            assign master_data_in_w[(WDATA_WIDTH - 1):0] = wr_data_i ;
                                             for (i_0 = 0;(i_0 < Q_SRD_x);i_0 = (i_0 + 1))
                                             begin : genblk1
-                                                assign rd_data_o[(((i_0 * WDATA_WIDTH) + WDATA_WIDTH) - 1):(i_0 * WDATA_WIDTH)] = master_data_out_w[(((i_0 * W_PORT_USE) + WDATA_WIDTH) - 1):(i_0 * W_PORT_USE)] ; 
+                                                assign rd_data_o[(((i_0 * WDATA_WIDTH) + WDATA_WIDTH) - 1):(i_0 * WDATA_WIDTH)] = master_data_out_w[(((i_0 * W_PORT_USE) + WDATA_WIDTH) - 1):(i_0 * W_PORT_USE)] ;
                                             end
                                         end
                                 end
-                        if (((EBR_ADDR == 1) && (EBR_DATA == 1))) 
+                        if (((EBR_ADDR == 1) && (EBR_DATA == 1)))
                             begin : SINGLE_IMPL
                                 localparam W_SINGULAR_DATA_x = getSingularCase(W_PORT_USE,
-                                            FAMILY_CODE) ; 
+                                            FAMILY_CODE) ;
                                 localparam R_SINGULAR_DATA_x = getSingularCase(R_PORT_USE,
-                                            FAMILY_CODE) ; 
+                                            FAMILY_CODE) ;
                                 localparam W_SINGULAR_ADDR_WIDTH = clog2(data_to_addr(W_SINGULAR_DATA_x,
-                                                FAMILY_CODE)) ; 
+                                                FAMILY_CODE)) ;
                                 localparam R_SINGULAR_ADDR_WIDTH = clog2(data_to_addr(R_SINGULAR_DATA_x,
-                                                FAMILY_CODE)) ; 
-                                localparam Q_SRD_x = (R_SINGULAR_DATA_x / W_SINGULAR_DATA_x) ; 
-                                localparam Q_SWR_x = (W_SINGULAR_DATA_x / R_SINGULAR_DATA_x) ; 
-                                wire [(W_SINGULAR_DATA_x - 1):0] single_wire_in_w ; 
-                                wire [(R_SINGULAR_DATA_x - 1):0] single_wire_out_w ; 
-                                wire [(W_SINGULAR_ADDR_WIDTH - 1):0] single_wr_addr_w ; 
-                                wire [(R_SINGULAR_ADDR_WIDTH - 1):0] single_rd_addr_w ; 
-                                if ((R_SINGULAR_DATA_x < W_SINGULAR_DATA_x)) 
+                                                FAMILY_CODE)) ;
+                                localparam Q_SRD_x = (R_SINGULAR_DATA_x / W_SINGULAR_DATA_x) ;
+                                localparam Q_SWR_x = (W_SINGULAR_DATA_x / R_SINGULAR_DATA_x) ;
+                                wire [(W_SINGULAR_DATA_x - 1):0] single_wire_in_w ;
+                                wire [(R_SINGULAR_DATA_x - 1):0] single_wire_out_w ;
+                                wire [(W_SINGULAR_ADDR_WIDTH - 1):0] single_wr_addr_w ;
+                                wire [(R_SINGULAR_ADDR_WIDTH - 1):0] single_rd_addr_w ;
+                                if ((R_SINGULAR_DATA_x < W_SINGULAR_DATA_x))
                                     begin : genblk1
                                         for (i0 = 0;(i0 < Q_SWR_x);i0 = (i0 + 1))
                                         begin : genblk1
-                                            assign single_wire_in_w[(((i0 * R_SINGULAR_DATA_x) + RDATA_WIDTH) - 1):(i0 * R_SINGULAR_DATA_x)] = wr_data_i[(((i0 * RDATA_WIDTH) + RDATA_WIDTH) - 1):(i0 * RDATA_WIDTH)] ; 
-                                            if ((R_SINGULAR_DATA_x != RDATA_WIDTH)) 
+                                            assign single_wire_in_w[(((i0 * R_SINGULAR_DATA_x) + RDATA_WIDTH) - 1):(i0 * R_SINGULAR_DATA_x)] = wr_data_i[(((i0 * RDATA_WIDTH) + RDATA_WIDTH) - 1):(i0 * RDATA_WIDTH)] ;
+                                            if ((R_SINGULAR_DATA_x != RDATA_WIDTH))
                                                 begin : genblk1
-                                                    assign single_wire_in_w[(((i0 * R_SINGULAR_DATA_x) + R_SINGULAR_DATA_x) - 1):((i0 * R_SINGULAR_DATA_x) + RDATA_WIDTH)] = {(R_SINGULAR_DATA_x - RDATA_WIDTH){1'b0}} ; 
+                                                    assign single_wire_in_w[(((i0 * R_SINGULAR_DATA_x) + R_SINGULAR_DATA_x) - 1):((i0 * R_SINGULAR_DATA_x) + RDATA_WIDTH)] = {(R_SINGULAR_DATA_x - RDATA_WIDTH){1'b0}} ;
                                                 end
                                         end
-                                        assign rd_data_o = single_wire_out_w[(RDATA_WIDTH - 1):0] ; 
+                                        assign rd_data_o = single_wire_out_w[(RDATA_WIDTH - 1):0] ;
                                     end
                                 else
                                     begin : genblk1
-                                        assign single_wire_in_w[(WDATA_WIDTH - 1):0] = wr_data_i ; 
+                                        assign single_wire_in_w[(WDATA_WIDTH - 1):0] = wr_data_i ;
                                         for (i0 = 0;(i0 < Q_SRD_x);i0 = (i0 + 1))
                                         begin : genblk1
-                                            assign rd_data_o[(((i0 * WDATA_WIDTH) + WDATA_WIDTH) - 1):(i0 * WDATA_WIDTH)] = single_wire_out_w[(((i0 * W_SINGULAR_DATA_x) + WDATA_WIDTH) - 1):(i0 * W_SINGULAR_DATA_x)] ; 
+                                            assign rd_data_o[(((i0 * WDATA_WIDTH) + WDATA_WIDTH) - 1):(i0 * WDATA_WIDTH)] = single_wire_out_w[(((i0 * W_SINGULAR_DATA_x) + WDATA_WIDTH) - 1):(i0 * W_SINGULAR_DATA_x)] ;
                                         end
                                     end
-                                if ((W_SINGULAR_ADDR_WIDTH > WADDR_WIDTH)) 
+                                if ((W_SINGULAR_ADDR_WIDTH > WADDR_WIDTH))
                                     begin : genblk2
-                                        assign single_wr_addr_w[(W_SINGULAR_ADDR_WIDTH - 1):WADDR_WIDTH] = 'h0000 ; 
+                                        assign single_wr_addr_w[(W_SINGULAR_ADDR_WIDTH - 1):WADDR_WIDTH] = 'h0000 ;
                                     end
-                                assign single_wr_addr_w[(WADDR_WIDTH - 1):0] = wr_addr_i ; 
-                                if ((R_SINGULAR_ADDR_WIDTH > RADDR_WIDTH)) 
+                                assign single_wr_addr_w[(WADDR_WIDTH - 1):0] = wr_addr_i ;
+                                if ((R_SINGULAR_ADDR_WIDTH > RADDR_WIDTH))
                                     begin : genblk3
-                                        assign single_rd_addr_w[(R_SINGULAR_ADDR_WIDTH - 1):RADDR_WIDTH] = 'h0000 ; 
+                                        assign single_rd_addr_w[(R_SINGULAR_ADDR_WIDTH - 1):RADDR_WIDTH] = 'h0000 ;
                                     end
-                                assign single_rd_addr_w[(RADDR_WIDTH - 1):0] = rd_addr_i ; 
-                                if ((INIT_MODE == "mem_file")) 
+                                assign single_rd_addr_w[(RADDR_WIDTH - 1):0] = rd_addr_i ;
+                                if ((INIT_MODE == "mem_file"))
                                     begin : mem_init
                                         palette_ram_ipgen_lscc_ram_dp_core #(.MEM_ID(MEM_ID),
                                                 .MEM_SIZE(MEM_SIZE),
@@ -1046,21 +1046,21 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 .INIT_VALUE_3C(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3C : "0x00")),
                                                 .INIT_VALUE_3D(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3D : "0x00")),
                                                 .INIT_VALUE_3E(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3E : "0x00")),
-                                                .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                    .rd_clk_i(rd_clk_i), 
-                                                    .rst_i(rst_i), 
-                                                    .wr_clk_en_i(wr_clk_en_i), 
-                                                    .rd_clk_en_i(rd_clk_en_i), 
-                                                    .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                    .wr_en_i(wr_en_i), 
-                                                    .wr_data_i(single_wire_in_w), 
-                                                    .wr_addr_i(single_wr_addr_w), 
-                                                    .rd_en_i(rd_en_i), 
-                                                    .rd_addr_i(single_rd_addr_w), 
-                                                    .ben_i(1'b1), 
-                                                    .rd_data_o(single_wire_out_w), 
-                                                    .one_err_det_o(one_err_det_o), 
-                                                    .two_err_det_o(two_err_det_o)) ; 
+                                                .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                    .rd_clk_i(rd_clk_i),
+                                                    .rst_i(rst_i),
+                                                    .wr_clk_en_i(wr_clk_en_i),
+                                                    .rd_clk_en_i(rd_clk_en_i),
+                                                    .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                    .wr_en_i(wr_en_i),
+                                                    .wr_data_i(single_wire_in_w),
+                                                    .wr_addr_i(single_wr_addr_w),
+                                                    .rd_en_i(rd_en_i),
+                                                    .rd_addr_i(single_rd_addr_w),
+                                                    .ben_i(1'b1),
+                                                    .rd_data_o(single_wire_out_w),
+                                                    .one_err_det_o(one_err_det_o),
+                                                    .two_err_det_o(two_err_det_o)) ;
                                     end
                                 else
                                     begin : no_init
@@ -1077,125 +1077,125 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 .RESET_RELEASE(RESET_RELEASE),
                                                 .BYTE_ENABLE(0),
                                                 .OUTPUT_CLK_EN(OUTPUT_CLK_EN),
-                                                .INIT_MODE(INIT_MODE)) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                    .rd_clk_i(rd_clk_i), 
-                                                    .rst_i(rst_i), 
-                                                    .wr_clk_en_i(wr_clk_en_i), 
-                                                    .rd_clk_en_i(rd_clk_en_i), 
-                                                    .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                    .wr_en_i(wr_en_i), 
-                                                    .wr_data_i(single_wire_in_w), 
-                                                    .wr_addr_i(single_wr_addr_w), 
-                                                    .rd_en_i(rd_en_i), 
-                                                    .rd_addr_i(single_rd_addr_w), 
-                                                    .ben_i(1'b1), 
-                                                    .rd_data_o(single_wire_out_w), 
-                                                    .one_err_det_o(one_err_det_o), 
-                                                    .two_err_det_o(two_err_det_o)) ; 
+                                                .INIT_MODE(INIT_MODE)) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                    .rd_clk_i(rd_clk_i),
+                                                    .rst_i(rst_i),
+                                                    .wr_clk_en_i(wr_clk_en_i),
+                                                    .rd_clk_en_i(rd_clk_en_i),
+                                                    .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                    .wr_en_i(wr_en_i),
+                                                    .wr_data_i(single_wire_in_w),
+                                                    .wr_addr_i(single_wr_addr_w),
+                                                    .rd_en_i(rd_en_i),
+                                                    .rd_addr_i(single_rd_addr_w),
+                                                    .ben_i(1'b1),
+                                                    .rd_data_o(single_wire_out_w),
+                                                    .one_err_det_o(one_err_det_o),
+                                                    .two_err_det_o(two_err_det_o)) ;
                                     end
                             end
                         else
                             begin : MULT_IMPL
-                                wire [(EBR_ADDR - 1):0] one_err_det_raw_w ; 
-                                wire [(EBR_ADDR - 1):0] two_err_det_raw_w ; 
+                                wire [(EBR_ADDR - 1):0] one_err_det_raw_w ;
+                                wire [(EBR_ADDR - 1):0] two_err_det_raw_w ;
                                 for (i0 = 0;(i0 < EBR_ADDR);i0 = (i0 + 1))
                                 begin : ADDR_x
-                                    wire [(R_PORT_USE - 1):0] raw_output_w ; 
-                                    assign rd_data_raw_w[i0] = raw_output_w ; 
-                                    wire chk_addr_wr_w ; 
-                                    if ((EBR_ADDR > 1)) 
+                                    wire [(R_PORT_USE - 1):0] raw_output_w ;
+                                    assign rd_data_raw_w[i0] = raw_output_w ;
+                                    wire chk_addr_wr_w ;
+                                    if ((EBR_ADDR > 1))
                                         begin : genblk1
-                                            assign chk_addr_wr_w = (wr_addr_i[(WADDR_WIDTH - 1):W_ADDR_WIDTH_IMPL] == i0) ; 
+                                            assign chk_addr_wr_w = (wr_addr_i[(WADDR_WIDTH - 1):W_ADDR_WIDTH_IMPL] == i0) ;
                                         end
                                     else
                                         begin : genblk1
-                                            assign chk_addr_wr_w = 1'b1 ; 
+                                            assign chk_addr_wr_w = 1'b1 ;
                                         end
-                                    wire [(W_ADDR_WIDTH_IMPL - 1):0] act_wr_addr_w ; 
-                                    if ((W_ADDR_WIDTH_IMPL > WADDR_WIDTH)) 
+                                    wire [(W_ADDR_WIDTH_IMPL - 1):0] act_wr_addr_w ;
+                                    if ((W_ADDR_WIDTH_IMPL > WADDR_WIDTH))
                                         begin : genblk2
-                                            assign act_wr_addr_w[(W_ADDR_WIDTH_IMPL - 1):WADDR_WIDTH] = 'h0000 ; 
-                                            assign act_wr_addr_w[(WADDR_WIDTH - 1):0] = wr_addr_i ; 
+                                            assign act_wr_addr_w[(W_ADDR_WIDTH_IMPL - 1):WADDR_WIDTH] = 'h0000 ;
+                                            assign act_wr_addr_w[(WADDR_WIDTH - 1):0] = wr_addr_i ;
                                         end
                                     else
                                         begin : genblk2
-                                            assign act_wr_addr_w = wr_addr_i[(W_ADDR_WIDTH_IMPL - 1):0] ; 
+                                            assign act_wr_addr_w = wr_addr_i[(W_ADDR_WIDTH_IMPL - 1):0] ;
                                         end
-                                    wire chk_addr_rd_w ; 
-                                    if ((EBR_ADDR > 1)) 
+                                    wire chk_addr_rd_w ;
+                                    if ((EBR_ADDR > 1))
                                         begin : genblk3
-                                            assign chk_addr_rd_w = (rd_addr_i[(RADDR_WIDTH - 1):R_ADDR_WIDTH_IMPL] == i0) ; 
+                                            assign chk_addr_rd_w = (rd_addr_i[(RADDR_WIDTH - 1):R_ADDR_WIDTH_IMPL] == i0) ;
                                         end
                                     else
                                         begin : genblk3
-                                            assign chk_addr_rd_w = 1'b1 ; 
+                                            assign chk_addr_rd_w = 1'b1 ;
                                         end
-                                    wire [(R_ADDR_WIDTH_IMPL - 1):0] act_rd_addr_w ; 
-                                    if ((R_ADDR_WIDTH_IMPL > RADDR_WIDTH)) 
+                                    wire [(R_ADDR_WIDTH_IMPL - 1):0] act_rd_addr_w ;
+                                    if ((R_ADDR_WIDTH_IMPL > RADDR_WIDTH))
                                         begin : genblk4
-                                            assign act_rd_addr_w[(R_ADDR_WIDTH_IMPL - 1):RADDR_WIDTH] = 'h0000 ; 
-                                            assign act_rd_addr_w[(RADDR_WIDTH - 1):0] = rd_addr_i ; 
+                                            assign act_rd_addr_w[(R_ADDR_WIDTH_IMPL - 1):RADDR_WIDTH] = 'h0000 ;
+                                            assign act_rd_addr_w[(RADDR_WIDTH - 1):0] = rd_addr_i ;
                                         end
                                     else
                                         begin : genblk4
-                                            assign act_rd_addr_w = rd_addr_i[(R_ADDR_WIDTH_IMPL - 1):0] ; 
+                                            assign act_rd_addr_w = rd_addr_i[(R_ADDR_WIDTH_IMPL - 1):0] ;
                                         end
-                                    wire [(EBR_DATA - 1):0] one_err_det_ind_w ; 
-                                    wire [(EBR_DATA - 1):0] two_err_det_ind_w ; 
-                                    if ((EBR_DATA == 1)) 
+                                    wire [(EBR_DATA - 1):0] one_err_det_ind_w ;
+                                    wire [(EBR_DATA - 1):0] two_err_det_ind_w ;
+                                    if ((EBR_DATA == 1))
                                         begin : genblk5
-                                            assign one_err_det_raw_w[i0] = one_err_det_ind_w[0] ; 
-                                            assign two_err_det_raw_w[i0] = two_err_det_ind_w[0] ; 
+                                            assign one_err_det_raw_w[i0] = one_err_det_ind_w[0] ;
+                                            assign two_err_det_raw_w[i0] = two_err_det_ind_w[0] ;
                                         end
                                     else
                                         begin : genblk5
-                                            assign one_err_det_raw_w[i0] = (|one_err_det_ind_w) ; 
-                                            assign two_err_det_raw_w[i0] = (|two_err_det_ind_w) ; 
+                                            assign one_err_det_raw_w[i0] = (|one_err_det_ind_w) ;
+                                            assign two_err_det_raw_w[i0] = (|two_err_det_ind_w) ;
                                         end
                                     for (i1 = 0;(i1 < EBR_DATA);i1 = (i1 + 1))
                                     begin : DATA_x
-                                        localparam ECO_POSX = (i1 * W_DATA_WIDTH_IMPL) ; 
-                                        localparam ECO_POSY = (i0 * W_ADDR_DEPTH_IMPL) ; 
-                                        wire [(W_DATA_WIDTH_IMPL - 1):0] act_wr_data_w ; 
-                                        wire [(R_DATA_WIDTH_IMPL - 1):0] act_rd_data_w ; 
-                                        wire one_err_det_ebr_w ; 
-                                        wire two_err_det_ebr_w ; 
-                                        assign one_err_det_ind_w[i1] = one_err_det_ebr_w ; 
-                                        assign two_err_det_ind_w[i1] = two_err_det_ebr_w ; 
-                                        if (((W_DATA_WIDTH_IMPL * (i1 + 1)) <= W_PORT_USE)) 
+                                        localparam ECO_POSX = (i1 * W_DATA_WIDTH_IMPL) ;
+                                        localparam ECO_POSY = (i0 * W_ADDR_DEPTH_IMPL) ;
+                                        wire [(W_DATA_WIDTH_IMPL - 1):0] act_wr_data_w ;
+                                        wire [(R_DATA_WIDTH_IMPL - 1):0] act_rd_data_w ;
+                                        wire one_err_det_ebr_w ;
+                                        wire two_err_det_ebr_w ;
+                                        assign one_err_det_ind_w[i1] = one_err_det_ebr_w ;
+                                        assign two_err_det_ind_w[i1] = two_err_det_ebr_w ;
+                                        if (((W_DATA_WIDTH_IMPL * (i1 + 1)) <= W_PORT_USE))
                                             begin : genblk1
-                                                assign act_wr_data_w = master_data_in_w[((W_DATA_WIDTH_IMPL * (i1 + 1)) - 1):(W_DATA_WIDTH_IMPL * i1)] ; 
+                                                assign act_wr_data_w = master_data_in_w[((W_DATA_WIDTH_IMPL * (i1 + 1)) - 1):(W_DATA_WIDTH_IMPL * i1)] ;
                                             end
                                         else
                                             begin : genblk1
-                                                assign act_wr_data_w[(W_DATA_WIDTH_IMPL - 1):(W_PORT_USE - (i1 * W_DATA_WIDTH_IMPL))] = 'h0000 ; 
-                                                assign act_wr_data_w[(W_PORT_USE - (1 + (W_DATA_WIDTH_IMPL * i1))):0] = master_data_in_w[(W_PORT_USE - 1):(W_DATA_WIDTH_IMPL * i1)] ; 
+                                                assign act_wr_data_w[(W_DATA_WIDTH_IMPL - 1):(W_PORT_USE - (i1 * W_DATA_WIDTH_IMPL))] = 'h0000 ;
+                                                assign act_wr_data_w[(W_PORT_USE - (1 + (W_DATA_WIDTH_IMPL * i1))):0] = master_data_in_w[(W_PORT_USE - 1):(W_DATA_WIDTH_IMPL * i1)] ;
                                             end
-                                        if (((R_DATA_WIDTH_IMPL * (i1 + 1)) <= R_PORT_USE)) 
+                                        if (((R_DATA_WIDTH_IMPL * (i1 + 1)) <= R_PORT_USE))
                                             begin : genblk2
-                                                assign raw_output_w[((R_DATA_WIDTH_IMPL * (i1 + 1)) - 1):(R_DATA_WIDTH_IMPL * i1)] = act_rd_data_w ; 
+                                                assign raw_output_w[((R_DATA_WIDTH_IMPL * (i1 + 1)) - 1):(R_DATA_WIDTH_IMPL * i1)] = act_rd_data_w ;
                                             end
                                         else
                                             begin : genblk2
-                                                assign raw_output_w[(R_PORT_USE - 1):(R_DATA_WIDTH_IMPL * i1)] = act_rd_data_w[(R_PORT_USE - (1 + (R_DATA_WIDTH_IMPL * i1))):0] ; 
+                                                assign raw_output_w[(R_PORT_USE - 1):(R_DATA_WIDTH_IMPL * i1)] = act_rd_data_w[(R_PORT_USE - (1 + (R_DATA_WIDTH_IMPL * i1))):0] ;
                                             end
-                                        wire f_wr_en_w = (chk_addr_wr_w & wr_en_i) ; 
-                                        wire f_rd_en_w = (chk_addr_rd_w & rd_en_i) ; 
-                                        wire ff_rd_en_w ; 
-                                        if ((REGMODE == "noreg")) 
+                                        wire f_wr_en_w = (chk_addr_wr_w & wr_en_i) ;
+                                        wire f_rd_en_w = (chk_addr_rd_w & rd_en_i) ;
+                                        wire ff_rd_en_w ;
+                                        if ((REGMODE == "noreg"))
                                             begin : genblk3
-                                                assign ff_rd_en_w = f_rd_en_w ; 
+                                                assign ff_rd_en_w = f_rd_en_w ;
                                             end
                                         else
                                             begin : genblk3
-                                                reg f_rd_en_r ; 
-                                                assign ff_rd_en_w = (f_rd_en_w | f_rd_en_r) ; 
-                                                if ((RESETMODE == "sync")) 
+                                                reg f_rd_en_r ;
+                                                assign ff_rd_en_w = (f_rd_en_w | f_rd_en_r) ;
+                                                if ((RESETMODE == "sync"))
                                                     begin : genblk1
                                                         always
                                                             @(posedge rd_clk_i)
                                                             begin
-                                                                if (rst_i) 
+                                                                if (rst_i)
                                                                     begin
                                                                         f_rd_en_r <=  1'b0 ;
                                                                     end
@@ -1208,10 +1208,10 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 else
                                                     begin : genblk1
                                                         always
-                                                            @(posedge rd_clk_i or 
+                                                            @(posedge rd_clk_i or
                                                                 posedge rst_i)
                                                             begin
-                                                                if (rst_i) 
+                                                                if (rst_i)
                                                                     begin
                                                                         f_rd_en_r <=  1'b0 ;
                                                                     end
@@ -1222,7 +1222,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                             end
                                                     end
                                             end
-                                        if ((INIT_MODE == "mem_file")) 
+                                        if ((INIT_MODE == "mem_file"))
                                             begin : mem_init
                                                 palette_ram_ipgen_lscc_ram_dp_core #(.MEM_ID(MEM_ID),
                                                         .MEM_SIZE(MEM_SIZE),
@@ -1304,21 +1304,21 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         .INIT_VALUE_3C(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3C[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00")),
                                                         .INIT_VALUE_3D(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3D[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00")),
                                                         .INIT_VALUE_3E(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3E[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00")),
-                                                        .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                            .rd_clk_i(rd_clk_i), 
-                                                            .rst_i(rst_i), 
-                                                            .wr_clk_en_i(wr_clk_en_i), 
-                                                            .rd_clk_en_i(rd_clk_en_i), 
-                                                            .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                            .wr_en_i(f_wr_en_w), 
-                                                            .wr_data_i(act_wr_data_w), 
-                                                            .wr_addr_i(act_wr_addr_w), 
-                                                            .rd_en_i(ff_rd_en_w), 
-                                                            .rd_addr_i(act_rd_addr_w), 
-                                                            .ben_i(1'b1), 
-                                                            .rd_data_o(act_rd_data_w), 
-                                                            .one_err_det_o(one_err_det_ebr_w), 
-                                                            .two_err_det_o(two_err_det_ebr_w)) ; 
+                                                        .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                            .rd_clk_i(rd_clk_i),
+                                                            .rst_i(rst_i),
+                                                            .wr_clk_en_i(wr_clk_en_i),
+                                                            .rd_clk_en_i(rd_clk_en_i),
+                                                            .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                            .wr_en_i(f_wr_en_w),
+                                                            .wr_data_i(act_wr_data_w),
+                                                            .wr_addr_i(act_wr_addr_w),
+                                                            .rd_en_i(ff_rd_en_w),
+                                                            .rd_addr_i(act_rd_addr_w),
+                                                            .ben_i(1'b1),
+                                                            .rd_data_o(act_rd_data_w),
+                                                            .one_err_det_o(one_err_det_ebr_w),
+                                                            .two_err_det_o(two_err_det_ebr_w)) ;
                                             end
                                         else
                                             begin : no_init
@@ -1338,46 +1338,46 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         .RESET_RELEASE(RESET_RELEASE),
                                                         .BYTE_ENABLE(0),
                                                         .OUTPUT_CLK_EN(OUTPUT_CLK_EN),
-                                                        .BYTE_ENABLE_POL(BYTE_ENABLE_POL)) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                            .rd_clk_i(rd_clk_i), 
-                                                            .rst_i(rst_i), 
-                                                            .wr_clk_en_i(wr_clk_en_i), 
-                                                            .rd_clk_en_i(rd_clk_en_i), 
-                                                            .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                            .wr_en_i(f_wr_en_w), 
-                                                            .wr_data_i(act_wr_data_w), 
-                                                            .wr_addr_i(act_wr_addr_w), 
-                                                            .rd_en_i(ff_rd_en_w), 
-                                                            .rd_addr_i(act_rd_addr_w), 
-                                                            .ben_i(1'b1), 
-                                                            .rd_data_o(act_rd_data_w), 
-                                                            .one_err_det_o(one_err_det_ebr_w), 
-                                                            .two_err_det_o(two_err_det_ebr_w)) ; 
+                                                        .BYTE_ENABLE_POL(BYTE_ENABLE_POL)) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                            .rd_clk_i(rd_clk_i),
+                                                            .rst_i(rst_i),
+                                                            .wr_clk_en_i(wr_clk_en_i),
+                                                            .rd_clk_en_i(rd_clk_en_i),
+                                                            .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                            .wr_en_i(f_wr_en_w),
+                                                            .wr_data_i(act_wr_data_w),
+                                                            .wr_addr_i(act_wr_addr_w),
+                                                            .rd_en_i(ff_rd_en_w),
+                                                            .rd_addr_i(act_rd_addr_w),
+                                                            .ben_i(1'b1),
+                                                            .rd_data_o(act_rd_data_w),
+                                                            .one_err_det_o(one_err_det_ebr_w),
+                                                            .two_err_det_o(two_err_det_ebr_w)) ;
                                             end
                                     end
                                 end
-                                if ((EBR_ADDR == 1)) 
+                                if ((EBR_ADDR == 1))
                                     begin : genblk2
-                                        assign master_data_out_w = rd_data_raw_w[0] ; 
-                                        assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_raw_w[0] : 1'b0) ; 
-                                        assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_raw_w[0] : 1'b0) ; 
+                                        assign master_data_out_w = rd_data_raw_w[0] ;
+                                        assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_raw_w[0] : 1'b0) ;
+                                        assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_raw_w[0] : 1'b0) ;
                                     end
                                 else
                                     begin : genblk2
-                                        reg [(R_PORT_USE - 1):0] rd_out_buff_r ; 
-                                        reg [(RADDR_WIDTH - 1):0] rd_addr_0_r ; 
-                                        reg one_err_det_r ; 
-                                        reg two_err_det_r ; 
-                                        assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_r : 1'b0) ; 
-                                        assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_r : 1'b0) ; 
-                                        if ((REGMODE == "noreg")) 
+                                        reg [(R_PORT_USE - 1):0] rd_out_buff_r ;
+                                        reg [(RADDR_WIDTH - 1):0] rd_addr_0_r ;
+                                        reg one_err_det_r ;
+                                        reg two_err_det_r ;
+                                        assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_r : 1'b0) ;
+                                        assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_r : 1'b0) ;
+                                        if ((REGMODE == "noreg"))
                                             begin : _nreg
-                                                if ((RESETMODE == "sync")) 
+                                                if ((RESETMODE == "sync"))
                                                     begin : genblk1
                                                         always
                                                             @(posedge rd_clk_i)
                                                             begin
-                                                                if (rst_i) 
+                                                                if (rst_i)
                                                                     begin
                                                                         rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                                     end
@@ -1390,10 +1390,10 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 else
                                                     begin : genblk1
                                                         always
-                                                            @(posedge rd_clk_i or 
+                                                            @(posedge rd_clk_i or
                                                                 posedge rst_i)
                                                             begin
-                                                                if (rst_i) 
+                                                                if (rst_i)
                                                                     begin
                                                                         rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                                     end
@@ -1406,13 +1406,13 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                             end
                                         else
                                             begin : _reg
-                                                reg [(RADDR_WIDTH - 1):0] rd_addr_1_r = {RADDR_WIDTH{1'b0}} ; 
-                                                if ((RESETMODE == "sync")) 
+                                                reg [(RADDR_WIDTH - 1):0] rd_addr_1_r = {RADDR_WIDTH{1'b0}} ;
+                                                if ((RESETMODE == "sync"))
                                                     begin : genblk1
                                                         always
                                                             @(posedge rd_clk_i)
                                                             begin
-                                                                if (rst_i) 
+                                                                if (rst_i)
                                                                     begin
                                                                         rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                                         rd_addr_1_r <=  {RADDR_WIDTH{1'b0}} ;
@@ -1427,10 +1427,10 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 else
                                                     begin : genblk1
                                                         always
-                                                            @(posedge rd_clk_i or 
+                                                            @(posedge rd_clk_i or
                                                                 posedge rst_i)
                                                             begin
-                                                                if (rst_i) 
+                                                                if (rst_i)
                                                                     begin
                                                                         rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                                         rd_addr_1_r <=  {RADDR_WIDTH{1'b0}} ;
@@ -1450,122 +1450,122 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 one_err_det_r = one_err_det_raw_w[rd_addr_0_r[(RADDR_WIDTH - 1):R_ADDR_WIDTH_IMPL]] ;
                                                 two_err_det_r = two_err_det_raw_w[rd_addr_0_r[(RADDR_WIDTH - 1):R_ADDR_WIDTH_IMPL]] ;
                                             end
-                                        assign master_data_out_w = rd_out_buff_r ; 
+                                        assign master_data_out_w = rd_out_buff_r ;
                                     end
                             end
                     end
                 else
                     begin : MIX_W_BYTE_EN
-                        localparam MAX_DATA = ((RDATA_WIDTH > WDATA_WIDTH) ? RDATA_WIDTH : WDATA_WIDTH) ; 
-                        localparam MIN_DATA = ((RDATA_WIDTH > WDATA_WIDTH) ? WDATA_WIDTH : RDATA_WIDTH) ; 
+                        localparam MAX_DATA = ((RDATA_WIDTH > WDATA_WIDTH) ? RDATA_WIDTH : WDATA_WIDTH) ;
+                        localparam MIN_DATA = ((RDATA_WIDTH > WDATA_WIDTH) ? WDATA_WIDTH : RDATA_WIDTH) ;
                         if ((is_byte_enable_good(MAX_DATA,
                                 MIN_DATA,
-                                FAMILY_CODE) == 1)) 
+                                FAMILY_CODE) == 1))
                             begin : BYTE_PASS
                                 localparam W_DATA_WIDTH_IMPL = getCASE1DataImpl_wBen(WADDR_DEPTH,
                                             WDATA_WIDTH,
                                             RADDR_DEPTH,
                                             RDATA_WIDTH,
                                             1,
-                                            FAMILY_CODE) ; 
+                                            FAMILY_CODE) ;
                                 localparam W_ADDR_DEPTH_IMPL = data_to_addr(W_DATA_WIDTH_IMPL,
-                                            FAMILY_CODE) ; 
-                                localparam W_ADDR_WIDTH_IMPL = clog2(W_ADDR_DEPTH_IMPL) ; 
+                                            FAMILY_CODE) ;
+                                localparam W_ADDR_WIDTH_IMPL = clog2(W_ADDR_DEPTH_IMPL) ;
                                 localparam R_DATA_WIDTH_IMPL = getCASE1DataImpl_wBen(WADDR_DEPTH,
                                             WDATA_WIDTH,
                                             RADDR_DEPTH,
                                             RDATA_WIDTH,
                                             0,
-                                            FAMILY_CODE) ; 
+                                            FAMILY_CODE) ;
                                 localparam R_ADDR_DEPTH_IMPL = data_to_addr(R_DATA_WIDTH_IMPL,
-                                            FAMILY_CODE) ; 
-                                localparam R_ADDR_WIDTH_IMPL = clog2(R_ADDR_DEPTH_IMPL) ; 
+                                            FAMILY_CODE) ;
+                                localparam R_ADDR_WIDTH_IMPL = clog2(R_ADDR_DEPTH_IMPL) ;
                                 localparam EBR_ADDR = roundUP(WADDR_DEPTH,
-                                            W_ADDR_DEPTH_IMPL) ; 
+                                            W_ADDR_DEPTH_IMPL) ;
                                 localparam EBR_DATA = roundUP(WDATA_WIDTH,
-                                            W_DATA_WIDTH_IMPL) ; 
+                                            W_DATA_WIDTH_IMPL) ;
                                 localparam TRUE_BYTE_WIDTH = getTrueByteWidth(W_DATA_WIDTH_IMPL,
-                                            FAMILY_CODE) ; 
-                                wire [(RDATA_WIDTH - 1):0] rd_data_raw_w [(EBR_ADDR - 1):0] ; 
-                                wire [(BYTE_WIDTH - 1):0] byte_en_buffer_w ; 
-                                wire [(WDATA_WIDTH - 1):0] master_data_in_w ; 
-                                wire [(RDATA_WIDTH - 1):0] master_data_out_w ; 
-                                if ((EBR_DATA > 1)) 
+                                            FAMILY_CODE) ;
+                                wire [(RDATA_WIDTH - 1):0] rd_data_raw_w [(EBR_ADDR - 1):0] ;
+                                wire [(BYTE_WIDTH - 1):0] byte_en_buffer_w ;
+                                wire [(WDATA_WIDTH - 1):0] master_data_in_w ;
+                                wire [(RDATA_WIDTH - 1):0] master_data_out_w ;
+                                if ((EBR_DATA > 1))
                                     begin : WIRE_chk
-                                        if ((WDATA_WIDTH > RDATA_WIDTH)) 
+                                        if ((WDATA_WIDTH > RDATA_WIDTH))
                                             begin : W_OVR_R
-                                                assign rd_data_o = master_data_out_w ; 
-                                                wire [(R_DATA_WIDTH_IMPL - 1):0] master_data_ind_w [((WDATA_WIDTH / R_DATA_WIDTH_IMPL) - 1):0] ; 
+                                                assign rd_data_o = master_data_out_w ;
+                                                wire [(R_DATA_WIDTH_IMPL - 1):0] master_data_ind_w [((WDATA_WIDTH / R_DATA_WIDTH_IMPL) - 1):0] ;
                                                 for (i_0 = 0;(i_0 < EBR_DATA);i_0 = (i_0 + 1))
                                                 begin : genblk1
                                                     for (i_1 = 0;(i_1 < (WDATA_WIDTH / (EBR_DATA * R_DATA_WIDTH_IMPL)));i_1 = (i_1 + 1))
                                                     begin : genblk1
-                                                        assign master_data_ind_w[(((WDATA_WIDTH / (EBR_DATA * R_DATA_WIDTH_IMPL)) * i_0) + i_1)] = wr_data_i[((((i_0 * R_DATA_WIDTH_IMPL) + ((i_1 * EBR_DATA) * R_DATA_WIDTH_IMPL)) + R_DATA_WIDTH_IMPL) - 1):((i_0 * R_DATA_WIDTH_IMPL) + ((i_1 * EBR_DATA) * R_DATA_WIDTH_IMPL))] ; 
+                                                        assign master_data_ind_w[(((WDATA_WIDTH / (EBR_DATA * R_DATA_WIDTH_IMPL)) * i_0) + i_1)] = wr_data_i[((((i_0 * R_DATA_WIDTH_IMPL) + ((i_1 * EBR_DATA) * R_DATA_WIDTH_IMPL)) + R_DATA_WIDTH_IMPL) - 1):((i_0 * R_DATA_WIDTH_IMPL) + ((i_1 * EBR_DATA) * R_DATA_WIDTH_IMPL))] ;
                                                     end
                                                 end
-                                                localparam BYTE_EN_BUFF = (TRUE_BYTE_WIDTH / (WDATA_WIDTH / RDATA_WIDTH)) ; 
+                                                localparam BYTE_EN_BUFF = (TRUE_BYTE_WIDTH / (WDATA_WIDTH / RDATA_WIDTH)) ;
                                                 for (i_0 = 0;(i_0 < (WDATA_WIDTH / (EBR_DATA * R_DATA_WIDTH_IMPL)));i_0 = (i_0 + 1))
                                                 begin : genblk2
                                                     for (i_1 = 0;(i_1 < EBR_DATA);i_1 = (i_1 + 1))
                                                     begin : genblk1
-                                                        assign byte_en_buffer_w[(((((i_1 * (WDATA_WIDTH / (EBR_DATA * R_DATA_WIDTH_IMPL))) + i_0) * BYTE_EN_BUFF) + BYTE_EN_BUFF) - 1):(((i_1 * (WDATA_WIDTH / (EBR_DATA * R_DATA_WIDTH_IMPL))) + i_0) * BYTE_EN_BUFF)] = ben_i[(((((i_0 * EBR_DATA) + i_1) * BYTE_EN_BUFF) + BYTE_EN_BUFF) - 1):(((i_0 * EBR_DATA) + i_1) * BYTE_EN_BUFF)] ; 
+                                                        assign byte_en_buffer_w[(((((i_1 * (WDATA_WIDTH / (EBR_DATA * R_DATA_WIDTH_IMPL))) + i_0) * BYTE_EN_BUFF) + BYTE_EN_BUFF) - 1):(((i_1 * (WDATA_WIDTH / (EBR_DATA * R_DATA_WIDTH_IMPL))) + i_0) * BYTE_EN_BUFF)] = ben_i[(((((i_0 * EBR_DATA) + i_1) * BYTE_EN_BUFF) + BYTE_EN_BUFF) - 1):(((i_0 * EBR_DATA) + i_1) * BYTE_EN_BUFF)] ;
                                                     end
                                                 end
                                                 for (i_0 = 0;(i_0 < (WDATA_WIDTH / R_DATA_WIDTH_IMPL));i_0 = (i_0 + 1))
                                                 begin : genblk3
-                                                    assign master_data_in_w[(((i_0 * R_DATA_WIDTH_IMPL) + R_DATA_WIDTH_IMPL) - 1):(i_0 * R_DATA_WIDTH_IMPL)] = master_data_ind_w[i_0] ; 
+                                                    assign master_data_in_w[(((i_0 * R_DATA_WIDTH_IMPL) + R_DATA_WIDTH_IMPL) - 1):(i_0 * R_DATA_WIDTH_IMPL)] = master_data_ind_w[i_0] ;
                                                 end
                                             end
                                         else
                                             begin : R_OVR_W
-                                                assign master_data_in_w = wr_data_i ; 
-                                                assign byte_en_buffer_w = ben_i ; 
-                                                wire [(W_DATA_WIDTH_IMPL - 1):0] master_data_ind_out [((RDATA_WIDTH / W_DATA_WIDTH_IMPL) - 1):0] ; 
+                                                assign master_data_in_w = wr_data_i ;
+                                                assign byte_en_buffer_w = ben_i ;
+                                                wire [(W_DATA_WIDTH_IMPL - 1):0] master_data_ind_out [((RDATA_WIDTH / W_DATA_WIDTH_IMPL) - 1):0] ;
                                                 for (i_0 = 0;(i_0 < (RDATA_WIDTH / WDATA_WIDTH));i_0 = (i_0 + 1))
                                                 begin : genblk1
                                                     for (i_1 = 0;(i_1 < EBR_DATA);i_1 = (i_1 + 1))
                                                     begin : genblk1
-                                                        assign master_data_ind_out[(i_1 + (i_0 * EBR_DATA))] = master_data_out_w[((((i_0 * W_DATA_WIDTH_IMPL) + (i_1 * R_DATA_WIDTH_IMPL)) + W_DATA_WIDTH_IMPL) - 1):((i_0 * W_DATA_WIDTH_IMPL) + (i_1 * R_DATA_WIDTH_IMPL))] ; 
+                                                        assign master_data_ind_out[(i_1 + (i_0 * EBR_DATA))] = master_data_out_w[((((i_0 * W_DATA_WIDTH_IMPL) + (i_1 * R_DATA_WIDTH_IMPL)) + W_DATA_WIDTH_IMPL) - 1):((i_0 * W_DATA_WIDTH_IMPL) + (i_1 * R_DATA_WIDTH_IMPL))] ;
                                                     end
                                                 end
                                                 for (i_0 = 0;(i_0 < (RDATA_WIDTH / W_DATA_WIDTH_IMPL));i_0 = (i_0 + 1))
                                                 begin : genblk2
-                                                    assign rd_data_o[(((i_0 + 1) * W_DATA_WIDTH_IMPL) - 1):(i_0 * W_DATA_WIDTH_IMPL)] = master_data_ind_out[i_0] ; 
+                                                    assign rd_data_o[(((i_0 + 1) * W_DATA_WIDTH_IMPL) - 1):(i_0 * W_DATA_WIDTH_IMPL)] = master_data_ind_out[i_0] ;
                                                 end
                                             end
                                     end
                                 else
-                                    if ((EBR_ADDR > 1)) 
+                                    if ((EBR_ADDR > 1))
                                         begin : genblk1
-                                            assign master_data_in_w[(WDATA_WIDTH - 1):0] = wr_data_i ; 
-                                            assign byte_en_buffer_w[(TRUE_BYTE_WIDTH - 1):0] = ben_i ; 
-                                            assign rd_data_o = master_data_out_w[(RDATA_WIDTH - 1):0] ; 
+                                            assign master_data_in_w[(WDATA_WIDTH - 1):0] = wr_data_i ;
+                                            assign byte_en_buffer_w[(TRUE_BYTE_WIDTH - 1):0] = ben_i ;
+                                            assign rd_data_o = master_data_out_w[(RDATA_WIDTH - 1):0] ;
                                         end
-                                if (((EBR_ADDR == 1) && (EBR_DATA == 1))) 
+                                if (((EBR_ADDR == 1) && (EBR_DATA == 1)))
                                     begin : SINGLE_IMPL
-                                        localparam W_SINGULAR_DATA_x = WDATA_WIDTH ; 
+                                        localparam W_SINGULAR_DATA_x = WDATA_WIDTH ;
                                         localparam W_SINGULAR_ADDR_x = clog2(data_to_addr(W_SINGULAR_DATA_x,
-                                                        FAMILY_CODE)) ; 
-                                        localparam R_SINGULAR_DATA_x = RDATA_WIDTH ; 
+                                                        FAMILY_CODE)) ;
+                                        localparam R_SINGULAR_DATA_x = RDATA_WIDTH ;
                                         localparam R_SINGULAR_ADDR_x = clog2(data_to_addr(R_SINGULAR_DATA_x,
-                                                        FAMILY_CODE)) ; 
-                                        wire [(W_SINGULAR_DATA_x - 1):0] single_true_wr_in_w ; 
-                                        wire [(R_SINGULAR_DATA_x - 1):0] single_true_rd_out_w ; 
-                                        wire [(W_SINGULAR_ADDR_x - 1):0] single_true_wr_addr_w ; 
-                                        wire [(R_SINGULAR_ADDR_x - 1):0] single_true_rd_addr_w ; 
-                                        assign single_true_wr_in_w[(WDATA_WIDTH - 1):0] = wr_data_i ; 
-                                        if ((W_SINGULAR_ADDR_x > WADDR_WIDTH)) 
+                                                        FAMILY_CODE)) ;
+                                        wire [(W_SINGULAR_DATA_x - 1):0] single_true_wr_in_w ;
+                                        wire [(R_SINGULAR_DATA_x - 1):0] single_true_rd_out_w ;
+                                        wire [(W_SINGULAR_ADDR_x - 1):0] single_true_wr_addr_w ;
+                                        wire [(R_SINGULAR_ADDR_x - 1):0] single_true_rd_addr_w ;
+                                        assign single_true_wr_in_w[(WDATA_WIDTH - 1):0] = wr_data_i ;
+                                        if ((W_SINGULAR_ADDR_x > WADDR_WIDTH))
                                             begin : genblk1
-                                                assign single_true_wr_addr_w[(W_SINGULAR_ADDR_x - 1):WADDR_WIDTH] = 'h0000 ; 
+                                                assign single_true_wr_addr_w[(W_SINGULAR_ADDR_x - 1):WADDR_WIDTH] = 'h0000 ;
                                             end
-                                        assign single_true_wr_addr_w[(WADDR_WIDTH - 1):0] = wr_addr_i ; 
-                                        assign rd_data_o = single_true_rd_out_w ; 
-                                        if ((R_SINGULAR_ADDR_x > RADDR_WIDTH)) 
+                                        assign single_true_wr_addr_w[(WADDR_WIDTH - 1):0] = wr_addr_i ;
+                                        assign rd_data_o = single_true_rd_out_w ;
+                                        if ((R_SINGULAR_ADDR_x > RADDR_WIDTH))
                                             begin : genblk2
-                                                assign single_true_rd_addr_w[(R_SINGULAR_ADDR_x - 1):RADDR_WIDTH] = 'h0000 ; 
+                                                assign single_true_rd_addr_w[(R_SINGULAR_ADDR_x - 1):RADDR_WIDTH] = 'h0000 ;
                                             end
-                                        assign single_true_rd_addr_w[(RADDR_WIDTH - 1):0] = rd_addr_i ; 
-                                        if ((INIT_MODE == "mem_file")) 
+                                        assign single_true_rd_addr_w[(RADDR_WIDTH - 1):0] = rd_addr_i ;
+                                        if ((INIT_MODE == "mem_file"))
                                             begin : mem_init
                                                 palette_ram_ipgen_lscc_ram_dp_core #(.MEM_ID(MEM_ID),
                                                         .MEM_SIZE(MEM_SIZE),
@@ -1645,21 +1645,21 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         .INIT_VALUE_3C(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3C : "0x00")),
                                                         .INIT_VALUE_3D(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3D : "0x00")),
                                                         .INIT_VALUE_3E(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3E : "0x00")),
-                                                        .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                            .rd_clk_i(rd_clk_i), 
-                                                            .rst_i(rst_i), 
-                                                            .wr_clk_en_i(wr_clk_en_i), 
-                                                            .rd_clk_en_i(rd_clk_en_i), 
-                                                            .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                            .wr_en_i(wr_en_i), 
-                                                            .wr_data_i(single_true_wr_in_w), 
-                                                            .wr_addr_i(single_true_wr_addr_w), 
-                                                            .rd_en_i(rd_en_i), 
-                                                            .rd_addr_i(single_true_rd_addr_w), 
-                                                            .ben_i(ben_i), 
-                                                            .rd_data_o(single_true_rd_out_w), 
-                                                            .one_err_det_o(one_err_det_o), 
-                                                            .two_err_det_o(two_err_det_o)) ; 
+                                                        .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                            .rd_clk_i(rd_clk_i),
+                                                            .rst_i(rst_i),
+                                                            .wr_clk_en_i(wr_clk_en_i),
+                                                            .rd_clk_en_i(rd_clk_en_i),
+                                                            .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                            .wr_en_i(wr_en_i),
+                                                            .wr_data_i(single_true_wr_in_w),
+                                                            .wr_addr_i(single_true_wr_addr_w),
+                                                            .rd_en_i(rd_en_i),
+                                                            .rd_addr_i(single_true_rd_addr_w),
+                                                            .ben_i(ben_i),
+                                                            .rd_data_o(single_true_rd_out_w),
+                                                            .one_err_det_o(one_err_det_o),
+                                                            .two_err_det_o(two_err_det_o)) ;
                                             end
                                         else
                                             begin : no_init
@@ -1677,142 +1677,142 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         .BYTE_ENABLE(1),
                                                         .INIT_MODE(INIT_MODE),
                                                         .OUTPUT_CLK_EN(OUTPUT_CLK_EN),
-                                                        .BYTE_ENABLE_POL(BYTE_ENABLE_POL)) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                            .rd_clk_i(rd_clk_i), 
-                                                            .rst_i(rst_i), 
-                                                            .wr_clk_en_i(wr_clk_en_i), 
-                                                            .rd_clk_en_i(rd_clk_en_i), 
-                                                            .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                            .wr_en_i(wr_en_i), 
-                                                            .wr_data_i(single_true_wr_in_w), 
-                                                            .wr_addr_i(single_true_wr_addr_w), 
-                                                            .rd_en_i(rd_en_i), 
-                                                            .rd_addr_i(single_true_rd_addr_w), 
-                                                            .ben_i(ben_i), 
-                                                            .rd_data_o(single_true_rd_out_w), 
-                                                            .one_err_det_o(one_err_det_o), 
-                                                            .two_err_det_o(two_err_det_o)) ; 
+                                                        .BYTE_ENABLE_POL(BYTE_ENABLE_POL)) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                            .rd_clk_i(rd_clk_i),
+                                                            .rst_i(rst_i),
+                                                            .wr_clk_en_i(wr_clk_en_i),
+                                                            .rd_clk_en_i(rd_clk_en_i),
+                                                            .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                            .wr_en_i(wr_en_i),
+                                                            .wr_data_i(single_true_wr_in_w),
+                                                            .wr_addr_i(single_true_wr_addr_w),
+                                                            .rd_en_i(rd_en_i),
+                                                            .rd_addr_i(single_true_rd_addr_w),
+                                                            .ben_i(ben_i),
+                                                            .rd_data_o(single_true_rd_out_w),
+                                                            .one_err_det_o(one_err_det_o),
+                                                            .two_err_det_o(two_err_det_o)) ;
                                             end
                                     end
                                 else
                                     begin : MULT_IMPL
-                                        wire [(EBR_ADDR - 1):0] one_err_det_raw_w ; 
-                                        wire [(EBR_ADDR - 1):0] two_err_det_raw_w ; 
+                                        wire [(EBR_ADDR - 1):0] one_err_det_raw_w ;
+                                        wire [(EBR_ADDR - 1):0] two_err_det_raw_w ;
                                         for (i0 = 0;(i0 < EBR_ADDR);i0 = (i0 + 1))
                                         begin : ADDR_x
-                                            wire [(RDATA_WIDTH - 1):0] raw_output_w ; 
-                                            assign rd_data_raw_w[i0] = raw_output_w ; 
-                                            wire chk_addr_wr_w ; 
-                                            if ((EBR_ADDR > 1)) 
+                                            wire [(RDATA_WIDTH - 1):0] raw_output_w ;
+                                            assign rd_data_raw_w[i0] = raw_output_w ;
+                                            wire chk_addr_wr_w ;
+                                            if ((EBR_ADDR > 1))
                                                 begin : genblk1
-                                                    assign chk_addr_wr_w = (wr_addr_i[(WADDR_WIDTH - 1):W_ADDR_WIDTH_IMPL] == i0) ; 
+                                                    assign chk_addr_wr_w = (wr_addr_i[(WADDR_WIDTH - 1):W_ADDR_WIDTH_IMPL] == i0) ;
                                                 end
                                             else
                                                 begin : genblk1
-                                                    assign chk_addr_wr_w = 1'b1 ; 
+                                                    assign chk_addr_wr_w = 1'b1 ;
                                                 end
-                                            wire [(W_ADDR_WIDTH_IMPL - 1):0] act_wr_addr_w ; 
-                                            if ((W_ADDR_WIDTH_IMPL > WADDR_WIDTH)) 
+                                            wire [(W_ADDR_WIDTH_IMPL - 1):0] act_wr_addr_w ;
+                                            if ((W_ADDR_WIDTH_IMPL > WADDR_WIDTH))
                                                 begin : genblk2
-                                                    assign act_wr_addr_w[(W_ADDR_WIDTH_IMPL - 1):WADDR_WIDTH] = 'h0000 ; 
-                                                    assign act_wr_addr_w[(WADDR_WIDTH - 1):0] = wr_addr_i ; 
+                                                    assign act_wr_addr_w[(W_ADDR_WIDTH_IMPL - 1):WADDR_WIDTH] = 'h0000 ;
+                                                    assign act_wr_addr_w[(WADDR_WIDTH - 1):0] = wr_addr_i ;
                                                 end
                                             else
                                                 begin : genblk2
-                                                    assign act_wr_addr_w = wr_addr_i[(W_ADDR_WIDTH_IMPL - 1):0] ; 
+                                                    assign act_wr_addr_w = wr_addr_i[(W_ADDR_WIDTH_IMPL - 1):0] ;
                                                 end
-                                            wire chk_addr_rd_w ; 
-                                            if ((EBR_ADDR > 1)) 
+                                            wire chk_addr_rd_w ;
+                                            if ((EBR_ADDR > 1))
                                                 begin : genblk3
-                                                    assign chk_addr_rd_w = (rd_addr_i[(RADDR_WIDTH - 1):R_ADDR_WIDTH_IMPL] == i0) ; 
+                                                    assign chk_addr_rd_w = (rd_addr_i[(RADDR_WIDTH - 1):R_ADDR_WIDTH_IMPL] == i0) ;
                                                 end
                                             else
                                                 begin : genblk3
-                                                    assign chk_addr_rd_w = 1'b1 ; 
+                                                    assign chk_addr_rd_w = 1'b1 ;
                                                 end
-                                            wire [(R_ADDR_WIDTH_IMPL - 1):0] act_rd_addr_w ; 
-                                            if ((R_ADDR_WIDTH_IMPL > RADDR_WIDTH)) 
+                                            wire [(R_ADDR_WIDTH_IMPL - 1):0] act_rd_addr_w ;
+                                            if ((R_ADDR_WIDTH_IMPL > RADDR_WIDTH))
                                                 begin : genblk4
-                                                    assign act_rd_addr_w[(R_ADDR_WIDTH_IMPL - 1):RADDR_WIDTH] = 'h0000 ; 
-                                                    assign act_rd_addr_w[(RADDR_WIDTH - 1):0] = rd_addr_i ; 
+                                                    assign act_rd_addr_w[(R_ADDR_WIDTH_IMPL - 1):RADDR_WIDTH] = 'h0000 ;
+                                                    assign act_rd_addr_w[(RADDR_WIDTH - 1):0] = rd_addr_i ;
                                                 end
                                             else
                                                 begin : genblk4
-                                                    assign act_rd_addr_w = rd_addr_i[(R_ADDR_WIDTH_IMPL - 1):0] ; 
+                                                    assign act_rd_addr_w = rd_addr_i[(R_ADDR_WIDTH_IMPL - 1):0] ;
                                                 end
-                                            wire [(EBR_DATA - 1):0] one_err_det_ind_w ; 
-                                            wire [(EBR_DATA - 1):0] two_err_det_ind_w ; 
-                                            if ((EBR_DATA == 1)) 
+                                            wire [(EBR_DATA - 1):0] one_err_det_ind_w ;
+                                            wire [(EBR_DATA - 1):0] two_err_det_ind_w ;
+                                            if ((EBR_DATA == 1))
                                                 begin : genblk5
-                                                    assign one_err_det_raw_w[i0] = one_err_det_ind_w[0] ; 
-                                                    assign two_err_det_raw_w[i0] = two_err_det_ind_w[0] ; 
+                                                    assign one_err_det_raw_w[i0] = one_err_det_ind_w[0] ;
+                                                    assign two_err_det_raw_w[i0] = two_err_det_ind_w[0] ;
                                                 end
                                             else
                                                 begin : genblk5
-                                                    assign one_err_det_raw_w[i0] = (|one_err_det_ind_w) ; 
-                                                    assign two_err_det_raw_w[i0] = (|two_err_det_ind_w) ; 
+                                                    assign one_err_det_raw_w[i0] = (|one_err_det_ind_w) ;
+                                                    assign two_err_det_raw_w[i0] = (|two_err_det_ind_w) ;
                                                 end
                                             for (i1 = 0;(i1 < EBR_DATA);i1 = (i1 + 1))
                                             begin : DATA_x
-                                                localparam ECO_POSX = (i1 * W_DATA_WIDTH_IMPL) ; 
-                                                localparam ECO_POSY = (i0 * W_ADDR_DEPTH_IMPL) ; 
-                                                wire [(W_DATA_WIDTH_IMPL - 1):0] act_wr_data_w ; 
-                                                wire [(R_DATA_WIDTH_IMPL - 1):0] act_rd_data_w ; 
-                                                wire [(TRUE_BYTE_WIDTH - 1):0] act_ben_w ; 
-                                                wire one_err_det_ebr_w ; 
-                                                wire two_err_det_ebr_w ; 
-                                                assign one_err_det_ind_w[i1] = one_err_det_ebr_w ; 
-                                                assign two_err_det_ind_w[i1] = two_err_det_ebr_w ; 
-                                                if (((W_DATA_WIDTH_IMPL * (i1 + 1)) <= WDATA_WIDTH)) 
+                                                localparam ECO_POSX = (i1 * W_DATA_WIDTH_IMPL) ;
+                                                localparam ECO_POSY = (i0 * W_ADDR_DEPTH_IMPL) ;
+                                                wire [(W_DATA_WIDTH_IMPL - 1):0] act_wr_data_w ;
+                                                wire [(R_DATA_WIDTH_IMPL - 1):0] act_rd_data_w ;
+                                                wire [(TRUE_BYTE_WIDTH - 1):0] act_ben_w ;
+                                                wire one_err_det_ebr_w ;
+                                                wire two_err_det_ebr_w ;
+                                                assign one_err_det_ind_w[i1] = one_err_det_ebr_w ;
+                                                assign two_err_det_ind_w[i1] = two_err_det_ebr_w ;
+                                                if (((W_DATA_WIDTH_IMPL * (i1 + 1)) <= WDATA_WIDTH))
                                                     begin : genblk1
-                                                        assign act_wr_data_w = master_data_in_w[((W_DATA_WIDTH_IMPL * (i1 + 1)) - 1):(W_DATA_WIDTH_IMPL * i1)] ; 
+                                                        assign act_wr_data_w = master_data_in_w[((W_DATA_WIDTH_IMPL * (i1 + 1)) - 1):(W_DATA_WIDTH_IMPL * i1)] ;
                                                     end
                                                 else
                                                     begin : genblk1
-                                                        assign act_wr_data_w[(W_DATA_WIDTH_IMPL - 1):(WDATA_WIDTH - (i1 * W_DATA_WIDTH_IMPL))] = 'h0000 ; 
-                                                        assign act_wr_data_w[(WDATA_WIDTH - (1 + (W_DATA_WIDTH_IMPL * i1))):0] = master_data_in_w[(WDATA_WIDTH - 1):(W_DATA_WIDTH_IMPL * i1)] ; 
+                                                        assign act_wr_data_w[(W_DATA_WIDTH_IMPL - 1):(WDATA_WIDTH - (i1 * W_DATA_WIDTH_IMPL))] = 'h0000 ;
+                                                        assign act_wr_data_w[(WDATA_WIDTH - (1 + (W_DATA_WIDTH_IMPL * i1))):0] = master_data_in_w[(WDATA_WIDTH - 1):(W_DATA_WIDTH_IMPL * i1)] ;
                                                     end
-                                                if (((R_DATA_WIDTH_IMPL * (i1 + 1)) <= RDATA_WIDTH)) 
+                                                if (((R_DATA_WIDTH_IMPL * (i1 + 1)) <= RDATA_WIDTH))
                                                     begin : genblk2
-                                                        assign raw_output_w[((R_DATA_WIDTH_IMPL * (i1 + 1)) - 1):(R_DATA_WIDTH_IMPL * i1)] = act_rd_data_w ; 
+                                                        assign raw_output_w[((R_DATA_WIDTH_IMPL * (i1 + 1)) - 1):(R_DATA_WIDTH_IMPL * i1)] = act_rd_data_w ;
                                                     end
                                                 else
                                                     begin : genblk2
-                                                        assign raw_output_w[(RDATA_WIDTH - 1):(R_DATA_WIDTH_IMPL * i1)] = act_rd_data_w[(RDATA_WIDTH - (1 + (R_DATA_WIDTH_IMPL * i1))):0] ; 
+                                                        assign raw_output_w[(RDATA_WIDTH - 1):(R_DATA_WIDTH_IMPL * i1)] = act_rd_data_w[(RDATA_WIDTH - (1 + (R_DATA_WIDTH_IMPL * i1))):0] ;
                                                     end
-                                                if ((TRUE_BYTE_WIDTH > 1)) 
+                                                if ((TRUE_BYTE_WIDTH > 1))
                                                     begin : genblk3
-                                                        if ((((i1 + 1) * TRUE_BYTE_WIDTH) <= BYTE_WIDTH)) 
+                                                        if ((((i1 + 1) * TRUE_BYTE_WIDTH) <= BYTE_WIDTH))
                                                             begin : genblk1
-                                                                assign act_ben_w = byte_en_buffer_w[(((i1 + 1) * TRUE_BYTE_WIDTH) - 1):(i1 * TRUE_BYTE_WIDTH)] ; 
+                                                                assign act_ben_w = byte_en_buffer_w[(((i1 + 1) * TRUE_BYTE_WIDTH) - 1):(i1 * TRUE_BYTE_WIDTH)] ;
                                                             end
                                                         else
                                                             begin : genblk1
-                                                                assign act_ben_w[(BYTE_WIDTH - (1 + (i1 * TRUE_BYTE_WIDTH))):0] = byte_en_buffer_w[(BYTE_WIDTH - 1):(i1 * TRUE_BYTE_WIDTH)] ; 
-                                                                assign act_ben_w[(TRUE_BYTE_WIDTH - 1):(BYTE_WIDTH - (i1 * TRUE_BYTE_WIDTH))] = {(TRUE_BYTE_WIDTH - (BYTE_WIDTH - (i1 * TRUE_BYTE_WIDTH))){1'b1}} ; 
+                                                                assign act_ben_w[(BYTE_WIDTH - (1 + (i1 * TRUE_BYTE_WIDTH))):0] = byte_en_buffer_w[(BYTE_WIDTH - 1):(i1 * TRUE_BYTE_WIDTH)] ;
+                                                                assign act_ben_w[(TRUE_BYTE_WIDTH - 1):(BYTE_WIDTH - (i1 * TRUE_BYTE_WIDTH))] = {(TRUE_BYTE_WIDTH - (BYTE_WIDTH - (i1 * TRUE_BYTE_WIDTH))){1'b1}} ;
                                                             end
                                                     end
                                                 else
                                                     begin : genblk3
-                                                        assign act_ben_w[0] = byte_en_buffer_w[i1] ; 
+                                                        assign act_ben_w[0] = byte_en_buffer_w[i1] ;
                                                     end
-                                                wire f_wr_en_w = (chk_addr_wr_w & wr_en_i) ; 
-                                                wire f_rd_en_w = (chk_addr_rd_w & rd_en_i) ; 
-                                                wire ff_rd_en_w ; 
-                                                if ((REGMODE == "noreg")) 
+                                                wire f_wr_en_w = (chk_addr_wr_w & wr_en_i) ;
+                                                wire f_rd_en_w = (chk_addr_rd_w & rd_en_i) ;
+                                                wire ff_rd_en_w ;
+                                                if ((REGMODE == "noreg"))
                                                     begin : genblk4
-                                                        assign ff_rd_en_w = f_rd_en_w ; 
+                                                        assign ff_rd_en_w = f_rd_en_w ;
                                                     end
                                                 else
                                                     begin : genblk4
-                                                        reg f_rd_en_r ; 
-                                                        assign ff_rd_en_w = (f_rd_en_w | f_rd_en_r) ; 
-                                                        if ((RESETMODE == "sync")) 
+                                                        reg f_rd_en_r ;
+                                                        assign ff_rd_en_w = (f_rd_en_w | f_rd_en_r) ;
+                                                        if ((RESETMODE == "sync"))
                                                             begin : genblk1
                                                                 always
                                                                     @(posedge rd_clk_i)
                                                                     begin
-                                                                        if (rst_i) 
+                                                                        if (rst_i)
                                                                             begin
                                                                                 f_rd_en_r <=  1'b0 ;
                                                                             end
@@ -1825,10 +1825,10 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         else
                                                             begin : genblk1
                                                                 always
-                                                                    @(posedge rd_clk_i or 
+                                                                    @(posedge rd_clk_i or
                                                                         posedge rst_i)
                                                                     begin
-                                                                        if (rst_i) 
+                                                                        if (rst_i)
                                                                             begin
                                                                                 f_rd_en_r <=  1'b0 ;
                                                                             end
@@ -1839,7 +1839,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                                     end
                                                             end
                                                     end
-                                                if ((INIT_MODE == "mem_file")) 
+                                                if ((INIT_MODE == "mem_file"))
                                                     begin : mem_init
                                                         palette_ram_ipgen_lscc_ram_dp_core #(.MEM_ID(MEM_ID),
                                                                 .MEM_SIZE(MEM_SIZE),
@@ -1921,21 +1921,21 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                                 .INIT_VALUE_3C(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3C[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00")),
                                                                 .INIT_VALUE_3D(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3D[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00")),
                                                                 .INIT_VALUE_3E(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3E[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00")),
-                                                                .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                                    .rd_clk_i(rd_clk_i), 
-                                                                    .rst_i(rst_i), 
-                                                                    .wr_clk_en_i(wr_clk_en_i), 
-                                                                    .rd_clk_en_i(rd_clk_en_i), 
-                                                                    .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                                    .wr_en_i(f_wr_en_w), 
-                                                                    .wr_data_i(act_wr_data_w), 
-                                                                    .wr_addr_i(act_wr_addr_w), 
-                                                                    .rd_en_i(ff_rd_en_w), 
-                                                                    .rd_addr_i(act_rd_addr_w), 
-                                                                    .ben_i(act_ben_w), 
-                                                                    .rd_data_o(act_rd_data_w), 
-                                                                    .one_err_det_o(one_err_det_ebr_w), 
-                                                                    .two_err_det_o(two_err_det_ebr_w)) ; 
+                                                                .INIT_VALUE_3F(((checkINIT(FAMILY_CODE) == 1) ? INIT_VALUE_3F[((((((i0 * EBR_DATA) + i1) + 1) * STRING_LENGTH) * 8) - 1):((((i0 * EBR_DATA) + i1) * STRING_LENGTH) * 8)] : "0x00"))) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                                    .rd_clk_i(rd_clk_i),
+                                                                    .rst_i(rst_i),
+                                                                    .wr_clk_en_i(wr_clk_en_i),
+                                                                    .rd_clk_en_i(rd_clk_en_i),
+                                                                    .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                                    .wr_en_i(f_wr_en_w),
+                                                                    .wr_data_i(act_wr_data_w),
+                                                                    .wr_addr_i(act_wr_addr_w),
+                                                                    .rd_en_i(ff_rd_en_w),
+                                                                    .rd_addr_i(act_rd_addr_w),
+                                                                    .ben_i(act_ben_w),
+                                                                    .rd_data_o(act_rd_data_w),
+                                                                    .one_err_det_o(one_err_det_ebr_w),
+                                                                    .two_err_det_o(two_err_det_ebr_w)) ;
                                                     end
                                                 else
                                                     begin : no_init
@@ -1955,46 +1955,46 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                                 .BYTE_ENABLE(1),
                                                                 .OUTPUT_CLK_EN(OUTPUT_CLK_EN),
                                                                 .BYTE_ENABLE_POL(BYTE_ENABLE_POL),
-                                                                .INIT_MODE(INIT_MODE)) u_mem0 (.wr_clk_i(wr_clk_i), 
-                                                                    .rd_clk_i(rd_clk_i), 
-                                                                    .rst_i(rst_i), 
-                                                                    .wr_clk_en_i(wr_clk_en_i), 
-                                                                    .rd_clk_en_i(rd_clk_en_i), 
-                                                                    .rd_out_clk_en_i(rd_out_clk_en_i), 
-                                                                    .wr_en_i(f_wr_en_w), 
-                                                                    .wr_data_i(act_wr_data_w), 
-                                                                    .wr_addr_i(act_wr_addr_w), 
-                                                                    .rd_en_i(ff_rd_en_w), 
-                                                                    .rd_addr_i(act_rd_addr_w), 
-                                                                    .ben_i(act_ben_w), 
-                                                                    .rd_data_o(act_rd_data_w), 
-                                                                    .one_err_det_o(one_err_det_ebr_w), 
-                                                                    .two_err_det_o(two_err_det_ebr_w)) ; 
+                                                                .INIT_MODE(INIT_MODE)) u_mem0 (.wr_clk_i(wr_clk_i),
+                                                                    .rd_clk_i(rd_clk_i),
+                                                                    .rst_i(rst_i),
+                                                                    .wr_clk_en_i(wr_clk_en_i),
+                                                                    .rd_clk_en_i(rd_clk_en_i),
+                                                                    .rd_out_clk_en_i(rd_out_clk_en_i),
+                                                                    .wr_en_i(f_wr_en_w),
+                                                                    .wr_data_i(act_wr_data_w),
+                                                                    .wr_addr_i(act_wr_addr_w),
+                                                                    .rd_en_i(ff_rd_en_w),
+                                                                    .rd_addr_i(act_rd_addr_w),
+                                                                    .ben_i(act_ben_w),
+                                                                    .rd_data_o(act_rd_data_w),
+                                                                    .one_err_det_o(one_err_det_ebr_w),
+                                                                    .two_err_det_o(two_err_det_ebr_w)) ;
                                                     end
                                             end
                                         end
-                                        if ((EBR_ADDR == 1)) 
+                                        if ((EBR_ADDR == 1))
                                             begin : genblk2
-                                                assign master_data_out_w = rd_data_raw_w[0] ; 
-                                                assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_raw_w[0] : 1'b0) ; 
-                                                assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_raw_w[0] : 1'b0) ; 
+                                                assign master_data_out_w = rd_data_raw_w[0] ;
+                                                assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_raw_w[0] : 1'b0) ;
+                                                assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_raw_w[0] : 1'b0) ;
                                             end
                                         else
                                             begin : genblk2
-                                                reg [(RDATA_WIDTH - 1):0] rd_out_buff_r ; 
-                                                reg one_err_det_r = 1'b0 ; 
-                                                reg two_err_det_r = 1'b0 ; 
-                                                reg [(RADDR_WIDTH - 1):0] rd_addr_0_r = {RADDR_WIDTH{1'b0}} ; 
-                                                assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_r : 1'b0) ; 
-                                                assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_r : 1'b0) ; 
-                                                if ((REGMODE == "noreg")) 
+                                                reg [(RDATA_WIDTH - 1):0] rd_out_buff_r ;
+                                                reg one_err_det_r = 1'b0 ;
+                                                reg two_err_det_r = 1'b0 ;
+                                                reg [(RADDR_WIDTH - 1):0] rd_addr_0_r = {RADDR_WIDTH{1'b0}} ;
+                                                assign one_err_det_o = ((ECC_ENABLE == 1) ? one_err_det_r : 1'b0) ;
+                                                assign two_err_det_o = ((ECC_ENABLE == 1) ? two_err_det_r : 1'b0) ;
+                                                if ((REGMODE == "noreg"))
                                                     begin : _nreg
-                                                        if ((RESETMODE == "sync")) 
+                                                        if ((RESETMODE == "sync"))
                                                             begin : genblk1
                                                                 always
                                                                     @(posedge rd_clk_i)
                                                                     begin
-                                                                        if (rst_i) 
+                                                                        if (rst_i)
                                                                             begin
                                                                                 rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                                             end
@@ -2007,10 +2007,10 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         else
                                                             begin : genblk1
                                                                 always
-                                                                    @(posedge rd_clk_i or 
+                                                                    @(posedge rd_clk_i or
                                                                         posedge rst_i)
                                                                     begin
-                                                                        if (rst_i) 
+                                                                        if (rst_i)
                                                                             begin
                                                                                 rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                                             end
@@ -2023,13 +2023,13 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                     end
                                                 else
                                                     begin : _reg
-                                                        reg [(RADDR_WIDTH - 1):0] rd_addr_1_r = {RADDR_WIDTH{1'b0}} ; 
-                                                        if ((RESETMODE == "sync")) 
+                                                        reg [(RADDR_WIDTH - 1):0] rd_addr_1_r = {RADDR_WIDTH{1'b0}} ;
+                                                        if ((RESETMODE == "sync"))
                                                             begin : genblk1
                                                                 always
                                                                     @(posedge rd_clk_i)
                                                                     begin
-                                                                        if (rst_i) 
+                                                                        if (rst_i)
                                                                             begin
                                                                                 rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                                                 rd_addr_1_r <=  {RADDR_WIDTH{1'b0}} ;
@@ -2046,7 +2046,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                                 always
                                                                     @(posedge rd_clk_i)
                                                                     begin
-                                                                        if (rst_i) 
+                                                                        if (rst_i)
                                                                             begin
                                                                                 rd_addr_0_r <=  {RADDR_WIDTH{1'b0}} ;
                                                                                 rd_addr_1_r <=  {RADDR_WIDTH{1'b0}} ;
@@ -2066,7 +2066,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         one_err_det_r = one_err_det_raw_w[rd_addr_0_r[(RADDR_WIDTH - 1):R_ADDR_WIDTH_IMPL]] ;
                                                         two_err_det_r = two_err_det_raw_w[rd_addr_0_r[(RADDR_WIDTH - 1):R_ADDR_WIDTH_IMPL]] ;
                                                     end
-                                                assign master_data_out_w = rd_out_buff_r ; 
+                                                assign master_data_out_w = rd_out_buff_r ;
                                             end
                                     end
                             end
@@ -2075,43 +2075,43 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
     //------------------------------------------------------------------------------
     // Function Definition
     //------------------------------------------------------------------------------
-    function checkINIT ; 
-        input [31:0] dev_code ; 
+    function checkINIT ;
+        input [31:0] dev_code ;
         begin
             case (dev_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 checkINIT = 1 ;
-            default : 
+            default :
                 checkINIT = 0 ;
-            endcase 
+            endcase
         end
     endfunction
-    function [31:0] getTrueByteWidth ; 
-        input [31:0] dwid_in ; 
-        input [31:0] family_code ; 
+    function [31:0] getTrueByteWidth ;
+        input [31:0] dwid_in ;
+        input [31:0] family_code ;
         begin
             case (family_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 getTrueByteWidth = (((dwid_in == 36) || (dwid_in == 32)) ? 4 : (((dwid_in == 18) || (dwid_in == 16)) ? 2 : 1)) ;
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 getTrueByteWidth = ((dwid_in == 16) ? 2 : 1) ;
-            endcase 
+            endcase
         end
     endfunction
-    function [31:0] procData ; 
-        input [31:0] TARGET_DATA ; 
-        input isECC ; 
-        input [31:0] FAMILY_CODE ; 
+    function [31:0] procData ;
+        input [31:0] TARGET_DATA ;
+        input isECC ;
+        input [31:0] FAMILY_CODE ;
         begin
             procData = 1 ;
             while ((procData < TARGET_DATA))
                 begin
                     case (FAMILY_CODE)
-                    _FCODE_LIFCL_ : 
+                    _FCODE_LIFCL_ :
                         begin
-                            if (isECC) 
+                            if (isECC)
                                 begin
-                                    if ((procData < 32)) 
+                                    if ((procData < 32))
                                         begin
                                             procData = 32 ;
                                         end
@@ -2122,18 +2122,18 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                 end
                             else
                                 begin
-                                    if ((procData < 8)) 
+                                    if ((procData < 8))
                                         begin
                                             procData = (procData * 2) ;
                                         end
                                     else
                                         begin
-                                            if ((procData == 8)) 
+                                            if ((procData == 8))
                                                 begin
                                                     procData = 9 ;
                                                 end
                                             else
-                                                if (((procData % 9) == 0)) 
+                                                if (((procData % 9) == 0))
                                                     begin
                                                         procData = ((procData / 9) * 16) ;
                                                     end
@@ -2144,74 +2144,74 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                         end
                                 end
                         end
-                    _FCODE_ICE_ : 
+                    _FCODE_ICE_ :
                         procData = (procData * 2) ;
-                    default : 
+                    default :
                         procData = TARGET_DATA ;
-                    endcase 
+                    endcase
                 end
         end
     endfunction
-    function [31:0] getSingularCase ; 
-        input [31:0] port_use ; 
-        input [31:0] family_code ; 
+    function [31:0] getSingularCase ;
+        input [31:0] port_use ;
+        input [31:0] family_code ;
         begin
             case (family_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
-                    if ((port_use > 32)) 
+                    if ((port_use > 32))
                         getSingularCase = 36 ;
                     else
-                        if ((port_use > 18)) 
+                        if ((port_use > 18))
                             getSingularCase = 32 ;
                         else
-                            if ((port_use > 16)) 
+                            if ((port_use > 16))
                                 getSingularCase = 18 ;
                             else
-                                if ((port_use > 9)) 
+                                if ((port_use > 9))
                                     getSingularCase = 16 ;
                                 else
-                                    if ((port_use > 8)) 
+                                    if ((port_use > 8))
                                         getSingularCase = 9 ;
                                     else
                                         getSingularCase = (2 ** clog2(port_use)) ;
                 end
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 getSingularCase = (2 ** clog2(port_use)) ;
-            default : 
+            default :
                 getSingularCase = 8 ;
-            endcase 
+            endcase
         end
     endfunction
-    function [31:0] getCASE1DataImpl ; 
-        input [31:0] wr_addr_depth ; 
-        input [31:0] wr_data_width ; 
-        input [31:0] rd_addr_depth ; 
-        input [31:0] rd_data_width ; 
-        input is_taking_write_port ; 
-        input is_taking_total_ebr ; 
-        input is_ecc ; 
-        input [31:0] family_code ; 
-        reg [5:0] num0, 
-            num1 ; 
-        reg [31:0] divisor, 
-            wr_addr_div, 
-            wr_data_div, 
-            rd_addr_div, 
-            rd_data_div ; 
-        reg [31:0] wr_addr_chk, 
-            wr_data_chk, 
-            rd_addr_chk, 
-            rd_data_chk ; 
-        reg [31:0] EBR_usage, 
-            prod ; 
+    function [31:0] getCASE1DataImpl ;
+        input [31:0] wr_addr_depth ;
+        input [31:0] wr_data_width ;
+        input [31:0] rd_addr_depth ;
+        input [31:0] rd_data_width ;
+        input is_taking_write_port ;
+        input is_taking_total_ebr ;
+        input is_ecc ;
+        input [31:0] family_code ;
+        reg [5:0] num0,
+            num1 ;
+        reg [31:0] divisor,
+            wr_addr_div,
+            wr_data_div,
+            rd_addr_div,
+            rd_data_div ;
+        reg [31:0] wr_addr_chk,
+            wr_data_chk,
+            rd_addr_chk,
+            rd_data_chk ;
+        reg [31:0] EBR_usage,
+            prod ;
         begin
             divisor = ((wr_addr_depth > rd_addr_depth) ? (wr_addr_depth / rd_addr_depth) : (rd_addr_depth / wr_addr_depth)) ;
             EBR_usage = 32'hffffffff ;
             getCASE1DataImpl = 0 ;
-            if ((is_ecc == 1)) 
+            if ((is_ecc == 1))
                 begin
-                    if ((is_taking_write_port == 1)) 
+                    if ((is_taking_write_port == 1))
                         begin
                             getCASE1DataImpl = 32 ;
                         end
@@ -2222,9 +2222,9 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                 end
             else
                 begin
-                    if ((family_code == _FCODE_LIFCL_)) 
+                    if ((family_code == _FCODE_LIFCL_))
                         begin
-                            if ((divisor <= 4)) 
+                            if ((divisor <= 4))
                                 begin
                                     for (num0 = 0 ; (num0 < 3) ; num0 = (num0 + 1))
                                         begin
@@ -2248,18 +2248,18 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                             rd_addr_div) ;
                                                     rd_data_chk = roundUP(rd_data_width,
                                                             rd_data_div) ;
-                                                    if (((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk))) 
+                                                    if (((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)))
                                                         begin
-                                                            if ((((wr_data_width % wr_data_div) == 0) && ((rd_data_width % rd_data_div) == 0))) 
+                                                            if ((((wr_data_width % wr_data_div) == 0) && ((rd_data_width % rd_data_div) == 0)))
                                                                 begin
                                                                     prod = (wr_addr_chk * wr_data_chk) ;
-                                                                    if ((prod < EBR_usage)) 
+                                                                    if ((prod < EBR_usage))
                                                                         begin
                                                                             EBR_usage = prod ;
-                                                                            if ((is_taking_total_ebr == 1'b1)) 
+                                                                            if ((is_taking_total_ebr == 1'b1))
                                                                                 getCASE1DataImpl = EBR_usage ;
                                                                             else
-                                                                                if ((is_taking_write_port == 1'b1)) 
+                                                                                if ((is_taking_write_port == 1'b1))
                                                                                 getCASE1DataImpl = wr_data_div ;
                                                                                 else
                                                                                 getCASE1DataImpl = rd_data_div ;
@@ -2292,18 +2292,18 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                             rd_addr_div) ;
                                     rd_data_chk = roundUP(rd_data_width,
                                             rd_data_div) ;
-                                    if (((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk))) 
+                                    if (((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)))
                                         begin
-                                            if ((((wr_data_width % wr_data_div) == 0) && ((rd_data_width % rd_data_div) == 0))) 
+                                            if ((((wr_data_width % wr_data_div) == 0) && ((rd_data_width % rd_data_div) == 0)))
                                                 begin
                                                     prod = (wr_addr_chk * wr_data_chk) ;
-                                                    if ((prod < EBR_usage)) 
+                                                    if ((prod < EBR_usage))
                                                         begin
                                                             EBR_usage = prod ;
-                                                            if ((is_taking_total_ebr == 1'b1)) 
+                                                            if ((is_taking_total_ebr == 1'b1))
                                                                 getCASE1DataImpl = EBR_usage ;
                                                             else
-                                                                if ((is_taking_write_port == 1'b1)) 
+                                                                if ((is_taking_write_port == 1'b1))
                                                                     getCASE1DataImpl = wr_data_div ;
                                                                 else
                                                                     getCASE1DataImpl = rd_data_div ;
@@ -2315,45 +2315,45 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                 end
         end
     endfunction
-    function [31:0] getCASE1DataImpl_wBen ; 
-        input [31:0] wr_addr_depth ; 
-        input [31:0] wr_data_width ; 
-        input [31:0] rd_addr_depth ; 
-        input [31:0] rd_data_width ; 
-        input is_taking_write_port ; 
-        input [31:0] family_code ; 
-        reg [31:0] max_width, 
-            min_width, 
-            byte_size ; 
-        reg [31:0] temp_00, 
-            temp_01, 
-            upper_factor, 
-            lower_factor ; 
-        reg [31:0] wr_addr_chk, 
-            wr_data_chk, 
-            rd_addr_chk, 
-            rd_data_chk, 
-            wr_data_div, 
-            rd_data_div ; 
+    function [31:0] getCASE1DataImpl_wBen ;
+        input [31:0] wr_addr_depth ;
+        input [31:0] wr_data_width ;
+        input [31:0] rd_addr_depth ;
+        input [31:0] rd_data_width ;
+        input is_taking_write_port ;
+        input [31:0] family_code ;
+        reg [31:0] max_width,
+            min_width,
+            byte_size ;
+        reg [31:0] temp_00,
+            temp_01,
+            upper_factor,
+            lower_factor ;
+        reg [31:0] wr_addr_chk,
+            wr_data_chk,
+            rd_addr_chk,
+            rd_data_chk,
+            wr_data_div,
+            rd_data_div ;
         begin
             max_width = ((wr_data_width > rd_data_width) ? wr_data_width : rd_data_width) ;
             min_width = ((wr_data_width < rd_data_width) ? wr_data_width : rd_data_width) ;
             byte_size = (((max_width % 9) == 0) ? 9 : 8) ;
             case (family_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
-                    if (((max_width / min_width) == 4)) 
+                    if (((max_width / min_width) == 4))
                         begin
-                            if ((wr_data_width > rd_data_width)) 
+                            if ((wr_data_width > rd_data_width))
                                 begin
-                                    if ((is_taking_write_port == 1)) 
+                                    if ((is_taking_write_port == 1))
                                         getCASE1DataImpl_wBen = (4 * byte_size) ;
                                     else
                                         getCASE1DataImpl_wBen = byte_size ;
                                 end
                             else
                                 begin
-                                    if ((is_taking_write_port == 1)) 
+                                    if ((is_taking_write_port == 1))
                                         getCASE1DataImpl_wBen = byte_size ;
                                     else
                                         getCASE1DataImpl_wBen = (4 * byte_size) ;
@@ -2361,7 +2361,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                         end
                     else
                         begin
-                            if ((wr_data_width > rd_data_width)) 
+                            if ((wr_data_width > rd_data_width))
                                 begin
                                     wr_addr_chk = roundUP(wr_addr_depth,
                                             data_to_addr(36,
@@ -2375,7 +2375,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     rd_data_div = ((byte_size == 9) ? 18 : 16) ;
                                     rd_data_chk = roundUP(rd_data_width,
                                             rd_data_div) ;
-                                    if (((((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)) && ((wr_data_width % wr_data_div) == 0)) && ((rd_data_width % rd_data_div) == 0))) 
+                                    if (((((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)) && ((wr_data_width % wr_data_div) == 0)) && ((rd_data_width % rd_data_div) == 0)))
                                         temp_00 = (wr_addr_chk * wr_data_chk) ;
                                     else
                                         temp_00 = 32'hffffffff ;
@@ -2391,20 +2391,20 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     rd_data_div = ((byte_size == 9) ? 9 : 8) ;
                                     rd_data_chk = roundUP(rd_data_width,
                                             rd_data_div) ;
-                                    if (((((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)) && ((wr_data_width % wr_data_div) == 0)) && ((rd_data_width % rd_data_div) == 0))) 
+                                    if (((((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)) && ((wr_data_width % wr_data_div) == 0)) && ((rd_data_width % rd_data_div) == 0)))
                                         temp_01 = (wr_addr_chk * wr_data_chk) ;
                                     else
                                         temp_01 = 32'hffffffff ;
-                                    if ((temp_00 < temp_01)) 
+                                    if ((temp_00 < temp_01))
                                         begin
-                                            if ((is_taking_write_port == 1)) 
+                                            if ((is_taking_write_port == 1))
                                                 getCASE1DataImpl_wBen = (4 * byte_size) ;
                                             else
                                                 getCASE1DataImpl_wBen = (2 * byte_size) ;
                                         end
                                     else
                                         begin
-                                            if ((is_taking_write_port == 1)) 
+                                            if ((is_taking_write_port == 1))
                                                 getCASE1DataImpl_wBen = (2 * byte_size) ;
                                             else
                                                 getCASE1DataImpl_wBen = byte_size ;
@@ -2424,7 +2424,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     rd_data_div = ((byte_size == 9) ? 36 : 32) ;
                                     rd_data_chk = roundUP(rd_data_width,
                                             rd_data_div) ;
-                                    if (((((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)) && ((wr_data_width % wr_data_div) == 0)) && ((rd_data_width % rd_data_div) == 0))) 
+                                    if (((((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)) && ((wr_data_width % wr_data_div) == 0)) && ((rd_data_width % rd_data_div) == 0)))
                                         temp_00 = (wr_addr_chk * wr_data_chk) ;
                                     else
                                         temp_00 = 32'hffffffff ;
@@ -2440,20 +2440,20 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     rd_data_div = ((byte_size == 9) ? 18 : 16) ;
                                     rd_data_chk = roundUP(rd_data_width,
                                             rd_data_div) ;
-                                    if (((((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)) && ((wr_data_width % wr_data_div) == 0)) && ((rd_data_width % rd_data_div) == 0))) 
+                                    if (((((wr_addr_chk == rd_addr_chk) && (wr_data_chk == rd_data_chk)) && ((wr_data_width % wr_data_div) == 0)) && ((rd_data_width % rd_data_div) == 0)))
                                         temp_01 = (wr_addr_chk * wr_data_chk) ;
                                     else
                                         temp_01 = 32'hffffffff ;
-                                    if ((temp_00 < temp_01)) 
+                                    if ((temp_00 < temp_01))
                                         begin
-                                            if ((is_taking_write_port == 1)) 
+                                            if ((is_taking_write_port == 1))
                                                 getCASE1DataImpl_wBen = (2 * byte_size) ;
                                             else
                                                 getCASE1DataImpl_wBen = (4 * byte_size) ;
                                         end
                                     else
                                         begin
-                                            if ((is_taking_write_port == 1)) 
+                                            if ((is_taking_write_port == 1))
                                                 getCASE1DataImpl_wBen = byte_size ;
                                             else
                                                 getCASE1DataImpl_wBen = (2 * byte_size) ;
@@ -2461,189 +2461,189 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                 end
                         end
                 end
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 begin
-                    if ((wr_data_width > rd_data_width)) 
+                    if ((wr_data_width > rd_data_width))
                         begin
-                            if ((is_taking_write_port == 1)) 
+                            if ((is_taking_write_port == 1))
                                 getCASE1DataImpl_wBen = 16 ;
                             else
                                 getCASE1DataImpl_wBen = 8 ;
                         end
                     else
                         begin
-                            if ((is_taking_write_port == 1)) 
+                            if ((is_taking_write_port == 1))
                                 getCASE1DataImpl_wBen = 8 ;
                             else
                                 getCASE1DataImpl_wBen = 16 ;
                         end
                 end
-            endcase 
+            endcase
         end
     endfunction
-    function [31:0] getDatabase ; 
-        input [31:0] base_count ; 
-        input [31:0] index ; 
-        input [31:0] family_code ; 
+    function [31:0] getDatabase ;
+        input [31:0] base_count ;
+        input [31:0] index ;
+        input [31:0] family_code ;
         begin
             case (family_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
                     case (base_count)
-                    9 : 
+                    9 :
                         begin
                             case (index)
-                            0 : 
+                            0 :
                                 getDatabase = 9 ;
-                            1 : 
+                            1 :
                                 getDatabase = 18 ;
-                            default : 
+                            default :
                                 getDatabase = 36 ;
-                            endcase 
+                            endcase
                         end
-                    8 : 
+                    8 :
                         begin
                             case (index)
-                            0 : 
+                            0 :
                                 getDatabase = 1 ;
-                            1 : 
+                            1 :
                                 getDatabase = 2 ;
-                            2 : 
+                            2 :
                                 getDatabase = 4 ;
-                            3 : 
+                            3 :
                                 getDatabase = 8 ;
-                            4 : 
+                            4 :
                                 getDatabase = 16 ;
-                            default : 
+                            default :
                                 getDatabase = 32 ;
-                            endcase 
+                            endcase
                         end
-                    default : 
+                    default :
                         getDatabase = 16 ;
-                    endcase 
+                    endcase
                 end
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 begin
                     case (index)
-                    0 : 
+                    0 :
                         getDatabase = 2 ;
-                    1 : 
+                    1 :
                         getDatabase = 4 ;
-                    2 : 
+                    2 :
                         getDatabase = 8 ;
-                    default : 
+                    default :
                         getDatabase = 16 ;
-                    endcase 
+                    endcase
                 end
-            default : 
+            default :
                 getDatabase = 8 ;
-            endcase 
+            endcase
         end
     endfunction
-    function [31:0] data_to_addr ; 
-        input [31:0] data_size ; 
-        input [31:0] family_code ; 
+    function [31:0] data_to_addr ;
+        input [31:0] data_size ;
+        input [31:0] family_code ;
         begin
             case (family_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
                     case (data_size)
-                    36 : 
+                    36 :
                         data_to_addr = 512 ;
-                    32 : 
+                    32 :
                         data_to_addr = 512 ;
-                    18 : 
+                    18 :
                         data_to_addr = 1024 ;
-                    16 : 
+                    16 :
                         data_to_addr = 1024 ;
-                    9 : 
+                    9 :
                         data_to_addr = 2048 ;
-                    8 : 
+                    8 :
                         data_to_addr = 2048 ;
-                    4 : 
+                    4 :
                         data_to_addr = 4096 ;
-                    2 : 
+                    2 :
                         data_to_addr = 8192 ;
-                    default : 
+                    default :
                         data_to_addr = 16384 ;
-                    endcase 
+                    endcase
                 end
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 begin
                     case (data_size)
-                    16 : 
+                    16 :
                         data_to_addr = 256 ;
-                    8 : 
+                    8 :
                         data_to_addr = 512 ;
-                    4 : 
+                    4 :
                         data_to_addr = 1024 ;
-                    2 : 
+                    2 :
                         data_to_addr = 2048 ;
-                    endcase 
+                    endcase
                 end
-            default : 
+            default :
                 data_to_addr = 1024 ;
-            endcase 
+            endcase
         end
     endfunction
-    function [31:0] addr_to_data ; 
-        input [31:0] addr_size ; 
-        input [31:0] family_code ; 
+    function [31:0] addr_to_data ;
+        input [31:0] addr_size ;
+        input [31:0] family_code ;
         begin
             case (family_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
                     case (addr_size)
-                    512 : 
+                    512 :
                         addr_to_data = 36 ;
-                    1024 : 
+                    1024 :
                         addr_to_data = 18 ;
-                    2048 : 
+                    2048 :
                         addr_to_data = 9 ;
-                    4096 : 
+                    4096 :
                         addr_to_data = 4 ;
-                    8192 : 
+                    8192 :
                         addr_to_data = 2 ;
-                    default : 
+                    default :
                         addr_to_data = 1 ;
-                    endcase 
+                    endcase
                 end
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 begin
                     case (addr_size)
-                    256 : 
+                    256 :
                         addr_to_data = 16 ;
-                    512 : 
+                    512 :
                         addr_to_data = 8 ;
-                    1024 : 
+                    1024 :
                         addr_to_data = 4 ;
-                    2048 : 
+                    2048 :
                         addr_to_data = 2 ;
-                    endcase 
+                    endcase
                 end
-            default : 
+            default :
                 addr_to_data = 1024 ;
-            endcase 
+            endcase
         end
     endfunction
-    function [31:0] getMinimaData ; 
-        input [31:0] depth_impl ; 
-        input [31:0] width_impl ; 
-        input is_byte_enable ; 
-        input [31:0] byte_size ; 
-        input is_ecc ; 
-        input [31:0] family_code ; 
-        reg [31:0] temp_00, 
-            temp_01, 
-            temp_02, 
-            temp_03, 
-            temp_04, 
-            temp_05 ; 
+    function [31:0] getMinimaData ;
+        input [31:0] depth_impl ;
+        input [31:0] width_impl ;
+        input is_byte_enable ;
+        input [31:0] byte_size ;
+        input is_ecc ;
+        input [31:0] family_code ;
+        reg [31:0] temp_00,
+            temp_01,
+            temp_02,
+            temp_03,
+            temp_04,
+            temp_05 ;
         begin
             case (family_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
-                    if (is_ecc) 
+                    if (is_ecc)
                         begin
                             getMinimaData = 32 ;
                         end
@@ -2673,7 +2673,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                     width_impl,
                                     16384,
                                     1) ;
-                            if (((is_byte_enable == 1) && ((width_impl % 9) != 0))) 
+                            if (((is_byte_enable == 1) && ((width_impl % 9) != 0)))
                                 begin
                                     temp_00 = EBR_impl(depth_impl,
                                             width_impl,
@@ -2687,22 +2687,22 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                             width_impl,
                                             2048,
                                             8) ;
-                                    if ((temp_00 < temp_01)) 
+                                    if ((temp_00 < temp_01))
                                         begin
-                                            if ((temp_00 < temp_02)) 
+                                            if ((temp_00 < temp_02))
                                                 begin
-                                                    if ((temp_00 < temp_03)) 
+                                                    if ((temp_00 < temp_03))
                                                         begin
-                                                            if ((temp_00 < temp_04)) 
+                                                            if ((temp_00 < temp_04))
                                                                 begin
-                                                                    if ((temp_00 < temp_05)) 
+                                                                    if ((temp_00 < temp_05))
                                                                         getMinimaData = 32 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2710,16 +2710,16 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         end
                                                     else
                                                         begin
-                                                            if ((temp_03 < temp_04)) 
+                                                            if ((temp_03 < temp_04))
                                                                 begin
-                                                                    if ((temp_03 < temp_05)) 
+                                                                    if ((temp_03 < temp_05))
                                                                         getMinimaData = 4 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2728,18 +2728,18 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 end
                                             else
                                                 begin
-                                                    if ((temp_02 < temp_03)) 
+                                                    if ((temp_02 < temp_03))
                                                         begin
-                                                            if ((temp_02 < temp_04)) 
+                                                            if ((temp_02 < temp_04))
                                                                 begin
-                                                                    if ((temp_02 < temp_05)) 
+                                                                    if ((temp_02 < temp_05))
                                                                         getMinimaData = 8 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2747,16 +2747,16 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         end
                                                     else
                                                         begin
-                                                            if ((temp_03 < temp_04)) 
+                                                            if ((temp_03 < temp_04))
                                                                 begin
-                                                                    if ((temp_03 < temp_05)) 
+                                                                    if ((temp_03 < temp_05))
                                                                         getMinimaData = 4 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2766,20 +2766,20 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                         end
                                     else
                                         begin
-                                            if ((temp_01 < temp_02)) 
+                                            if ((temp_01 < temp_02))
                                                 begin
-                                                    if ((temp_01 < temp_03)) 
+                                                    if ((temp_01 < temp_03))
                                                         begin
-                                                            if ((temp_01 < temp_04)) 
+                                                            if ((temp_01 < temp_04))
                                                                 begin
-                                                                    if ((temp_01 < temp_05)) 
+                                                                    if ((temp_01 < temp_05))
                                                                         getMinimaData = 16 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2787,16 +2787,16 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         end
                                                     else
                                                         begin
-                                                            if ((temp_03 < temp_04)) 
+                                                            if ((temp_03 < temp_04))
                                                                 begin
-                                                                    if ((temp_03 < temp_05)) 
+                                                                    if ((temp_03 < temp_05))
                                                                         getMinimaData = 4 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2805,18 +2805,18 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 end
                                             else
                                                 begin
-                                                    if ((temp_02 < temp_03)) 
+                                                    if ((temp_02 < temp_03))
                                                         begin
-                                                            if ((temp_02 < temp_04)) 
+                                                            if ((temp_02 < temp_04))
                                                                 begin
-                                                                    if ((temp_02 < temp_05)) 
+                                                                    if ((temp_02 < temp_05))
                                                                         getMinimaData = 8 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2824,16 +2824,16 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         end
                                                     else
                                                         begin
-                                                            if ((temp_03 < temp_04)) 
+                                                            if ((temp_03 < temp_04))
                                                                 begin
-                                                                    if ((temp_03 < temp_05)) 
+                                                                    if ((temp_03 < temp_05))
                                                                         getMinimaData = 4 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2844,22 +2844,22 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                 end
                             else
                                 begin
-                                    if ((temp_00 < temp_01)) 
+                                    if ((temp_00 < temp_01))
                                         begin
-                                            if ((temp_00 < temp_02)) 
+                                            if ((temp_00 < temp_02))
                                                 begin
-                                                    if ((temp_00 < temp_03)) 
+                                                    if ((temp_00 < temp_03))
                                                         begin
-                                                            if ((temp_00 < temp_04)) 
+                                                            if ((temp_00 < temp_04))
                                                                 begin
-                                                                    if ((temp_00 < temp_05)) 
+                                                                    if ((temp_00 < temp_05))
                                                                         getMinimaData = 36 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2867,16 +2867,16 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         end
                                                     else
                                                         begin
-                                                            if ((temp_03 < temp_04)) 
+                                                            if ((temp_03 < temp_04))
                                                                 begin
-                                                                    if ((temp_03 < temp_05)) 
+                                                                    if ((temp_03 < temp_05))
                                                                         getMinimaData = 4 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2885,18 +2885,18 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 end
                                             else
                                                 begin
-                                                    if ((temp_02 < temp_03)) 
+                                                    if ((temp_02 < temp_03))
                                                         begin
-                                                            if ((temp_02 < temp_04)) 
+                                                            if ((temp_02 < temp_04))
                                                                 begin
-                                                                    if ((temp_02 < temp_05)) 
+                                                                    if ((temp_02 < temp_05))
                                                                         getMinimaData = 9 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2904,16 +2904,16 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         end
                                                     else
                                                         begin
-                                                            if ((temp_03 < temp_04)) 
+                                                            if ((temp_03 < temp_04))
                                                                 begin
-                                                                    if ((temp_03 < temp_05)) 
+                                                                    if ((temp_03 < temp_05))
                                                                         getMinimaData = 4 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2923,20 +2923,20 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                         end
                                     else
                                         begin
-                                            if ((temp_01 < temp_02)) 
+                                            if ((temp_01 < temp_02))
                                                 begin
-                                                    if ((temp_01 < temp_03)) 
+                                                    if ((temp_01 < temp_03))
                                                         begin
-                                                            if ((temp_01 < temp_04)) 
+                                                            if ((temp_01 < temp_04))
                                                                 begin
-                                                                    if ((temp_01 < temp_05)) 
+                                                                    if ((temp_01 < temp_05))
                                                                         getMinimaData = 18 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2944,16 +2944,16 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         end
                                                     else
                                                         begin
-                                                            if ((temp_03 < temp_04)) 
+                                                            if ((temp_03 < temp_04))
                                                                 begin
-                                                                    if ((temp_03 < temp_05)) 
+                                                                    if ((temp_03 < temp_05))
                                                                         getMinimaData = 4 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2962,18 +2962,18 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                 end
                                             else
                                                 begin
-                                                    if ((temp_02 < temp_03)) 
+                                                    if ((temp_02 < temp_03))
                                                         begin
-                                                            if ((temp_02 < temp_04)) 
+                                                            if ((temp_02 < temp_04))
                                                                 begin
-                                                                    if ((temp_02 < temp_05)) 
+                                                                    if ((temp_02 < temp_05))
                                                                         getMinimaData = 9 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -2981,16 +2981,16 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                                         end
                                                     else
                                                         begin
-                                                            if ((temp_03 < temp_04)) 
+                                                            if ((temp_03 < temp_04))
                                                                 begin
-                                                                    if ((temp_03 < temp_05)) 
+                                                                    if ((temp_03 < temp_05))
                                                                         getMinimaData = 4 ;
                                                                     else
                                                                         getMinimaData = 1 ;
                                                                 end
                                                             else
                                                                 begin
-                                                                    if ((temp_04 < temp_05)) 
+                                                                    if ((temp_04 < temp_05))
                                                                         getMinimaData = 2 ;
                                                                     else
                                                                         getMinimaData = 1 ;
@@ -3001,7 +3001,7 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                                 end
                         end
                 end
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 begin
                     temp_00 = EBR_impl(depth_impl,
                             width_impl,
@@ -3019,18 +3019,18 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                             width_impl,
                             2048,
                             2) ;
-                    if ((temp_00 < temp_01)) 
+                    if ((temp_00 < temp_01))
                         begin
-                            if ((temp_00 < temp_02)) 
+                            if ((temp_00 < temp_02))
                                 begin
-                                    if ((temp_00 < temp_03)) 
+                                    if ((temp_00 < temp_03))
                                         getMinimaData = 16 ;
                                     else
                                         getMinimaData = 2 ;
                                 end
                             else
                                 begin
-                                    if ((temp_02 < temp_03)) 
+                                    if ((temp_02 < temp_03))
                                         getMinimaData = 4 ;
                                     else
                                         getMinimaData = 2 ;
@@ -3038,90 +3038,90 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                         end
                     else
                         begin
-                            if ((temp_01 < temp_02)) 
+                            if ((temp_01 < temp_02))
                                 begin
-                                    if ((temp_01 < temp_03)) 
+                                    if ((temp_01 < temp_03))
                                         getMinimaData = 8 ;
                                     else
                                         getMinimaData = 2 ;
                                 end
                             else
                                 begin
-                                    if ((temp_02 < temp_03)) 
+                                    if ((temp_02 < temp_03))
                                         getMinimaData = 4 ;
                                     else
                                         getMinimaData = 2 ;
                                 end
                         end
                 end
-            default : 
+            default :
                 getMinimaData = 8 ;
-            endcase 
+            endcase
         end
     endfunction
-    function [31:0] getByteSize ; 
-        input [31:0] data_width ; 
-        input [31:0] dev_code ; 
+    function [31:0] getByteSize ;
+        input [31:0] data_width ;
+        input [31:0] dev_code ;
         begin
             case (dev_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
-                    if (((data_width % 9) == 0)) 
+                    if (((data_width % 9) == 0))
                         getByteSize = 9 ;
                     else
                         getByteSize = 8 ;
                 end
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 getByteSize = 8 ;
-            default : 
+            default :
                 getByteSize = 8 ;
-            endcase 
+            endcase
         end
     endfunction
-    function is_byte_enable_good ; 
-        input [31:0] max_data ; 
-        input [31:0] min_data ; 
-        input [31:0] family_code ; 
+    function is_byte_enable_good ;
+        input [31:0] max_data ;
+        input [31:0] min_data ;
+        input [31:0] family_code ;
         begin
             case (family_code)
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 is_byte_enable_good = ((((max_data / min_data) == 2) && ((max_data % 16) == 0)) ? 1'b1 : 1'b0) ;
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
-                    if (((max_data / min_data) == 4)) 
+                    if (((max_data / min_data) == 4))
                         is_byte_enable_good = ((((max_data % 36) == 0) || ((max_data % 32) == 0)) ? 1'b1 : 1'b0) ;
                     else
-                        if (((max_data / min_data) == 2)) 
+                        if (((max_data / min_data) == 2))
                             is_byte_enable_good = ((((max_data % 16) == 0) || ((max_data % 18) == 0)) ? 1'b1 : 1'b0) ;
                         else
                             is_byte_enable_good = 1'b0 ;
                 end
-            default : 
+            default :
                 is_byte_enable_good = 1'b0 ;
-            endcase 
+            endcase
         end
     endfunction
-    function [31:0] EBR_impl ; 
-        input [31:0] DEPTH_IMPL ; 
-        input [31:0] WIDTH_IMPL ; 
-        input [31:0] ADDR_DEPTH_X ; 
-        input [31:0] DATA_WIDTH_X ; 
+    function [31:0] EBR_impl ;
+        input [31:0] DEPTH_IMPL ;
+        input [31:0] WIDTH_IMPL ;
+        input [31:0] ADDR_DEPTH_X ;
+        input [31:0] DATA_WIDTH_X ;
         begin
             EBR_impl = (roundUP(DEPTH_IMPL,
                     ADDR_DEPTH_X) * roundUP(WIDTH_IMPL,
                     DATA_WIDTH_X)) ;
         end
     endfunction
-    function [31:0] roundUP ; 
-        input [31:0] dividend ; 
-        input [31:0] divisor ; 
+    function [31:0] roundUP ;
+        input [31:0] dividend ;
+        input [31:0] divisor ;
         begin
-            if ((divisor == 1)) 
+            if ((divisor == 1))
                 begin
                     roundUP = dividend ;
                 end
             else
-                if ((divisor == dividend)) 
+                if ((divisor == dividend))
                     begin
                         roundUP = 1 ;
                     end
@@ -3131,9 +3131,9 @@ module palette_ram_ipgen_lscc_ram_dp #(parameter _FCODE_LIFCL_ = 1,
                     end
         end
     endfunction
-    function [31:0] clog2 ; 
-        input [31:0] value ; 
-        reg [31:0] num ; 
+    function [31:0] clog2 ;
+        input [31:0] value ;
+        reg [31:0] num ;
         begin
             num = (value - 1) ;
             for (clog2 = 0 ; (num > 0) ; clog2 = (clog2 + 1))
@@ -3154,13 +3154,13 @@ endmodule
 // >>>>>>>>>>>>>>>>>>>>>>>>> COPYRIGHT NOTICE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 // -----------------------------------------------------------------------------
 //   Copyright (c) 2017 by Lattice Semiconductor Corporation
-//   ALL RIGHTS RESERVED 
+//   ALL RIGHTS RESERVED
 // -----------------------------------------------------------------------------
 //
 //   Permission:
 //
 //      Lattice SG Pte. Ltd. grants permission to use this code
-//      pursuant to the terms of the Lattice Reference Design License Agreement. 
+//      pursuant to the terms of the Lattice Reference Design License Agreement.
 //
 //
 //   Disclaimer:
@@ -3175,7 +3175,7 @@ endmodule
 // -----------------------------------------------------------------------------
 //
 //                  Lattice SG Pte. Ltd.
-//                  101 Thomson Road, United Square #07-02 
+//                  101 Thomson Road, United Square #07-02
 //                  Singapore 307591
 //
 //
@@ -3189,714 +3189,714 @@ endmodule
 // -----------------------------------------------------------------------------
 //
 // =============================================================================
-//                         FILE DETAILS         
+//                         FILE DETAILS
 // Project               : Radiant Software 1.1
 // File                  : lscc_ram_dp_core.v
-// Title                 : 
-// Dependencies          : 
+// Title                 :
+// Dependencies          :
 // Description           : Implements a single pseudo dual port memory instance.
 // =============================================================================
 //                        REVISION HISTORY
 // Version               : 1.0.0.
-// Author(s)             : 
-// Mod. Date             : 
+// Author(s)             :
+// Mod. Date             :
 // Changes Made          : Initial release.
 // =============================================================================
-module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1, 
-        parameter _FCODE_ICE_ = 2, 
-        parameter _FCODE_COMMON_ = 0, 
-        parameter MEM_ID = "MEM0", 
-        parameter MEM_SIZE = "[18,1024]", 
-        parameter FAMILY = "common", 
-        parameter FAMILY_CODE = ((FAMILY == "LIFCL") ? _FCODE_LIFCL_ : ((FAMILY == "iCE40UP") ? _FCODE_ICE_ : _FCODE_COMMON_)), 
-        parameter DATA_WIDTH_W = 36, 
+module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
+        parameter _FCODE_ICE_ = 2,
+        parameter _FCODE_COMMON_ = 0,
+        parameter MEM_ID = "MEM0",
+        parameter MEM_SIZE = "[18,1024]",
+        parameter FAMILY = "common",
+        parameter FAMILY_CODE = ((FAMILY == "LIFCL") ? _FCODE_LIFCL_ : ((FAMILY == "iCE40UP") ? _FCODE_ICE_ : _FCODE_COMMON_)),
+        parameter DATA_WIDTH_W = 36,
         parameter ADDR_WIDTH_W = getAddrWidth(DATA_WIDTH_W,
-                FAMILY_CODE), 
-        parameter DATA_WIDTH_R = 36, 
+                FAMILY_CODE),
+        parameter DATA_WIDTH_R = 36,
         parameter ADDR_WIDTH_R = getAddrWidth(DATA_WIDTH_R,
-                FAMILY_CODE), 
-        parameter REGMODE = "reg", 
-        parameter GSR = "enabled", 
-        parameter RESETMODE = "sync", 
-        parameter RESET_RELEASE = "sync", 
-        parameter INIT_FILE = "none", 
-        parameter INIT_FILE_FORMAT = "binary", 
-        parameter INIT_MODE = "none", 
-        parameter BYTE_ENABLE = 0, 
+                FAMILY_CODE),
+        parameter REGMODE = "reg",
+        parameter GSR = "enabled",
+        parameter RESETMODE = "sync",
+        parameter RESET_RELEASE = "sync",
+        parameter INIT_FILE = "none",
+        parameter INIT_FILE_FORMAT = "binary",
+        parameter INIT_MODE = "none",
+        parameter BYTE_ENABLE = 0,
         parameter BYTE_WIDTH = ((BYTE_ENABLE == 1) ? getByteWidth(DATA_WIDTH_W,
-                FAMILY_CODE) : 1), 
-        parameter ECC_ENABLE = 0, 
-        parameter CSDECODE_W = 0, 
-        parameter CSDECODE_R = 0, 
-        parameter OPTIMIZATION = "speed", 
-        parameter OUTPUT_CLK_EN = 0, 
-        parameter BYTE_ENABLE_POL = "active-high", 
-        parameter POSx = 0, 
-        parameter POSy = 0, 
+                FAMILY_CODE) : 1),
+        parameter ECC_ENABLE = 0,
+        parameter CSDECODE_W = 0,
+        parameter CSDECODE_R = 0,
+        parameter OPTIMIZATION = "speed",
+        parameter OUTPUT_CLK_EN = 0,
+        parameter BYTE_ENABLE_POL = "active-high",
+        parameter POSx = 0,
+        parameter POSy = 0,
         parameter STRING_SIZE = calculateStringSize(POSx,
-                POSy), 
-        parameter INIT_VALUE_00 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_01 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_02 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_03 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_04 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_05 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_06 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_07 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_08 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_09 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0A = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0B = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0C = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0D = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0E = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_0F = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_10 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_11 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_12 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_13 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_14 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_15 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_16 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_17 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_18 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_19 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1A = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1B = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1C = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1D = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1E = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_1F = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_20 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_21 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_22 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_23 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_24 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_25 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_26 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_27 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_28 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_29 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2A = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2B = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2C = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2D = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2E = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_2F = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_30 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_31 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_32 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_33 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_34 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_35 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_36 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_37 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_38 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_39 = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3A = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3B = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3C = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3D = "0x0000000000000000000000000000000000000000000000000000000000000000", 
-        parameter INIT_VALUE_3E = "0x0000000000000000000000000000000000000000000000000000000000000000", 
+                POSy),
+        parameter INIT_VALUE_00 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_01 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_02 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_03 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_04 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_05 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_06 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_07 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_08 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_09 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0A = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0B = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0C = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0D = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0E = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_0F = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_10 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_11 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_12 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_13 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_14 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_15 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_16 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_17 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_18 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_19 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1A = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1B = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1C = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1D = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1E = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_1F = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_20 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_21 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_22 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_23 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_24 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_25 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_26 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_27 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_28 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_29 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2A = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2B = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2C = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2D = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2E = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_2F = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_30 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_31 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_32 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_33 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_34 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_35 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_36 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_37 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_38 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_39 = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3A = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3B = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3C = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3D = "0x0000000000000000000000000000000000000000000000000000000000000000",
+        parameter INIT_VALUE_3E = "0x0000000000000000000000000000000000000000000000000000000000000000",
         parameter INIT_VALUE_3F = "0x0000000000000000000000000000000000000000000000000000000000000000") (
     //unused
     // -----------------------------------------------------------------------------
     // Input/Output Ports
     // -----------------------------------------------------------------------------
-    input wr_clk_i, 
-    input rd_clk_i, 
-    input rst_i, 
-    input wr_clk_en_i, 
-    input rd_clk_en_i, 
-    input rd_out_clk_en_i, 
-    input wr_en_i, 
-    input [(DATA_WIDTH_W - 1):0] wr_data_i, 
-    input [(ADDR_WIDTH_W - 1):0] wr_addr_i, 
-    input rd_en_i, 
-    input [(ADDR_WIDTH_R - 1):0] rd_addr_i, 
-    input [(BYTE_WIDTH - 1):0] ben_i, 
-    output [(DATA_WIDTH_R - 1):0] rd_data_o, 
-    output one_err_det_o, 
+    input wr_clk_i,
+    input rd_clk_i,
+    input rst_i,
+    input wr_clk_en_i,
+    input rd_clk_en_i,
+    input rd_out_clk_en_i,
+    input wr_en_i,
+    input [(DATA_WIDTH_W - 1):0] wr_data_i,
+    input [(ADDR_WIDTH_W - 1):0] wr_addr_i,
+    input rd_en_i,
+    input [(ADDR_WIDTH_R - 1):0] rd_addr_i,
+    input [(BYTE_WIDTH - 1):0] ben_i,
+    output [(DATA_WIDTH_R - 1):0] rd_data_o,
+    output one_err_det_o,
     output two_err_det_o) ;
     // -----------------------------------------------------------------------------
     // Local Parameters
     // -----------------------------------------------------------------------------
-    localparam POS_X0 = (POSx % 10) ; 
-    localparam POS_X1 = ((POSx / 10) % 10) ; 
-    localparam POS_X2 = ((POSx / 100) % 10) ; 
-    localparam POS_X3 = ((POSx / 1000) % 10) ; 
-    localparam POS_X4 = ((POSx / 10000) % 10) ; 
-    localparam POS_X5 = ((POSx / 100000) % 10) ; 
-    localparam POS_X6 = ((POSx / 1000000) % 10) ; 
-    localparam POS_X7 = ((POSx / 10000000) % 10) ; 
-    localparam POS_Y0 = (POSy % 10) ; 
-    localparam POS_Y1 = ((POSy / 10) % 10) ; 
-    localparam POS_Y2 = ((POSy / 100) % 10) ; 
-    localparam POS_Y3 = ((POSy / 1000) % 10) ; 
-    localparam POS_Y4 = ((POSy / 10000) % 10) ; 
-    localparam POS_Y5 = ((POSy / 100000) % 10) ; 
-    localparam POS_Y6 = ((POSy / 1000000) % 10) ; 
-    localparam POS_Y7 = ((POSy / 10000000) % 10) ; 
-    localparam [79:0] NUM_STRING = "9876543210" ; 
+    localparam POS_X0 = (POSx % 10) ;
+    localparam POS_X1 = ((POSx / 10) % 10) ;
+    localparam POS_X2 = ((POSx / 100) % 10) ;
+    localparam POS_X3 = ((POSx / 1000) % 10) ;
+    localparam POS_X4 = ((POSx / 10000) % 10) ;
+    localparam POS_X5 = ((POSx / 100000) % 10) ;
+    localparam POS_X6 = ((POSx / 1000000) % 10) ;
+    localparam POS_X7 = ((POSx / 10000000) % 10) ;
+    localparam POS_Y0 = (POSy % 10) ;
+    localparam POS_Y1 = ((POSy / 10) % 10) ;
+    localparam POS_Y2 = ((POSy / 100) % 10) ;
+    localparam POS_Y3 = ((POSy / 1000) % 10) ;
+    localparam POS_Y4 = ((POSy / 10000) % 10) ;
+    localparam POS_Y5 = ((POSy / 100000) % 10) ;
+    localparam POS_Y6 = ((POSy / 1000000) % 10) ;
+    localparam POS_Y7 = ((POSy / 10000000) % 10) ;
+    localparam [79:0] NUM_STRING = "9876543210" ;
     localparam BLOCK_POS = getStringFromPos(POSx,
-                POSy) ; 
-    localparam BLOCK_SIZE = ((DATA_WIDTH_W == 36) ? "[36,512]" : ((DATA_WIDTH_W == 32) ? "[32,512]" : ((DATA_WIDTH_W == 18) ? "[18,1024]" : ((DATA_WIDTH_W == 16) ? "[16,1024]" : ((DATA_WIDTH_W == 9) ? "[9,2048]" : ((DATA_WIDTH_W == 8) ? "[8,2048]" : ((DATA_WIDTH_W == 4) ? "[4,4096]" : ((DATA_WIDTH_W == 2) ? "[2,8192]" : "[1,16384]")))))))) ; 
+                POSy) ;
+    localparam BLOCK_SIZE = ((DATA_WIDTH_W == 36) ? "[36,512]" : ((DATA_WIDTH_W == 32) ? "[32,512]" : ((DATA_WIDTH_W == 18) ? "[18,1024]" : ((DATA_WIDTH_W == 16) ? "[16,1024]" : ((DATA_WIDTH_W == 9) ? "[9,2048]" : ((DATA_WIDTH_W == 8) ? "[8,2048]" : ((DATA_WIDTH_W == 4) ? "[4,4096]" : ((DATA_WIDTH_W == 2) ? "[2,8192]" : "[1,16384]")))))))) ;
     // -----------------------------------------------------------------------------
     // Generate Sequential Blocks
     // -----------------------------------------------------------------------------
-    genvar i0 ; 
+    genvar i0 ;
     generate
-        if ((FAMILY_CODE == _FCODE_ICE_)) 
+        if ((FAMILY_CODE == _FCODE_ICE_))
             begin : ICE_MEM
-                wire [10:0] raddr_w ; 
-                wire [10:0] waddr_w ; 
-                wire [15:0] wdata_w ; 
-                wire [15:0] rdata_w ; 
-                wire [15:0] mask_w ; 
-                wire [15:0] mask_t_w ; 
-                wire [(DATA_WIDTH_R - 1):0] rd_data_w ; 
+                wire [10:0] raddr_w ;
+                wire [10:0] waddr_w ;
+                wire [15:0] wdata_w ;
+                wire [15:0] rdata_w ;
+                wire [15:0] mask_w ;
+                wire [15:0] mask_t_w ;
+                wire [(DATA_WIDTH_R - 1):0] rd_data_w ;
                 for (i0 = 0;(i0 < 16);i0 = (i0 + 1))
                 begin : genblk1
-                    if ((i0 < 8)) 
+                    if ((i0 < 8))
                         begin: genblk1
-                            assign mask_w[i0] = ((BYTE_ENABLE == 0) ? 1'b0 : ((DATA_WIDTH_W == 16) ? (~ben_i[0]) : 1'b0)) ; 
+                            assign mask_w[i0] = ((BYTE_ENABLE == 0) ? 1'b0 : ((DATA_WIDTH_W == 16) ? (~ben_i[0]) : 1'b0)) ;
                         end
                     else
                         begin: genblk1
-                            assign mask_w[i0] = ((BYTE_ENABLE == 0) ? 1'b0 : ((DATA_WIDTH_W == 16) ? (~ben_i[1]) : 1'b0)) ; 
+                            assign mask_w[i0] = ((BYTE_ENABLE == 0) ? 1'b0 : ((DATA_WIDTH_W == 16) ? (~ben_i[1]) : 1'b0)) ;
                         end
                 end
-                if ((DATA_WIDTH_R == 16)) 
+                if ((DATA_WIDTH_R == 16))
                     begin : genblk2
-                        assign mask_t_w = mask_w ; 
+                        assign mask_t_w = mask_w ;
                     end
                 else
-                    if ((DATA_WIDTH_R == 8)) 
+                    if ((DATA_WIDTH_R == 8))
                         begin : genblk2
-                            assign mask_t_w[0] = mask_w[0] ; 
-                            assign mask_t_w[2] = mask_w[1] ; 
-                            assign mask_t_w[4] = mask_w[2] ; 
-                            assign mask_t_w[6] = mask_w[3] ; 
-                            assign mask_t_w[8] = mask_w[4] ; 
-                            assign mask_t_w[10] = mask_w[5] ; 
-                            assign mask_t_w[12] = mask_w[6] ; 
-                            assign mask_t_w[14] = mask_w[7] ; 
-                            assign mask_t_w[1] = mask_w[8] ; 
-                            assign mask_t_w[3] = mask_w[9] ; 
-                            assign mask_t_w[5] = mask_w[10] ; 
-                            assign mask_t_w[7] = mask_w[11] ; 
-                            assign mask_t_w[9] = mask_w[12] ; 
-                            assign mask_t_w[11] = mask_w[13] ; 
-                            assign mask_t_w[13] = mask_w[14] ; 
-                            assign mask_t_w[15] = mask_w[15] ; 
+                            assign mask_t_w[0] = mask_w[0] ;
+                            assign mask_t_w[2] = mask_w[1] ;
+                            assign mask_t_w[4] = mask_w[2] ;
+                            assign mask_t_w[6] = mask_w[3] ;
+                            assign mask_t_w[8] = mask_w[4] ;
+                            assign mask_t_w[10] = mask_w[5] ;
+                            assign mask_t_w[12] = mask_w[6] ;
+                            assign mask_t_w[14] = mask_w[7] ;
+                            assign mask_t_w[1] = mask_w[8] ;
+                            assign mask_t_w[3] = mask_w[9] ;
+                            assign mask_t_w[5] = mask_w[10] ;
+                            assign mask_t_w[7] = mask_w[11] ;
+                            assign mask_t_w[9] = mask_w[12] ;
+                            assign mask_t_w[11] = mask_w[13] ;
+                            assign mask_t_w[13] = mask_w[14] ;
+                            assign mask_t_w[15] = mask_w[15] ;
                         end
                     else
-                        if ((DATA_WIDTH_R == 4)) 
+                        if ((DATA_WIDTH_R == 4))
                             begin : genblk2
-                                assign mask_t_w[0] = mask_w[0] ; 
-                                assign mask_t_w[4] = mask_w[1] ; 
-                                assign mask_t_w[8] = mask_w[2] ; 
-                                assign mask_t_w[12] = mask_w[3] ; 
-                                assign mask_t_w[1] = mask_w[4] ; 
-                                assign mask_t_w[5] = mask_w[5] ; 
-                                assign mask_t_w[9] = mask_w[6] ; 
-                                assign mask_t_w[13] = mask_w[7] ; 
-                                assign mask_t_w[2] = mask_w[8] ; 
-                                assign mask_t_w[6] = mask_w[9] ; 
-                                assign mask_t_w[10] = mask_w[10] ; 
-                                assign mask_t_w[14] = mask_w[11] ; 
-                                assign mask_t_w[3] = mask_w[12] ; 
-                                assign mask_t_w[7] = mask_w[13] ; 
-                                assign mask_t_w[11] = mask_w[14] ; 
-                                assign mask_t_w[15] = mask_w[15] ; 
+                                assign mask_t_w[0] = mask_w[0] ;
+                                assign mask_t_w[4] = mask_w[1] ;
+                                assign mask_t_w[8] = mask_w[2] ;
+                                assign mask_t_w[12] = mask_w[3] ;
+                                assign mask_t_w[1] = mask_w[4] ;
+                                assign mask_t_w[5] = mask_w[5] ;
+                                assign mask_t_w[9] = mask_w[6] ;
+                                assign mask_t_w[13] = mask_w[7] ;
+                                assign mask_t_w[2] = mask_w[8] ;
+                                assign mask_t_w[6] = mask_w[9] ;
+                                assign mask_t_w[10] = mask_w[10] ;
+                                assign mask_t_w[14] = mask_w[11] ;
+                                assign mask_t_w[3] = mask_w[12] ;
+                                assign mask_t_w[7] = mask_w[13] ;
+                                assign mask_t_w[11] = mask_w[14] ;
+                                assign mask_t_w[15] = mask_w[15] ;
                             end
                         else
                             begin : genblk2
-                                assign mask_t_w[0] = mask_w[0] ; 
-                                assign mask_t_w[8] = mask_w[1] ; 
-                                assign mask_t_w[1] = mask_w[2] ; 
-                                assign mask_t_w[9] = mask_w[3] ; 
-                                assign mask_t_w[2] = mask_w[4] ; 
-                                assign mask_t_w[10] = mask_w[5] ; 
-                                assign mask_t_w[3] = mask_w[6] ; 
-                                assign mask_t_w[11] = mask_w[7] ; 
-                                assign mask_t_w[4] = mask_w[8] ; 
-                                assign mask_t_w[12] = mask_w[9] ; 
-                                assign mask_t_w[5] = mask_w[10] ; 
-                                assign mask_t_w[13] = mask_w[11] ; 
-                                assign mask_t_w[6] = mask_w[12] ; 
-                                assign mask_t_w[14] = mask_w[13] ; 
-                                assign mask_t_w[7] = mask_w[14] ; 
-                                assign mask_t_w[15] = mask_w[15] ; 
+                                assign mask_t_w[0] = mask_w[0] ;
+                                assign mask_t_w[8] = mask_w[1] ;
+                                assign mask_t_w[1] = mask_w[2] ;
+                                assign mask_t_w[9] = mask_w[3] ;
+                                assign mask_t_w[2] = mask_w[4] ;
+                                assign mask_t_w[10] = mask_w[5] ;
+                                assign mask_t_w[3] = mask_w[6] ;
+                                assign mask_t_w[11] = mask_w[7] ;
+                                assign mask_t_w[4] = mask_w[8] ;
+                                assign mask_t_w[12] = mask_w[9] ;
+                                assign mask_t_w[5] = mask_w[10] ;
+                                assign mask_t_w[13] = mask_w[11] ;
+                                assign mask_t_w[6] = mask_w[12] ;
+                                assign mask_t_w[14] = mask_w[13] ;
+                                assign mask_t_w[7] = mask_w[14] ;
+                                assign mask_t_w[15] = mask_w[15] ;
                             end
-                if ((ADDR_WIDTH_R < 11)) 
+                if ((ADDR_WIDTH_R < 11))
                     begin: genblk3
-                        assign raddr_w[10:ADDR_WIDTH_R] = {(11 - ADDR_WIDTH_R){1'b0}} ; 
+                        assign raddr_w[10:ADDR_WIDTH_R] = {(11 - ADDR_WIDTH_R){1'b0}} ;
                     end
-                if ((ADDR_WIDTH_W < 11)) 
+                if ((ADDR_WIDTH_W < 11))
                     begin: genblk4
-                        assign waddr_w[10:ADDR_WIDTH_W] = {(11 - ADDR_WIDTH_W){1'b0}} ; 
+                        assign waddr_w[10:ADDR_WIDTH_W] = {(11 - ADDR_WIDTH_W){1'b0}} ;
                     end
-                if (((DATA_WIDTH_W == 16) && (DATA_WIDTH_R == 16))) 
+                if (((DATA_WIDTH_W == 16) && (DATA_WIDTH_R == 16)))
                     begin : genblk5
-                        assign wdata_w = wr_data_i ; 
-                        assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ; 
-                        assign raddr_w[(ADDR_WIDTH_R - 1):0] = rd_addr_i ; 
-                        assign rd_data_w = rdata_w ; 
+                        assign wdata_w = wr_data_i ;
+                        assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ;
+                        assign raddr_w[(ADDR_WIDTH_R - 1):0] = rd_addr_i ;
+                        assign rd_data_w = rdata_w ;
                     end
                 else
-                    if (((DATA_WIDTH_W == 16) && (DATA_WIDTH_R == 8))) 
+                    if (((DATA_WIDTH_W == 16) && (DATA_WIDTH_R == 8)))
                         begin : genblk5
-                            assign wdata_w[0] = wr_data_i[0] ; 
-                            assign wdata_w[2] = wr_data_i[1] ; 
-                            assign wdata_w[4] = wr_data_i[2] ; 
-                            assign wdata_w[6] = wr_data_i[3] ; 
-                            assign wdata_w[8] = wr_data_i[4] ; 
-                            assign wdata_w[10] = wr_data_i[5] ; 
-                            assign wdata_w[12] = wr_data_i[6] ; 
-                            assign wdata_w[14] = wr_data_i[7] ; 
-                            assign wdata_w[1] = wr_data_i[8] ; 
-                            assign wdata_w[3] = wr_data_i[9] ; 
-                            assign wdata_w[5] = wr_data_i[10] ; 
-                            assign wdata_w[7] = wr_data_i[11] ; 
-                            assign wdata_w[9] = wr_data_i[12] ; 
-                            assign wdata_w[11] = wr_data_i[13] ; 
-                            assign wdata_w[13] = wr_data_i[14] ; 
-                            assign wdata_w[15] = wr_data_i[15] ; 
-                            assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ; 
+                            assign wdata_w[0] = wr_data_i[0] ;
+                            assign wdata_w[2] = wr_data_i[1] ;
+                            assign wdata_w[4] = wr_data_i[2] ;
+                            assign wdata_w[6] = wr_data_i[3] ;
+                            assign wdata_w[8] = wr_data_i[4] ;
+                            assign wdata_w[10] = wr_data_i[5] ;
+                            assign wdata_w[12] = wr_data_i[6] ;
+                            assign wdata_w[14] = wr_data_i[7] ;
+                            assign wdata_w[1] = wr_data_i[8] ;
+                            assign wdata_w[3] = wr_data_i[9] ;
+                            assign wdata_w[5] = wr_data_i[10] ;
+                            assign wdata_w[7] = wr_data_i[11] ;
+                            assign wdata_w[9] = wr_data_i[12] ;
+                            assign wdata_w[11] = wr_data_i[13] ;
+                            assign wdata_w[13] = wr_data_i[14] ;
+                            assign wdata_w[15] = wr_data_i[15] ;
+                            assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ;
                             assign raddr_w = {rd_addr_i[0],
-                                        rd_addr_i[(ADDR_WIDTH_R - 1):1]} ; 
-                            assign rd_data_w[7] = rdata_w[14] ; 
-                            assign rd_data_w[6] = rdata_w[12] ; 
-                            assign rd_data_w[5] = rdata_w[10] ; 
-                            assign rd_data_w[4] = rdata_w[8] ; 
-                            assign rd_data_w[3] = rdata_w[6] ; 
-                            assign rd_data_w[2] = rdata_w[4] ; 
-                            assign rd_data_w[1] = rdata_w[2] ; 
-                            assign rd_data_w[0] = rdata_w[0] ; 
+                                        rd_addr_i[(ADDR_WIDTH_R - 1):1]} ;
+                            assign rd_data_w[7] = rdata_w[14] ;
+                            assign rd_data_w[6] = rdata_w[12] ;
+                            assign rd_data_w[5] = rdata_w[10] ;
+                            assign rd_data_w[4] = rdata_w[8] ;
+                            assign rd_data_w[3] = rdata_w[6] ;
+                            assign rd_data_w[2] = rdata_w[4] ;
+                            assign rd_data_w[1] = rdata_w[2] ;
+                            assign rd_data_w[0] = rdata_w[0] ;
                         end
                     else
-                        if (((DATA_WIDTH_W == 16) && (DATA_WIDTH_R == 4))) 
+                        if (((DATA_WIDTH_W == 16) && (DATA_WIDTH_R == 4)))
                             begin : genblk5
-                                assign wdata_w[0] = wr_data_i[0] ; 
-                                assign wdata_w[4] = wr_data_i[1] ; 
-                                assign wdata_w[8] = wr_data_i[2] ; 
-                                assign wdata_w[12] = wr_data_i[3] ; 
-                                assign wdata_w[1] = wr_data_i[4] ; 
-                                assign wdata_w[5] = wr_data_i[5] ; 
-                                assign wdata_w[9] = wr_data_i[6] ; 
-                                assign wdata_w[13] = wr_data_i[7] ; 
-                                assign wdata_w[2] = wr_data_i[8] ; 
-                                assign wdata_w[6] = wr_data_i[9] ; 
-                                assign wdata_w[10] = wr_data_i[10] ; 
-                                assign wdata_w[14] = wr_data_i[11] ; 
-                                assign wdata_w[3] = wr_data_i[12] ; 
-                                assign wdata_w[7] = wr_data_i[13] ; 
-                                assign wdata_w[11] = wr_data_i[14] ; 
-                                assign wdata_w[15] = wr_data_i[15] ; 
-                                assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ; 
+                                assign wdata_w[0] = wr_data_i[0] ;
+                                assign wdata_w[4] = wr_data_i[1] ;
+                                assign wdata_w[8] = wr_data_i[2] ;
+                                assign wdata_w[12] = wr_data_i[3] ;
+                                assign wdata_w[1] = wr_data_i[4] ;
+                                assign wdata_w[5] = wr_data_i[5] ;
+                                assign wdata_w[9] = wr_data_i[6] ;
+                                assign wdata_w[13] = wr_data_i[7] ;
+                                assign wdata_w[2] = wr_data_i[8] ;
+                                assign wdata_w[6] = wr_data_i[9] ;
+                                assign wdata_w[10] = wr_data_i[10] ;
+                                assign wdata_w[14] = wr_data_i[11] ;
+                                assign wdata_w[3] = wr_data_i[12] ;
+                                assign wdata_w[7] = wr_data_i[13] ;
+                                assign wdata_w[11] = wr_data_i[14] ;
+                                assign wdata_w[15] = wr_data_i[15] ;
+                                assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ;
                                 assign raddr_w = {rd_addr_i[1:0],
-                                            rd_addr_i[(ADDR_WIDTH_R - 1):2]} ; 
-                                assign rd_data_w[3] = rdata_w[13] ; 
-                                assign rd_data_w[2] = rdata_w[9] ; 
-                                assign rd_data_w[1] = rdata_w[5] ; 
-                                assign rd_data_w[0] = rdata_w[1] ; 
+                                            rd_addr_i[(ADDR_WIDTH_R - 1):2]} ;
+                                assign rd_data_w[3] = rdata_w[13] ;
+                                assign rd_data_w[2] = rdata_w[9] ;
+                                assign rd_data_w[1] = rdata_w[5] ;
+                                assign rd_data_w[0] = rdata_w[1] ;
                             end
                         else
-                            if (((DATA_WIDTH_W == 16) && (DATA_WIDTH_R == 2))) 
+                            if (((DATA_WIDTH_W == 16) && (DATA_WIDTH_R == 2)))
                                 begin : genblk5
-                                    assign wdata_w[0] = wr_data_i[0] ; 
-                                    assign wdata_w[8] = wr_data_i[1] ; 
-                                    assign wdata_w[1] = wr_data_i[2] ; 
-                                    assign wdata_w[9] = wr_data_i[3] ; 
-                                    assign wdata_w[2] = wr_data_i[4] ; 
-                                    assign wdata_w[10] = wr_data_i[5] ; 
-                                    assign wdata_w[3] = wr_data_i[6] ; 
-                                    assign wdata_w[11] = wr_data_i[7] ; 
-                                    assign wdata_w[4] = wr_data_i[8] ; 
-                                    assign wdata_w[12] = wr_data_i[9] ; 
-                                    assign wdata_w[5] = wr_data_i[10] ; 
-                                    assign wdata_w[13] = wr_data_i[11] ; 
-                                    assign wdata_w[6] = wr_data_i[12] ; 
-                                    assign wdata_w[14] = wr_data_i[13] ; 
-                                    assign wdata_w[7] = wr_data_i[14] ; 
-                                    assign wdata_w[15] = wr_data_i[15] ; 
-                                    assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ; 
+                                    assign wdata_w[0] = wr_data_i[0] ;
+                                    assign wdata_w[8] = wr_data_i[1] ;
+                                    assign wdata_w[1] = wr_data_i[2] ;
+                                    assign wdata_w[9] = wr_data_i[3] ;
+                                    assign wdata_w[2] = wr_data_i[4] ;
+                                    assign wdata_w[10] = wr_data_i[5] ;
+                                    assign wdata_w[3] = wr_data_i[6] ;
+                                    assign wdata_w[11] = wr_data_i[7] ;
+                                    assign wdata_w[4] = wr_data_i[8] ;
+                                    assign wdata_w[12] = wr_data_i[9] ;
+                                    assign wdata_w[5] = wr_data_i[10] ;
+                                    assign wdata_w[13] = wr_data_i[11] ;
+                                    assign wdata_w[6] = wr_data_i[12] ;
+                                    assign wdata_w[14] = wr_data_i[13] ;
+                                    assign wdata_w[7] = wr_data_i[14] ;
+                                    assign wdata_w[15] = wr_data_i[15] ;
+                                    assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ;
                                     assign raddr_w = {rd_addr_i[2:0],
-                                                rd_addr_i[(ADDR_WIDTH_R - 1):3]} ; 
-                                    assign rd_data_w[1] = rdata_w[11] ; 
-                                    assign rd_data_w[0] = rdata_w[3] ; 
+                                                rd_addr_i[(ADDR_WIDTH_R - 1):3]} ;
+                                    assign rd_data_w[1] = rdata_w[11] ;
+                                    assign rd_data_w[0] = rdata_w[3] ;
                                 end
                             else
-                                if (((DATA_WIDTH_W == 8) && (DATA_WIDTH_R == 16))) 
+                                if (((DATA_WIDTH_W == 8) && (DATA_WIDTH_R == 16)))
                                     begin : genblk5
-                                        assign wdata_w[0] = wr_data_i[0] ; 
-                                        assign wdata_w[2] = wr_data_i[1] ; 
-                                        assign wdata_w[4] = wr_data_i[2] ; 
-                                        assign wdata_w[6] = wr_data_i[3] ; 
-                                        assign wdata_w[8] = wr_data_i[4] ; 
-                                        assign wdata_w[10] = wr_data_i[5] ; 
-                                        assign wdata_w[12] = wr_data_i[6] ; 
-                                        assign wdata_w[14] = wr_data_i[7] ; 
-                                        assign wdata_w[1] = 1'b0 ; 
-                                        assign wdata_w[3] = 1'b0 ; 
-                                        assign wdata_w[5] = 1'b0 ; 
-                                        assign wdata_w[7] = 1'b0 ; 
-                                        assign wdata_w[9] = 1'b0 ; 
-                                        assign wdata_w[11] = 1'b0 ; 
-                                        assign wdata_w[13] = 1'b0 ; 
-                                        assign wdata_w[15] = 1'b0 ; 
+                                        assign wdata_w[0] = wr_data_i[0] ;
+                                        assign wdata_w[2] = wr_data_i[1] ;
+                                        assign wdata_w[4] = wr_data_i[2] ;
+                                        assign wdata_w[6] = wr_data_i[3] ;
+                                        assign wdata_w[8] = wr_data_i[4] ;
+                                        assign wdata_w[10] = wr_data_i[5] ;
+                                        assign wdata_w[12] = wr_data_i[6] ;
+                                        assign wdata_w[14] = wr_data_i[7] ;
+                                        assign wdata_w[1] = 1'b0 ;
+                                        assign wdata_w[3] = 1'b0 ;
+                                        assign wdata_w[5] = 1'b0 ;
+                                        assign wdata_w[7] = 1'b0 ;
+                                        assign wdata_w[9] = 1'b0 ;
+                                        assign wdata_w[11] = 1'b0 ;
+                                        assign wdata_w[13] = 1'b0 ;
+                                        assign wdata_w[15] = 1'b0 ;
                                         assign waddr_w = {wr_addr_i[0],
-                                                    wr_addr_i[(ADDR_WIDTH_W - 1):1]} ; 
-                                        assign raddr_w = rd_addr_i ; 
-                                        assign rd_data_w[0] = rdata_w[0] ; 
-                                        assign rd_data_w[1] = rdata_w[2] ; 
-                                        assign rd_data_w[2] = rdata_w[4] ; 
-                                        assign rd_data_w[3] = rdata_w[6] ; 
-                                        assign rd_data_w[4] = rdata_w[8] ; 
-                                        assign rd_data_w[5] = rdata_w[10] ; 
-                                        assign rd_data_w[6] = rdata_w[12] ; 
-                                        assign rd_data_w[7] = rdata_w[14] ; 
-                                        assign rd_data_w[8] = rdata_w[1] ; 
-                                        assign rd_data_w[9] = rdata_w[3] ; 
-                                        assign rd_data_w[10] = rdata_w[5] ; 
-                                        assign rd_data_w[11] = rdata_w[7] ; 
-                                        assign rd_data_w[12] = rdata_w[9] ; 
-                                        assign rd_data_w[13] = rdata_w[11] ; 
-                                        assign rd_data_w[14] = rdata_w[13] ; 
-                                        assign rd_data_w[15] = rdata_w[15] ; 
+                                                    wr_addr_i[(ADDR_WIDTH_W - 1):1]} ;
+                                        assign raddr_w = rd_addr_i ;
+                                        assign rd_data_w[0] = rdata_w[0] ;
+                                        assign rd_data_w[1] = rdata_w[2] ;
+                                        assign rd_data_w[2] = rdata_w[4] ;
+                                        assign rd_data_w[3] = rdata_w[6] ;
+                                        assign rd_data_w[4] = rdata_w[8] ;
+                                        assign rd_data_w[5] = rdata_w[10] ;
+                                        assign rd_data_w[6] = rdata_w[12] ;
+                                        assign rd_data_w[7] = rdata_w[14] ;
+                                        assign rd_data_w[8] = rdata_w[1] ;
+                                        assign rd_data_w[9] = rdata_w[3] ;
+                                        assign rd_data_w[10] = rdata_w[5] ;
+                                        assign rd_data_w[11] = rdata_w[7] ;
+                                        assign rd_data_w[12] = rdata_w[9] ;
+                                        assign rd_data_w[13] = rdata_w[11] ;
+                                        assign rd_data_w[14] = rdata_w[13] ;
+                                        assign rd_data_w[15] = rdata_w[15] ;
                                     end
                                 else
-                                    if (((DATA_WIDTH_W == 8) && (DATA_WIDTH_R == 8))) 
+                                    if (((DATA_WIDTH_W == 8) && (DATA_WIDTH_R == 8)))
                                         begin : genblk5
-                                            assign wdata_w[0] = wr_data_i[0] ; 
-                                            assign wdata_w[2] = wr_data_i[1] ; 
-                                            assign wdata_w[4] = wr_data_i[2] ; 
-                                            assign wdata_w[6] = wr_data_i[3] ; 
-                                            assign wdata_w[8] = wr_data_i[4] ; 
-                                            assign wdata_w[10] = wr_data_i[5] ; 
-                                            assign wdata_w[12] = wr_data_i[6] ; 
-                                            assign wdata_w[14] = wr_data_i[7] ; 
-                                            assign wdata_w[1] = 1'b0 ; 
-                                            assign wdata_w[3] = 1'b0 ; 
-                                            assign wdata_w[5] = 1'b0 ; 
-                                            assign wdata_w[7] = 1'b0 ; 
-                                            assign wdata_w[9] = 1'b0 ; 
-                                            assign wdata_w[11] = 1'b0 ; 
-                                            assign wdata_w[13] = 1'b0 ; 
-                                            assign wdata_w[15] = 1'b0 ; 
-                                            assign waddr_w = {wr_addr_i} ; 
-                                            assign raddr_w = {rd_addr_i} ; 
-                                            assign rd_data_w[0] = rdata_w[0] ; 
-                                            assign rd_data_w[1] = rdata_w[2] ; 
-                                            assign rd_data_w[2] = rdata_w[4] ; 
-                                            assign rd_data_w[3] = rdata_w[6] ; 
-                                            assign rd_data_w[4] = rdata_w[8] ; 
-                                            assign rd_data_w[5] = rdata_w[10] ; 
-                                            assign rd_data_w[6] = rdata_w[12] ; 
-                                            assign rd_data_w[7] = rdata_w[14] ; 
+                                            assign wdata_w[0] = wr_data_i[0] ;
+                                            assign wdata_w[2] = wr_data_i[1] ;
+                                            assign wdata_w[4] = wr_data_i[2] ;
+                                            assign wdata_w[6] = wr_data_i[3] ;
+                                            assign wdata_w[8] = wr_data_i[4] ;
+                                            assign wdata_w[10] = wr_data_i[5] ;
+                                            assign wdata_w[12] = wr_data_i[6] ;
+                                            assign wdata_w[14] = wr_data_i[7] ;
+                                            assign wdata_w[1] = 1'b0 ;
+                                            assign wdata_w[3] = 1'b0 ;
+                                            assign wdata_w[5] = 1'b0 ;
+                                            assign wdata_w[7] = 1'b0 ;
+                                            assign wdata_w[9] = 1'b0 ;
+                                            assign wdata_w[11] = 1'b0 ;
+                                            assign wdata_w[13] = 1'b0 ;
+                                            assign wdata_w[15] = 1'b0 ;
+                                            assign waddr_w = {wr_addr_i} ;
+                                            assign raddr_w = {rd_addr_i} ;
+                                            assign rd_data_w[0] = rdata_w[0] ;
+                                            assign rd_data_w[1] = rdata_w[2] ;
+                                            assign rd_data_w[2] = rdata_w[4] ;
+                                            assign rd_data_w[3] = rdata_w[6] ;
+                                            assign rd_data_w[4] = rdata_w[8] ;
+                                            assign rd_data_w[5] = rdata_w[10] ;
+                                            assign rd_data_w[6] = rdata_w[12] ;
+                                            assign rd_data_w[7] = rdata_w[14] ;
                                         end
                                     else
-                                        if (((DATA_WIDTH_W == 8) && (DATA_WIDTH_R == 4))) 
+                                        if (((DATA_WIDTH_W == 8) && (DATA_WIDTH_R == 4)))
                                             begin : genblk5
-                                                assign wdata_w[0] = wr_data_i[0] ; 
-                                                assign wdata_w[4] = wr_data_i[1] ; 
-                                                assign wdata_w[8] = wr_data_i[2] ; 
-                                                assign wdata_w[12] = wr_data_i[3] ; 
-                                                assign wdata_w[2] = wr_data_i[4] ; 
-                                                assign wdata_w[6] = wr_data_i[5] ; 
-                                                assign wdata_w[10] = wr_data_i[6] ; 
-                                                assign wdata_w[14] = wr_data_i[7] ; 
-                                                assign wdata_w[1] = 1'b0 ; 
-                                                assign wdata_w[3] = 1'b0 ; 
-                                                assign wdata_w[5] = 1'b0 ; 
-                                                assign wdata_w[7] = 1'b0 ; 
-                                                assign wdata_w[9] = 1'b0 ; 
-                                                assign wdata_w[11] = 1'b0 ; 
-                                                assign wdata_w[13] = 1'b0 ; 
-                                                assign wdata_w[15] = 1'b0 ; 
-                                                assign waddr_w = {wr_addr_i} ; 
+                                                assign wdata_w[0] = wr_data_i[0] ;
+                                                assign wdata_w[4] = wr_data_i[1] ;
+                                                assign wdata_w[8] = wr_data_i[2] ;
+                                                assign wdata_w[12] = wr_data_i[3] ;
+                                                assign wdata_w[2] = wr_data_i[4] ;
+                                                assign wdata_w[6] = wr_data_i[5] ;
+                                                assign wdata_w[10] = wr_data_i[6] ;
+                                                assign wdata_w[14] = wr_data_i[7] ;
+                                                assign wdata_w[1] = 1'b0 ;
+                                                assign wdata_w[3] = 1'b0 ;
+                                                assign wdata_w[5] = 1'b0 ;
+                                                assign wdata_w[7] = 1'b0 ;
+                                                assign wdata_w[9] = 1'b0 ;
+                                                assign wdata_w[11] = 1'b0 ;
+                                                assign wdata_w[13] = 1'b0 ;
+                                                assign wdata_w[15] = 1'b0 ;
+                                                assign waddr_w = {wr_addr_i} ;
                                                 assign raddr_w = {rd_addr_i[0],
-                                                            rd_addr_i[(ADDR_WIDTH_R - 1):1]} ; 
-                                                assign rd_data_w[0] = rdata_w[1] ; 
-                                                assign rd_data_w[1] = rdata_w[5] ; 
-                                                assign rd_data_w[2] = rdata_w[9] ; 
-                                                assign rd_data_w[3] = rdata_w[13] ; 
+                                                            rd_addr_i[(ADDR_WIDTH_R - 1):1]} ;
+                                                assign rd_data_w[0] = rdata_w[1] ;
+                                                assign rd_data_w[1] = rdata_w[5] ;
+                                                assign rd_data_w[2] = rdata_w[9] ;
+                                                assign rd_data_w[3] = rdata_w[13] ;
                                             end
                                         else
-                                            if (((DATA_WIDTH_W == 8) && (DATA_WIDTH_R == 2))) 
+                                            if (((DATA_WIDTH_W == 8) && (DATA_WIDTH_R == 2)))
                                                 begin : genblk5
-                                                    assign wdata_w[0] = wr_data_i[0] ; 
-                                                    assign wdata_w[8] = wr_data_i[1] ; 
-                                                    assign wdata_w[2] = wr_data_i[2] ; 
-                                                    assign wdata_w[10] = wr_data_i[3] ; 
-                                                    assign wdata_w[4] = wr_data_i[4] ; 
-                                                    assign wdata_w[12] = wr_data_i[5] ; 
-                                                    assign wdata_w[6] = wr_data_i[6] ; 
-                                                    assign wdata_w[14] = wr_data_i[7] ; 
-                                                    assign wdata_w[1] = 1'b0 ; 
-                                                    assign wdata_w[3] = 1'b0 ; 
-                                                    assign wdata_w[5] = 1'b0 ; 
-                                                    assign wdata_w[7] = 1'b0 ; 
-                                                    assign wdata_w[9] = 1'b0 ; 
-                                                    assign wdata_w[11] = 1'b0 ; 
-                                                    assign wdata_w[13] = 1'b0 ; 
-                                                    assign wdata_w[15] = 1'b0 ; 
-                                                    assign waddr_w = {wr_addr_i} ; 
+                                                    assign wdata_w[0] = wr_data_i[0] ;
+                                                    assign wdata_w[8] = wr_data_i[1] ;
+                                                    assign wdata_w[2] = wr_data_i[2] ;
+                                                    assign wdata_w[10] = wr_data_i[3] ;
+                                                    assign wdata_w[4] = wr_data_i[4] ;
+                                                    assign wdata_w[12] = wr_data_i[5] ;
+                                                    assign wdata_w[6] = wr_data_i[6] ;
+                                                    assign wdata_w[14] = wr_data_i[7] ;
+                                                    assign wdata_w[1] = 1'b0 ;
+                                                    assign wdata_w[3] = 1'b0 ;
+                                                    assign wdata_w[5] = 1'b0 ;
+                                                    assign wdata_w[7] = 1'b0 ;
+                                                    assign wdata_w[9] = 1'b0 ;
+                                                    assign wdata_w[11] = 1'b0 ;
+                                                    assign wdata_w[13] = 1'b0 ;
+                                                    assign wdata_w[15] = 1'b0 ;
+                                                    assign waddr_w = {wr_addr_i} ;
                                                     assign raddr_w = {rd_addr_i[1:0],
-                                                                rd_addr_i[(ADDR_WIDTH_R - 1):2]} ; 
-                                                    assign rd_data_w[1] = rdata_w[11] ; 
-                                                    assign rd_data_w[0] = rdata_w[3] ; 
+                                                                rd_addr_i[(ADDR_WIDTH_R - 1):2]} ;
+                                                    assign rd_data_w[1] = rdata_w[11] ;
+                                                    assign rd_data_w[0] = rdata_w[3] ;
                                                 end
                                             else
-                                                if (((DATA_WIDTH_W == 4) && (DATA_WIDTH_R == 16))) 
+                                                if (((DATA_WIDTH_W == 4) && (DATA_WIDTH_R == 16)))
                                                     begin : genblk5
-                                                        assign wdata_w[1] = wr_data_i[0] ; 
-                                                        assign wdata_w[5] = wr_data_i[1] ; 
-                                                        assign wdata_w[9] = wr_data_i[2] ; 
-                                                        assign wdata_w[13] = wr_data_i[3] ; 
-                                                        assign wdata_w[0] = 1'b0 ; 
-                                                        assign wdata_w[4:2] = 3'b000 ; 
-                                                        assign wdata_w[8:6] = 3'b000 ; 
-                                                        assign wdata_w[12:10] = 3'b000 ; 
-                                                        assign wdata_w[15:14] = 2'b00 ; 
+                                                        assign wdata_w[1] = wr_data_i[0] ;
+                                                        assign wdata_w[5] = wr_data_i[1] ;
+                                                        assign wdata_w[9] = wr_data_i[2] ;
+                                                        assign wdata_w[13] = wr_data_i[3] ;
+                                                        assign wdata_w[0] = 1'b0 ;
+                                                        assign wdata_w[4:2] = 3'b000 ;
+                                                        assign wdata_w[8:6] = 3'b000 ;
+                                                        assign wdata_w[12:10] = 3'b000 ;
+                                                        assign wdata_w[15:14] = 2'b00 ;
                                                         assign waddr_w = {wr_addr_i[1:0],
-                                                                    wr_addr_i[(ADDR_WIDTH_W - 1):2]} ; 
-                                                        assign raddr_w = rd_addr_i ; 
-                                                        assign rd_data_w[0] = rdata_w[0] ; 
-                                                        assign rd_data_w[1] = rdata_w[4] ; 
-                                                        assign rd_data_w[2] = rdata_w[8] ; 
-                                                        assign rd_data_w[3] = rdata_w[12] ; 
-                                                        assign rd_data_w[4] = rdata_w[1] ; 
-                                                        assign rd_data_w[5] = rdata_w[5] ; 
-                                                        assign rd_data_w[6] = rdata_w[9] ; 
-                                                        assign rd_data_w[7] = rdata_w[13] ; 
-                                                        assign rd_data_w[8] = rdata_w[2] ; 
-                                                        assign rd_data_w[9] = rdata_w[6] ; 
-                                                        assign rd_data_w[10] = rdata_w[10] ; 
-                                                        assign rd_data_w[11] = rdata_w[14] ; 
-                                                        assign rd_data_w[12] = rdata_w[3] ; 
-                                                        assign rd_data_w[13] = rdata_w[7] ; 
-                                                        assign rd_data_w[14] = rdata_w[11] ; 
-                                                        assign rd_data_w[15] = rdata_w[15] ; 
+                                                                    wr_addr_i[(ADDR_WIDTH_W - 1):2]} ;
+                                                        assign raddr_w = rd_addr_i ;
+                                                        assign rd_data_w[0] = rdata_w[0] ;
+                                                        assign rd_data_w[1] = rdata_w[4] ;
+                                                        assign rd_data_w[2] = rdata_w[8] ;
+                                                        assign rd_data_w[3] = rdata_w[12] ;
+                                                        assign rd_data_w[4] = rdata_w[1] ;
+                                                        assign rd_data_w[5] = rdata_w[5] ;
+                                                        assign rd_data_w[6] = rdata_w[9] ;
+                                                        assign rd_data_w[7] = rdata_w[13] ;
+                                                        assign rd_data_w[8] = rdata_w[2] ;
+                                                        assign rd_data_w[9] = rdata_w[6] ;
+                                                        assign rd_data_w[10] = rdata_w[10] ;
+                                                        assign rd_data_w[11] = rdata_w[14] ;
+                                                        assign rd_data_w[12] = rdata_w[3] ;
+                                                        assign rd_data_w[13] = rdata_w[7] ;
+                                                        assign rd_data_w[14] = rdata_w[11] ;
+                                                        assign rd_data_w[15] = rdata_w[15] ;
                                                     end
                                                 else
-                                                    if (((DATA_WIDTH_W == 4) && (DATA_WIDTH_R == 8))) 
+                                                    if (((DATA_WIDTH_W == 4) && (DATA_WIDTH_R == 8)))
                                                         begin : genblk5
-                                                            assign wdata_w[1] = wr_data_i[0] ; 
-                                                            assign wdata_w[5] = wr_data_i[1] ; 
-                                                            assign wdata_w[9] = wr_data_i[2] ; 
-                                                            assign wdata_w[13] = wr_data_i[3] ; 
-                                                            assign wdata_w[0] = 1'b0 ; 
-                                                            assign wdata_w[4:2] = 3'b000 ; 
-                                                            assign wdata_w[8:6] = 3'b000 ; 
-                                                            assign wdata_w[12:10] = 3'b000 ; 
-                                                            assign wdata_w[15:14] = 2'b00 ; 
+                                                            assign wdata_w[1] = wr_data_i[0] ;
+                                                            assign wdata_w[5] = wr_data_i[1] ;
+                                                            assign wdata_w[9] = wr_data_i[2] ;
+                                                            assign wdata_w[13] = wr_data_i[3] ;
+                                                            assign wdata_w[0] = 1'b0 ;
+                                                            assign wdata_w[4:2] = 3'b000 ;
+                                                            assign wdata_w[8:6] = 3'b000 ;
+                                                            assign wdata_w[12:10] = 3'b000 ;
+                                                            assign wdata_w[15:14] = 2'b00 ;
                                                             assign waddr_w = {wr_addr_i[0],
-                                                                        wr_addr_i[(ADDR_WIDTH_W - 1):1]} ; 
-                                                            assign raddr_w = rd_addr_i ; 
-                                                            assign rd_data_w[0] = rdata_w[0] ; 
-                                                            assign rd_data_w[1] = rdata_w[4] ; 
-                                                            assign rd_data_w[2] = rdata_w[8] ; 
-                                                            assign rd_data_w[3] = rdata_w[12] ; 
-                                                            assign rd_data_w[4] = rdata_w[2] ; 
-                                                            assign rd_data_w[5] = rdata_w[6] ; 
-                                                            assign rd_data_w[6] = rdata_w[10] ; 
-                                                            assign rd_data_w[7] = rdata_w[14] ; 
+                                                                        wr_addr_i[(ADDR_WIDTH_W - 1):1]} ;
+                                                            assign raddr_w = rd_addr_i ;
+                                                            assign rd_data_w[0] = rdata_w[0] ;
+                                                            assign rd_data_w[1] = rdata_w[4] ;
+                                                            assign rd_data_w[2] = rdata_w[8] ;
+                                                            assign rd_data_w[3] = rdata_w[12] ;
+                                                            assign rd_data_w[4] = rdata_w[2] ;
+                                                            assign rd_data_w[5] = rdata_w[6] ;
+                                                            assign rd_data_w[6] = rdata_w[10] ;
+                                                            assign rd_data_w[7] = rdata_w[14] ;
                                                         end
                                                     else
-                                                        if (((DATA_WIDTH_W == 4) && (DATA_WIDTH_R == 4))) 
+                                                        if (((DATA_WIDTH_W == 4) && (DATA_WIDTH_R == 4)))
                                                             begin : genblk5
-                                                                assign wdata_w[1] = wr_data_i[0] ; 
-                                                                assign wdata_w[5] = wr_data_i[1] ; 
-                                                                assign wdata_w[9] = wr_data_i[2] ; 
-                                                                assign wdata_w[13] = wr_data_i[3] ; 
-                                                                assign wdata_w[0] = 1'b0 ; 
-                                                                assign wdata_w[4:2] = 3'b000 ; 
-                                                                assign wdata_w[8:6] = 3'b000 ; 
-                                                                assign wdata_w[12:10] = 3'b000 ; 
-                                                                assign wdata_w[15:14] = 2'b00 ; 
-                                                                assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ; 
-                                                                assign raddr_w[(ADDR_WIDTH_R - 1):0] = rd_addr_i ; 
-                                                                assign rd_data_w[0] = rdata_w[1] ; 
-                                                                assign rd_data_w[1] = rdata_w[5] ; 
-                                                                assign rd_data_w[2] = rdata_w[9] ; 
-                                                                assign rd_data_w[3] = rdata_w[13] ; 
+                                                                assign wdata_w[1] = wr_data_i[0] ;
+                                                                assign wdata_w[5] = wr_data_i[1] ;
+                                                                assign wdata_w[9] = wr_data_i[2] ;
+                                                                assign wdata_w[13] = wr_data_i[3] ;
+                                                                assign wdata_w[0] = 1'b0 ;
+                                                                assign wdata_w[4:2] = 3'b000 ;
+                                                                assign wdata_w[8:6] = 3'b000 ;
+                                                                assign wdata_w[12:10] = 3'b000 ;
+                                                                assign wdata_w[15:14] = 2'b00 ;
+                                                                assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ;
+                                                                assign raddr_w[(ADDR_WIDTH_R - 1):0] = rd_addr_i ;
+                                                                assign rd_data_w[0] = rdata_w[1] ;
+                                                                assign rd_data_w[1] = rdata_w[5] ;
+                                                                assign rd_data_w[2] = rdata_w[9] ;
+                                                                assign rd_data_w[3] = rdata_w[13] ;
                                                             end
                                                         else
-                                                            if (((DATA_WIDTH_W == 4) && (DATA_WIDTH_R == 2))) 
+                                                            if (((DATA_WIDTH_W == 4) && (DATA_WIDTH_R == 2)))
                                                                 begin : genblk5
-                                                                    assign wdata_w[1] = wr_data_i[0] ; 
-                                                                    assign wdata_w[9] = wr_data_i[1] ; 
-                                                                    assign wdata_w[5] = wr_data_i[2] ; 
-                                                                    assign wdata_w[13] = wr_data_i[3] ; 
-                                                                    assign wdata_w[0] = 1'b0 ; 
-                                                                    assign wdata_w[4:2] = 3'b000 ; 
-                                                                    assign wdata_w[8:6] = 3'b000 ; 
-                                                                    assign wdata_w[12:10] = 3'b000 ; 
-                                                                    assign wdata_w[15:14] = 2'b00 ; 
-                                                                    assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ; 
+                                                                    assign wdata_w[1] = wr_data_i[0] ;
+                                                                    assign wdata_w[9] = wr_data_i[1] ;
+                                                                    assign wdata_w[5] = wr_data_i[2] ;
+                                                                    assign wdata_w[13] = wr_data_i[3] ;
+                                                                    assign wdata_w[0] = 1'b0 ;
+                                                                    assign wdata_w[4:2] = 3'b000 ;
+                                                                    assign wdata_w[8:6] = 3'b000 ;
+                                                                    assign wdata_w[12:10] = 3'b000 ;
+                                                                    assign wdata_w[15:14] = 2'b00 ;
+                                                                    assign waddr_w[(ADDR_WIDTH_W - 1):0] = wr_addr_i ;
                                                                     assign raddr_w = {rd_addr_i[0],
-                                                                                rd_addr_i[(ADDR_WIDTH_R - 1):1]} ; 
-                                                                    assign rd_data_w[1] = rdata_w[11] ; 
-                                                                    assign rd_data_w[0] = rdata_w[3] ; 
+                                                                                rd_addr_i[(ADDR_WIDTH_R - 1):1]} ;
+                                                                    assign rd_data_w[1] = rdata_w[11] ;
+                                                                    assign rd_data_w[0] = rdata_w[3] ;
                                                                 end
                                                             else
-                                                                if (((DATA_WIDTH_W == 2) && (DATA_WIDTH_R == 16))) 
+                                                                if (((DATA_WIDTH_W == 2) && (DATA_WIDTH_R == 16)))
                                                                     begin : genblk5
-                                                                        assign wdata_w[11] = wr_data_i[1] ; 
-                                                                        assign wdata_w[3] = wr_data_i[0] ; 
-                                                                        assign wdata_w[2:0] = 3'b000 ; 
-                                                                        assign wdata_w[10:4] = 7'h00 ; 
-                                                                        assign wdata_w[15:12] = 4'h0 ; 
+                                                                        assign wdata_w[11] = wr_data_i[1] ;
+                                                                        assign wdata_w[3] = wr_data_i[0] ;
+                                                                        assign wdata_w[2:0] = 3'b000 ;
+                                                                        assign wdata_w[10:4] = 7'h00 ;
+                                                                        assign wdata_w[15:12] = 4'h0 ;
                                                                         assign waddr_w = {wr_addr_i[2:0],
-                                                                                wr_addr_i[(ADDR_WIDTH_W - 1):3]} ; 
-                                                                        assign raddr_w = rd_addr_i ; 
-                                                                        assign rd_data_w[0] = rdata_w[0] ; 
-                                                                        assign rd_data_w[1] = rdata_w[8] ; 
-                                                                        assign rd_data_w[2] = rdata_w[1] ; 
-                                                                        assign rd_data_w[3] = rdata_w[9] ; 
-                                                                        assign rd_data_w[4] = rdata_w[2] ; 
-                                                                        assign rd_data_w[5] = rdata_w[10] ; 
-                                                                        assign rd_data_w[6] = rdata_w[3] ; 
-                                                                        assign rd_data_w[7] = rdata_w[11] ; 
-                                                                        assign rd_data_w[8] = rdata_w[4] ; 
-                                                                        assign rd_data_w[9] = rdata_w[12] ; 
-                                                                        assign rd_data_w[10] = rdata_w[5] ; 
-                                                                        assign rd_data_w[11] = rdata_w[13] ; 
-                                                                        assign rd_data_w[12] = rdata_w[6] ; 
-                                                                        assign rd_data_w[13] = rdata_w[14] ; 
-                                                                        assign rd_data_w[14] = rdata_w[7] ; 
-                                                                        assign rd_data_w[15] = rdata_w[15] ; 
+                                                                                wr_addr_i[(ADDR_WIDTH_W - 1):3]} ;
+                                                                        assign raddr_w = rd_addr_i ;
+                                                                        assign rd_data_w[0] = rdata_w[0] ;
+                                                                        assign rd_data_w[1] = rdata_w[8] ;
+                                                                        assign rd_data_w[2] = rdata_w[1] ;
+                                                                        assign rd_data_w[3] = rdata_w[9] ;
+                                                                        assign rd_data_w[4] = rdata_w[2] ;
+                                                                        assign rd_data_w[5] = rdata_w[10] ;
+                                                                        assign rd_data_w[6] = rdata_w[3] ;
+                                                                        assign rd_data_w[7] = rdata_w[11] ;
+                                                                        assign rd_data_w[8] = rdata_w[4] ;
+                                                                        assign rd_data_w[9] = rdata_w[12] ;
+                                                                        assign rd_data_w[10] = rdata_w[5] ;
+                                                                        assign rd_data_w[11] = rdata_w[13] ;
+                                                                        assign rd_data_w[12] = rdata_w[6] ;
+                                                                        assign rd_data_w[13] = rdata_w[14] ;
+                                                                        assign rd_data_w[14] = rdata_w[7] ;
+                                                                        assign rd_data_w[15] = rdata_w[15] ;
                                                                     end
                                                                 else
-                                                                    if (((DATA_WIDTH_W == 2) && (DATA_WIDTH_R == 8))) 
+                                                                    if (((DATA_WIDTH_W == 2) && (DATA_WIDTH_R == 8)))
                                                                         begin : genblk5
-                                                                            assign wdata_w[11] = wr_data_i[1] ; 
-                                                                            assign wdata_w[3] = wr_data_i[0] ; 
-                                                                            assign wdata_w[2:0] = 3'b000 ; 
-                                                                            assign wdata_w[10:4] = 7'h00 ; 
-                                                                            assign wdata_w[15:12] = 4'h0 ; 
+                                                                            assign wdata_w[11] = wr_data_i[1] ;
+                                                                            assign wdata_w[3] = wr_data_i[0] ;
+                                                                            assign wdata_w[2:0] = 3'b000 ;
+                                                                            assign wdata_w[10:4] = 7'h00 ;
+                                                                            assign wdata_w[15:12] = 4'h0 ;
                                                                             assign waddr_w = {wr_addr_i[1:0],
-                                                                                wr_addr_i[(ADDR_WIDTH_W - 1):2]} ; 
-                                                                            assign raddr_w = rd_addr_i ; 
-                                                                            assign rd_data_w[0] = rdata_w[0] ; 
-                                                                            assign rd_data_w[1] = rdata_w[8] ; 
-                                                                            assign rd_data_w[2] = rdata_w[2] ; 
-                                                                            assign rd_data_w[3] = rdata_w[10] ; 
-                                                                            assign rd_data_w[4] = rdata_w[4] ; 
-                                                                            assign rd_data_w[5] = rdata_w[12] ; 
-                                                                            assign rd_data_w[6] = rdata_w[6] ; 
-                                                                            assign rd_data_w[7] = rdata_w[14] ; 
+                                                                                wr_addr_i[(ADDR_WIDTH_W - 1):2]} ;
+                                                                            assign raddr_w = rd_addr_i ;
+                                                                            assign rd_data_w[0] = rdata_w[0] ;
+                                                                            assign rd_data_w[1] = rdata_w[8] ;
+                                                                            assign rd_data_w[2] = rdata_w[2] ;
+                                                                            assign rd_data_w[3] = rdata_w[10] ;
+                                                                            assign rd_data_w[4] = rdata_w[4] ;
+                                                                            assign rd_data_w[5] = rdata_w[12] ;
+                                                                            assign rd_data_w[6] = rdata_w[6] ;
+                                                                            assign rd_data_w[7] = rdata_w[14] ;
                                                                         end
                                                                     else
-                                                                        if (((DATA_WIDTH_W == 2) && (DATA_WIDTH_R == 4))) 
+                                                                        if (((DATA_WIDTH_W == 2) && (DATA_WIDTH_R == 4)))
                                                                             begin : genblk5
-                                                                                assign wdata_w[11] = wr_data_i[1] ; 
-                                                                                assign wdata_w[3] = wr_data_i[0] ; 
-                                                                                assign wdata_w[2:0] = 3'b000 ; 
-                                                                                assign wdata_w[10:4] = 7'h00 ; 
-                                                                                assign wdata_w[15:12] = 4'h0 ; 
+                                                                                assign wdata_w[11] = wr_data_i[1] ;
+                                                                                assign wdata_w[3] = wr_data_i[0] ;
+                                                                                assign wdata_w[2:0] = 3'b000 ;
+                                                                                assign wdata_w[10:4] = 7'h00 ;
+                                                                                assign wdata_w[15:12] = 4'h0 ;
                                                                                 assign waddr_w = {wr_addr_i[0],
-                                                                                wr_addr_i[(ADDR_WIDTH_W - 1):1]} ; 
-                                                                                assign raddr_w = rd_addr_i ; 
-                                                                                assign rd_data_w[0] = rdata_w[1] ; 
-                                                                                assign rd_data_w[1] = rdata_w[9] ; 
-                                                                                assign rd_data_w[2] = rdata_w[5] ; 
-                                                                                assign rd_data_w[3] = rdata_w[13] ; 
+                                                                                wr_addr_i[(ADDR_WIDTH_W - 1):1]} ;
+                                                                                assign raddr_w = rd_addr_i ;
+                                                                                assign rd_data_w[0] = rdata_w[1] ;
+                                                                                assign rd_data_w[1] = rdata_w[9] ;
+                                                                                assign rd_data_w[2] = rdata_w[5] ;
+                                                                                assign rd_data_w[3] = rdata_w[13] ;
                                                                             end
                                                                         else
                                                                             begin : genblk5
-                                                                                assign wdata_w[11] = wr_data_i[1] ; 
-                                                                                assign wdata_w[3] = wr_data_i[0] ; 
-                                                                                assign wdata_w[2:0] = 3'b000 ; 
-                                                                                assign wdata_w[10:4] = 7'h00 ; 
-                                                                                assign wdata_w[15:12] = 4'h0 ; 
-                                                                                assign waddr_w = wr_addr_i ; 
-                                                                                assign raddr_w = rd_addr_i ; 
-                                                                                assign rd_data_w[0] = rdata_w[3] ; 
-                                                                                assign rd_data_w[1] = rdata_w[11] ; 
+                                                                                assign wdata_w[11] = wr_data_i[1] ;
+                                                                                assign wdata_w[3] = wr_data_i[0] ;
+                                                                                assign wdata_w[2:0] = 3'b000 ;
+                                                                                assign wdata_w[10:4] = 7'h00 ;
+                                                                                assign wdata_w[15:12] = 4'h0 ;
+                                                                                assign waddr_w = wr_addr_i ;
+                                                                                assign raddr_w = rd_addr_i ;
+                                                                                assign rd_data_w[0] = rdata_w[3] ;
+                                                                                assign rd_data_w[1] = rdata_w[11] ;
                                                                             end
-                wire t_wr_en_i = ((BYTE_ENABLE == 0) ? wr_en_i : ((BYTE_WIDTH > 1) ? wr_en_i : (wr_en_i & ben_i))) ; 
-                PDP4K u_mem0 (.ADR(raddr_w), 
-                            .ADW(waddr_w), 
-                            .DI(wdata_w), 
-                            .MASK_N(mask_t_w), 
-                            .CER(rd_clk_en_i), 
-                            .CKR(rd_clk_i), 
-                            .RE(rd_en_i), 
-                            .CEW(wr_clk_en_i), 
-                            .CKW(wr_clk_i), 
-                            .WE(t_wr_en_i), 
-                            .DO(rdata_w)) ; 
-                localparam R = ((DATA_WIDTH_R == 16) ? "16" : ((DATA_WIDTH_R == 8) ? "8" : ((DATA_WIDTH_R == 4) ? "4" : "2"))) ; 
-                localparam W = ((DATA_WIDTH_W == 16) ? "16" : ((DATA_WIDTH_W == 8) ? "8" : ((DATA_WIDTH_W == 4) ? "4" : "2"))) ; 
-                localparam X_T0 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_T1 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_T2 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_T3 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_T4 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_T5 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_T6 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_T7 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_T8 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_T9 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_TA = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_TB = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_TC = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_TD = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_TE = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X_TF = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ; 
-                localparam X0 = ((INIT_MODE == "mem_file") ? INIT_VALUE_00 : X_T0) ; 
-                localparam X1 = ((INIT_MODE == "mem_file") ? INIT_VALUE_01 : X_T1) ; 
-                localparam X2 = ((INIT_MODE == "mem_file") ? INIT_VALUE_02 : X_T2) ; 
-                localparam X3 = ((INIT_MODE == "mem_file") ? INIT_VALUE_03 : X_T3) ; 
-                localparam X4 = ((INIT_MODE == "mem_file") ? INIT_VALUE_04 : X_T4) ; 
-                localparam X5 = ((INIT_MODE == "mem_file") ? INIT_VALUE_05 : X_T5) ; 
-                localparam X6 = ((INIT_MODE == "mem_file") ? INIT_VALUE_06 : X_T6) ; 
-                localparam X7 = ((INIT_MODE == "mem_file") ? INIT_VALUE_07 : X_T7) ; 
-                localparam X8 = ((INIT_MODE == "mem_file") ? INIT_VALUE_08 : X_T8) ; 
-                localparam X9 = ((INIT_MODE == "mem_file") ? INIT_VALUE_09 : X_T9) ; 
-                localparam XA = ((INIT_MODE == "mem_file") ? INIT_VALUE_0A : X_TA) ; 
-                localparam XB = ((INIT_MODE == "mem_file") ? INIT_VALUE_0B : X_TB) ; 
-                localparam XC = ((INIT_MODE == "mem_file") ? INIT_VALUE_0C : X_TC) ; 
-                localparam XD = ((INIT_MODE == "mem_file") ? INIT_VALUE_0D : X_TD) ; 
-                localparam XE = ((INIT_MODE == "mem_file") ? INIT_VALUE_0E : X_TE) ; 
-                localparam XF = ((INIT_MODE == "mem_file") ? INIT_VALUE_0F : X_TF) ; 
-                defparam u_mem0.DATA_WIDTH_W = W ; 
-                defparam u_mem0.DATA_WIDTH_R = R ; 
-                defparam u_mem0.INITVAL_0 = X0 ; 
-                defparam u_mem0.INITVAL_1 = X1 ; 
-                defparam u_mem0.INITVAL_2 = X2 ; 
-                defparam u_mem0.INITVAL_3 = X3 ; 
-                defparam u_mem0.INITVAL_4 = X4 ; 
-                defparam u_mem0.INITVAL_5 = X5 ; 
-                defparam u_mem0.INITVAL_6 = X6 ; 
-                defparam u_mem0.INITVAL_7 = X7 ; 
-                defparam u_mem0.INITVAL_8 = X8 ; 
-                defparam u_mem0.INITVAL_9 = X9 ; 
-                defparam u_mem0.INITVAL_A = XA ; 
-                defparam u_mem0.INITVAL_B = XB ; 
-                defparam u_mem0.INITVAL_C = XC ; 
-                defparam u_mem0.INITVAL_D = XD ; 
-                defparam u_mem0.INITVAL_E = XE ; 
-                defparam u_mem0.INITVAL_F = XF ; 
-                if ((REGMODE == "reg")) 
+                wire t_wr_en_i = ((BYTE_ENABLE == 0) ? wr_en_i : ((BYTE_WIDTH > 1) ? wr_en_i : (wr_en_i & ben_i))) ;
+                PDP4K u_mem0 (.ADR(raddr_w),
+                            .ADW(waddr_w),
+                            .DI(wdata_w),
+                            .MASK_N(mask_t_w),
+                            .CER(rd_clk_en_i),
+                            .CKR(rd_clk_i),
+                            .RE(rd_en_i),
+                            .CEW(wr_clk_en_i),
+                            .CKW(wr_clk_i),
+                            .WE(t_wr_en_i),
+                            .DO(rdata_w)) ;
+                localparam R = ((DATA_WIDTH_R == 16) ? "16" : ((DATA_WIDTH_R == 8) ? "8" : ((DATA_WIDTH_R == 4) ? "4" : "2"))) ;
+                localparam W = ((DATA_WIDTH_W == 16) ? "16" : ((DATA_WIDTH_W == 8) ? "8" : ((DATA_WIDTH_W == 4) ? "4" : "2"))) ;
+                localparam X_T0 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_T1 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_T2 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_T3 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_T4 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_T5 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_T6 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_T7 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_T8 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_T9 = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_TA = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_TB = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_TC = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_TD = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_TE = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X_TF = ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x0000000000000000000000000000000000000000000000000000000000000000") ;
+                localparam X0 = ((INIT_MODE == "mem_file") ? INIT_VALUE_00 : X_T0) ;
+                localparam X1 = ((INIT_MODE == "mem_file") ? INIT_VALUE_01 : X_T1) ;
+                localparam X2 = ((INIT_MODE == "mem_file") ? INIT_VALUE_02 : X_T2) ;
+                localparam X3 = ((INIT_MODE == "mem_file") ? INIT_VALUE_03 : X_T3) ;
+                localparam X4 = ((INIT_MODE == "mem_file") ? INIT_VALUE_04 : X_T4) ;
+                localparam X5 = ((INIT_MODE == "mem_file") ? INIT_VALUE_05 : X_T5) ;
+                localparam X6 = ((INIT_MODE == "mem_file") ? INIT_VALUE_06 : X_T6) ;
+                localparam X7 = ((INIT_MODE == "mem_file") ? INIT_VALUE_07 : X_T7) ;
+                localparam X8 = ((INIT_MODE == "mem_file") ? INIT_VALUE_08 : X_T8) ;
+                localparam X9 = ((INIT_MODE == "mem_file") ? INIT_VALUE_09 : X_T9) ;
+                localparam XA = ((INIT_MODE == "mem_file") ? INIT_VALUE_0A : X_TA) ;
+                localparam XB = ((INIT_MODE == "mem_file") ? INIT_VALUE_0B : X_TB) ;
+                localparam XC = ((INIT_MODE == "mem_file") ? INIT_VALUE_0C : X_TC) ;
+                localparam XD = ((INIT_MODE == "mem_file") ? INIT_VALUE_0D : X_TD) ;
+                localparam XE = ((INIT_MODE == "mem_file") ? INIT_VALUE_0E : X_TE) ;
+                localparam XF = ((INIT_MODE == "mem_file") ? INIT_VALUE_0F : X_TF) ;
+                defparam u_mem0.DATA_WIDTH_W = W ;
+                defparam u_mem0.DATA_WIDTH_R = R ;
+                defparam u_mem0.INITVAL_0 = X0 ;
+                defparam u_mem0.INITVAL_1 = X1 ;
+                defparam u_mem0.INITVAL_2 = X2 ;
+                defparam u_mem0.INITVAL_3 = X3 ;
+                defparam u_mem0.INITVAL_4 = X4 ;
+                defparam u_mem0.INITVAL_5 = X5 ;
+                defparam u_mem0.INITVAL_6 = X6 ;
+                defparam u_mem0.INITVAL_7 = X7 ;
+                defparam u_mem0.INITVAL_8 = X8 ;
+                defparam u_mem0.INITVAL_9 = X9 ;
+                defparam u_mem0.INITVAL_A = XA ;
+                defparam u_mem0.INITVAL_B = XB ;
+                defparam u_mem0.INITVAL_C = XC ;
+                defparam u_mem0.INITVAL_D = XD ;
+                defparam u_mem0.INITVAL_E = XE ;
+                defparam u_mem0.INITVAL_F = XF ;
+                if ((REGMODE == "reg"))
                     begin : genblk6
-                        reg [(DATA_WIDTH_R - 1):0] rd_buff_r ; 
-                        assign rd_data_o = rd_buff_r ; 
-                        if ((RESETMODE == "sync")) 
+                        reg [(DATA_WIDTH_R - 1):0] rd_buff_r ;
+                        assign rd_data_o = rd_buff_r ;
+                        if ((RESETMODE == "sync"))
                             begin : genblk1
                                 always
                                     @(posedge rd_clk_i)
                                     begin
-                                        if ((rst_i == 1'b1)) 
+                                        if ((rst_i == 1'b1))
                                             begin
                                                 rd_buff_r <=  'h0 ;
                                             end
                                         else
                                             begin
-                                                if ((rd_out_clk_en_i == 1'b1)) 
+                                                if ((rd_out_clk_en_i == 1'b1))
                                                     begin
                                                         rd_buff_r <=  rd_data_w ;
                                                     end
@@ -3904,19 +3904,19 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                     end
                             end
                         else
-                            if ((RESET_RELEASE == "sync")) 
+                            if ((RESET_RELEASE == "sync"))
                                 begin : genblk1
                                     always
-                                        @(posedge rd_clk_i or 
+                                        @(posedge rd_clk_i or
                                             posedge rst_i)
                                         begin
-                                            if ((rst_i == 1'b1)) 
+                                            if ((rst_i == 1'b1))
                                                 begin
                                                     rd_buff_r <=  'h0 ;
                                                 end
                                             else
                                                 begin
-                                                    if ((rd_out_clk_en_i == 1'b1)) 
+                                                    if ((rd_out_clk_en_i == 1'b1))
                                                         begin
                                                             rd_buff_r <=  rd_data_w ;
                                                         end
@@ -3928,13 +3928,13 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                     always
                                         @(*)
                                         begin
-                                            if ((rst_i == 1'b1)) 
+                                            if ((rst_i == 1'b1))
                                                 begin
                                                     rd_buff_r = 'h0 ;
                                                 end
                                             else
                                                 begin
-                                                    if ((rd_out_clk_en_i == 1'b1)) 
+                                                    if ((rd_out_clk_en_i == 1'b1))
                                                         begin
                                                             rd_buff_r = rd_data_w ;
                                                         end
@@ -3944,44 +3944,44 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                     end
                 else
                     begin : genblk6
-                        assign rd_data_o = rd_data_w ; 
+                        assign rd_data_o = rd_data_w ;
                     end
             end
         else
-            if ((FAMILY_CODE == _FCODE_LIFCL_)) 
+            if ((FAMILY_CODE == _FCODE_LIFCL_))
                 begin : LIFCL_MEM
-                    localparam OUTREG = ((REGMODE == "reg") ? ((OUTPUT_CLK_EN == 0) ? "USED" : "BYPASSED") : "BYPASSED") ; 
-                    localparam TRUE_CSW = ((CSDECODE_W == 0) ? "000" : ((CSDECODE_W == 1) ? "001" : ((CSDECODE_W == 2) ? "010" : ((CSDECODE_W == 3) ? "011" : ((CSDECODE_W == 4) ? "100" : ((CSDECODE_W == 5) ? "101" : ((CSDECODE_W == 6) ? "110" : "111"))))))) ; 
-                    localparam TRUE_CSR = ((CSDECODE_R == 0) ? "000" : ((CSDECODE_R == 1) ? "001" : ((CSDECODE_R == 2) ? "010" : ((CSDECODE_R == 3) ? "011" : ((CSDECODE_R == 4) ? "100" : ((CSDECODE_R == 5) ? "101" : ((CSDECODE_R == 6) ? "110" : "111"))))))) ; 
-                    localparam DW_W = (((DATA_WIDTH_W == 36) || (DATA_WIDTH_W == 32)) ? "X36" : (((DATA_WIDTH_W == 18) || (DATA_WIDTH_W == 16)) ? "X18" : (((DATA_WIDTH_W == 9) || (DATA_WIDTH_W == 8)) ? "X9" : ((DATA_WIDTH_W == 4) ? "X4" : ((DATA_WIDTH_W == 2) ? "X2" : "X1"))))) ; 
-                    localparam DW_R = (((DATA_WIDTH_R == 36) || (DATA_WIDTH_R == 32)) ? "X36" : (((DATA_WIDTH_R == 18) || (DATA_WIDTH_R == 16)) ? "X18" : (((DATA_WIDTH_R == 9) || (DATA_WIDTH_R == 8)) ? "X9" : ((DATA_WIDTH_R == 4) ? "X4" : ((DATA_WIDTH_R == 2) ? "X2" : "X1"))))) ; 
-                    localparam TRUE_RST = ((RESETMODE == "sync") ? "SYNC" : "ASYNC") ; 
-                    localparam TRUE_RST_REL = ((RESET_RELEASE == "sync") ? "SYNC" : "ASYNC") ; 
-                    localparam TRUE_ECC = (((ECC_ENABLE == 1) && (DATA_WIDTH_W == 32)) ? "ENABLED" : "DISABLED") ; 
-                    localparam TRUE_GSR = ((GSR == "disabled") ? "DISABLED" : "ENABLED") ; 
-                    wire [13:0] w_addr_w ; 
-                    wire [13:0] r_addr_w ; 
-                    wire [35:0] w_data_w ; 
-                    wire [35:0] r_data_w ; 
-                    wire [(DATA_WIDTH_R - 1):0] rd_data_w ; 
-                    if (((REGMODE == "noreg") || (OUTPUT_CLK_EN == 0))) 
+                    localparam OUTREG = ((REGMODE == "reg") ? ((OUTPUT_CLK_EN == 0) ? "USED" : "BYPASSED") : "BYPASSED") ;
+                    localparam TRUE_CSW = ((CSDECODE_W == 0) ? "000" : ((CSDECODE_W == 1) ? "001" : ((CSDECODE_W == 2) ? "010" : ((CSDECODE_W == 3) ? "011" : ((CSDECODE_W == 4) ? "100" : ((CSDECODE_W == 5) ? "101" : ((CSDECODE_W == 6) ? "110" : "111"))))))) ;
+                    localparam TRUE_CSR = ((CSDECODE_R == 0) ? "000" : ((CSDECODE_R == 1) ? "001" : ((CSDECODE_R == 2) ? "010" : ((CSDECODE_R == 3) ? "011" : ((CSDECODE_R == 4) ? "100" : ((CSDECODE_R == 5) ? "101" : ((CSDECODE_R == 6) ? "110" : "111"))))))) ;
+                    localparam DW_W = (((DATA_WIDTH_W == 36) || (DATA_WIDTH_W == 32)) ? "X36" : (((DATA_WIDTH_W == 18) || (DATA_WIDTH_W == 16)) ? "X18" : (((DATA_WIDTH_W == 9) || (DATA_WIDTH_W == 8)) ? "X9" : ((DATA_WIDTH_W == 4) ? "X4" : ((DATA_WIDTH_W == 2) ? "X2" : "X1"))))) ;
+                    localparam DW_R = (((DATA_WIDTH_R == 36) || (DATA_WIDTH_R == 32)) ? "X36" : (((DATA_WIDTH_R == 18) || (DATA_WIDTH_R == 16)) ? "X18" : (((DATA_WIDTH_R == 9) || (DATA_WIDTH_R == 8)) ? "X9" : ((DATA_WIDTH_R == 4) ? "X4" : ((DATA_WIDTH_R == 2) ? "X2" : "X1"))))) ;
+                    localparam TRUE_RST = ((RESETMODE == "sync") ? "SYNC" : "ASYNC") ;
+                    localparam TRUE_RST_REL = ((RESET_RELEASE == "sync") ? "SYNC" : "ASYNC") ;
+                    localparam TRUE_ECC = (((ECC_ENABLE == 1) && (DATA_WIDTH_W == 32)) ? "ENABLED" : "DISABLED") ;
+                    localparam TRUE_GSR = ((GSR == "disabled") ? "DISABLED" : "ENABLED") ;
+                    wire [13:0] w_addr_w ;
+                    wire [13:0] r_addr_w ;
+                    wire [35:0] w_data_w ;
+                    wire [35:0] r_data_w ;
+                    wire [(DATA_WIDTH_R - 1):0] rd_data_w ;
+                    if (((REGMODE == "noreg") || (OUTPUT_CLK_EN == 0)))
                         begin : genblk1
-                            assign rd_data_o = rd_data_w ; 
+                            assign rd_data_o = rd_data_w ;
                         end
                     else
                         begin : genblk1
-                            reg [(DATA_WIDTH_R - 1):0] rd_data_r ; 
-                            if ((RESETMODE == "sync")) 
+                            reg [(DATA_WIDTH_R - 1):0] rd_data_r ;
+                            if ((RESETMODE == "sync"))
                                 begin : genblk1
                                     always
                                         @(posedge rd_clk_i)
                                         begin
-                                            if ((rst_i == 1'b1)) 
+                                            if ((rst_i == 1'b1))
                                                 begin
                                                     rd_data_r <=  {DATA_WIDTH_R{1'b0}} ;
                                                 end
                                             else
-                                                if ((rd_out_clk_en_i == 1'b1)) 
+                                                if ((rd_out_clk_en_i == 1'b1))
                                                     begin
                                                         rd_data_r <=  rd_data_w ;
                                                     end
@@ -3990,345 +3990,345 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                             else
                                 begin : genblk1
                                     always
-                                        @(posedge rd_clk_i or 
+                                        @(posedge rd_clk_i or
                                             posedge rst_i)
                                         begin
-                                            if ((rst_i == 1'b1)) 
+                                            if ((rst_i == 1'b1))
                                                 begin
                                                     rd_data_r <=  {DATA_WIDTH_R{1'b0}} ;
                                                 end
                                             else
-                                                if ((rd_out_clk_en_i == 1'b1)) 
+                                                if ((rd_out_clk_en_i == 1'b1))
                                                     begin
                                                         rd_data_r <=  rd_data_w ;
                                                     end
                                         end
                                 end
-                            assign rd_data_o = rd_data_r ; 
+                            assign rd_data_o = rd_data_r ;
                         end
-                    if (((DATA_WIDTH_W == 36) || (DATA_WIDTH_W == 32))) 
+                    if (((DATA_WIDTH_W == 36) || (DATA_WIDTH_W == 32)))
                         begin : genblk2
-                            assign w_addr_w[13:5] = wr_addr_i ; 
-                            assign w_addr_w[4] = 1'b1 ; 
-                            assign w_addr_w[3:0] = ((BYTE_ENABLE == 1) ? ben_i : 4'b1111) ; 
-                            if ((DATA_WIDTH_W == 36)) 
+                            assign w_addr_w[13:5] = wr_addr_i ;
+                            assign w_addr_w[4] = 1'b1 ;
+                            assign w_addr_w[3:0] = ((BYTE_ENABLE == 1) ? ben_i : 4'b1111) ;
+                            if ((DATA_WIDTH_W == 36))
                                 begin : genblk1
-                                    assign w_data_w = wr_data_i ; 
+                                    assign w_data_w = wr_data_i ;
                                 end
                             else
                                 begin : genblk1
-                                    assign w_data_w[35] = 1'b0 ; 
-                                    assign w_data_w[26] = 1'b0 ; 
-                                    assign w_data_w[17] = 1'b0 ; 
-                                    assign w_data_w[8] = 1'b0 ; 
-                                    assign w_data_w[34:27] = wr_data_i[31:24] ; 
-                                    assign w_data_w[25:18] = wr_data_i[23:16] ; 
-                                    assign w_data_w[16:9] = wr_data_i[15:8] ; 
-                                    assign w_data_w[7:0] = wr_data_i[7:0] ; 
+                                    assign w_data_w[35] = 1'b0 ;
+                                    assign w_data_w[26] = 1'b0 ;
+                                    assign w_data_w[17] = 1'b0 ;
+                                    assign w_data_w[8] = 1'b0 ;
+                                    assign w_data_w[34:27] = wr_data_i[31:24] ;
+                                    assign w_data_w[25:18] = wr_data_i[23:16] ;
+                                    assign w_data_w[16:9] = wr_data_i[15:8] ;
+                                    assign w_data_w[7:0] = wr_data_i[7:0] ;
                                 end
                         end
                     else
-                        if (((DATA_WIDTH_W == 18) || (DATA_WIDTH_W == 16))) 
+                        if (((DATA_WIDTH_W == 18) || (DATA_WIDTH_W == 16)))
                             begin : genblk2
-                                assign w_addr_w[13:5] = wr_addr_i[9:1] ; 
-                                assign w_addr_w[4] = wr_addr_i[0] ; 
-                                assign w_addr_w[3:2] = 2'b11 ; 
-                                assign w_addr_w[1:0] = ((BYTE_ENABLE == 1) ? ben_i : 2'b11) ; 
-                                assign w_data_w[35:18] = {18{1'b0}} ; 
-                                if ((DATA_WIDTH_W == 18)) 
+                                assign w_addr_w[13:5] = wr_addr_i[9:1] ;
+                                assign w_addr_w[4] = wr_addr_i[0] ;
+                                assign w_addr_w[3:2] = 2'b11 ;
+                                assign w_addr_w[1:0] = ((BYTE_ENABLE == 1) ? ben_i : 2'b11) ;
+                                assign w_data_w[35:18] = {18{1'b0}} ;
+                                if ((DATA_WIDTH_W == 18))
                                     begin : genblk1
-                                        assign w_data_w[17:0] = wr_data_i ; 
+                                        assign w_data_w[17:0] = wr_data_i ;
                                     end
                                 else
                                     begin : genblk1
-                                        assign w_data_w[17] = 1'b0 ; 
-                                        assign w_data_w[8] = 1'b0 ; 
-                                        assign w_data_w[16:9] = wr_data_i[15:8] ; 
-                                        assign w_data_w[7:0] = wr_data_i[7:0] ; 
+                                        assign w_data_w[17] = 1'b0 ;
+                                        assign w_data_w[8] = 1'b0 ;
+                                        assign w_data_w[16:9] = wr_data_i[15:8] ;
+                                        assign w_data_w[7:0] = wr_data_i[7:0] ;
                                     end
                             end
                         else
-                            if (((DATA_WIDTH_W == 9) || (DATA_WIDTH_W == 8))) 
+                            if (((DATA_WIDTH_W == 9) || (DATA_WIDTH_W == 8)))
                                 begin : genblk2
-                                    assign w_addr_w[13:5] = wr_addr_i[10:2] ; 
-                                    assign w_addr_w[4] = wr_addr_i[1] ; 
-                                    assign w_addr_w[3] = wr_addr_i[0] ; 
-                                    assign w_addr_w[2:0] = 3'b111 ; 
-                                    assign w_data_w[35:9] = {27{1'b0}} ; 
-                                    if ((DATA_WIDTH_W == 9)) 
+                                    assign w_addr_w[13:5] = wr_addr_i[10:2] ;
+                                    assign w_addr_w[4] = wr_addr_i[1] ;
+                                    assign w_addr_w[3] = wr_addr_i[0] ;
+                                    assign w_addr_w[2:0] = 3'b111 ;
+                                    assign w_data_w[35:9] = {27{1'b0}} ;
+                                    if ((DATA_WIDTH_W == 9))
                                         begin: genblk1
-                                            assign w_data_w[8:0] = wr_data_i ; 
+                                            assign w_data_w[8:0] = wr_data_i ;
                                         end
                                     else
                                         begin: genblk1
                                             assign w_data_w[8:0] = {1'b0,
-                                                        wr_data_i} ; 
+                                                        wr_data_i} ;
                                         end
                                 end
                             else
-                                if ((DATA_WIDTH_W == 4)) 
+                                if ((DATA_WIDTH_W == 4))
                                     begin : genblk2
-                                        assign w_addr_w[13:5] = wr_addr_i[11:3] ; 
-                                        assign w_addr_w[4] = wr_addr_i[2] ; 
-                                        assign w_addr_w[3] = wr_addr_i[1] ; 
-                                        assign w_addr_w[2] = wr_addr_i[0] ; 
-                                        assign w_addr_w[1:0] = 2'b11 ; 
-                                        assign w_data_w[35:4] = {32{1'b0}} ; 
-                                        assign w_data_w[3:0] = wr_data_i ; 
+                                        assign w_addr_w[13:5] = wr_addr_i[11:3] ;
+                                        assign w_addr_w[4] = wr_addr_i[2] ;
+                                        assign w_addr_w[3] = wr_addr_i[1] ;
+                                        assign w_addr_w[2] = wr_addr_i[0] ;
+                                        assign w_addr_w[1:0] = 2'b11 ;
+                                        assign w_data_w[35:4] = {32{1'b0}} ;
+                                        assign w_data_w[3:0] = wr_data_i ;
                                     end
                                 else
-                                    if ((DATA_WIDTH_W == 2)) 
+                                    if ((DATA_WIDTH_W == 2))
                                         begin : genblk2
-                                            assign w_addr_w[13:5] = wr_addr_i[12:4] ; 
-                                            assign w_addr_w[4] = wr_addr_i[3] ; 
-                                            assign w_addr_w[3] = wr_addr_i[2] ; 
-                                            assign w_addr_w[2] = wr_addr_i[1] ; 
-                                            assign w_addr_w[1] = wr_addr_i[0] ; 
-                                            assign w_addr_w[0] = 1'b1 ; 
-                                            assign w_data_w[35:2] = {34{1'b0}} ; 
-                                            assign w_data_w[1:0] = wr_data_i ; 
+                                            assign w_addr_w[13:5] = wr_addr_i[12:4] ;
+                                            assign w_addr_w[4] = wr_addr_i[3] ;
+                                            assign w_addr_w[3] = wr_addr_i[2] ;
+                                            assign w_addr_w[2] = wr_addr_i[1] ;
+                                            assign w_addr_w[1] = wr_addr_i[0] ;
+                                            assign w_addr_w[0] = 1'b1 ;
+                                            assign w_data_w[35:2] = {34{1'b0}} ;
+                                            assign w_data_w[1:0] = wr_data_i ;
                                         end
                                     else
                                         begin : genblk2
-                                            assign w_addr_w[13:5] = wr_addr_i[13:5] ; 
-                                            assign w_addr_w[4] = wr_addr_i[4] ; 
-                                            assign w_addr_w[3] = wr_addr_i[3] ; 
-                                            assign w_addr_w[2] = wr_addr_i[2] ; 
-                                            assign w_addr_w[1] = wr_addr_i[1] ; 
-                                            assign w_addr_w[0] = wr_addr_i[0] ; 
-                                            assign w_data_w[35:1] = {35{1'b0}} ; 
-                                            assign w_data_w[0] = wr_data_i ; 
+                                            assign w_addr_w[13:5] = wr_addr_i[13:5] ;
+                                            assign w_addr_w[4] = wr_addr_i[4] ;
+                                            assign w_addr_w[3] = wr_addr_i[3] ;
+                                            assign w_addr_w[2] = wr_addr_i[2] ;
+                                            assign w_addr_w[1] = wr_addr_i[1] ;
+                                            assign w_addr_w[0] = wr_addr_i[0] ;
+                                            assign w_data_w[35:1] = {35{1'b0}} ;
+                                            assign w_data_w[0] = wr_data_i ;
                                         end
-                    if (((DATA_WIDTH_R == 36) || (DATA_WIDTH_R == 32))) 
+                    if (((DATA_WIDTH_R == 36) || (DATA_WIDTH_R == 32)))
                         begin : genblk3
-                            assign r_addr_w[13:5] = rd_addr_i ; 
-                            assign r_addr_w[4] = 1'b1 ; 
-                            assign r_addr_w[3:0] = 4'b1111 ; 
-                            if ((DATA_WIDTH_R == 36)) 
+                            assign r_addr_w[13:5] = rd_addr_i ;
+                            assign r_addr_w[4] = 1'b1 ;
+                            assign r_addr_w[3:0] = 4'b1111 ;
+                            if ((DATA_WIDTH_R == 36))
                                 begin : genblk1
-                                    assign rd_data_w = r_data_w ; 
+                                    assign rd_data_w = r_data_w ;
                                 end
                             else
                                 begin : genblk1
-                                    assign rd_data_w[31:24] = r_data_w[34:27] ; 
-                                    assign rd_data_w[23:16] = r_data_w[25:18] ; 
-                                    assign rd_data_w[15:8] = r_data_w[16:9] ; 
-                                    assign rd_data_w[7:0] = r_data_w[7:0] ; 
+                                    assign rd_data_w[31:24] = r_data_w[34:27] ;
+                                    assign rd_data_w[23:16] = r_data_w[25:18] ;
+                                    assign rd_data_w[15:8] = r_data_w[16:9] ;
+                                    assign rd_data_w[7:0] = r_data_w[7:0] ;
                                 end
                         end
                     else
-                        if (((DATA_WIDTH_R == 18) || (DATA_WIDTH_R == 16))) 
+                        if (((DATA_WIDTH_R == 18) || (DATA_WIDTH_R == 16)))
                             begin : genblk3
-                                assign r_addr_w[13:5] = rd_addr_i[9:1] ; 
-                                assign r_addr_w[4] = rd_addr_i[0] ; 
-                                assign r_addr_w[3:0] = 4'b1111 ; 
-                                if ((DATA_WIDTH_R == 18)) 
+                                assign r_addr_w[13:5] = rd_addr_i[9:1] ;
+                                assign r_addr_w[4] = rd_addr_i[0] ;
+                                assign r_addr_w[3:0] = 4'b1111 ;
+                                if ((DATA_WIDTH_R == 18))
                                     begin : genblk1
-                                        assign rd_data_w[17:0] = r_data_w[17:0] ; 
+                                        assign rd_data_w[17:0] = r_data_w[17:0] ;
                                     end
                                 else
                                     begin : genblk1
-                                        assign rd_data_w[15:8] = r_data_w[16:9] ; 
-                                        assign rd_data_w[7:0] = r_data_w[7:0] ; 
+                                        assign rd_data_w[15:8] = r_data_w[16:9] ;
+                                        assign rd_data_w[7:0] = r_data_w[7:0] ;
                                     end
                             end
                         else
-                            if (((DATA_WIDTH_R == 9) || (DATA_WIDTH_R == 8))) 
+                            if (((DATA_WIDTH_R == 9) || (DATA_WIDTH_R == 8)))
                                 begin : genblk3
-                                    assign r_addr_w[13:5] = rd_addr_i[10:2] ; 
-                                    assign r_addr_w[4] = rd_addr_i[1] ; 
-                                    assign r_addr_w[3] = rd_addr_i[0] ; 
-                                    assign r_addr_w[2:0] = 3'b111 ; 
-                                    if ((DATA_WIDTH_R == 9)) 
+                                    assign r_addr_w[13:5] = rd_addr_i[10:2] ;
+                                    assign r_addr_w[4] = rd_addr_i[1] ;
+                                    assign r_addr_w[3] = rd_addr_i[0] ;
+                                    assign r_addr_w[2:0] = 3'b111 ;
+                                    if ((DATA_WIDTH_R == 9))
                                         begin: genblk1
-                                            assign rd_data_w = r_data_w[8:0] ; 
+                                            assign rd_data_w = r_data_w[8:0] ;
                                         end
                                     else
                                         begin: genblk1
-                                            assign rd_data_w = r_data_w[7:0] ; 
+                                            assign rd_data_w = r_data_w[7:0] ;
                                         end
                                 end
                             else
-                                if ((DATA_WIDTH_R == 4)) 
+                                if ((DATA_WIDTH_R == 4))
                                     begin : genblk3
-                                        assign r_addr_w[13:5] = rd_addr_i[11:3] ; 
-                                        assign r_addr_w[4] = rd_addr_i[2] ; 
-                                        assign r_addr_w[3] = rd_addr_i[1] ; 
-                                        assign r_addr_w[2] = rd_addr_i[0] ; 
-                                        assign r_addr_w[1:0] = 2'b11 ; 
-                                        assign rd_data_w = r_data_w[3:0] ; 
+                                        assign r_addr_w[13:5] = rd_addr_i[11:3] ;
+                                        assign r_addr_w[4] = rd_addr_i[2] ;
+                                        assign r_addr_w[3] = rd_addr_i[1] ;
+                                        assign r_addr_w[2] = rd_addr_i[0] ;
+                                        assign r_addr_w[1:0] = 2'b11 ;
+                                        assign rd_data_w = r_data_w[3:0] ;
                                     end
                                 else
-                                    if ((DATA_WIDTH_R == 2)) 
+                                    if ((DATA_WIDTH_R == 2))
                                         begin : genblk3
-                                            assign r_addr_w[13:5] = rd_addr_i[12:4] ; 
-                                            assign r_addr_w[4] = rd_addr_i[3] ; 
-                                            assign r_addr_w[3] = rd_addr_i[2] ; 
-                                            assign r_addr_w[2] = rd_addr_i[1] ; 
-                                            assign r_addr_w[1] = rd_addr_i[0] ; 
-                                            assign r_addr_w[0] = 1'b1 ; 
-                                            assign rd_data_w = r_data_w[1:0] ; 
+                                            assign r_addr_w[13:5] = rd_addr_i[12:4] ;
+                                            assign r_addr_w[4] = rd_addr_i[3] ;
+                                            assign r_addr_w[3] = rd_addr_i[2] ;
+                                            assign r_addr_w[2] = rd_addr_i[1] ;
+                                            assign r_addr_w[1] = rd_addr_i[0] ;
+                                            assign r_addr_w[0] = 1'b1 ;
+                                            assign rd_data_w = r_data_w[1:0] ;
                                         end
                                     else
                                         begin : genblk3
-                                            assign r_addr_w[13:5] = rd_addr_i[13:5] ; 
-                                            assign r_addr_w[4] = rd_addr_i[4] ; 
-                                            assign r_addr_w[3] = rd_addr_i[3] ; 
-                                            assign r_addr_w[2] = rd_addr_i[2] ; 
-                                            assign r_addr_w[1] = rd_addr_i[1] ; 
-                                            assign r_addr_w[0] = rd_addr_i[0] ; 
-                                            assign rd_data_w = r_data_w[0] ; 
+                                            assign r_addr_w[13:5] = rd_addr_i[13:5] ;
+                                            assign r_addr_w[4] = rd_addr_i[4] ;
+                                            assign r_addr_w[3] = rd_addr_i[3] ;
+                                            assign r_addr_w[2] = rd_addr_i[2] ;
+                                            assign r_addr_w[1] = rd_addr_i[1] ;
+                                            assign r_addr_w[0] = rd_addr_i[0] ;
+                                            assign rd_data_w = r_data_w[0] ;
                                         end
-                    wire t_wr_en_i = ((BYTE_ENABLE == 0) ? wr_en_i : ((BYTE_WIDTH > 1) ? wr_en_i : (wr_en_i & ben_i))) ; 
-                    wire t_rd_en_i = rd_en_i ; 
-                    wire [35:0] DI = w_data_w ; 
-                    wire [13:0] ADW = w_addr_w ; 
-                    wire [13:0] ADR = r_addr_w ; 
-                    wire CLKW = wr_clk_i ; 
-                    wire CLKR = rd_clk_i ; 
-                    wire CEW = wr_clk_en_i ; 
-                    wire CER = rd_clk_en_i ; 
+                    wire t_wr_en_i = ((BYTE_ENABLE == 0) ? wr_en_i : ((BYTE_WIDTH > 1) ? wr_en_i : (wr_en_i & ben_i))) ;
+                    wire t_rd_en_i = rd_en_i ;
+                    wire [35:0] DI = w_data_w ;
+                    wire [13:0] ADW = w_addr_w ;
+                    wire [13:0] ADR = r_addr_w ;
+                    wire CLKW = wr_clk_i ;
+                    wire CLKR = rd_clk_i ;
+                    wire CEW = wr_clk_en_i ;
+                    wire CER = rd_clk_en_i ;
                     wire [2:0] CSW = {t_wr_en_i,
                                 t_wr_en_i,
-                                t_wr_en_i} ; 
+                                t_wr_en_i} ;
                     wire [2:0] CSR = {t_rd_en_i,
                                 t_rd_en_i,
-                                t_rd_en_i} ; 
-                    wire RST = rst_i ; 
-                    wire [35:0] DO ; 
-                    assign r_data_w = DO ; 
-                    localparam MEM_TYPE = "EBR" ; 
+                                t_rd_en_i} ;
+                    wire RST = rst_i ;
+                    wire [35:0] DO ;
+                    assign r_data_w = DO ;
+                    localparam MEM_TYPE = "EBR" ;
                     localparam T_MEM_SIZE = {"[",
                                 MEM_SIZE,
-                                "]"} ; 
-                    (* ECO_MEM_TYPE=MEM_TYPE, ECO_MEM_ID=MEM_ID, ECO_MEM_SIZE=T_MEM_SIZE, ECO_MEM_BLOCK_SIZE=BLOCK_SIZE, ECO_MEM_BLOCK_POS=BLOCK_POS *) PDP16K pdp16k (.DI(DI), 
-                                .ADW(ADW), 
-                                .ADR(ADR), 
-                                .CLKW(CLKW), 
-                                .CLKR(CLKR), 
-                                .CEW(CEW), 
-                                .CER(CER), 
-                                .CSW(CSW), 
-                                .CSR(CSR), 
-                                .RST(RST), 
-                                .DO(DO), 
-                                .ONEBITERR(one_err_det_o), 
-                                .TWOBITERR(two_err_det_o)) ; 
-                    defparam pdp16k.DATA_WIDTH_W = DW_W ; 
-                    defparam pdp16k.DATA_WIDTH_R = DW_R ; 
-                    defparam pdp16k.OUTREG = OUTREG ; 
-                    defparam pdp16k.RESETMODE = TRUE_RST ; 
-                    defparam pdp16k.CSDECODE_W = TRUE_CSW ; 
-                    defparam pdp16k.CSDECODE_R = TRUE_CSR ; 
-                    defparam pdp16k.ASYNC_RST_RELEASE = TRUE_RST_REL ; 
-                    defparam pdp16k.INIT_DATA = "DYNAMIC" ; 
-                    defparam pdp16k.ECC = (ECC_ENABLE ? "ENABLED" : "DISABLED") ; 
-                    defparam pdp16k.INITVAL_00 = ((INIT_MODE == "mem_file") ? INIT_VALUE_00 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_01 = ((INIT_MODE == "mem_file") ? INIT_VALUE_01 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_02 = ((INIT_MODE == "mem_file") ? INIT_VALUE_02 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_03 = ((INIT_MODE == "mem_file") ? INIT_VALUE_03 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_04 = ((INIT_MODE == "mem_file") ? INIT_VALUE_04 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_05 = ((INIT_MODE == "mem_file") ? INIT_VALUE_05 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_06 = ((INIT_MODE == "mem_file") ? INIT_VALUE_06 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_07 = ((INIT_MODE == "mem_file") ? INIT_VALUE_07 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_08 = ((INIT_MODE == "mem_file") ? INIT_VALUE_08 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_09 = ((INIT_MODE == "mem_file") ? INIT_VALUE_09 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_0A = ((INIT_MODE == "mem_file") ? INIT_VALUE_0A : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_0B = ((INIT_MODE == "mem_file") ? INIT_VALUE_0B : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_0C = ((INIT_MODE == "mem_file") ? INIT_VALUE_0C : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_0D = ((INIT_MODE == "mem_file") ? INIT_VALUE_0D : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_0E = ((INIT_MODE == "mem_file") ? INIT_VALUE_0E : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_0F = ((INIT_MODE == "mem_file") ? INIT_VALUE_0F : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_10 = ((INIT_MODE == "mem_file") ? INIT_VALUE_10 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_11 = ((INIT_MODE == "mem_file") ? INIT_VALUE_11 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_12 = ((INIT_MODE == "mem_file") ? INIT_VALUE_12 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_13 = ((INIT_MODE == "mem_file") ? INIT_VALUE_13 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_14 = ((INIT_MODE == "mem_file") ? INIT_VALUE_14 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_15 = ((INIT_MODE == "mem_file") ? INIT_VALUE_15 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_16 = ((INIT_MODE == "mem_file") ? INIT_VALUE_16 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_17 = ((INIT_MODE == "mem_file") ? INIT_VALUE_17 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_18 = ((INIT_MODE == "mem_file") ? INIT_VALUE_18 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_19 = ((INIT_MODE == "mem_file") ? INIT_VALUE_19 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_1A = ((INIT_MODE == "mem_file") ? INIT_VALUE_1A : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_1B = ((INIT_MODE == "mem_file") ? INIT_VALUE_1B : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_1C = ((INIT_MODE == "mem_file") ? INIT_VALUE_1C : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_1D = ((INIT_MODE == "mem_file") ? INIT_VALUE_1D : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_1E = ((INIT_MODE == "mem_file") ? INIT_VALUE_1E : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_1F = ((INIT_MODE == "mem_file") ? INIT_VALUE_1F : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_20 = ((INIT_MODE == "mem_file") ? INIT_VALUE_20 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_21 = ((INIT_MODE == "mem_file") ? INIT_VALUE_21 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_22 = ((INIT_MODE == "mem_file") ? INIT_VALUE_22 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_23 = ((INIT_MODE == "mem_file") ? INIT_VALUE_23 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_24 = ((INIT_MODE == "mem_file") ? INIT_VALUE_24 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_25 = ((INIT_MODE == "mem_file") ? INIT_VALUE_25 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_26 = ((INIT_MODE == "mem_file") ? INIT_VALUE_26 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_27 = ((INIT_MODE == "mem_file") ? INIT_VALUE_27 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_28 = ((INIT_MODE == "mem_file") ? INIT_VALUE_28 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_29 = ((INIT_MODE == "mem_file") ? INIT_VALUE_29 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_2A = ((INIT_MODE == "mem_file") ? INIT_VALUE_2A : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_2B = ((INIT_MODE == "mem_file") ? INIT_VALUE_2B : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_2C = ((INIT_MODE == "mem_file") ? INIT_VALUE_2C : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_2D = ((INIT_MODE == "mem_file") ? INIT_VALUE_2D : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_2E = ((INIT_MODE == "mem_file") ? INIT_VALUE_2E : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_2F = ((INIT_MODE == "mem_file") ? INIT_VALUE_2F : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_30 = ((INIT_MODE == "mem_file") ? INIT_VALUE_30 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_31 = ((INIT_MODE == "mem_file") ? INIT_VALUE_31 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_32 = ((INIT_MODE == "mem_file") ? INIT_VALUE_32 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_33 = ((INIT_MODE == "mem_file") ? INIT_VALUE_33 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_34 = ((INIT_MODE == "mem_file") ? INIT_VALUE_34 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_35 = ((INIT_MODE == "mem_file") ? INIT_VALUE_35 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_36 = ((INIT_MODE == "mem_file") ? INIT_VALUE_36 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_37 = ((INIT_MODE == "mem_file") ? INIT_VALUE_37 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_38 = ((INIT_MODE == "mem_file") ? INIT_VALUE_38 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_39 = ((INIT_MODE == "mem_file") ? INIT_VALUE_39 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_3A = ((INIT_MODE == "mem_file") ? INIT_VALUE_3A : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_3B = ((INIT_MODE == "mem_file") ? INIT_VALUE_3B : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_3C = ((INIT_MODE == "mem_file") ? INIT_VALUE_3C : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_3D = ((INIT_MODE == "mem_file") ? INIT_VALUE_3D : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_3E = ((INIT_MODE == "mem_file") ? INIT_VALUE_3E : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
-                    defparam pdp16k.INITVAL_3F = ((INIT_MODE == "mem_file") ? INIT_VALUE_3F : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ; 
+                                "]"} ;
+                    (* ECO_MEM_TYPE=MEM_TYPE, ECO_MEM_ID=MEM_ID, ECO_MEM_SIZE=T_MEM_SIZE, ECO_MEM_BLOCK_SIZE=BLOCK_SIZE, ECO_MEM_BLOCK_POS=BLOCK_POS *) PDP16K pdp16k (.DI(DI),
+                                .ADW(ADW),
+                                .ADR(ADR),
+                                .CLKW(CLKW),
+                                .CLKR(CLKR),
+                                .CEW(CEW),
+                                .CER(CER),
+                                .CSW(CSW),
+                                .CSR(CSR),
+                                .RST(RST),
+                                .DO(DO),
+                                .ONEBITERR(one_err_det_o),
+                                .TWOBITERR(two_err_det_o)) ;
+                    defparam pdp16k.DATA_WIDTH_W = DW_W ;
+                    defparam pdp16k.DATA_WIDTH_R = DW_R ;
+                    defparam pdp16k.OUTREG = OUTREG ;
+                    defparam pdp16k.RESETMODE = TRUE_RST ;
+                    defparam pdp16k.CSDECODE_W = TRUE_CSW ;
+                    defparam pdp16k.CSDECODE_R = TRUE_CSR ;
+                    defparam pdp16k.ASYNC_RST_RELEASE = TRUE_RST_REL ;
+                    defparam pdp16k.INIT_DATA = "DYNAMIC" ;
+                    defparam pdp16k.ECC = (ECC_ENABLE ? "ENABLED" : "DISABLED") ;
+                    defparam pdp16k.INITVAL_00 = ((INIT_MODE == "mem_file") ? INIT_VALUE_00 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_01 = ((INIT_MODE == "mem_file") ? INIT_VALUE_01 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_02 = ((INIT_MODE == "mem_file") ? INIT_VALUE_02 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_03 = ((INIT_MODE == "mem_file") ? INIT_VALUE_03 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_04 = ((INIT_MODE == "mem_file") ? INIT_VALUE_04 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_05 = ((INIT_MODE == "mem_file") ? INIT_VALUE_05 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_06 = ((INIT_MODE == "mem_file") ? INIT_VALUE_06 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_07 = ((INIT_MODE == "mem_file") ? INIT_VALUE_07 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_08 = ((INIT_MODE == "mem_file") ? INIT_VALUE_08 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_09 = ((INIT_MODE == "mem_file") ? INIT_VALUE_09 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_0A = ((INIT_MODE == "mem_file") ? INIT_VALUE_0A : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_0B = ((INIT_MODE == "mem_file") ? INIT_VALUE_0B : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_0C = ((INIT_MODE == "mem_file") ? INIT_VALUE_0C : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_0D = ((INIT_MODE == "mem_file") ? INIT_VALUE_0D : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_0E = ((INIT_MODE == "mem_file") ? INIT_VALUE_0E : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_0F = ((INIT_MODE == "mem_file") ? INIT_VALUE_0F : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_10 = ((INIT_MODE == "mem_file") ? INIT_VALUE_10 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_11 = ((INIT_MODE == "mem_file") ? INIT_VALUE_11 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_12 = ((INIT_MODE == "mem_file") ? INIT_VALUE_12 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_13 = ((INIT_MODE == "mem_file") ? INIT_VALUE_13 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_14 = ((INIT_MODE == "mem_file") ? INIT_VALUE_14 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_15 = ((INIT_MODE == "mem_file") ? INIT_VALUE_15 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_16 = ((INIT_MODE == "mem_file") ? INIT_VALUE_16 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_17 = ((INIT_MODE == "mem_file") ? INIT_VALUE_17 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_18 = ((INIT_MODE == "mem_file") ? INIT_VALUE_18 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_19 = ((INIT_MODE == "mem_file") ? INIT_VALUE_19 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_1A = ((INIT_MODE == "mem_file") ? INIT_VALUE_1A : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_1B = ((INIT_MODE == "mem_file") ? INIT_VALUE_1B : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_1C = ((INIT_MODE == "mem_file") ? INIT_VALUE_1C : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_1D = ((INIT_MODE == "mem_file") ? INIT_VALUE_1D : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_1E = ((INIT_MODE == "mem_file") ? INIT_VALUE_1E : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_1F = ((INIT_MODE == "mem_file") ? INIT_VALUE_1F : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_20 = ((INIT_MODE == "mem_file") ? INIT_VALUE_20 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_21 = ((INIT_MODE == "mem_file") ? INIT_VALUE_21 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_22 = ((INIT_MODE == "mem_file") ? INIT_VALUE_22 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_23 = ((INIT_MODE == "mem_file") ? INIT_VALUE_23 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_24 = ((INIT_MODE == "mem_file") ? INIT_VALUE_24 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_25 = ((INIT_MODE == "mem_file") ? INIT_VALUE_25 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_26 = ((INIT_MODE == "mem_file") ? INIT_VALUE_26 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_27 = ((INIT_MODE == "mem_file") ? INIT_VALUE_27 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_28 = ((INIT_MODE == "mem_file") ? INIT_VALUE_28 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_29 = ((INIT_MODE == "mem_file") ? INIT_VALUE_29 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_2A = ((INIT_MODE == "mem_file") ? INIT_VALUE_2A : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_2B = ((INIT_MODE == "mem_file") ? INIT_VALUE_2B : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_2C = ((INIT_MODE == "mem_file") ? INIT_VALUE_2C : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_2D = ((INIT_MODE == "mem_file") ? INIT_VALUE_2D : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_2E = ((INIT_MODE == "mem_file") ? INIT_VALUE_2E : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_2F = ((INIT_MODE == "mem_file") ? INIT_VALUE_2F : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_30 = ((INIT_MODE == "mem_file") ? INIT_VALUE_30 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_31 = ((INIT_MODE == "mem_file") ? INIT_VALUE_31 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_32 = ((INIT_MODE == "mem_file") ? INIT_VALUE_32 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_33 = ((INIT_MODE == "mem_file") ? INIT_VALUE_33 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_34 = ((INIT_MODE == "mem_file") ? INIT_VALUE_34 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_35 = ((INIT_MODE == "mem_file") ? INIT_VALUE_35 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_36 = ((INIT_MODE == "mem_file") ? INIT_VALUE_36 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_37 = ((INIT_MODE == "mem_file") ? INIT_VALUE_37 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_38 = ((INIT_MODE == "mem_file") ? INIT_VALUE_38 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_39 = ((INIT_MODE == "mem_file") ? INIT_VALUE_39 : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_3A = ((INIT_MODE == "mem_file") ? INIT_VALUE_3A : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_3B = ((INIT_MODE == "mem_file") ? INIT_VALUE_3B : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_3C = ((INIT_MODE == "mem_file") ? INIT_VALUE_3C : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_3D = ((INIT_MODE == "mem_file") ? INIT_VALUE_3D : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_3E = ((INIT_MODE == "mem_file") ? INIT_VALUE_3E : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
+                    defparam pdp16k.INITVAL_3F = ((INIT_MODE == "mem_file") ? INIT_VALUE_3F : ((INIT_MODE == "all_one") ? "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000")) ;
                 end
     endgenerate
     //------------------------------------------------------------------------------
     // Function Definition
     //------------------------------------------------------------------------------
-    function [31:0] calculateStringSize ; 
-        input [31:0] x_calc ; 
-        input [31:0] y_calc ; 
-        reg [31:0] x_func ; 
-        reg [31:0] y_func ; 
+    function [31:0] calculateStringSize ;
+        input [31:0] x_calc ;
+        input [31:0] y_calc ;
+        reg [31:0] x_func ;
+        reg [31:0] y_func ;
         begin
-            if ((x_calc >= 10000000)) 
+            if ((x_calc >= 10000000))
                 begin
                     x_func = 8 ;
                 end
             else
-                if ((x_calc >= 1000000)) 
+                if ((x_calc >= 1000000))
                     begin
                         x_func = 7 ;
                     end
                 else
-                    if ((x_calc >= 100000)) 
+                    if ((x_calc >= 100000))
                         begin
                             x_func = 6 ;
                         end
                     else
-                        if ((x_calc >= 10000)) 
+                        if ((x_calc >= 10000))
                             begin
                                 x_func = 5 ;
                             end
                         else
-                            if ((x_calc >= 1000)) 
+                            if ((x_calc >= 1000))
                                 begin
                                     x_func = 4 ;
                                 end
                             else
-                                if ((x_calc >= 100)) 
+                                if ((x_calc >= 100))
                                     begin
                                         x_func = 3 ;
                                     end
                                 else
-                                    if ((x_calc >= 10)) 
+                                    if ((x_calc >= 10))
                                         begin
                                             x_func = 2 ;
                                         end
@@ -4336,37 +4336,37 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                         begin
                                             x_func = 1 ;
                                         end
-            if ((y_calc >= 10000000)) 
+            if ((y_calc >= 10000000))
                 begin
                     y_func = 8 ;
                 end
             else
-                if ((y_calc >= 1000000)) 
+                if ((y_calc >= 1000000))
                     begin
                         y_func = 7 ;
                     end
                 else
-                    if ((y_calc >= 100000)) 
+                    if ((y_calc >= 100000))
                         begin
                             y_func = 6 ;
                         end
                     else
-                        if ((y_calc >= 10000)) 
+                        if ((y_calc >= 10000))
                             begin
                                 y_func = 5 ;
                             end
                         else
-                            if ((y_calc >= 1000)) 
+                            if ((y_calc >= 1000))
                                 begin
                                     y_func = 4 ;
                                 end
                             else
-                                if ((y_calc >= 100)) 
+                                if ((y_calc >= 100))
                                     begin
                                         y_func = 3 ;
                                     end
                                 else
-                                    if ((y_calc >= 10)) 
+                                    if ((y_calc >= 10))
                                         begin
                                             y_func = 2 ;
                                         end
@@ -4377,40 +4377,40 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
             calculateStringSize = (((3 + x_func) + y_func) * 8) ;
         end
     endfunction
-    function [31:0] getByteWidth ; 
-        input [31:0] data_width ; 
-        input [31:0] dev_code ; 
+    function [31:0] getByteWidth ;
+        input [31:0] data_width ;
+        input [31:0] dev_code ;
         begin
             case (dev_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
-                    if (((data_width == 36) || (data_width == 32))) 
+                    if (((data_width == 36) || (data_width == 32)))
                         getByteWidth = 4 ;
                     else
-                        if (((data_width == 18) || (data_width == 16))) 
+                        if (((data_width == 18) || (data_width == 16)))
                             getByteWidth = 2 ;
                         else
                             getByteWidth = 1 ;
                 end
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 begin
-                    if ((data_width == 16)) 
+                    if ((data_width == 16))
                         getByteWidth = 2 ;
                     else
                         getByteWidth = 1 ;
                 end
-            default : 
+            default :
                 getByteWidth = 1 ;
-            endcase 
+            endcase
         end
     endfunction
-    function [(STRING_SIZE - 1):0] getStringFromPos ; 
-        input [31:0] x ; 
-        input [31:0] y ; 
+    function [(STRING_SIZE - 1):0] getStringFromPos ;
+        input [31:0] x ;
+        input [31:0] y ;
         begin
-            if ((y >= 10000000)) 
+            if ((y >= 10000000))
                 begin
-                    if ((x >= 10000000)) 
+                    if ((x >= 10000000))
                         begin
                             getStringFromPos = {"[",
                                     NUM_STRING[((POS_X7 * 8) + 7):(POS_X7 * 8)],
@@ -4433,7 +4433,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                     "]"} ;
                         end
                     else
-                        if ((x >= 1000000)) 
+                        if ((x >= 1000000))
                             begin
                                 getStringFromPos = {"[",
                                         NUM_STRING[((POS_X6 * 8) + 7):(POS_X6 * 8)],
@@ -4455,7 +4455,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                         "]"} ;
                             end
                         else
-                            if ((x >= 100000)) 
+                            if ((x >= 100000))
                                 begin
                                     getStringFromPos = {"[",
                                             NUM_STRING[((POS_X5 * 8) + 7):(POS_X5 * 8)],
@@ -4476,7 +4476,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                             "]"} ;
                                 end
                             else
-                                if ((x >= 10000)) 
+                                if ((x >= 10000))
                                     begin
                                         getStringFromPos = {"[",
                                                 NUM_STRING[((POS_X4 * 8) + 7):(POS_X4 * 8)],
@@ -4496,7 +4496,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                 "]"} ;
                                     end
                                 else
-                                    if ((x >= 1000)) 
+                                    if ((x >= 1000))
                                         begin
                                             getStringFromPos = {"[",
                                                     NUM_STRING[((POS_X3 * 8) + 7):(POS_X3 * 8)],
@@ -4515,7 +4515,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                     "]"} ;
                                         end
                                     else
-                                        if ((x >= 100)) 
+                                        if ((x >= 100))
                                             begin
                                                 getStringFromPos = {"[",
                                                         NUM_STRING[((POS_X2 * 8) + 7):(POS_X2 * 8)],
@@ -4533,7 +4533,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                         "]"} ;
                                             end
                                         else
-                                            if ((x >= 10)) 
+                                            if ((x >= 10))
                                                 begin
                                                     getStringFromPos = {"[",
                                                             NUM_STRING[((POS_X1 * 8) + 7):(POS_X1 * 8)],
@@ -4566,9 +4566,9 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                 end
                 end
             else
-                if ((y >= 1000000)) 
+                if ((y >= 1000000))
                     begin
-                        if ((x >= 10000000)) 
+                        if ((x >= 10000000))
                             begin
                                 getStringFromPos = {"[",
                                         NUM_STRING[((POS_X7 * 8) + 7):(POS_X7 * 8)],
@@ -4590,7 +4590,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                         "]"} ;
                             end
                         else
-                            if ((x >= 1000000)) 
+                            if ((x >= 1000000))
                                 begin
                                     getStringFromPos = {"[",
                                             NUM_STRING[((POS_X6 * 8) + 7):(POS_X6 * 8)],
@@ -4611,7 +4611,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                             "]"} ;
                                 end
                             else
-                                if ((x >= 100000)) 
+                                if ((x >= 100000))
                                     begin
                                         getStringFromPos = {"[",
                                                 NUM_STRING[((POS_X5 * 8) + 7):(POS_X5 * 8)],
@@ -4631,7 +4631,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                 "]"} ;
                                     end
                                 else
-                                    if ((x >= 10000)) 
+                                    if ((x >= 10000))
                                         begin
                                             getStringFromPos = {"[",
                                                     NUM_STRING[((POS_X4 * 8) + 7):(POS_X4 * 8)],
@@ -4650,7 +4650,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                     "]"} ;
                                         end
                                     else
-                                        if ((x >= 1000)) 
+                                        if ((x >= 1000))
                                             begin
                                                 getStringFromPos = {"[",
                                                         NUM_STRING[((POS_X3 * 8) + 7):(POS_X3 * 8)],
@@ -4668,7 +4668,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                         "]"} ;
                                             end
                                         else
-                                            if ((x >= 100)) 
+                                            if ((x >= 100))
                                                 begin
                                                     getStringFromPos = {"[",
                                                             NUM_STRING[((POS_X2 * 8) + 7):(POS_X2 * 8)],
@@ -4685,7 +4685,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                             "]"} ;
                                                 end
                                             else
-                                                if ((x >= 10)) 
+                                                if ((x >= 10))
                                                     begin
                                                         getStringFromPos = {"[",
                                                                 NUM_STRING[((POS_X1 * 8) + 7):(POS_X1 * 8)],
@@ -4716,9 +4716,9 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                     end
                     end
                 else
-                    if ((y >= 100000)) 
+                    if ((y >= 100000))
                         begin
-                            if ((x >= 10000000)) 
+                            if ((x >= 10000000))
                                 begin
                                     getStringFromPos = {"[",
                                             NUM_STRING[((POS_X7 * 8) + 7):(POS_X7 * 8)],
@@ -4739,7 +4739,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                             "]"} ;
                                 end
                             else
-                                if ((x >= 1000000)) 
+                                if ((x >= 1000000))
                                     begin
                                         getStringFromPos = {"[",
                                                 NUM_STRING[((POS_X6 * 8) + 7):(POS_X6 * 8)],
@@ -4759,7 +4759,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                 "]"} ;
                                     end
                                 else
-                                    if ((x >= 100000)) 
+                                    if ((x >= 100000))
                                         begin
                                             getStringFromPos = {"[",
                                                     NUM_STRING[((POS_X5 * 8) + 7):(POS_X5 * 8)],
@@ -4778,7 +4778,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                     "]"} ;
                                         end
                                     else
-                                        if ((x >= 10000)) 
+                                        if ((x >= 10000))
                                             begin
                                                 getStringFromPos = {"[",
                                                         NUM_STRING[((POS_X4 * 8) + 7):(POS_X4 * 8)],
@@ -4796,7 +4796,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                         "]"} ;
                                             end
                                         else
-                                            if ((x >= 1000)) 
+                                            if ((x >= 1000))
                                                 begin
                                                     getStringFromPos = {"[",
                                                             NUM_STRING[((POS_X3 * 8) + 7):(POS_X3 * 8)],
@@ -4813,7 +4813,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                             "]"} ;
                                                 end
                                             else
-                                                if ((x >= 100)) 
+                                                if ((x >= 100))
                                                     begin
                                                         getStringFromPos = {"[",
                                                                 NUM_STRING[((POS_X2 * 8) + 7):(POS_X2 * 8)],
@@ -4829,7 +4829,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                 "]"} ;
                                                     end
                                                 else
-                                                    if ((x >= 10)) 
+                                                    if ((x >= 10))
                                                         begin
                                                             getStringFromPos = {"[",
                                                                     NUM_STRING[((POS_X1 * 8) + 7):(POS_X1 * 8)],
@@ -4858,9 +4858,9 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                         end
                         end
                     else
-                        if ((y >= 10000)) 
+                        if ((y >= 10000))
                             begin
-                                if ((x >= 10000000)) 
+                                if ((x >= 10000000))
                                     begin
                                         getStringFromPos = {"[",
                                                 NUM_STRING[((POS_X7 * 8) + 7):(POS_X7 * 8)],
@@ -4880,7 +4880,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                 "]"} ;
                                     end
                                 else
-                                    if ((x >= 1000000)) 
+                                    if ((x >= 1000000))
                                         begin
                                             getStringFromPos = {"[",
                                                     NUM_STRING[((POS_X6 * 8) + 7):(POS_X6 * 8)],
@@ -4899,7 +4899,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                     "]"} ;
                                         end
                                     else
-                                        if ((x >= 100000)) 
+                                        if ((x >= 100000))
                                             begin
                                                 getStringFromPos = {"[",
                                                         NUM_STRING[((POS_X5 * 8) + 7):(POS_X5 * 8)],
@@ -4917,7 +4917,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                         "]"} ;
                                             end
                                         else
-                                            if ((x >= 10000)) 
+                                            if ((x >= 10000))
                                                 begin
                                                     getStringFromPos = {"[",
                                                             NUM_STRING[((POS_X4 * 8) + 7):(POS_X4 * 8)],
@@ -4934,7 +4934,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                             "]"} ;
                                                 end
                                             else
-                                                if ((x >= 1000)) 
+                                                if ((x >= 1000))
                                                     begin
                                                         getStringFromPos = {"[",
                                                                 NUM_STRING[((POS_X3 * 8) + 7):(POS_X3 * 8)],
@@ -4950,7 +4950,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                 "]"} ;
                                                     end
                                                 else
-                                                    if ((x >= 100)) 
+                                                    if ((x >= 100))
                                                         begin
                                                             getStringFromPos = {"[",
                                                                     NUM_STRING[((POS_X2 * 8) + 7):(POS_X2 * 8)],
@@ -4965,7 +4965,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                     "]"} ;
                                                         end
                                                     else
-                                                        if ((x >= 10)) 
+                                                        if ((x >= 10))
                                                             begin
                                                                 getStringFromPos = {"[",
                                                                         NUM_STRING[((POS_X1 * 8) + 7):(POS_X1 * 8)],
@@ -4992,9 +4992,9 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                             end
                             end
                         else
-                            if ((y >= 1000)) 
+                            if ((y >= 1000))
                                 begin
-                                    if ((x >= 10000000)) 
+                                    if ((x >= 10000000))
                                         begin
                                             getStringFromPos = {"[",
                                                     NUM_STRING[((POS_X7 * 8) + 7):(POS_X7 * 8)],
@@ -5013,7 +5013,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                     "]"} ;
                                         end
                                     else
-                                        if ((x >= 1000000)) 
+                                        if ((x >= 1000000))
                                             begin
                                                 getStringFromPos = {"[",
                                                         NUM_STRING[((POS_X6 * 8) + 7):(POS_X6 * 8)],
@@ -5031,7 +5031,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                         "]"} ;
                                             end
                                         else
-                                            if ((x >= 100000)) 
+                                            if ((x >= 100000))
                                                 begin
                                                     getStringFromPos = {"[",
                                                             NUM_STRING[((POS_X5 * 8) + 7):(POS_X5 * 8)],
@@ -5048,7 +5048,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                             "]"} ;
                                                 end
                                             else
-                                                if ((x >= 10000)) 
+                                                if ((x >= 10000))
                                                     begin
                                                         getStringFromPos = {"[",
                                                                 NUM_STRING[((POS_X4 * 8) + 7):(POS_X4 * 8)],
@@ -5064,7 +5064,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                 "]"} ;
                                                     end
                                                 else
-                                                    if ((x >= 1000)) 
+                                                    if ((x >= 1000))
                                                         begin
                                                             getStringFromPos = {"[",
                                                                     NUM_STRING[((POS_X3 * 8) + 7):(POS_X3 * 8)],
@@ -5079,7 +5079,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                     "]"} ;
                                                         end
                                                     else
-                                                        if ((x >= 100)) 
+                                                        if ((x >= 100))
                                                             begin
                                                                 getStringFromPos = {"[",
                                                                         NUM_STRING[((POS_X2 * 8) + 7):(POS_X2 * 8)],
@@ -5093,7 +5093,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                         "]"} ;
                                                             end
                                                         else
-                                                            if ((x >= 10)) 
+                                                            if ((x >= 10))
                                                                 begin
                                                                     getStringFromPos = {"[",
                                                                             NUM_STRING[((POS_X1 * 8) + 7):(POS_X1 * 8)],
@@ -5118,9 +5118,9 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                 end
                                 end
                             else
-                                if ((y >= 100)) 
+                                if ((y >= 100))
                                     begin
-                                        if ((x >= 10000000)) 
+                                        if ((x >= 10000000))
                                             begin
                                                 getStringFromPos = {"[",
                                                         NUM_STRING[((POS_X7 * 8) + 7):(POS_X7 * 8)],
@@ -5138,7 +5138,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                         "]"} ;
                                             end
                                         else
-                                            if ((x >= 1000000)) 
+                                            if ((x >= 1000000))
                                                 begin
                                                     getStringFromPos = {"[",
                                                             NUM_STRING[((POS_X6 * 8) + 7):(POS_X6 * 8)],
@@ -5155,7 +5155,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                             "]"} ;
                                                 end
                                             else
-                                                if ((x >= 100000)) 
+                                                if ((x >= 100000))
                                                     begin
                                                         getStringFromPos = {"[",
                                                                 NUM_STRING[((POS_X5 * 8) + 7):(POS_X5 * 8)],
@@ -5171,7 +5171,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                 "]"} ;
                                                     end
                                                 else
-                                                    if ((x >= 10000)) 
+                                                    if ((x >= 10000))
                                                         begin
                                                             getStringFromPos = {"[",
                                                                     NUM_STRING[((POS_X4 * 8) + 7):(POS_X4 * 8)],
@@ -5186,7 +5186,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                     "]"} ;
                                                         end
                                                     else
-                                                        if ((x >= 1000)) 
+                                                        if ((x >= 1000))
                                                             begin
                                                                 getStringFromPos = {"[",
                                                                         NUM_STRING[((POS_X3 * 8) + 7):(POS_X3 * 8)],
@@ -5200,7 +5200,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                         "]"} ;
                                                             end
                                                         else
-                                                            if ((x >= 100)) 
+                                                            if ((x >= 100))
                                                                 begin
                                                                     getStringFromPos = {"[",
                                                                             NUM_STRING[((POS_X2 * 8) + 7):(POS_X2 * 8)],
@@ -5213,7 +5213,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                             "]"} ;
                                                                 end
                                                             else
-                                                                if ((x >= 10)) 
+                                                                if ((x >= 10))
                                                                     begin
                                                                         getStringFromPos = {"[",
                                                                                 NUM_STRING[((POS_X1 * 8) + 7):(POS_X1 * 8)],
@@ -5236,9 +5236,9 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                     end
                                     end
                                 else
-                                    if ((y >= 10)) 
+                                    if ((y >= 10))
                                         begin
-                                            if ((x >= 10000000)) 
+                                            if ((x >= 10000000))
                                                 begin
                                                     getStringFromPos = {"[",
                                                             NUM_STRING[((POS_X7 * 8) + 7):(POS_X7 * 8)],
@@ -5255,7 +5255,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                             "]"} ;
                                                 end
                                             else
-                                                if ((x >= 1000000)) 
+                                                if ((x >= 1000000))
                                                     begin
                                                         getStringFromPos = {"[",
                                                                 NUM_STRING[((POS_X6 * 8) + 7):(POS_X6 * 8)],
@@ -5271,7 +5271,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                 "]"} ;
                                                     end
                                                 else
-                                                    if ((x >= 100000)) 
+                                                    if ((x >= 100000))
                                                         begin
                                                             getStringFromPos = {"[",
                                                                     NUM_STRING[((POS_X5 * 8) + 7):(POS_X5 * 8)],
@@ -5286,7 +5286,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                     "]"} ;
                                                         end
                                                     else
-                                                        if ((x >= 10000)) 
+                                                        if ((x >= 10000))
                                                             begin
                                                                 getStringFromPos = {"[",
                                                                         NUM_STRING[((POS_X4 * 8) + 7):(POS_X4 * 8)],
@@ -5300,7 +5300,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                         "]"} ;
                                                             end
                                                         else
-                                                            if ((x >= 1000)) 
+                                                            if ((x >= 1000))
                                                                 begin
                                                                     getStringFromPos = {"[",
                                                                             NUM_STRING[((POS_X3 * 8) + 7):(POS_X3 * 8)],
@@ -5313,7 +5313,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                             "]"} ;
                                                                 end
                                                             else
-                                                                if ((x >= 100)) 
+                                                                if ((x >= 100))
                                                                     begin
                                                                         getStringFromPos = {"[",
                                                                                 NUM_STRING[((POS_X2 * 8) + 7):(POS_X2 * 8)],
@@ -5325,7 +5325,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                                 "]"} ;
                                                                     end
                                                                 else
-                                                                    if ((x >= 10)) 
+                                                                    if ((x >= 10))
                                                                         begin
                                                                             getStringFromPos = {"[",
                                                                                 NUM_STRING[((POS_X1 * 8) + 7):(POS_X1 * 8)],
@@ -5347,7 +5347,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                         end
                                     else
                                         begin
-                                            if ((x >= 10000000)) 
+                                            if ((x >= 10000000))
                                                 begin
                                                     getStringFromPos = {"[",
                                                             NUM_STRING[((POS_X7 * 8) + 7):(POS_X7 * 8)],
@@ -5363,7 +5363,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                             "]"} ;
                                                 end
                                             else
-                                                if ((x >= 1000000)) 
+                                                if ((x >= 1000000))
                                                     begin
                                                         getStringFromPos = {"[",
                                                                 NUM_STRING[((POS_X6 * 8) + 7):(POS_X6 * 8)],
@@ -5378,7 +5378,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                 "]"} ;
                                                     end
                                                 else
-                                                    if ((x >= 100000)) 
+                                                    if ((x >= 100000))
                                                         begin
                                                             getStringFromPos = {"[",
                                                                     NUM_STRING[((POS_X5 * 8) + 7):(POS_X5 * 8)],
@@ -5392,7 +5392,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                     "]"} ;
                                                         end
                                                     else
-                                                        if ((x >= 10000)) 
+                                                        if ((x >= 10000))
                                                             begin
                                                                 getStringFromPos = {"[",
                                                                         NUM_STRING[((POS_X4 * 8) + 7):(POS_X4 * 8)],
@@ -5405,7 +5405,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                         "]"} ;
                                                             end
                                                         else
-                                                            if ((x >= 1000)) 
+                                                            if ((x >= 1000))
                                                                 begin
                                                                     getStringFromPos = {"[",
                                                                             NUM_STRING[((POS_X3 * 8) + 7):(POS_X3 * 8)],
@@ -5417,7 +5417,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                             "]"} ;
                                                                 end
                                                             else
-                                                                if ((x >= 100)) 
+                                                                if ((x >= 100))
                                                                     begin
                                                                         getStringFromPos = {"[",
                                                                                 NUM_STRING[((POS_X2 * 8) + 7):(POS_X2 * 8)],
@@ -5428,7 +5428,7 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                                                                 "]"} ;
                                                                     end
                                                                 else
-                                                                    if ((x >= 10)) 
+                                                                    if ((x >= 10))
                                                                         begin
                                                                             getStringFromPos = {"[",
                                                                                 NUM_STRING[((POS_X1 * 8) + 7):(POS_X1 * 8)],
@@ -5448,50 +5448,50 @@ module palette_ram_ipgen_lscc_ram_dp_core #(parameter _FCODE_LIFCL_ = 1,
                                         end
         end
     endfunction
-    function [31:0] getAddrWidth ; 
-        input [31:0] data_width ; 
-        input [31:0] dev_code ; 
+    function [31:0] getAddrWidth ;
+        input [31:0] data_width ;
+        input [31:0] dev_code ;
         begin
             case (dev_code)
-            _FCODE_LIFCL_ : 
+            _FCODE_LIFCL_ :
                 begin
                     case (data_width)
-                    36 : 
+                    36 :
                         getAddrWidth = 9 ;
-                    32 : 
+                    32 :
                         getAddrWidth = 9 ;
-                    18 : 
+                    18 :
                         getAddrWidth = 10 ;
-                    16 : 
+                    16 :
                         getAddrWidth = 10 ;
-                    9 : 
+                    9 :
                         getAddrWidth = 11 ;
-                    8 : 
+                    8 :
                         getAddrWidth = 11 ;
-                    4 : 
+                    4 :
                         getAddrWidth = 12 ;
-                    2 : 
+                    2 :
                         getAddrWidth = 13 ;
-                    1 : 
+                    1 :
                         getAddrWidth = 14 ;
-                    endcase 
+                    endcase
                 end
-            _FCODE_ICE_ : 
+            _FCODE_ICE_ :
                 begin
                     case (data_width)
-                    16 : 
+                    16 :
                         getAddrWidth = 8 ;
-                    8 : 
+                    8 :
                         getAddrWidth = 9 ;
-                    4 : 
+                    4 :
                         getAddrWidth = 10 ;
-                    2 : 
+                    2 :
                         getAddrWidth = 11 ;
-                    endcase 
+                    endcase
                 end
-            default : 
+            default :
                 getAddrWidth = 8 ;
-            endcase 
+            endcase
         end
     endfunction
 

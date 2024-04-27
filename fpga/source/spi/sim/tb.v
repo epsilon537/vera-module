@@ -1,71 +1,72 @@
 `timescale 1 ns / 1 ps
 //`default_nettype none
 
-module tb();
+module tb ();
 
-    initial begin
-        $dumpfile("tb.vcd");
-        $dumpvars(0, tb);
-    end
+  initial begin
+    $dumpfile("tb.vcd");
+    $dumpvars(0, tb);
+  end
 
-    initial begin
-        // #3000000 $finish;
-        #30000 $finish;
-    end
+  initial begin
+    // #3000000 $finish;
+    #30000 $finish;
+  end
 
-    // Generate 25MHz sysclk
-    reg clk = 0;
-    always #20 clk = !clk;
+  // Generate 25MHz sysclk
+  reg clk = 0;
+  always #20 clk = !clk;
 
-    reg rst = 1;
-    always #200 rst = 0;
+  reg rst = 1;
+  always #200 rst = 0;
 
-    reg  [7:0] txdata = 0;
-    reg        txstart = 0;
-    wire [7:0] rxdata;
-    wire       busy;
-    reg        slow = 0;
+  reg  [7:0] txdata = 0;
+  reg        txstart = 0;
+  wire [7:0] rxdata;
+  wire       busy;
+  reg        slow = 0;
 
-    spictrl spictrl(
-        .rst(rst),
-        .clk(clk),
-        
-        // Register interface
-        .txdata(txdata),
-        .txstart(txstart),
-        .rxdata(rxdata),
-        .busy(busy),
+  spictrl spictrl (
+      .rst(rst),
+      .clk(clk),
 
-        .slow(slow),
-        
-        // SPI interface
-        .spi_sck(),
-        .spi_mosi(),
-        .spi_miso(1'b1));
+      // Register interface
+      .txdata(txdata),
+      .txstart(txstart),
+      .rxdata(rxdata),
+      .busy(busy),
 
-    initial begin
-        #1000;
+      .slow(slow),
 
-        @(negedge clk);
+      // SPI interface
+      .spi_sck (),
+      .spi_mosi(),
+      .spi_miso(1'b1)
+  );
 
-        txdata = 8'h55;
-        txstart = 1;
+  initial begin
+    #1000;
 
-        @(negedge clk);
+    @(negedge clk);
 
-        txstart = 0;
+    txdata  = 8'h55;
+    txstart = 1;
 
-        #1000;
+    @(negedge clk);
 
-        @(negedge clk);
-        slow = 1;
-        txstart = 1;
+    txstart = 0;
 
-        @(negedge clk);
+    #1000;
 
-        txstart = 0;
+    @(negedge clk);
+    slow = 1;
+    txstart = 1;
 
-    end
+    @(negedge clk);
+
+    txstart = 0;
+
+  end
 
 
 
