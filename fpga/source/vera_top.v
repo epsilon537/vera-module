@@ -202,14 +202,14 @@ module vera_top #(
         do_reg_read <= 1'b0;
         do_reg_write <= 1'b0;
         //register write
-        if (wb_stb && wb_we && (wb_adr < 17'h1000>>2)) begin
+        if (!do_reg_write && wb_stb && wb_we && (wb_adr < 17'h1000>>2)) begin
             wrdata_r <= wb_dat_w;
             wraddr_r <= wb_adr[5:0];
             do_reg_write <= 1'b1;
         end
 
         //register read
-        if (wb_stb && !wb_we && (wb_adr < 17'h1000>>2)) begin
+        if (!do_reg_read && wb_stb && !wb_we && (wb_adr < 17'h1000>>2)) begin
             do_reg_read <= 1'b1;
         end
     end
