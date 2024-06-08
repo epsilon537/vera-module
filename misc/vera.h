@@ -9,6 +9,11 @@
 
 #define VERA_IEN          (0x02<<2)
 #define VERA_ISR          (0x03<<2)
+/*IEN/ISR bit masks*/
+#define VERA_IRQ_MSK_VSYNC    (0x01)
+#define VERA_IRQ_MSK_LINE     (0x02)
+#define VERA_IRQ_MSK_SPRCOL   (0x04)
+
 #define VERA_IRQ_LINE     (0x04<<2)
 #define VERA_SCANLINE     (0x05<<2)
 
