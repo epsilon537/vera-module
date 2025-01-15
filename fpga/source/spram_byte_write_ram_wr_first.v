@@ -22,6 +22,7 @@ module spram_byte_write_ram_wr_first #(
   reg [(NB_COL*COL_WIDTH)-1:0] BRAM[RAM_DEPTH-1:0];
   reg [(NB_COL*COL_WIDTH)-1:0] ram_data = {(NB_COL * COL_WIDTH) {1'b0}};
 
+`ifndef OPENXC7
   // The following code either initializes the memory values to a specified file or to all zeros to match hardware
   generate
     if (INIT_FILE != "") begin : use_init_file
@@ -33,6 +34,7 @@ module spram_byte_write_ram_wr_first #(
           BRAM[ram_index] = {(NB_COL * COL_WIDTH) {1'b0}};
     end
   endgenerate
+`endif
 
   generate
     genvar i;
