@@ -556,16 +556,25 @@ module vera_top #(
     wire        line_render_start;
 
     reg active_line_buf_r;
+`ifdef SYS_CLK_25MHZ
+    reg clk_en=1;
+`else
     reg clk_en=0;
-
+`endif
     //This piece of sequential logic needs to run at pixel clock rate, i.e. 1/2 the master clock rate.
     //Hence the clk_en.
     always @(posedge clk) begin
         if (reset) begin
             active_line_buf_r <= 0;
+`ifdef SYS_CLK_25MHZ
+            clk_en <= 1;
+`else
             clk_en <= 0;
+`endif
         end else begin
+`ifndef SYS_CLK_25MHZ
             clk_en <= ~clk_en;
+`endif
             if (next_line && clk_en) begin
                 active_line_buf_r <= !active_line_buf_r;
             end

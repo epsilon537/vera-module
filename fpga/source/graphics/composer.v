@@ -46,7 +46,11 @@ module composer (
   //////////////////////////////////////////////////////////////////////////
   // Composer
   //////////////////////////////////////////////////////////////////////////
+`ifdef SYS_CLK_25MHZ
+  reg clk_en = 1;
+`else
   reg clk_en = 0;
+`endif
   reg [16:0] scaled_x_counter_r;
   wire [9:0] scaled_x_counter = scaled_x_counter_r[16:7];
 
@@ -78,13 +82,19 @@ module composer (
 
   always @(posedge clk) begin
     if (rst) begin
-      clk_en        <= 0;
+`ifdef SYS_CLK_25MHZ
+      clk_en <= 1;
+`else
+      clk_en <= 0;
+`endif
       y_counter_r   <= 0;
       y_counter_rr  <= 0;
       next_line_r   <= 0;
       current_field <= 0;
     end else begin
+`ifndef SYS_CLK_25MHZ
       clk_en <= ~clk_en;
+`endif
       if (clk_en) begin
         next_line_r <= display_next_line;
         if (display_next_line) begin

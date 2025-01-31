@@ -38,8 +38,11 @@ module video_vga (
   reg [9:0] x_counter = 0;
   reg [9:0] y_counter = 0;
 
+`ifdef SYS_CLK_25MHZ
+  reg clk_en = 1;
+`else
   reg clk_en = 0;
-
+`endif
   wire h_last = (x_counter == H_TOTAL - 1);
   wire v_last = (y_counter == V_TOTAL - 1);
   wire v_last2 = (y_counter == V_TOTAL - 2);  // Start rendering one line earlier
@@ -57,10 +60,16 @@ module video_vga (
       x_counter <= 10'd0;
       y_counter <= 10'd0;
 `endif
+`ifdef SYS_CLK_25MHZ
+      clk_en <= 1;
+`else
       clk_en <= 0;
+`endif
 
     end else begin
+`ifndef SYS_CLK_25MHZ
       clk_en <= ~clk_en;
+`endif
 
       if (clk_en) begin
         x_counter <= h_last ? 10'd0 : (x_counter + 10'd1);
